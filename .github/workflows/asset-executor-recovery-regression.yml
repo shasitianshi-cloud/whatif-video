@@ -1,0 +1,20 @@
+name: Asset Executor Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/schemas/asset-execution-artifact.recovery-v1.schema.json'
+      - 'video-production/src/asset_executor_recovery.py'
+      - 'video-production/tests/test_asset_executor_recovery.py'
+      - '.github/workflows/asset-executor-recovery-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run standard-library regression
+        run: python3 video-production/tests/test_asset_executor_recovery.py
