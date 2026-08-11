@@ -1,0 +1,27 @@
+name: runtime-preflight
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Runtime inventory
+        shell: bash
+        run: |
+          set -e
+          echo "RUNNER_OS=$(uname -s)"
+          echo "NODE=$(node --version || true)"
+          echo "PYTHON=$(python3 --version || true)"
+          echo "FFMPEG=$(ffmpeg -version | head -n 1 || true)"
+          echo "CHROMIUM=$(chromium --version || true)"
+          echo "NETWORK_TEST_SKIPPED=true"
+          echo "SECRETS_USED=false"
+          echo "PROVIDER_CALL=false"
