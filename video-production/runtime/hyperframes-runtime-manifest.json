@@ -17,6 +17,18 @@
     "source": "system",
     "verified_version_prefix": "ffmpeg version 6.1.1-3ubuntu5"
   },
+  "cjk_font": {
+    "name": "NotoSansCJKsc-Regular",
+    "font_family": "Noto Sans CJK SC",
+    "format": "OTF",
+    "source_repository": "https://github.com/notofonts/noto-cjk",
+    "source_commit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+    "source_path": "Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf",
+    "relative_path": "video-production/assets/fonts/NotoSansCJKsc-Regular.otf",
+    "file_size_bytes": 16437364,
+    "sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+    "license": "SIL_OPEN_FONT_LICENSE_1_1"
+  },
   "environment": {
     "HYPERFRAMES_NO_TELEMETRY": "1",
     "HYPERFRAMES_NO_UPDATE_CHECK": "1"
