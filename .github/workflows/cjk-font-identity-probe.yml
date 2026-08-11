@@ -1,0 +1,29 @@
+name: CJK Font Identity Probe
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - '.github/workflows/cjk-font-identity-probe.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  font-identity:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download pinned official Noto CJK font and derive identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          COMMIT='f8d157532fbfaeda587e826d4cd5b21a49186f7c'
+          URL="https://raw.githubusercontent.com/notofonts/noto-cjk/${COMMIT}/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf"
+          mkdir -p /tmp/font-probe
+          curl -fL --retry 2 --connect-timeout 15 --max-time 180 "$URL" -o /tmp/font-probe/NotoSansCJKsc-Regular.otf
+          test -s /tmp/font-probe/NotoSansCJKsc-Regular.otf
+          echo "CJK_FONT_SOURCE_COMMIT=$COMMIT"
+          echo "CJK_FONT_FILE_SIZE_BYTES=$(stat -c %s /tmp/font-probe/NotoSansCJKsc-Regular.otf)"
+          echo "CJK_FONT_SHA256=$(sha256sum /tmp/font-probe/NotoSansCJKsc-Regular.otf | awk '{print $1}')"
