@@ -1,0 +1,77 @@
+name: HappyHorse T2V Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/happyhorse/runtime/happyhorse-t2v-runner.mjs'
+      - 'video-production/happyhorse/runtime/watermark-control.mjs'
+      - '.github/workflows/happyhorse-t2v-recovery-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  no-network-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Validate frozen T2V projection without provider call
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/t2v-task.json <<'JSON'
+          {
+            "task_id":"dispatch-vid-001",
+            "run_id":"regression-t2v-001",
+            "asset_id":"vid-001",
+            "role":"content_visual",
+            "generation_route":"happyhorse",
+            "expected_asset_kind":"video",
+            "generation_mode":"T2V",
+            "prompt":"亚洲人物从办公室走到街上，真实连续动作，自然环境，无额外图形叠加",
+            "duration_ms":5000,
+            "continuity":{"kind":"none"},
+            "in_content_timeline":true
+          }
+          JSON
+          node video-production/happyhorse/runtime/happyhorse-t2v-runner.mjs --validate-only /tmp/t2v-task.json > /tmp/out.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/out.json'))
+          assert x['status']=='VALID'
+          p=x['projection']['taskBody']
+          assert p['prompt']=='亚洲人物从办公室走到街上，真实连续动作，自然环境，无额外图形叠加'
+          assert p['taskType']=='T2V'
+          assert p['parameters']=={'durationS':5,'aspectRatio':'16:9','resolution':'720p','modelVersion':'1.5','shotType':'single','sourceChannel':'cli'}
+          assert p['concurrency']==1
+          print('HAPPYHORSE_T2V_PROMPT_LITERAL_PASSTHROUGH=true')
+          print('HAPPYHORSE_T2V_PROVIDER_CALL=false')
+          PY
+      - name: Validate no-watermark membership mapping
+        run: |
+          node --input-type=module - <<'JS'
+          import {buildDownloadMetadataPath} from './video-production/happyhorse/runtime/watermark-control.mjs';
+          const member = new URL('https://x.invalid'+buildDownloadMetadataPath('123',0,{isMember:true}));
+          if (member.searchParams.get('watermarked') !== 'false') process.exit(2);
+          if (member.searchParams.get('aiWater') !== 'true') process.exit(2);
+          console.log('HAPPYHORSE_MEMBER_WATERMARKED=false');
+          JS
+      - name: Reject unsupported duration and T2V continuity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/t2v-task.json'))
+          p['duration_ms']=3500
+          json.dump(p,open('/tmp/bad-duration.json','w'),ensure_ascii=False)
+          p=json.load(open('/tmp/t2v-task.json'))
+          p['continuity']={'kind':'previous_asset_frame','previous_asset_id':'vid-000'}
+          json.dump(p,open('/tmp/bad-continuity.json','w'),ensure_ascii=False)
+          PY
+          if node video-production/happyhorse/runtime/happyhorse-t2v-runner.mjs --validate-only /tmp/bad-duration.json; then exit 2; fi
+          if node video-production/happyhorse/runtime/happyhorse-t2v-runner.mjs --validate-only /tmp/bad-continuity.json; then exit 2; fi
+          echo 'HAPPYHORSE_T2V_FAIL_CLOSED_REGRESSION=true'
