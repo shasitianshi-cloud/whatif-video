@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "asset-manifest.schema.json",
+  "title": "What-if Video Normalized Asset Manifest",
+  "type": "object",
+  "required": ["schema_version", "run_id", "assets"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["run_id", "asset_id", "asset_kind", "role", "source_artifact_path", "local_path", "sha256", "file_size_bytes", "width", "height", "duration_ms", "created_at", "in_content_timeline"],
+        "properties": {
+          "run_id": {"type": "string", "minLength": 1},
+          "asset_id": {"type": "string", "minLength": 1},
+          "asset_kind": {"enum": ["video", "image", "audio"]},
+          "role": {"type": "string", "minLength": 1},
+          "source_artifact_path": {"type": "string", "minLength": 1},
+          "local_path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "file_size_bytes": {"type": "integer", "minimum": 0},
+          "width": {"type": ["integer", "null"], "minimum": 1},
+          "height": {"type": ["integer", "null"], "minimum": 1},
+          "duration_ms": {"type": ["integer", "null"], "minimum": 0},
+          "created_at": {"type": "string", "minLength": 1},
+          "in_content_timeline": {"type": "boolean"},
+          "provider_metadata": {"type": "object"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}
