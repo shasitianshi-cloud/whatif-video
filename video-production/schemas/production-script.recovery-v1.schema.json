@@ -18,6 +18,10 @@
     "recovery_schema_reconstructed": {"const": true},
     "historical_schema_byte_identical": {"const": false},
     "downstream_creative_replanning_required": {"const": false},
+    "execution_references": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/executionReference"}
+    },
     "segments": {
       "type": "array",
       "minItems": 1,
@@ -45,6 +49,19 @@
         "scale": {"type": "number", "exclusiveMinimum": 0}
       }
     },
+    "executionReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_id", "kind", "role", "generation_route", "prompt", "in_content_timeline"],
+      "properties": {
+        "asset_id": {"type": "string", "minLength": 1},
+        "kind": {"const": "generated_reference"},
+        "role": {"const": "execution_reference"},
+        "generation_route": {"const": "gpt-image-2"},
+        "prompt": {"type": "string", "minLength": 1},
+        "in_content_timeline": {"const": false}
+      }
+    },
     "visualAsset": {
       "type": "object",
       "additionalProperties": false,
@@ -54,6 +71,7 @@
         "scene",
         "asset_strategy",
         "render_treatment",
+        "generation_route",
         "prompt",
         "start_offset_ms",
         "duration_ms",
