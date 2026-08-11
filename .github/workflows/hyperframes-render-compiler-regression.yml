@@ -1,0 +1,27 @@
+name: HyperFrames Render Compiler Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/schemas/hyperframes-render-plan.schema.json'
+      - 'video-production/src/hyperframes-render-compiler.js'
+      - 'video-production/tests/hyperframes-render-compiler.test.js'
+      - '.github/workflows/hyperframes-render-compiler-regression.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run render compiler regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --version
+          node video-production/tests/hyperframes-render-compiler.test.js
+          node -e "JSON.parse(require('fs').readFileSync('video-production/schemas/hyperframes-render-plan.schema.json','utf8')); console.log('RENDER_PLAN_SCHEMA_JSON_PARSE=PASS')"
