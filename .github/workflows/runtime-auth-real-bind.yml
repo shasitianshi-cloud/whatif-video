@@ -1,0 +1,131 @@
+name: Runtime Auth Real Bind
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'runtime-auth/BIND_READY'
+
+permissions:
+  contents: write
+
+jobs:
+  bind:
+    runs-on: ubuntu-24.04
+    env:
+      VOLCENGINE_TTS_API_KEY: ${{ secrets.VOLCENGINE_TTS_API_KEY }}
+      HAPPYHORSE_SESSION_JSON: ${{ secrets.HAPPYHORSE_SESSION_JSON }}
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: migration/whatif-recovery-v2-clean-v1
+
+      - name: Fail closed on missing secret bindings
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${VOLCENGINE_TTS_API_KEY:-}"
+          test -n "${HAPPYHORSE_SESSION_JSON:-}"
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Materialize secrets without logging values
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          umask 077
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          from runtime_auth import persist_volcengine_from_environment, persist_happyhorse_session_from_path
+
+          identity = Path('.age-runtime-auth-identity')
+          identity.write_text(os.environ['AGE_RUNTIME_AUTH_PRIVATE_KEY'].rstrip() + '\n', encoding='utf-8')
+          identity.chmod(0o600)
+
+          session = json.loads(os.environ['HAPPYHORSE_SESSION_JSON'])
+          if not isinstance(session, dict):
+              raise SystemExit('HappyHorse session secret must be a JSON object')
+          source = Path('.happyhorse-session-source.json')
+          source.write_text(json.dumps(session, separators=(',', ':')) + '\n', encoding='utf-8')
+          source.chmod(0o600)
+
+          if not persist_volcengine_from_environment():
+              raise SystemExit('Volcengine credential binding failed')
+          if not persist_happyhorse_session_from_path(source):
+              raise SystemExit('HappyHorse session binding failed')
+          source.unlink()
+          PY
+
+      - name: Encrypt, decrypt-verify, and run no-generation preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          RECIPIENT="$(tr -d '\r\n' < runtime-auth/runtime-auth-public-key.txt)"
+          test -n "$RECIPIENT"
+
+          python3 video-production/src/encrypted_runtime_auth.py reencrypt-materialized \
+            --recipient "$RECIPIENT" \
+            --output runtime-auth/runtime-auth.v1.age
+
+          rm -rf .runtime-auth
+          python3 video-production/src/provider_runtime_preflight.py \
+            --encrypted-auth runtime-auth/runtime-auth.v1.age \
+            --age-identity-file .age-runtime-auth-identity \
+            --result runtime-auth-real-preflight.json
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r = json.loads(Path('runtime-auth-real-preflight.json').read_text())
+          assert r['provider_runtime_preflight_ready'] is True
+          assert r['encrypted_runtime_auth_loaded'] is True
+          assert r['encrypted_runtime_auth_transport'] == 'age'
+          assert r['run_id_created'] is False
+          assert r['provider_generation_call_executed'] is False
+          assert r['credits_consumed'] is False
+          assert r['secret_value_exposed'] is False
+          Path('runtime-auth/REAL_BIND_RESULT.json').write_text(json.dumps({
+              'schema_version': 1,
+              'status': 'PASS',
+              'encrypted_runtime_auth_created': True,
+              'provider_runtime_preflight_ready': True,
+              'run_id_created': False,
+              'provider_generation_call_executed': False,
+              'credits_consumed': False,
+              'secret_value_exposed': False
+          }, indent=2) + '\n')
+          PY
+
+      - name: Verify no plaintext or identity is tracked
+        shell: bash
+        run: |
+          set -euo pipefail
+          git check-ignore -q .runtime-auth/volcengine/credential.json
+          git check-ignore -q .runtime-auth/happyhorse/session.json
+          ! git status --porcelain | grep -E '(\.runtime-auth|\.age-runtime-auth-identity|\.happyhorse-session-source)'
+
+      - name: Commit ciphertext state only
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f runtime-auth/BIND_READY runtime-auth-real-preflight.json .age-runtime-auth-identity
+          rm -rf .runtime-auth age.tar.gz age
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runtime-auth/runtime-auth.v1.age runtime-auth/REAL_BIND_RESULT.json runtime-auth/BIND_READY
+          git diff --cached --quiet && exit 1 || true
+          git commit -m 'bind encrypted runtime auth state'
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
