@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hyperframes-render-plan.schema.json",
+  "title": "Deterministic HyperFrames Render Plan",
+  "type": "object",
+  "required": ["schema_version", "run_id", "composition", "layers", "audio", "subtitles"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "composition": {
+      "type": "object",
+      "required": ["width", "height", "duration_ms"],
+      "properties": {
+        "width": {"const": 1280},
+        "height": {"const": 720},
+        "duration_ms": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "layers": {"type": "array"},
+    "audio": {"type": "array"},
+    "subtitles": {"type": "array"}
+  },
+  "additionalProperties": false
+}
