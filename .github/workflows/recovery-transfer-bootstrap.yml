@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - migration/whatif-frozen-production-bundle-v1
+    paths:
+      - recovery/transfer/READY
 
 permissions:
   contents: write
@@ -19,19 +21,16 @@ jobs:
           ref: migration/whatif-frozen-production-bundle-v1
           fetch-depth: 0
 
-      - name: Materialize staged recovery bundle when complete
+      - name: Materialize staged recovery bundle
         shell: bash
         env:
-          EXPECTED_PARTS: "8"
+          EXPECTED_PARTS: "28"
           EXPECTED_TAR_SHA256: "4bda6a23610e694f1a84688388e1cda9e38296b694dbdfbe8055beddfa428671"
         run: |
           set -euo pipefail
           shopt -s nullglob
           parts=(recovery/transfer/part-*.b64)
-          if [ "${#parts[@]}" -ne "$EXPECTED_PARTS" ]; then
-            echo "transfer incomplete: ${#parts[@]}/$EXPECTED_PARTS"
-            exit 0
-          fi
+          test "${#parts[@]}" -eq "$EXPECTED_PARTS"
           mkdir -p .recovery-transfer
           cat "${parts[@]}" | base64 -d > .recovery-transfer/source.tar.gz
           echo "$EXPECTED_TAR_SHA256  .recovery-transfer/source.tar.gz" | sha256sum -c -
