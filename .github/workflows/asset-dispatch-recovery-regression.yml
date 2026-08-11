@@ -1,0 +1,20 @@
+name: Asset Dispatch Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/schemas/asset-dispatch.recovery-v1.schema.json'
+      - 'video-production/src/build_asset_dispatch.py'
+      - 'video-production/tests/test_asset_dispatch_recovery.py'
+      - '.github/workflows/asset-dispatch-recovery-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run standard-library regression
+        run: python3 video-production/tests/test_asset_dispatch_recovery.py
