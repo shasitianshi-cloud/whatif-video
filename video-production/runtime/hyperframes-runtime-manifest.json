@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "runtime_id": "hyperframes-local-0.7.106-actions-v1",
+  "source_repository": "https://github.com/heygen-com/hyperframes",
+  "source_tag": "v0.7.106",
+  "source_commit": "c9dd8413c35d110241293a38a8411a1a719e6176",
+  "runtime_distribution": "npm:hyperframes@0.7.106",
+  "hyperframes_version": "0.7.106",
+  "node_version": "24.14.0",
+  "chromium": {
+    "version": "152.0.7928.2",
+    "archive_sha256": "f0fa3d36fc961f17cb2c8b0b2c56c274b1834f1b7cdf3a8504af50706885d1b5",
+    "executable_sha256": "55efa0c5ec72d027235402198607cdb438c673297a287186d6f16a7ada8908d4",
+    "relative_executable_path": "vendor/chromium/linux-152.0.7928.2/chrome-headless-shell-linux64/chrome-headless-shell"
+  },
+  "ffmpeg": {
+    "source": "system",
+    "verified_version_prefix": "ffmpeg version 6.1.1-3ubuntu5"
+  },
+  "environment": {
+    "HYPERFRAMES_NO_TELEMETRY": "1",
+    "HYPERFRAMES_NO_UPDATE_CHECK": "1"
+  },
+  "render_json_mode": true,
+  "render_json_flag_injected_once": true,
+  "hyperframes_auth_required": false,
+  "hyperframes_cloud_render": false,
+  "historical_probe_run_id": 31477134144,
+  "historical_probe_status": "PASS"
+}
