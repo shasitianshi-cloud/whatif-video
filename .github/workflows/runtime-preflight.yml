@@ -20,6 +20,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+
       - name: Runtime and network preflight
         shell: bash
         run: |
@@ -41,8 +51,7 @@ jobs:
           done
 
           probe() {
-            name="$1"
-            url="$2"
+            url="$1"
             set +e
             http_status="$(curl -sS --connect-timeout 10 --max-time 20 -o /dev/null -w '%{http_code}' "$url")"
             curl_exit=$?
@@ -56,10 +65,10 @@ jobs:
           }
 
           IFS='|' read -r volc_reachable volc_status volc_exit <<EOF
-          $(probe volcengine https://openspeech.bytedance.com/)
+          $(probe https://openspeech.bytedance.com/)
           EOF
           IFS='|' read -r hh_reachable hh_status hh_exit <<EOF
-          $(probe happyhorse https://api-gateway.aorizon.com/)
+          $(probe https://api-gateway.aorizon.com/)
           EOF
 
           export NODE_VERSION="$node_version"
@@ -95,6 +104,13 @@ jobs:
               "paid_provider_action_executed": False,
               "run_id_created": False,
           }
+          evidence["pass"] = all([
+              bool(evidence["node_version"]),
+              bool(evidence["python_version"]),
+              bool(evidence["ffmpeg_version"]),
+              evidence["volcengine_network_reachable"],
+              evidence["happyhorse_network_reachable"],
+          ])
           with open("evidence/runtime-preflight.json", "w", encoding="utf-8") as f:
               json.dump(evidence, f, ensure_ascii=False, indent=2)
           print(json.dumps(evidence, ensure_ascii=False, indent=2))
