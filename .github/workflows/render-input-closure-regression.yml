@@ -1,0 +1,36 @@
+name: Render Input Closure Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/schemas/**'
+      - 'video-production/src/build_asset_manifest.py'
+      - 'video-production/src/build_render_input.py'
+      - 'video-production/tests/test_render_input_closure.py'
+      - '.github/workflows/render-input-closure-regression.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run recovered render-input closure regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pytest -q video-production/tests/test_render_input_closure.py
+          python3 - <<'PY'
+          import json
+          for path in (
+              'video-production/schemas/asset-manifest.schema.json',
+              'video-production/schemas/render-input.schema.json',
+          ):
+              json.load(open(path, encoding='utf-8'))
+          print('ASSET_MANIFEST_SCHEMA_JSON_PARSE=PASS')
+          print('RENDER_INPUT_SCHEMA_JSON_PARSE=PASS')
+          PY
