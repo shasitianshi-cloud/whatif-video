@@ -10,11 +10,11 @@ function esc(value) {
 
 function asSeconds(ms) { return Number(ms) / 1000; }
 
-function relativeAssetUrl(projectRoot, outputDir, localPath) {
+function projectRootAssetUrl(projectRoot, localPath) {
   const absolute = path.resolve(projectRoot, localPath);
   const root = path.resolve(projectRoot);
   if (absolute !== root && !absolute.startsWith(root + path.sep)) throw new Error(`asset outside project: ${localPath}`);
-  return path.relative(outputDir, absolute).split(path.sep).join('/');
+  return path.relative(root, absolute).split(path.sep).join('/');
 }
 
 function normalizeMotion(motion) {
@@ -45,10 +45,10 @@ function buildComposition({ renderPlan, projectRoot, outputDir, fontPath }) {
   const { width, height, duration_ms: durationMs } = renderPlan.composition || {};
   if (width !== 1280 || height !== 720 || !(durationMs > 0)) throw new Error('invalid composition');
   fs.mkdirSync(outputDir, { recursive: true });
-  const fontUrl = relativeAssetUrl(projectRoot, outputDir, fontPath);
+  const fontUrl = projectRootAssetUrl(projectRoot, fontPath);
   const motionRecords = [];
   const visualHtml = renderPlan.layers.map((layer, index) => {
-    const src = relativeAssetUrl(projectRoot, outputDir, layer.local_path);
+    const src = projectRootAssetUrl(projectRoot, layer.local_path);
     const start = asSeconds(layer.start_ms);
     const duration = asSeconds(layer.duration_ms);
     const id = `visual-${index}`;
@@ -67,7 +67,7 @@ function buildComposition({ renderPlan, projectRoot, outputDir, fontPath }) {
   }).join('\n');
 
   const audioHtml = renderPlan.audio.map((a, index) => {
-    const src = relativeAssetUrl(projectRoot, outputDir, a.local_path);
+    const src = projectRootAssetUrl(projectRoot, a.local_path);
     return `<audio id="audio-${index}" src="${esc(src)}" data-start="${asSeconds(a.start_ms)}" data-duration="${asSeconds(a.duration_ms)}" data-track-index="10" preload="auto"></audio>`;
   }).join('\n');
 
@@ -129,7 +129,7 @@ ${subtitleHtml}
   return { outputPath, motionCount: motionRecords.length, durationMs };
 }
 
-module.exports = { buildComposition, normalizeMotion, relativeAssetUrl };
+module.exports = { buildComposition, normalizeMotion, projectRootAssetUrl };
 
 if (require.main === module) {
   const [renderPlanPath, projectRootArg, outputDirArg] = process.argv.slice(2);
