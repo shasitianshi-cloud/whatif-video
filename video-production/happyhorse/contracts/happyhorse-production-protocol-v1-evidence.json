@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "artifact": "happyhorse-production-protocol-v1.json",
+  "generated_at": "2026-08-11T00:00:00+08:00",
+  "sources": [
+    {
+      "type": "static_cli",
+      "identity": "HappyHorse CLI 0.1.9 official linux-x64 native bundle",
+      "release_url": "https://happyhorse-cli-releases.oss-accelerate.aliyuncs.com/happyhorse-cli/0.1.9/happyhorse-cli-linux-x64",
+      "official_sha256": "dd9f32e2fca68289e4ec542298fe3e40505333a6ae53c2b91d2070164b7d0f5a",
+      "observed_sha256": "dd9f32e2fca68289e4ec542298fe3e40505333a6ae53c2b91d2070164b7d0f5a",
+      "verification": "match",
+      "used_for": ["refresh", "project", "media_upload", "t2v", "i2v", "r2v", "task_query", "download", "watermark_control", "x_client_command_map", "error_contract"]
+    },
+    {
+      "type": "work_implementation",
+      "paths": ["happyhorse-client-runtime/auth", "happyhorse-client-runtime/transport", "happyhorse-client-runtime/media", "happyhorse-client-runtime/task"],
+      "used_for": ["auth_runtime", "comparison against existing implementation"],
+      "qualification": "OAuth/session/membership portions are verified; earlier task/media/refresh placeholders were not treated as authoritative when they differed from official CLI static implementation"
+    },
+    {
+      "type": "authenticated_probe",
+      "operation": "none in this stage",
+      "reason": "official verified static implementation closed all required fields without remote side effects"
+    },
+    {
+      "type": "historical_task",
+      "operation": "none",
+      "reason": "not required"
+    }
+  ],
+  "watermark_control_evidence": {
+    "source": "OFFICIAL_CLI_0.1.9",
+    "static_trace": [
+      "generation command schemas expose no watermark option",
+      "generation request builder Zn1 emits no watermark field",
+      "task submit builder EV4 changes only modelVersion 1.1 to 1.5",
+      "membership policy yE maps operation=download and membership=member to watermarked=false",
+      "task API getDownloadUrl serializes slotIndex, watermarked, and aiWater=true into the metadata query"
+    ],
+    "real_probe_delta": "The real-probe task body had no watermark field (correct), while its metadata GET omitted watermarked and aiWater (adapter omission), causing provider defaults to select a visibly watermarked result.",
+    "remote_probe_called": false,
+    "generation_called": false
+  },
+  "safety": {
+    "oauth_modified": false,
+    "refresh_called": false,
+    "project_created": false,
+    "sts_requested": false,
+    "media_uploaded": false,
+    "media_registered": false,
+    "task_created": false,
+    "historical_media_downloaded": false,
+    "paid_task_created": false,
+    "video_generation": false,
+    "credits_consumed": false
+  },
+  "secret_scan_contract": {
+    "forbidden": ["accessToken", "refreshToken", "authorizationCode", "codeVerifier", "accessKeySecret", "securityToken", "Cookie", "real callback URL"],
+    "secrets_in_artifacts": false
+  }
+}

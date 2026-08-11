@@ -1,0 +1,1417 @@
+{
+  "manifest_version": 2,
+  "created_at": "2026-08-11T02:13:13+08:00",
+  "root_prefix": "whatif-video/",
+  "hash_algorithm": "SHA256",
+  "entries": [
+    {
+      "relative_path": "counterfactual-reasoning/config/runtime.json",
+      "size_bytes": 181,
+      "sha256": "2a1d5a756f5aa094ea4815d177882ac0890c39a6286ea224e26d81e420cd9d01"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/INDEX.md",
+      "size_bytes": 1840,
+      "sha256": "7f1a4ad949bab762a8d69765a2383aaaa83f1d911a7ffa7df36916cf3516b8de"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/prompts/deep-reasoning.md",
+      "size_bytes": 2280,
+      "sha256": "be7df4a6afe26fea289c3bdfdf75a61579a73838192d6bb709d8f367f083588d"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/prompts/master-finalization.md",
+      "size_bytes": 1275,
+      "sha256": "e07bb7ae892ecf13de7c944e89b9f05a928f25823c9a34bc8ddeefce424c2479"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/prompts/premise-discovery.md",
+      "size_bytes": 2040,
+      "sha256": "bd71368b0c19a46e2c2c9ca999c1ea98a7167b5a4f0d32a6457ff9b1df4bbcb1"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/README.md",
+      "size_bytes": 2158,
+      "sha256": "b99fc358bb4725f541f8aa32381fea65c7711de6acc1bab0a1092109aad10982"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/src/counterfactual_reasoning.py",
+      "size_bytes": 15075,
+      "sha256": "ea57a92577cbcdd34757059e16c55d11ddde903236dd9b4e259d8bddb354a9eb"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/tests/smoke_fixture.json",
+      "size_bytes": 9717,
+      "sha256": "0fb316fba2b3cdd4f0cc63a107f872eeb8b0bb16c363770787b20ac103f7e791"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/tests/test_smoke.py",
+      "size_bytes": 11283,
+      "sha256": "65997905eb141abed108e0825c77c7b9f7e20d2f26c70267769ab97456d790d3"
+    },
+    {
+      "relative_path": "counterfactual-reasoning/tests/verify_index.py",
+      "size_bytes": 651,
+      "sha256": "7338910fadcf34b922abb5d55cef6077c16503bd932cd0423305d5ddffc287e9"
+    },
+    {
+      "relative_path": "DISASTER_RECOVERY_PROJECT_STATE_V2.json",
+      "size_bytes": 1920,
+      "sha256": "ed264f580d9035cd2c00399f48711e1fb488a03204e1a7d829829902f02d6977"
+    },
+    {
+      "relative_path": "DISASTER_RECOVERY_RESTORE_README_V2.md",
+      "size_bytes": 2294,
+      "sha256": "6d58b55eefc1838110ddec494a47014b9aba7e6b0c2d869f812f914baed7784d"
+    },
+    {
+      "relative_path": "DISASTER_RECOVERY_SECRET_EXCLUSIONS.json",
+      "size_bytes": 1389,
+      "sha256": "e1472c54b3e5bc2420dbec0c38766eaa9ae8727997210b0d57f11a1417c35078"
+    },
+    {
+      "relative_path": "runs/gpt-image-2-real-probe-001/video-production/gpt-image-2-real-probe/gpt-image-2-generated-reference-probe.png",
+      "size_bytes": 2097817,
+      "sha256": "063c265e405e1374c96dca63087e7498eb0b3694c7e43a39bc0f078bbad550cb"
+    },
+    {
+      "relative_path": "runs/gpt-image-2-real-probe-001/video-production/gpt-image-2-real-probe/gpt-image-2-generated-reference-probe.png.artifact.json",
+      "size_bytes": 734,
+      "sha256": "c9462a84da142a16c30b1f890b2358d77600ce004d950d519b6ab2ff557b0990"
+    },
+    {
+      "relative_path": "runs/happyhorse-i2v-media-path-real-probe-001/video-production/happyhorse-real-probe/.i2v-one-shot-state.json",
+      "size_bytes": 208,
+      "sha256": "47340798afadfb6527a85ad7bf310df01369c2e1acaff92bda4ee3f10f63cc28"
+    },
+    {
+      "relative_path": "runs/happyhorse-i2v-media-path-real-probe-001/video-production/happyhorse-real-probe/happyhorse-i2v-media-path-real-probe-evidence.json",
+      "size_bytes": 3290,
+      "sha256": "4e581b2f15c5adc95359a2378674aac9aa54d83a822ee7cc8373111b2e58f7a8"
+    },
+    {
+      "relative_path": "runs/happyhorse-i2v-media-path-real-probe-001/video-production/happyhorse-real-probe/happyhorse-i2v-media-path-real-probe.json",
+      "size_bytes": 3999,
+      "sha256": "e767a178efa5b73a4ced3755f7b2f533d5ed472ac7700df20d78ddb6a7def25d"
+    },
+    {
+      "relative_path": "runs/happyhorse-i2v-media-path-real-probe-001/video-production/happyhorse-real-probe/happyhorse-i2v-media-path-real-probe.mp4",
+      "size_bytes": 6337421,
+      "sha256": "0921c8cd81af914371262a0f0e86cacb1a52fbf89c48b1b5ef0bb28728ec68d4"
+    },
+    {
+      "relative_path": "runs/happyhorse-i2v-media-path-real-probe-001/video-production/happyhorse-real-probe/happyhorse-i2v-reference-frame.png",
+      "size_bytes": 1561522,
+      "sha256": "6c54df258717be8fb6ae59b9506d1c72a24cd06a2711d21e360f65bd54c96395"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/.submission-state.json",
+      "size_bytes": 447,
+      "sha256": "b47378bb847595392f3c35d4856723267de3398c047a14c7793ad0aab23b9f8a"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-no-watermark-existing-task-real-probe-evidence.json",
+      "size_bytes": 2288,
+      "sha256": "75cef2961989c420d7ff53d38e560423ec8591d2d0368e968b16d3a1c1d7aceb"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-no-watermark-existing-task-real-probe.json",
+      "size_bytes": 1513,
+      "sha256": "ae54c841ec7abaef7ef319a9798ba4a21c2a7944f3cf32855fedc455f9ca6e62"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-single-task-no-watermark.mp4",
+      "size_bytes": 4390552,
+      "sha256": "8cb364cd52676346e08dc2ba0a01b6be64132475503a1bf8038e81be777c0d09"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-single-task-real-probe-evidence.json",
+      "size_bytes": 1363,
+      "sha256": "4c31910566a63df960fe7027a3e05ac8a1f263abbaf69b2a27997d4651f94865"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-single-task-real-probe.json",
+      "size_bytes": 2187,
+      "sha256": "e654f53e45846ad99a9adbfb2d803c3c31e9d550a4b23ed570743f75dcf03e38"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-single-task-real-probe.mp4",
+      "size_bytes": 3470529,
+      "sha256": "b105a6d837ad27630b19f1a7066d3e69674e1500394d0ef35f8df2b487a5efa9"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/visual-check/no-watermark-mid.png",
+      "size_bytes": 1553466,
+      "sha256": "a402687ef213367818c667fa6fbf7851cdc41a34b9fbbd714477873c74825b7a"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/visual-check/no-watermark-tail.png",
+      "size_bytes": 1565428,
+      "sha256": "1d7b205b5019471d0226a525323d8eee95ea19015cb873da59ea9951474688a3"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/visual-check/original-mid.png",
+      "size_bytes": 1533442,
+      "sha256": "63968e1f9f8a10d0347d3ebec7d0fb04ebf702aa38dd7e0752bafae5ae952d80"
+    },
+    {
+      "relative_path": "runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/visual-check/original-tail.png",
+      "size_bytes": 1546797,
+      "sha256": "30f10d5223915b9b888033e85d351d051e8251277ff0d79c2c283f1b63c0d222"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/counterfactual-master-gate.json",
+      "size_bytes": 553,
+      "sha256": "9a15bcdff8a3666031dd3c726bedd106e0f68b79b7a4d42dd8b0c997b1d9459d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/counterfactual-master.md",
+      "size_bytes": 5217,
+      "sha256": "125bd10c52180d0dfa798dd1b79450fb6fb617e2342dd2b937231c8e3277e449"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/anchor-input.json",
+      "size_bytes": 180,
+      "sha256": "76493fa01135e38d68fa95202fa61dc8d7d19f24f6d307bc54532eb9496d5f5e"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/counterfactual-master.md",
+      "size_bytes": 5217,
+      "sha256": "125bd10c52180d0dfa798dd1b79450fb6fb617e2342dd2b937231c8e3277e449"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/deep-reasoning-model-call.json",
+      "size_bytes": 263,
+      "sha256": "08a4f21a16ef75602a3f35b3f3d089084961968b289dd2756bf0e543c84a7b42"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/deep-reasoning-model-raw.txt",
+      "size_bytes": 9655,
+      "sha256": "23bbed488a35a433e78c966b805499f191c54fd0cf317aa8ba0fa975aa4bcb14"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/final-premise.md",
+      "size_bytes": 298,
+      "sha256": "706f77fee4acbf628c961df611a43c405d5209257d341e6b7c271ab43afc7382"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/gate-record.json",
+      "size_bytes": 553,
+      "sha256": "9a15bcdff8a3666031dd3c726bedd106e0f68b79b7a4d42dd8b0c997b1d9459d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/master-finalization-model-call.json",
+      "size_bytes": 314,
+      "sha256": "e718f7ed02ab698ea86b478ba3afaa57784439c18311e70bdb0cd900b31b166a"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/master-finalization-model-raw.txt",
+      "size_bytes": 5288,
+      "sha256": "16fbec5b17f2c75ec2750055f63957fc488bfb159cbe77c0ff2f46630e659fb0"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/001-expand-input.json",
+      "size_bytes": 1823,
+      "sha256": "7b4fa22d0ff8ab4fa26dd59a303e836255c909fce5215131b3f625b79befe0a5"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/001-expand-result.json",
+      "size_bytes": 4126,
+      "sha256": "a1a350fcc9ef8490f7f2d1f68e589823d2451ae36682e3420aa5669e483ca41b"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/002-perturb-input.json",
+      "size_bytes": 2214,
+      "sha256": "039835fb00135fe7447b350d5786ddc6ecdf2974b151708d84f1255679a3e311"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/002-perturb-result.json",
+      "size_bytes": 1393,
+      "sha256": "ae74df946b16a5e1e67ed8fbc1a714fdd82f318801206aa73af6750f6a2c2246"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/003-expand-input.json",
+      "size_bytes": 4988,
+      "sha256": "fa6061894d72fc5a5a2c8ac62cff7568f84ac6746d7bb01f5baffe826876834d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/003-expand-result.json",
+      "size_bytes": 11066,
+      "sha256": "30db70bb799a2bf1c9b0dce124727a26862f94d808f9ba2295d8229c51b8bccf"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/004-propagate-input.json",
+      "size_bytes": 4988,
+      "sha256": "fa6061894d72fc5a5a2c8ac62cff7568f84ac6746d7bb01f5baffe826876834d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/objects/real-smoke-human-001/004-propagate-result.json",
+      "size_bytes": 8881,
+      "sha256": "f91ce1288dedf4b1b1a40dd7fcaa43e30d227fbb75fb6928a639c10bd0d7af1d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/operator-calls.jsonl",
+      "size_bytes": 1699,
+      "sha256": "81ff246ddf6d4f84be268ab75a11a5d21afe2a2bdbb9ac332be799aefa27c51b"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/operator-premise-audit.json",
+      "size_bytes": 7550,
+      "sha256": "bace0a08be437ab94c5849870e1fd316cab97923d79765043761820e113875bb"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/operator-reasoning-audit.json",
+      "size_bytes": 23681,
+      "sha256": "9494caeb137596933e77fd94ee9a0cf60ec65d3a6c74765db4b30e1fd19c842d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-attempt-1-expand-operator-result.json",
+      "size_bytes": 4652,
+      "sha256": "6c51dd1efbf9eae141914874fcaabbe886341866aaf36f83c2d561c3ba2a12bb"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-attempt-1-perturb-operator-result.json",
+      "size_bytes": 1658,
+      "sha256": "524778c671dfd5cae963e5ea6c74f8d9d7ae76173ba8403d1f95c751ce2c56f4"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-attempts.json",
+      "size_bytes": 80,
+      "sha256": "c99a82d6128abc292c7c7e56235c51495f2d6a1d6955712528f65c546f69020c"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-discovery-attempt-1-model-call.json",
+      "size_bytes": 272,
+      "sha256": "574d7506c6cf296e11fd215c1d69a840f5e3af08ea660580b5bc38ea43678778"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-discovery-attempt-1-model-raw.txt",
+      "size_bytes": 2431,
+      "sha256": "61fedd087879b170a678e680e83f82191a66505fee08108525451a9cf5209efa"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-source-attempt-1.json",
+      "size_bytes": 2895,
+      "sha256": "1ed055c7b54cc0aaa80ee5d0c181e9dc71ae8ae26f052ebf18d38466708a57f8"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/premise-source.json",
+      "size_bytes": 2931,
+      "sha256": "cad5dbc1188853aae0751f848f85b7e7a2841d1b430fabc4bec547f25011da35"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/reasoning-decisions.json",
+      "size_bytes": 334,
+      "sha256": "9f815be4969a53608df7aa429b220f5f3631af39b4febe59c94ca43faf51d05c"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/reasoning-expand-operator-result.json",
+      "size_bytes": 12062,
+      "sha256": "8f9afc653d8e9342c39dd4b20f45da9a6aa3afa47dd5245e05a7c43c1c57d183"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/reasoning-graph.json",
+      "size_bytes": 4989,
+      "sha256": "b83b1a61b43acefce6b61d04431c7ccc52384b51f62735219d5c61153a83d6d3"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/reasoning-propagate-operator-result.json",
+      "size_bytes": 9722,
+      "sha256": "cb36b9c96b4c97f99b23f230dda9bb45bcbb8c727d7368cc48d1593b24051215"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/evidence/reasoning-source.md",
+      "size_bytes": 5636,
+      "sha256": "581f407ac380417797bcc92a2bbf8db7c2d984106e2d6e055e46bf3ff6128ab7"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/work/premise-source.json",
+      "size_bytes": 2931,
+      "sha256": "cad5dbc1188853aae0751f848f85b7e7a2841d1b430fabc4bec547f25011da35"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/work/premise.md",
+      "size_bytes": 298,
+      "sha256": "706f77fee4acbf628c961df611a43c405d5209257d341e6b7c271ab43afc7382"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/work/reasoning-graph.json",
+      "size_bytes": 4989,
+      "sha256": "b83b1a61b43acefce6b61d04431c7ccc52384b51f62735219d5c61153a83d6d3"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/counterfactual-reasoning/work/reasoning-source.md",
+      "size_bytes": 5636,
+      "sha256": "581f407ac380417797bcc92a2bbf8db7c2d984106e2d6e055e46bf3ff6128ab7"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/input/anchor.json",
+      "size_bytes": 180,
+      "sha256": "76493fa01135e38d68fa95202fa61dc8d7d19f24f6d307bc54532eb9496d5f5e"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/evidence/final-artifact.json",
+      "size_bytes": 233,
+      "sha256": "9d32cb7eb434eaab09025c0fcbdd0f49300027a01923bf401d58fd486c9b55db"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/evidence/formal-input.json",
+      "size_bytes": 372,
+      "sha256": "e6c872657bbcb13a585a8c5fc45a7bf91064efbd6d719f07a8e4d7766f6765cc"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/evidence/language-lowering-model-call.json",
+      "size_bytes": 367,
+      "sha256": "c5b80c1ad8d9d15a5e1ea339d8dbc439cef3762f92da87c06a654b1bbe385ffc"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/evidence/polish-model-call.json",
+      "size_bytes": 377,
+      "sha256": "377ac57a06969e78715505417caf3cbcbc9218ee4494c30fdf0a155a0a2005ff"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/direct-semantic-language-v4/refinement-record.json",
+      "size_bytes": 1408,
+      "sha256": "450d27d2487cf4058a9e6849defb4379ab7fa5da230605328dce900bc59a263c"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/direct-semantic-language-v4/video-master-regression-revision.md",
+      "size_bytes": 1482,
+      "sha256": "29c11e307d0f42418d7a3cbd34890dbedd3be1e3269814935574e323339462e1"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/minimal-language-lowering-v1/refinement-record.json",
+      "size_bytes": 968,
+      "sha256": "3e270b41a78290cfb6fbcc6d39c700123307ba8af73710fefe08373e08a75a0e"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/minimal-language-lowering-v1/video-master-language-lowered.md",
+      "size_bytes": 1589,
+      "sha256": "a05ad1dac954a9bf1bbe8f7f7dfed326b281aa292b3ff9a05fca1d09319edc88"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/minimal-language-lowering-v1/video-master-source.md",
+      "size_bytes": 1571,
+      "sha256": "1f0dccf35a4a2c94be5cb5c0d7ea1343c53c26cff7e012834681bad41368d1c2"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/scene-branch-semantic-narrative-v6/refinement-record.json",
+      "size_bytes": 3113,
+      "sha256": "286b64f1adce288c42852f50307a33272e4d943ac7db4c3dbc248e22ba6c824d"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/scene-branch-semantic-narrative-v6/video-master-regression-revision.md",
+      "size_bytes": 1684,
+      "sha256": "9567f30cad9bcf820823695773770b4093be0a94fe91afc3db69d71c4b2c6319"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/scene-persistence-v7/refinement-record.json",
+      "size_bytes": 3102,
+      "sha256": "2bde0be551339036e0542e294794f4f36f47d9cae409fdbfddd6c17bd4cdf2de"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/scene-persistence-v7/video-master-regression-revision.md",
+      "size_bytes": 1571,
+      "sha256": "1f0dccf35a4a2c94be5cb5c0d7ea1343c53c26cff7e012834681bad41368d1c2"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/semantic-anchor-reconstruction-v5/refinement-record.json",
+      "size_bytes": 1147,
+      "sha256": "35f9b237fa9a40d2de5214763a6505183bdb69397d8c080f4349bd2abfae6bb8"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/semantic-anchor-reconstruction-v5/video-master-regression-revision.md",
+      "size_bytes": 1255,
+      "sha256": "8ba1d31e345698046d1ded3d8e5b6d5876a985f68df6b3598dcaaeb4884f1d18"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/semantic-reshaping-v2/refinement-record.json",
+      "size_bytes": 1261,
+      "sha256": "bbe7205abb47ff6b2fd970f7734e75cff10b7d7f168a79e61f01a6942eaf7ea0"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/regressions/semantic-reshaping-v2/video-master-regression-revision.md",
+      "size_bytes": 1326,
+      "sha256": "8bdbee4c0e4012fa785f967fcde3fcbf6b30584bef523f409329101f77d24498"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/video-master-gate.json",
+      "size_bytes": 487,
+      "sha256": "332ae73d34b4504702e3db91bc59831d80cb32a958c2dd1a50beb55853e59609"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/video-master.md",
+      "size_bytes": 1589,
+      "sha256": "a05ad1dac954a9bf1bbe8f7f7dfed326b281aa292b3ff9a05fca1d09319edc88"
+    },
+    {
+      "relative_path": "runs/real-smoke-human-001/video-master/work/video-master-source.md",
+      "size_bytes": 1571,
+      "sha256": "1f0dccf35a4a2c94be5cb5c0d7ea1343c53c26cff7e012834681bad41368d1c2"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/counterfactual-master-gate.json",
+      "size_bytes": 565,
+      "sha256": "d12e760da273e0cb69c01886b79d9800ab686404486c0b7af5dfe99ed75400c0"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/counterfactual-master.md",
+      "size_bytes": 2291,
+      "sha256": "77c72383e91546a0123d9a58302894ad03a221eb2ba29d7e74a59da38f7da044"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/anchor-input.json",
+      "size_bytes": 211,
+      "sha256": "2402f2ee00501aec471b87d0cf7c260340fa1c20db4413f9c5d4a80963cfab3f"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/counterfactual-master.md",
+      "size_bytes": 2291,
+      "sha256": "77c72383e91546a0123d9a58302894ad03a221eb2ba29d7e74a59da38f7da044"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/deep-reasoning-model-call.json",
+      "size_bytes": 269,
+      "sha256": "dec582e0135f97fe235456ae8d9907bf0bcd5f127a1170c1637980d522c6a6c1"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/deep-reasoning-model-raw.txt",
+      "size_bytes": 4600,
+      "sha256": "f88fd92cd47abeec49cde2f2f2a179f84d98b853f5142687148c936eedc685ce"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/final-premise.md",
+      "size_bytes": 106,
+      "sha256": "c6ac4669225f6dcc7686274320a66d88c3d27a77e2fa4fa3d185ecdc6ce0cdd8"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/gate-record.json",
+      "size_bytes": 565,
+      "sha256": "d12e760da273e0cb69c01886b79d9800ab686404486c0b7af5dfe99ed75400c0"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/master-finalization-model-call.json",
+      "size_bytes": 320,
+      "sha256": "89e70e0381c20dadb3ff7d797ff008e907021ea625ecd607bf96d4c341064f1e"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/master-finalization-model-raw.txt",
+      "size_bytes": 2344,
+      "sha256": "d53a2945f07a1fad80a10f55740fc5e8a1373e69b4c5af9c7302e9b1447627e4"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/001-expand-input.json",
+      "size_bytes": 2207,
+      "sha256": "850e7478192fff0307068ce2ec8f8f8782d8bd227ae08aab195334985d1ac006"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/001-expand-result.json",
+      "size_bytes": 4021,
+      "sha256": "75b79b4dae2588224c1500258044927c5c08f0152fa217432aa266450f49446c"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/002-perturb-input.json",
+      "size_bytes": 2464,
+      "sha256": "a777c6d7ad27166ef98f9648f4bd04f0b9e06840f81ded57b1f3b4e80768eef4"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/002-perturb-result.json",
+      "size_bytes": 1348,
+      "sha256": "9c870c5aee38661284936ec16a325d8a9aa7c2154f11f81e18f8c009604160db"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/003-expand-input.json",
+      "size_bytes": 2094,
+      "sha256": "5f1555fa86ffe2f6295efcc6344861717950f1c8ada46afd6c24b2a4ac97afcf"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/003-expand-result.json",
+      "size_bytes": 3315,
+      "sha256": "65be43128cf3bdd7741fdc2b46ca66a0a5cf492df44f9a4b9db9dc9d8a20a9d4"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/004-propagate-input.json",
+      "size_bytes": 2094,
+      "sha256": "5f1555fa86ffe2f6295efcc6344861717950f1c8ada46afd6c24b2a4ac97afcf"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/objects/smoke-painless-human-001/004-propagate-result.json",
+      "size_bytes": 3163,
+      "sha256": "48f405f91d635f8a8a713d031fa7a439eea41a32ea92c1f5255e57a6698402e8"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/operator-calls.jsonl",
+      "size_bytes": 1439,
+      "sha256": "6a37aae0ba87a379647438e5dab571e7c2f6a8e1eb19b6d02b1472cedb400efb"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/operator-premise-audit.json",
+      "size_bytes": 7130,
+      "sha256": "eb96d7dbe5cc1adb1f6ad8854c2ef20b4f23d3faf15eeab23ea0ed0349fbda66"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/operator-reasoning-audit.json",
+      "size_bytes": 8344,
+      "sha256": "346080265f39ebe07797e643c2d5203365994ae016b282cee62dc574d062269f"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-attempt-1-expand-operator-result.json",
+      "size_bytes": 4555,
+      "sha256": "7d88def7ab9833aad5a97a5449c5c1b2539af13a4808deaa851d7a9f3528aed7"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-attempt-1-perturb-operator-result.json",
+      "size_bytes": 1633,
+      "sha256": "59b1f16b2eac6d4e2bf45cf15deb2bbc774d0dcc9406fb48e36a439cd98f4427"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-attempts.json",
+      "size_bytes": 80,
+      "sha256": "c99a82d6128abc292c7c7e56235c51495f2d6a1d6955712528f65c546f69020c"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-discovery-attempt-1-model-call.json",
+      "size_bytes": 278,
+      "sha256": "018c72eb623d6e791ca0fde0d6cb5a1af93d3dcb1b26751a74386a69c4b4189d"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-discovery-attempt-1-model-raw.txt",
+      "size_bytes": 2504,
+      "sha256": "edd42c4acf1fd3c94b909c9c29c75cf4f572fe959d63c0f1a40a874d5e0943ea"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-source-attempt-1.json",
+      "size_bytes": 3072,
+      "sha256": "43b8c21749f091f32f14344d61e3832c53091651eb1212fdca9cfe5a2d7383f0"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/premise-source.json",
+      "size_bytes": 3112,
+      "sha256": "1e52b7db4ef71c07dfbc295fd8c5d33cc45c188efcfb04b743891caa64b125c2"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/reasoning-decisions.json",
+      "size_bytes": 338,
+      "sha256": "b997518f8070de6bceb4804aae0e0242569a2b0ac768d1d08f4ab95abc01172f"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/reasoning-expand-operator-result.json",
+      "size_bytes": 3771,
+      "sha256": "a7fe81cf5b9dea99957a869f6b267521a294c7b96e37709279ddaff4fc79bcaf"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/reasoning-graph.json",
+      "size_bytes": 2095,
+      "sha256": "1091f43fff4b80f50a6d2d507cb916e100cec23dfe65440b03d6b887f1fde738"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/reasoning-propagate-operator-result.json",
+      "size_bytes": 3608,
+      "sha256": "4fbdf661dca902035db356fb60d81c8aa4ef2bc755ae1479366eab2e73242e67"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/evidence/reasoning-source.md",
+      "size_bytes": 2392,
+      "sha256": "5dc40f84dbd40ed0414d64ddb285d325c862ed88f9c2e423a9d646c95b64fa55"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/work/premise-source.json",
+      "size_bytes": 3112,
+      "sha256": "1e52b7db4ef71c07dfbc295fd8c5d33cc45c188efcfb04b743891caa64b125c2"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/work/premise.md",
+      "size_bytes": 106,
+      "sha256": "c6ac4669225f6dcc7686274320a66d88c3d27a77e2fa4fa3d185ecdc6ce0cdd8"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/work/reasoning-graph.json",
+      "size_bytes": 2095,
+      "sha256": "1091f43fff4b80f50a6d2d507cb916e100cec23dfe65440b03d6b887f1fde738"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/counterfactual-reasoning/work/reasoning-source.md",
+      "size_bytes": 2392,
+      "sha256": "5dc40f84dbd40ed0414d64ddb285d325c862ed88f9c2e423a9d646c95b64fa55"
+    },
+    {
+      "relative_path": "runs/smoke-painless-human-001/input/anchor.json",
+      "size_bytes": 211,
+      "sha256": "2402f2ee00501aec471b87d0cf7c260340fa1c20db4413f9c5d4a80963cfab3f"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/counterfactual-master-gate.json",
+      "size_bytes": 581,
+      "sha256": "1a217ac4431de95ce0792db8cc409f94701f05d00721a90826dcd8e0c023aaf2"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/counterfactual-master.md",
+      "size_bytes": 2823,
+      "sha256": "49c98cfe83a16dfed5a028078a01d2db2753984880e173915de4ccc54300deef"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/anchor-input.json",
+      "size_bytes": 194,
+      "sha256": "650902028f6f3d541c8f867ee0d2f8f7cb8b050bc1ce52cc91ef4c9e2926d5d0"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/counterfactual-master.md",
+      "size_bytes": 2823,
+      "sha256": "49c98cfe83a16dfed5a028078a01d2db2753984880e173915de4ccc54300deef"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/deep-reasoning-model-call.json",
+      "size_bytes": 263,
+      "sha256": "8b14ac269ce0e27dbcecfa356b7845f69778db0a6089025a42b49f054b3b9656"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/deep-reasoning-model-raw.txt",
+      "size_bytes": 4916,
+      "sha256": "cf9f66979a367040346001f8c831c7b48041c8e65d58bd8541b60a1c964f554d"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/final-premise.md",
+      "size_bytes": 295,
+      "sha256": "ead830bbe49f2f5aec44ecc17ea590912174c23e978374ac078f212f7620cc6e"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/gate-record.json",
+      "size_bytes": 581,
+      "sha256": "1a217ac4431de95ce0792db8cc409f94701f05d00721a90826dcd8e0c023aaf2"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/master-finalization-model-call.json",
+      "size_bytes": 314,
+      "sha256": "52337bb0585489c629c963edcc5330e32e8d1530ebb5e310fd2e66dc454f4ede"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/master-finalization-model-raw.txt",
+      "size_bytes": 2874,
+      "sha256": "222be824c1eed64f2c0a637ffe69abf05073a5206069f50c6ce76d4ca05a87d7"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/001-expand-input.json",
+      "size_bytes": 2265,
+      "sha256": "6358a38fda97fa6cbb56c90d40e56cd6eabed6c2ced5891bb1ea23a123d4d1b2"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/001-expand-result.json",
+      "size_bytes": 4218,
+      "sha256": "51300b0051604b7ba6fdf26d1b3b7aea9bef6151880e906a8a5c9e570d65c2ed"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/002-perturb-input.json",
+      "size_bytes": 2549,
+      "sha256": "b96bdc5a57b99a96a139d1da65e83015fc196bb75a72bcf4bf731b4036e7d63c"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/002-perturb-result.json",
+      "size_bytes": 1422,
+      "sha256": "9585d14365e2103460dcd99c8e893a9b1a02d81cf9d2f2873db4aec9d7d4dd71"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/003-expand-input.json",
+      "size_bytes": 2135,
+      "sha256": "857698c26acf664c6a4887874fd22b39f532dad374563943df33a30f192b5ff3"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/003-expand-result.json",
+      "size_bytes": 3417,
+      "sha256": "a3a4268a202a55044d3a977eba890424bef5cbc3959854d42aaf0d7cd1b57dd2"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/004-propagate-input.json",
+      "size_bytes": 2135,
+      "sha256": "857698c26acf664c6a4887874fd22b39f532dad374563943df33a30f192b5ff3"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/objects/upstream-freeze-human-20260808-001/004-propagate-result.json",
+      "size_bytes": 3248,
+      "sha256": "fc54c3f5953d270a002f1e6e8e8a5fd436b151435774a8294077e6605fa2c7d9"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/operator-calls.jsonl",
+      "size_bytes": 1609,
+      "sha256": "c500864af51c354a418a4063c7b8a62f9d6159637604fb0fc8d0600b0ebaafea"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/operator-premise-audit.json",
+      "size_bytes": 7617,
+      "sha256": "0e9376dd3b1b058e7d9171dcc5ebadb98aaf5b3ede720ece2e074f58ce9e16cb"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/operator-reasoning-audit.json",
+      "size_bytes": 8541,
+      "sha256": "fbe729d84f361bd6ce8f7df05c75f78658e52c78fedf93ae30a61e4e8649db3b"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-attempt-1-expand-operator-result.json",
+      "size_bytes": 4752,
+      "sha256": "00b0123e8914027ec4b15fdb1b5e51f601660ab9944645a6affc500fc89f9164"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-attempt-1-perturb-operator-result.json",
+      "size_bytes": 1707,
+      "sha256": "615746c408187bee523f80032f6f29828874fedd47a8d5496bb6caf9450f46b8"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-attempts.json",
+      "size_bytes": 80,
+      "sha256": "c99a82d6128abc292c7c7e56235c51495f2d6a1d6955712528f65c546f69020c"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-discovery-attempt-1-model-call.json",
+      "size_bytes": 272,
+      "sha256": "b81de351d3365d85e4f64b69f2342b8f60ae3c670749ed1ecd2f62e48d92b8d8"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-discovery-attempt-1-model-raw.txt",
+      "size_bytes": 2442,
+      "sha256": "168083b7324c057d003ff394fd6a447b68f2aac57e1289dec029cd126bca0fb8"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-source-attempt-1.json",
+      "size_bytes": 3008,
+      "sha256": "ac3fe732e3b9a5bd190672b4dcddacc1205d74d0cb35bf08167713cc2bdd982f"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/premise-source.json",
+      "size_bytes": 3058,
+      "sha256": "d4c3775628839ff48a166d470b96072bf0dd004eb46235f63159858ea9a288b5"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/reasoning-decisions.json",
+      "size_bytes": 348,
+      "sha256": "5a4f1dd6764192ba8265e81736dec359c85b6523466149aaf48c086c6c5ada77"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/reasoning-expand-operator-result.json",
+      "size_bytes": 3873,
+      "sha256": "07682bd6bb2541013f1a47b759ef5f1eb240d13c04e8230767e35d18c2ac1d07"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/reasoning-graph.json",
+      "size_bytes": 2136,
+      "sha256": "f82985851d159634ee58a8ead486800faf4bc114f6382306348909432033df3d"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/reasoning-propagate-operator-result.json",
+      "size_bytes": 3693,
+      "sha256": "95882cbeed4cc79279a2847faa1c54a0f00aab5d8c79b29ac0fc5918b22ead7d"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/evidence/reasoning-source.md",
+      "size_bytes": 3154,
+      "sha256": "6b65f6b27a3b585051dbae14c177c8c1d3196746977f4086b5a7a6d17498eebd"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/work/premise-source.json",
+      "size_bytes": 3058,
+      "sha256": "d4c3775628839ff48a166d470b96072bf0dd004eb46235f63159858ea9a288b5"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/work/premise.md",
+      "size_bytes": 295,
+      "sha256": "ead830bbe49f2f5aec44ecc17ea590912174c23e978374ac078f212f7620cc6e"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/work/reasoning-graph.json",
+      "size_bytes": 2136,
+      "sha256": "f82985851d159634ee58a8ead486800faf4bc114f6382306348909432033df3d"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/counterfactual-reasoning/work/reasoning-source.md",
+      "size_bytes": 3154,
+      "sha256": "6b65f6b27a3b585051dbae14c177c8c1d3196746977f4086b5a7a6d17498eebd"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/input/anchor.json",
+      "size_bytes": 194,
+      "sha256": "650902028f6f3d541c8f867ee0d2f8f7cb8b050bc1ce52cc91ef4c9e2926d5d0"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/evidence/final-artifact.json",
+      "size_bytes": 247,
+      "sha256": "cc8e965c88a5c80b7eb7edda47a65b6a5c3ef4acd48fe4468003aabba0d3600c"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/evidence/formal-input.json",
+      "size_bytes": 432,
+      "sha256": "d56192ecb9cecd9e0c7d8ff4216d17e5f0897bb5aadfc9accaedf5d030d06d5b"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/evidence/language-lowering-model-call.json",
+      "size_bytes": 395,
+      "sha256": "4e40c535a75814b921710962ccb30566ba0ec12743a2e8a745934d4788ad67c1"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/evidence/polish-model-call.json",
+      "size_bytes": 450,
+      "sha256": "7c3a66da6a7ff7f1cec4755bcbad9dd76939cb9fe34b8411cd24fa31c15ce986"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/video-master-gate.json",
+      "size_bytes": 561,
+      "sha256": "e9cdb414b9665c6033065a10b8905008f54287be45eef97b109838b6bbfcca1b"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/video-master.md",
+      "size_bytes": 1406,
+      "sha256": "aaa0dbb9cf9073474a9509efb9d85b9da96f5f1a1bb48a4595549cfdbd22bd6b"
+    },
+    {
+      "relative_path": "runs/upstream-freeze-human-20260808-001/video-master/work/video-master-source.md",
+      "size_bytes": 1346,
+      "sha256": "caee3850a3cfcfa0f19b56327eee8c39c51373bb96bdc461a3f262fb6cde6bd9"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-001/video-production/narration/narration-plan.json",
+      "size_bytes": 3376,
+      "sha256": "0e9aae7c5ad4d750fc276a4e8c2de3dbbab2cf28f423a2e54acb4147194e6fac"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-001.wav",
+      "size_bytes": 700878,
+      "sha256": "172a55ac9b407a8b8c8edccc6b4d224b11e637efb1b09ba0b53a223131317e11"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-002.wav",
+      "size_bytes": 1380524,
+      "sha256": "663d171e0f72d33f6b3de827d54a7685d221d6f29b2b9e1d1819bb515071bc4f"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-003.wav",
+      "size_bytes": 1610924,
+      "sha256": "e18eb454a584eae142cde4e01503ed82ed8f5f7dada5ea7735b7c2a7d378354f"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-004.wav",
+      "size_bytes": 1065678,
+      "sha256": "570c874b27c29dc287627fc55bd70478895f113e899ad1608f06aa8de315cd2f"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-005.wav",
+      "size_bytes": 948524,
+      "sha256": "e7a9cd16ca459b0cdb04efb8cf29cc2709a700682763378224925cce63235575"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-006.wav",
+      "size_bytes": 977324,
+      "sha256": "ab779d60ee18da56ef8a3a996ebe678323b6ffec64537d1aec7011fde03471cc"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-007.wav",
+      "size_bytes": 777318,
+      "sha256": "acb96825acd618d255a864255be26983bc32beecb900a22b6000ce680a908b96"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-008.wav",
+      "size_bytes": 996524,
+      "sha256": "ae34a6c0136c86f91826a406b5a78c3c5970038c8399b1a0cd0d8e1869192da1"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-009.wav",
+      "size_bytes": 1593644,
+      "sha256": "6cc292a4923c2535528e74faf03e3f0abe24189a2122ffab45193474e9c11667"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/audio/seg-010.wav",
+      "size_bytes": 593358,
+      "sha256": "31ee25af42fdd6db2d9a459a9acbb64e77ee4f3a0d73bbb0b32dbbe1598eb9d0"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/evidence.json",
+      "size_bytes": 6841,
+      "sha256": "0761fa1d76f2e190490a2d5675cf9309dd39afded08dff8c63a1cdf3845e6ce4"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/narration-audio-manifest.json",
+      "size_bytes": 5575,
+      "sha256": "0f6edc9b6b6d9dfc50b4badf659b5e980eb0bff3c7508efae8927c58ca279d1b"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-002/video-production/narration/narration-plan.json",
+      "size_bytes": 3376,
+      "sha256": "063057eae9a141f66898ac1b10c8ee030b353f5d5e9fb3f33bf6423e135cb149"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-001.wav",
+      "size_bytes": 737358,
+      "sha256": "47a290462a831ae3a5814f4df61a89c3c27bc72e6e0ef35cbb37adc11bfe3125"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-002.wav",
+      "size_bytes": 1401678,
+      "sha256": "51c125dfc9b31fc5144a61527bdaac5f2b90904c4e37631c1a2958a1281efb0c"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-003.wav",
+      "size_bytes": 1776640,
+      "sha256": "781fa631b8ca139e4fc601fe29872d341586c48b01cf00f88d530f64b46b9c99"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-004.wav",
+      "size_bytes": 1065678,
+      "sha256": "677052ae6aa1abd5eb7094b2bc2de97ec499b5ac5a55cf515813569155410efc"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-005.wav",
+      "size_bytes": 977358,
+      "sha256": "31d5cf3e31aaec360feea7697912a57959fe2bf9e6790eedda8250d7e006569f"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-006.wav",
+      "size_bytes": 948524,
+      "sha256": "315957ccc1aa31c30db70082e546dd516d8f95d0a768c6c90c351955658a66b7"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-007.wav",
+      "size_bytes": 948558,
+      "sha256": "1e4aecbb8eee3329c9562a2ab3afbb840e436528f408b653c0709e50a477f51f"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-008.wav",
+      "size_bytes": 948524,
+      "sha256": "d23bca8df2bcbfdd17a20444a8f898be36eafd1d4502752346c5de934700c8c4"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-009.wav",
+      "size_bytes": 1872078,
+      "sha256": "1b5a69d664e0a90f53bf61c42e5297768f0921bdb0c52d071a46b0aebad04db0"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/audio/seg-010.wav",
+      "size_bytes": 614478,
+      "sha256": "b2dccadda5297b7289b0026ad3f66945f73b78cce3964c17835a5b787249cf1e"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/evidence.json",
+      "size_bytes": 6839,
+      "sha256": "72545ee784f451f7b133cbf66baf88fb159b9cc008f0f90f845a9a92ed4ed713"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/historical-status-v2.json",
+      "size_bytes": 198,
+      "sha256": "e0a8535057373c3cb616ee6433c8c46e009343d36672d1aaa1c54b3d2be698cd"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/narration-audio-manifest.json",
+      "size_bytes": 5572,
+      "sha256": "01717c6f4ead6e7b545f6af94db40a49910ce3017ad0bf577f0760bdbfe63e3e"
+    },
+    {
+      "relative_path": "runs/video-production-tts-probe-003/video-production/narration/narration-plan.json",
+      "size_bytes": 3376,
+      "sha256": "7a6f4957672946c3708ee7f997701672ff4dca67588adc43e150f7348209ce65"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-001/video-production/narration/narration-plan.json",
+      "size_bytes": 3377,
+      "sha256": "b9d60858a94492bbb2e2a095abefbf36883f9483afeca21778f305f749e88432"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-002/video-production/narration/audio/seg-001.mp3",
+      "size_bytes": 40365,
+      "sha256": "2c794acbc8572dc5fa5cd35aaf3b13c2b792a074e35f399bcadc8fffceca93e2"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-002/video-production/narration/narration-plan.json",
+      "size_bytes": 3377,
+      "sha256": "55cc43d0e9f6e4b048619605b0e098d04ca7a525eeefa902a3394caf8e1c3717"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-002/video-production/narration/probe-result.json",
+      "size_bytes": 538,
+      "sha256": "e003d9750ae06c56985efd7f687da5e1b436381fe473b4a72c5f86985e8e965c"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-001.mp3",
+      "size_bytes": 42285,
+      "sha256": "cc243bd20d804346772eded084c9e17cd8ddb285ee4ba0220a41efc59c0b08f0"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-002.mp3",
+      "size_bytes": 77229,
+      "sha256": "db580e3afbe962cb1da0b717ebd6776016137a2cfcecce7f571c375a80f73d18"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-003.mp3",
+      "size_bytes": 113325,
+      "sha256": "f069e22a44bc9808ad4429cff9f96a24399a09434561d2de160656ba894898d1"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-004.mp3",
+      "size_bytes": 58797,
+      "sha256": "4a3ae38b05f97e0fab8e2ebe5fe8779b220e5e7898c263065716cbaaed25caf4"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-005.mp3",
+      "size_bytes": 60333,
+      "sha256": "3e6d696acc972f86b8fe7cfc9434b7f1fe39639eba4301afefef8402ce1fc98b"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-006.mp3",
+      "size_bytes": 54957,
+      "sha256": "b7a625d4f90a16fe0ddeba1167a7a363c10c8c3729106070f3bcb478c0d467f9"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-007.mp3",
+      "size_bytes": 54957,
+      "sha256": "aa1aea215fe13c9e1d1f200becf8a50baf81b631b2d22c6daa2ff6610c63ef9c"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-008.mp3",
+      "size_bytes": 56109,
+      "sha256": "4ecfdacd65eadb82796f03d5ca25597f8fbdb3f63704b0b32e892bf5475c1b7d"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-009.mp3",
+      "size_bytes": 117741,
+      "sha256": "73120889e34011e7768fdb3cf5aae5fbde203b40b882dbbccfccc64377256413"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/audio/seg-010.mp3",
+      "size_bytes": 30957,
+      "sha256": "51b30dd4c58eff67bec0d05fb2db906fb59a0300faa5cdd1d1165c26383d0c66"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/evidence.json",
+      "size_bytes": 2384,
+      "sha256": "5b3c587c11b66d3670c7ca7d14cdcc8e39392653638b8899e0d27493deacecb9"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/narration-audio-manifest.json",
+      "size_bytes": 5593,
+      "sha256": "0ef7b1dcd3f500a78f62a528d7cea075c0e81b89ba829a7d5467bc3c03efb373"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/narration-completeness-gate.json",
+      "size_bytes": 1559,
+      "sha256": "684ad860a356951799557dea7e97846f9f92688d62def0204f04d6369863437a"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/narration-plan.json",
+      "size_bytes": 3408,
+      "sha256": "df082891f64f63dbbc786e43f28c1335bb4902c270e7d25bb5fc24a3f2c998a2"
+    },
+    {
+      "relative_path": "runs/video-production-tts-v3-fix-003/video-production/narration/probe-result.json",
+      "size_bytes": 538,
+      "sha256": "e54a5ba582ff12efe0ddfb06015a2be0d975ae4a5afe9c71656e95365ab7d453"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/docs/CAPABILITY_BOUNDARY.md",
+      "size_bytes": 5421,
+      "sha256": "b18ea1722035843a7e1fb6c2ceaa493c89782fd6acb9b866a06e6ae0e990d01f"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/docs/DEPENDENCY_CLOSURE.md",
+      "size_bytes": 3230,
+      "sha256": "bd6455b4e384f683fae5794f017b67a8a1b912f4229ae624f3d5b7066a1e455c"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/docs/README.md",
+      "size_bytes": 3700,
+      "sha256": "1e926cfdd734d5c493f3a3d370aa969fde1489abefb2818489c11003754aa3fc"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/docs/SOURCE_INSPECTION.md",
+      "size_bytes": 4719,
+      "sha256": "a8c7cb5480df6d1f33c7fcec73a2b0637112b6e499f0616e85cc1d2826e4855b"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/rerun-check/001-expand-input.json",
+      "size_bytes": 4588,
+      "sha256": "cd344907ee08b1dae5dfe6c28c7954a6082c5b6210685dfe2d73a217bc30b0ea"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/rerun-check/001-expand-result.json",
+      "size_bytes": 4696,
+      "sha256": "fa0c457cb1be12fe30c7a006be2a1aac18a9396e315c5954734e7df5cb192e76"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/rerun-check/002-perturb-input.json",
+      "size_bytes": 4862,
+      "sha256": "db4758d2999c3aa723d4f0586eb1b58024cc82722a841376cda1365ec0ade7ec"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/rerun-check/002-perturb-result.json",
+      "size_bytes": 3081,
+      "sha256": "4530e22a29f91bf1e5392483a0930d7d434a9340ef3c87f594a66ebd2e21170e"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/rerun-check/003-propagate-input.json",
+      "size_bytes": 4460,
+      "sha256": "0ab30ecd303d91b919c8e33f5d10cee6b77ee9cf9dbf5ebde86f37d6b595362e"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/rerun-check/003-propagate-result.json",
+      "size_bytes": 5647,
+      "sha256": "b59b0fef649ddc102f260ab41dc02bb9e7c01061445f1affa0db1d3fbb21a14c"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/whatif-smoke-20260808T125900Z/001-expand-input.json",
+      "size_bytes": 4588,
+      "sha256": "cd344907ee08b1dae5dfe6c28c7954a6082c5b6210685dfe2d73a217bc30b0ea"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/whatif-smoke-20260808T125900Z/001-expand-result.json",
+      "size_bytes": 4696,
+      "sha256": "fa0c457cb1be12fe30c7a006be2a1aac18a9396e315c5954734e7df5cb192e76"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/whatif-smoke-20260808T125900Z/002-perturb-input.json",
+      "size_bytes": 4862,
+      "sha256": "db4758d2999c3aa723d4f0586eb1b58024cc82722a841376cda1365ec0ade7ec"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/whatif-smoke-20260808T125900Z/002-perturb-result.json",
+      "size_bytes": 3081,
+      "sha256": "4530e22a29f91bf1e5392483a0930d7d434a9340ef3c87f594a66ebd2e21170e"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/whatif-smoke-20260808T125900Z/003-propagate-input.json",
+      "size_bytes": 4460,
+      "sha256": "0ab30ecd303d91b919c8e33f5d10cee6b77ee9cf9dbf5ebde86f37d6b595362e"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/objects/whatif-smoke-20260808T125900Z/003-propagate-result.json",
+      "size_bytes": 5647,
+      "sha256": "b59b0fef649ddc102f260ab41dc02bb9e7c01061445f1affa0db1d3fbb21a14c"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/evidence/operator-calls.jsonl",
+      "size_bytes": 1878,
+      "sha256": "001f2296914dd6e13c0617ffed9a782bf9c0a1d52ac9625306891c4b38f8b1e8"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/frozen-source-reference/audit/relation_audit.py",
+      "size_bytes": 17057,
+      "sha256": "64dfc7796082a176f90601242dfec509624799f67289878d64431a470f454bae"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/frozen-source-reference/NOTICE.txt",
+      "size_bytes": 1890,
+      "sha256": "146525ebfdb02f181816bd2bbf4bbc4b72c756ecb4cd934fe236b7d93e067197"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/frozen-source-reference/ontology-core/shared-envelope.schema.json",
+      "size_bytes": 7938,
+      "sha256": "e4f0f8e124e6b7c470cd9c31b5e3a3035e006adb5a007167dcb5c8ce5370d001"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/frozen-source-reference/ontology-core/typed-relations.schema.json",
+      "size_bytes": 18500,
+      "sha256": "f0775eff4473cc197b29efe0b775b44cc60a49a611856c68a54a6fb965cbdbb9"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/manifest.json",
+      "size_bytes": 4681,
+      "sha256": "3c4395e5aacc298475c8b1fe833867e2357f81f2be87e99b0ab1f39cdd2bd12f"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/SHA256SUMS.txt",
+      "size_bytes": 2935,
+      "sha256": "497e8d4344e65fbda05874d541fe38f2e583f7a6fda7428b023785977b55ca00"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/src/relation_operator.py",
+      "size_bytes": 19333,
+      "sha256": "e6b704f12afa2431d16368f91c29d4b6c2cf63d9eb7302b2a283e415c8216954"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/tests/test-input.human.json",
+      "size_bytes": 4636,
+      "sha256": "09c3723ac0ee3e0a7b6421de58f015c7d3504ca113a9b9714690cafa4029cf33"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1/verification/verify_package.py",
+      "size_bytes": 12758,
+      "sha256": "1244763e2ddb73438e92ab548e095ec1251d16d44d992de6df957726c7c3394a"
+    },
+    {
+      "relative_path": "shared/operator-baseline/whatif-minimal-operator-v1-portable.zip",
+      "size_bytes": 62112,
+      "sha256": "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80"
+    },
+    {
+      "relative_path": "shared/upstream-freeze-v1-evidence.json",
+      "size_bytes": 1266,
+      "sha256": "a36db3bf50dde2e8825e54dde629c789caec5022443cd2cf815373ef8bda1886"
+    },
+    {
+      "relative_path": "shared/upstream-freeze-v1.json",
+      "size_bytes": 1548,
+      "sha256": "bf7ddc5014f7c3467163804b7fb489c33ada798dc85988fee8c9373d92b0f3d4"
+    },
+    {
+      "relative_path": "video-master/config/runtime.json",
+      "size_bytes": 116,
+      "sha256": "119f88e9ef29e0d728bb48f225d24b94df6634eaf7a9614377b84db8934cca29"
+    },
+    {
+      "relative_path": "video-master/INDEX.md",
+      "size_bytes": 1959,
+      "sha256": "671e9a006e19fabc1e98ca5342a18722800819b6ad1e7e09c5f720d1ae404a25"
+    },
+    {
+      "relative_path": "video-master/prompts/video-master-language-lowering.md",
+      "size_bytes": 2047,
+      "sha256": "5f68d31307eeb3cce2d67156d2a0a19509ce249efa847c47b8636562eaae2871"
+    },
+    {
+      "relative_path": "video-master/prompts/video-master-polish.md",
+      "size_bytes": 4342,
+      "sha256": "de659c717f2d374ffe0ee9e0e714570fa162f29c3cea469ac493546c5afdf491"
+    },
+    {
+      "relative_path": "video-master/README.md",
+      "size_bytes": 805,
+      "sha256": "cf95802cc0b25c16e01dc56af9042f20d9d5a02568a942e197d49769d786d5f1"
+    },
+    {
+      "relative_path": "video-master/src/video_master.py",
+      "size_bytes": 5752,
+      "sha256": "c36b41546c26cd2101e31efa1661df7daf9eae512238515461bfda6a434b5944"
+    },
+    {
+      "relative_path": "video-master/tests/test_smoke.py",
+      "size_bytes": 4830,
+      "sha256": "b9790864b0469cfa88ffe6dfdb75f5cf804af48530bee59882ff24d4bb77ed49"
+    },
+    {
+      "relative_path": "video-master/tests/verify_index.py",
+      "size_bytes": 567,
+      "sha256": "2bd440d4b88fb3ac28681d60c759c3f4d7e37f63acdfdee0881d47d758552bce"
+    },
+    {
+      "relative_path": "video-production/config/tts.json",
+      "size_bytes": 378,
+      "sha256": "288f9b197758552d437ec043de27c095292dc0944102b3f884a7218e9f5d8e2f"
+    },
+    {
+      "relative_path": "video-production/config/video-format.json",
+      "size_bytes": 709,
+      "sha256": "69199f94d1089d197103246e3019793c882097039cb8a8e867829dc8cb64ff87"
+    },
+    {
+      "relative_path": "video-production/evidence/gpt-image-2-execution-path-closure-v1-evidence.json",
+      "size_bytes": 3306,
+      "sha256": "1ad08ac9e91b1b7eece162655a52432b932dc56e4dd8e07cffcc5a17b3b2fdaa"
+    },
+    {
+      "relative_path": "video-production/evidence/gpt-image-2-execution-path-closure-v1.json",
+      "size_bytes": 1637,
+      "sha256": "b4de57083eeea3980f2b276da511205eb570ba533b1169802cc303bf1de3a67c"
+    },
+    {
+      "relative_path": "video-production/evidence/gpt-image-2-execution-route-selection-v1-evidence.json",
+      "size_bytes": 2914,
+      "sha256": "2d00e6126bb028dacca37ff80c7cf0aa1a655b41a99a2eb8aa2e8d59693135ba"
+    },
+    {
+      "relative_path": "video-production/evidence/gpt-image-2-execution-route-selection-v1.json",
+      "size_bytes": 1166,
+      "sha256": "2a24db298e826b5ebc1c2d5e67094b5d356a5fca0735fecd6cd0fe2bd13fac5f"
+    },
+    {
+      "relative_path": "video-production/evidence/happyhorse-continuity-execution-closure-v1-evidence.json",
+      "size_bytes": 4668,
+      "sha256": "4d5df295dc0ba6ee29ba37328462939397dac32adaf0c1ea81f3f9746a4e49c9"
+    },
+    {
+      "relative_path": "video-production/evidence/happyhorse-continuity-execution-closure-v1.json",
+      "size_bytes": 1487,
+      "sha256": "f018b664ba154454cc6ffd49804410021cbd3149105c70cba9576e45afde8902"
+    },
+    {
+      "relative_path": "video-production/evidence/video-global-format-policy-720p-16-9-v1.json",
+      "size_bytes": 1900,
+      "sha256": "3cab9c438999717cadf89fe45bdbdbbb3eaf8ab360e45ce046eaf7e0f7ff7669"
+    },
+    {
+      "relative_path": "video-production/happyhorse/contracts/happyhorse-production-protocol-v1-evidence.json",
+      "size_bytes": 2964,
+      "sha256": "fe1612f543f12b6b3ed4e321c3f2c5cfa2a9f04c10480ab0338bffd471507ffa"
+    },
+    {
+      "relative_path": "video-production/happyhorse/contracts/happyhorse-production-protocol-v1.json",
+      "size_bytes": 11478,
+      "sha256": "1845cfe40da03056e31422ac4e06d200d9dd23eb2522af09c91e96becc02ade1"
+    },
+    {
+      "relative_path": "video-production/INDEX.md",
+      "size_bytes": 2006,
+      "sha256": "8b100172948bc0b7048910d8fd70e2b8be3072df644c8fcabe317d10cbf6fdf7"
+    },
+    {
+      "relative_path": "video-production/narration-freeze-v1-evidence.json",
+      "size_bytes": 4035,
+      "sha256": "956e5cfc4336d8dae7519e83beaff7f35801ebc9851721afddfafc0a9953242b"
+    },
+    {
+      "relative_path": "video-production/narration-freeze-v1.json",
+      "size_bytes": 1663,
+      "sha256": "269a396e1fe3abf44dbe06146dde7df0a604e3f76f0e95fa652c715772978830"
+    },
+    {
+      "relative_path": "video-production/README.md",
+      "size_bytes": 1736,
+      "sha256": "6af3cecf8149c5667a3bb487e512e9d4ea3a2bb4126ff987053b8d1a3a5e29d5"
+    },
+    {
+      "relative_path": "video-production/src/orchestrator.py",
+      "size_bytes": 17599,
+      "sha256": "9fca0148462c3c5379d353225876a62e67bf68259b695d3a10f745f688ef3c85"
+    },
+    {
+      "relative_path": "video-production/src/segment_video_master.py",
+      "size_bytes": 3462,
+      "sha256": "b715409d8cfb214016a3262b2ccec628104a6bc97102981083f2bc01ee971344"
+    },
+    {
+      "relative_path": "video-production/src/tts_adapter.py",
+      "size_bytes": 8176,
+      "sha256": "1515517efe426812696075a1060806ff6b09440cda05f472b01446c4d1bc2b20"
+    },
+    {
+      "relative_path": "video-production/src/video-format-policy.js",
+      "size_bytes": 946,
+      "sha256": "ee1fd0157754209eee2bc1f9723b4d97b9a9bf252a356b2dabc3a6e3f7883929"
+    },
+    {
+      "relative_path": "video-production/tests/test_narration_duration_gate.py",
+      "size_bytes": 2747,
+      "sha256": "5b042d8c6ff5763e78e6c39fea79968ad76464c4f7597601bd485d5d8f8c9ce1"
+    },
+    {
+      "relative_path": "video-production/tests/test_segment_video_master.py",
+      "size_bytes": 1361,
+      "sha256": "674a745793241d5028b433e4181b23f7513130f9b01f72a05f02942cba3f27dd"
+    },
+    {
+      "relative_path": "video-production/tests/test_tts_contract.py",
+      "size_bytes": 4608,
+      "sha256": "d01eb008c4dcdfe964d582605457e8b448fb088a37e2c43be84c0f896fd7fccf"
+    },
+    {
+      "relative_path": "video-production/tests/video-global-format-policy.test.js",
+      "size_bytes": 3095,
+      "sha256": "0aa176b4562392878b12d8c9a1651ac834266199f551e342777a79bde771ec09"
+    },
+    {
+      "relative_path": "whatif-video-video-master-minimal-language-lowering-v1.zip",
+      "size_bytes": 35798,
+      "sha256": "1d105e7b377234fe868e296ca197571a03809f286402fc4f82bd5dc8fd8454a8"
+    },
+    {
+      "relative_path": "whatif-video-video-master-scene-persistence-refinement-v7.zip",
+      "size_bytes": 25584,
+      "sha256": "706db1125b7974ff528207e29aa38d0d35e6774ccb08e640876d47b6c0af2943"
+    }
+  ],
+  "manifest_entry_count": 281,
+  "archive_expected_file_count": 282,
+  "manifest_self_entry_excluded_by_design": true,
+  "MANIFEST_COMPLETE": true
+}

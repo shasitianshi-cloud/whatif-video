@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "contract_version": "happyhorse-production-protocol-v1",
+  "provider_cli_version": "0.1.9",
+  "auth_runtime": {
+    "frozen": true,
+    "work_callback_port": 33897,
+    "session_persistence_verified": true,
+    "session_reload_verified": true,
+    "membership_http_status_verified": 200
+  },
+  "common_request_headers": {
+    "User-Agent": "happyhorse-cli/0.1.9",
+    "X-App-Id": "aorizon_cn",
+    "X-Language": "zh-CN",
+    "X-Client-Type": "cli",
+    "X-Client-Version": "0.1.9",
+    "X-Client-Command": "operation-specific",
+    "Authorization": "Bearer <accessToken> for authenticated gateway calls"
+  },
+  "refresh": {
+    "contract_complete": true,
+    "method": "POST",
+    "path": "/v1/auth/token/refresh",
+    "full_url": "https://api-gateway.aorizon.com/api/v1/auth/token/refresh",
+    "authenticated": false,
+    "headers": "common headers; no Authorization; X-Client-Command inherits the initiating CLI operation",
+    "body": {"required": ["refreshToken"], "optional": [], "forbidden": ["deviceId"]},
+    "response": {"envelope": {"success": "boolean", "data": "object", "errorCode": "string|number|null", "traceId": "string optional"}, "data_required": ["accessToken", "accessExpiresIn", "refreshToken", "refreshExpiresIn"]},
+    "access_token_rotation": true,
+    "refresh_token_rotation": true,
+    "access_expiry_mapping": "refresh_response_received_at + accessExpiresIn * 1000",
+    "refresh_expiry_mapping": "refresh_response_received_at + refreshExpiresIn * 1000",
+    "trigger": {"pre_expiry_skew_ms": 60000, "on_http_401": true, "on_business_auth_rejection_codes": ["2005", "40102"], "single_forced_refresh_then_single_request_replay": true},
+    "terminal_refresh_rejection": {"http": [401, 403], "provider_error_codes": ["2004", "2005", "2006", "2022", "2023"], "action": "clear matching region credential and require login"}
+  },
+  "project": {
+    "contract_complete": true,
+    "method": "POST",
+    "path": "/v2/projects",
+    "authenticated": true,
+    "body": {"required": ["name", "description"], "conditional": ["coverMediaId", "videoMediaId", "videoId"], "name": "CLI <taskType> <ISO timestamp>", "description": "generation prompt"},
+    "response": {"envelope": "standard provider envelope", "data_required": ["id", "status"], "data_optional": ["name", "description", "coverMediaId", "videoMediaId", "videoId"]},
+    "project_id_field": "data.id",
+    "required_for_task_create": true,
+    "lifecycle_requirement": "new project response status must equal ACTIVE before task submission",
+    "official_cli_creates_new_project_per_generation": true,
+    "project_reuse_allowed": false,
+    "persistence": "CLI persists taskId/projectId receipt locally for recovery; project is a server resource, not UI-only grouping"
+  },
+  "task_create_common": {
+    "method": "POST",
+    "path": "/v2/cli/tasks",
+    "authenticated": true,
+    "timeout_ms": 30000,
+    "body_required": ["projectId", "prompt", "taskType", "parameters", "concurrency"],
+    "parameters_required": ["durationS", "aspectRatio", "resolution", "modelVersion", "shotType", "sourceChannel"],
+    "parameters_defaults": {"durationS": 5, "aspectRatio": "16:9", "resolution": "720p", "modelVersion": "1.1", "shotType": "single", "sourceChannel": "cli"},
+    "parameter_constraints": {"durationS": "integer 3..15", "aspectRatio": ["16:9", "9:16", "4:3", "3:4", "1:1", "21:9", "4:5", "5:4"], "resolution": ["720p", "1080p"], "concurrency": "integer 1..4", "shotType": ["single", "multi"]},
+    "model_transport_note": "CLI-facing 1.1 is rewritten to provider modelVersion 1.5 on submission",
+    "watermark_request_field": null,
+    "response": {"envelope": "standard provider envelope", "data_required": ["id"], "data_optional": ["status", "createdAt"], "default_status_if_absent": "QUEUED"},
+    "task_id_field": "data.id",
+    "ambiguity_rule": "transport/timeout/HTTP >=500 after project creation is SUBMIT_OUTCOME_UNKNOWN; mark AMBIGUOUS_TASK_SUBMISSION and do not blindly retry"
+  },
+  "t2v": {
+    "request_contract_complete": true,
+    "taskType": "T2V",
+    "required": ["projectId", "prompt", "taskType", "parameters", "concurrency"],
+    "forbidden_media_fields": ["imageMediaIds", "imageInfoList", "videoMediaIds"],
+    "cli_defaults": {"durationS": 5, "aspectRatio": "16:9", "resolution": "720p", "modelVersion": "1.1", "concurrency": 1}
+  },
+  "i2v": {
+    "request_contract_complete": true,
+    "taskType": "I2V",
+    "required": ["projectId", "prompt", "taskType", "parameters", "concurrency", "imageMediaIds", "imageInfoList"],
+    "imageMediaIds": "array containing exactly one registered mediaId",
+    "imageInfoList": [{"label": "image_1"}],
+    "forbidden_identity_forms": ["URL", "OSS key", "mediaId scalar", "assetId"]
+  },
+  "r2v": {
+    "request_contract_complete": true,
+    "taskType": "R2V",
+    "required": ["projectId", "prompt", "taskType", "parameters", "concurrency", "imageMediaIds", "imageInfoList"],
+    "imageMediaIds": "ordered array of 1..9 registered mediaId decimal strings",
+    "imageInfoList": "parallel ordered array [{label:'image_1'},...,{label:'image_N'}]",
+    "reference_ordering_semantics": "array order defines image_N; prompt may reference @image_N and N must be within 1..reference count",
+    "max_references": 9
+  },
+  "media_upload": {
+    "sts": {
+      "contract_complete": true,
+      "method": "POST",
+      "path": "/v1/media/sts-token",
+      "authenticated": true,
+      "body": {"fileTypes": ["image|video"]},
+      "response_data": {"credentials": "JSON string containing accessKeyId, accessKeySecret, securityToken, expiration", "bucket": "string", "region": "string", "pathPrefix": "string", "endpoint": "optional string"}
+    },
+    "oss": {
+      "contract_complete": true,
+      "sdk": "ali-oss 6.23.0",
+      "secure": true,
+      "bucket": "STS response bucket",
+      "key": "pathPrefix + fileType + '/' + YYYY-MM-DD + '/' + sha256 + '.' + lowercase extension",
+      "single_put": "SDK put for files <= 1 MiB",
+      "multipart": "SDK initMultipartUpload/uploadPart/completeMultipartUpload for files > 1 MiB; up to 5 parallel parts; abort on failure",
+      "content_type": "detected MIME passed as SDK mime option",
+      "success": "put resolves, or multipart completion resolves"
+    },
+    "registration": {
+      "contract_complete": true,
+      "method": "POST",
+      "path": "/v1/media/asset",
+      "authenticated": true,
+      "body_required": ["checksum", "mediaId", "ossPath", "fileName", "fileSize", "mimeType", "createSource"],
+      "body_mapping": {"checksum": "sha256 hex", "mediaId": "same sha256 hex", "ossPath": "oss://<bucket>/<key>", "createSource": "cli"},
+      "response_data_required": ["mediaId"],
+      "response_data_optional": ["videoId", "coverMediaId", "duration", "videoDuration"],
+      "generatable_media_identity_field": "response.data.mediaId"
+    }
+  },
+  "task_query": {
+    "contract_complete": true,
+    "method": "GET",
+    "path_template": "/v2/cli/tasks/{taskId}",
+    "authenticated": true,
+    "provider_status_enum": ["INIT", "QUEUED", "RUNNING", "PENDING", "PROCESSING", "SUCCEEDED", "SUCCESS", "PARTIAL_SUCCESS", "FAILED", "CANCELLED", "DELETE", "DELETED"],
+    "status_groups": {"in_progress": ["INIT", "QUEUED", "RUNNING", "PENDING", "PROCESSING"], "success": ["SUCCEEDED", "SUCCESS", "PARTIAL_SUCCESS"], "failure": ["FAILED", "CANCELLED", "DELETE", "DELETED"]},
+    "response_data_fields": ["taskId", "projectId", "status", "progress", "taskType", "prompt", "inputMediaIds", "inputImageMediaIds", "inputVideoMediaIds", "resultVideoMediaId", "resultCoverMediaId", "resultCoverUrl", "resultVideoUrl", "videoId", "duration", "durationMs", "parameters", "concurrency", "imageInfoList", "concurrentResults", "createdAt", "startedAt", "completedAt", "serverTime", "failureCode", "errorCode", "failureReason", "queuePosition", "estimatedWaitSeconds"],
+    "success_result_structure": {"single": "top-level resultVideoUrl/resultVideoMediaId/resultCoverMediaId", "multi": "concurrentResults[] with slotIndex,status,resultVideoUrl,resultVideoMediaId,resultCoverMediaId,resultCoverUrl,durationMs,videoId,timestamps,error fields"}
+  },
+  "download": {
+    "contract_complete": true,
+    "metadata_method": "GET",
+    "metadata_path_template": "/v2/tasks/{taskId}/download?slotIndex=X&watermarked=B&aiWater=true",
+    "metadata_authenticated": true,
+    "slot_index_base": 0,
+    "multi_result_rule": "use provider concurrentResults slotIndex; default all successful slots; requested indexes must be unique",
+    "response_data": {"downloadUrl": "short-lived HTTPS URL; absent/null means not ready"},
+    "url_expiry": "short-lived; exact TTL not exposed by CLI contract",
+    "presigned": true,
+    "download_url_auth_required": false,
+    "download_transport": "plain fetch to HTTPS URL, manual HTTPS-only redirects, no Authorization header"
+  },
+  "watermark_control": {
+    "contract_source": "OFFICIAL_CLI_0.1.9",
+    "provider_native_disable_supported": true,
+    "control_stage": "download metadata selection; not generation task creation",
+    "cli_flag": null,
+    "cli_default": "automatic membership-derived selection",
+    "task_payload_field": null,
+    "metadata_query": {
+      "field": "watermarked",
+      "path": "query.watermarked",
+      "wire_type": "boolean serialized as query string",
+      "disable_value": false,
+      "companion_field": {"field": "aiWater", "value": true}
+    },
+    "mapping": {
+      "member": {"condition": "membership response data.isMember === true", "watermarked": false},
+      "non_member": {"condition": "membership response data.isMember === false", "watermarked": true},
+      "unknown": {"condition": "membership lookup unavailable or invalid", "watermarked": true}
+    },
+    "generation_types": ["T2V", "I2V", "R2V", "V2V"],
+    "membership_gate": {
+      "gated": true,
+      "required_plan": "any plan/status for which membership status returns isMember=true; CLI does not branch on Free/Standard/Pro tier",
+      "server_capability_check": false,
+      "non_member_paywall": "download_remove_watermark"
+    }
+  },
+  "x_client_command_map": {
+    "complete": true,
+    "login": "login",
+    "refresh": "inherits initiating command (for example upload, text2video, image2video, reference2video, task, download); no standalone refresh command",
+    "project_create": "same generation command",
+    "upload": "upload when explicit; same generation command when generation auto-uploads local input",
+    "text2video": "text2video",
+    "image2video": "image2video",
+    "reference2video": "reference2video",
+    "task": "task",
+    "download": "download"
+  },
+  "error_contract": {
+    "complete": true,
+    "provider_envelope": {"success": "boolean", "data": "object optional", "errorCode": "string|number|null", "errorMsg": "string optional", "traceId": "string optional"},
+    "transport_failure": "no authoritative provider envelope; map timeout/network/TLS categories separately",
+    "provider_rejection": "HTTP rejection or success=false envelope; retain HTTP status, errorCode and traceId",
+    "task_failure": "authenticated query succeeds but raw task status is in failure group; retain safe failureCode/errorCode, redact failureReason details",
+    "asset_executor_policy": {"ordinary_transient_attempt_limit": 3, "after_limit": "BLOCKED", "non_idempotent_task_create_unknown_outcome": "AMBIGUOUS_TASK_SUBMISSION; no blind retry"}
+  },
+  "remaining_real_probe_required": []
+}

@@ -1,0 +1,186 @@
+{
+  "seed": "human:person",
+  "max_depth": 1,
+  "edges_legal": [
+    {
+      "source": "human:person",
+      "relation": "requires",
+      "target": "human:nociception"
+    },
+    {
+      "source": "human:person",
+      "relation": "requires",
+      "target": "human:micro_posture_shift"
+    },
+    {
+      "source": "human:nociception",
+      "relation": "requires",
+      "target": "human:pain_signal"
+    },
+    {
+      "source": "human:nociception",
+      "relation": "affects",
+      "target": "aspect:tissue_integrity"
+    },
+    {
+      "source": "human:nociception",
+      "relation": "precedes",
+      "target": "human:pain_signal"
+    },
+    {
+      "source": "human:pain_signal",
+      "relation": "measures",
+      "target": "aspect:tissue_integrity"
+    },
+    {
+      "source": "human:pain_signal",
+      "relation": "indicates",
+      "target": "claim:tissue_damage"
+    },
+    {
+      "source": "human:pain_signal",
+      "relation": "precedes",
+      "target": "guard:pain_avoidance_reflex"
+    },
+    {
+      "source": "evidence:cipa_case_series",
+      "relation": "supports",
+      "target": "claim:tissue_damage"
+    },
+    {
+      "source": "guard:pain_avoidance_reflex",
+      "relation": "constrains",
+      "target": "human:micro_posture_shift"
+    },
+    {
+      "source": "human:micro_posture_shift",
+      "relation": "affects",
+      "target": "aspect:local_tissue_perfusion"
+    },
+    {
+      "source": "human:micro_posture_shift",
+      "relation": "conflicts_with",
+      "target": "human:sustained_local_pressure"
+    },
+    {
+      "source": "human:sustained_local_pressure",
+      "relation": "affects",
+      "target": "aspect:local_tissue_perfusion"
+    },
+    {
+      "source": "human:sustained_local_pressure",
+      "relation": "precedes",
+      "target": "state:pressure_ulcer"
+    },
+    {
+      "source": "intervention:ablate_nociception",
+      "relation": "exploits",
+      "target": "human:nociception"
+    }
+  ],
+  "edges_rejected": [
+    {
+      "_negative_case": "端点角色不合法：supports 要求 source_role=Evidence",
+      "source": "intervention:ablate_nociception",
+      "relation": "supports",
+      "target": "claim:tissue_damage",
+      "reject_reason": "ENDPOINT_ROLE_REJECTED",
+      "source_roles": [
+        "Intervention",
+        "Technique"
+      ],
+      "target_roles": [
+        "Claim"
+      ],
+      "allowed_source_roles": [
+        "Evidence"
+      ],
+      "allowed_target_roles": [
+        "Claim"
+      ]
+    },
+    {
+      "_negative_case": "未知 record_type 必须 fail-closed，不得静默等同 Entity",
+      "source": "external:unregistered_blob",
+      "relation": "affects",
+      "target": "aspect:tissue_integrity",
+      "reject_reason": "ENDPOINT_ROLE_REJECTED",
+      "source_roles": [],
+      "target_roles": [
+        "Aspect"
+      ],
+      "allowed_source_roles": [
+        "Causal",
+        "Intervention"
+      ],
+      "allowed_target_roles": [
+        "Aspect"
+      ]
+    },
+    {
+      "_negative_case": "causes 不在受控词表内，禁止另建关系本体",
+      "source": "human:nociception",
+      "relation": "causes",
+      "target": "human:pain_signal",
+      "reject_reason": "RELATION_NOT_IN_CONTROLLED_VOCABULARY"
+    }
+  ],
+  "layers": [
+    {
+      "depth": 1,
+      "steps": [
+        {
+          "from": "human:person",
+          "relation": "requires",
+          "to": "human:nociception",
+          "new_node": true
+        },
+        {
+          "from": "human:person",
+          "relation": "requires",
+          "to": "human:micro_posture_shift",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "human:nociception",
+        "human:micro_posture_shift"
+      ],
+      "relation_types": [
+        "requires"
+      ],
+      "newly_dominant_relations": [
+        "requires"
+      ],
+      "newly_entered_roles": [
+        "Causal",
+        "Mechanism"
+      ],
+      "regime_change": false
+    }
+  ],
+  "reached_nodes": [
+    "human:micro_posture_shift",
+    "human:nociception",
+    "human:person"
+  ],
+  "terminal_nodes": [],
+  "regime_change_depths": [],
+  "frontier_remaining": true,
+  "derived_view": [
+    {
+      "source": "human:nociception",
+      "relation": "precedes",
+      "target": "guard:pain_avoidance_reflex",
+      "origin": "inferred"
+    },
+    {
+      "source": "human:person",
+      "relation": "requires",
+      "target": "human:pain_signal",
+      "origin": "inferred"
+    }
+  ],
+  "decision": "continue",
+  "invalid_reasons": []
+}

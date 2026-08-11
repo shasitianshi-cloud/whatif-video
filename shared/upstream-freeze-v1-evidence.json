@@ -1,0 +1,26 @@
+{
+  "freeze_id": "UPSTREAM_FREEZE_V1",
+  "counterfactual_implementation_sha256": "04515a45bedefd1f41cf4629102b7d5219acd56ec80174a2ab67866ce0715eae",
+  "video_master_implementation_sha256": "5348dcb5403a8e48c725a9151265122cb52ba199aff192ce0c6da0d1f7fb8ad6",
+  "operator_package_sha256": "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80",
+  "deterministic_digest_algorithm": "SHA256(relative_path + TAB + file_sha256 + LF, paths sorted lexicographically)",
+  "implementation_digest_exclusions": [
+    "runs/",
+    "__pycache__/",
+    "*.pyc",
+    "temporary files"
+  ],
+  "historical_pre_run_manifest_persisted": false,
+  "current_snapshot_matches_recorded_freeze_digest": true,
+  "operator_runtime_before_after_unchanged": true,
+  "validated_run_id": "upstream-freeze-human-20260808-001",
+  "counterfactual_master_gate": "PASS",
+  "counterfactual_master_sha256": "49c98cfe83a16dfed5a028078a01d2db2753984880e173915de4ccc54300deef",
+  "video_master_gate": "PASS",
+  "video_master_sha256": "aaa0dbb9cf9073474a9509efb9d85b9da96f5f1a1bb48a4595549cfdbd22bd6b",
+  "gate_a_to_gate_b_sha256_match": true,
+  "counterfactual_static_regression": "PASS",
+  "video_master_static_regression": "PASS",
+  "operator_verification": "PASS",
+  "index_consistent": true
+}

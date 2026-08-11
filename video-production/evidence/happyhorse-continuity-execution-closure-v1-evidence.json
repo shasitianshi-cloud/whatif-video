@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0",
+  "task": "HAPPYHORSE_CONTINUITY_EXECUTION_CLOSURE_V1",
+  "result": "PASS",
+  "global_format_contract": {
+    "policy_source": "global-video-production-format.v1",
+    "width": 1280,
+    "height": 720,
+    "resolution": "720p",
+    "aspect_ratio": "16:9",
+    "implicit_resize_allowed": false
+  },
+  "dependency_contract": {
+    "source_locator": "previous_asset_id",
+    "latest_discovery_used": false,
+    "same_run_id_required": true,
+    "upstream_success_required": true,
+    "required_order": [
+      "upstream_success",
+      "upstream_artifact_finalized",
+      "upstream_sha256_finalized",
+      "stable_end_frame_extracted",
+      "reference_artifact_finalized",
+      "downstream_ready",
+      "adapter_execution"
+    ]
+  },
+  "extraction_implementation": {
+    "path": "asset-executor/executor/continuity-input-preparation.js",
+    "safe_end_offset_ms": 150,
+    "algorithm": "floor((duration_ms - safe_end_offset_ms) * fps / 1000), clamped to zero",
+    "frame_selection": "zero-based decoded frame index",
+    "llm_selection": false,
+    "frame_interpolation": false,
+    "image_generation": false,
+    "resize": false
+  },
+  "reference_artifact_contract": {
+    "schema": "asset-executor/schemas/reference-artifact.schema.json",
+    "required_fields": [
+      "run_id",
+      "source_asset_id",
+      "source_video_path",
+      "source_video_sha256",
+      "source_type",
+      "extraction_timestamp_ms",
+      "local_path",
+      "width",
+      "height",
+      "aspect_ratio",
+      "sha256",
+      "created_at"
+    ],
+    "local_identity": "sha256",
+    "provider_media_id_role": "execution_identity_only"
+  },
+  "real_evidence_replay": {
+    "upstream_video": {
+      "path": "whatif-video/runs/happyhorse-single-task-real-probe-001/video-production/happyhorse-real-probe/happyhorse-single-task-no-watermark.mp4",
+      "sha256": "8cb364cd52676346e08dc2ba0a01b6be64132475503a1bf8038e81be777c0d09",
+      "width": 1280,
+      "height": 720,
+      "fps": 24,
+      "decoded_frame_count": 73,
+      "duration_ms": 3041.667
+    },
+    "extraction_timestamp_ms": 2875,
+    "selected_zero_based_frame_index": 69,
+    "original_reference_sha256": "6c54df258717be8fb6ae59b9506d1c72a24cd06a2711d21e360f65bd54c96395",
+    "replay_reference_sha256": "6c54df258717be8fb6ae59b9506d1c72a24cd06a2711d21e360f65bd54c96395",
+    "original_decoded_pixel_sha256": "d97cf3ce95dc7d20b813701053ea9b5d6e85c42b317966f29f298a6f896ceb50",
+    "replay_decoded_pixel_sha256": "d97cf3ce95dc7d20b813701053ea9b5d6e85c42b317966f29f298a6f896ceb50",
+    "file_sha_match": true,
+    "pixel_hash_match": true,
+    "semantic_match": true,
+    "downstream_i2v_sha256": "0921c8cd81af914371262a0f0e86cacb1a52fbf89c48b1b5ef0bb28728ec68d4",
+    "downstream_execution_evidence_reference_sha256": "6c54df258717be8fb6ae59b9506d1c72a24cd06a2711d21e360f65bd54c96395",
+    "chain_link_basis": "source video SHA recorded by I2V probe plus consumed reference SHA recorded in adapter artifact",
+    "historical_run_binding": {
+      "upstream_probe_run_id": "happyhorse-single-task-real-probe-001",
+      "downstream_probe_run_id": "happyhorse-i2v-media-path-real-probe-001",
+      "same_historical_run_id": false,
+      "interpretation": "legacy probes form an explicit cryptographic evidence chain but predate the newly enforced same-run production contract; historical evidence was not rewritten"
+    }
+  },
+  "synthetic_regressions": {
+    "normal_previous_frame_path": "PASS",
+    "upstream_failed_blocks": "PASS",
+    "wrong_run_id_blocks": "PASS",
+    "invalid_previous_asset_id_blocks": "PASS",
+    "extraction_failure_blocks": "PASS",
+    "wrong_resolution_blocks": "PASS",
+    "upstream_sha_mismatch_blocks": "PASS",
+    "generated_reference_path_unchanged": "PASS",
+    "vertical_platform_cannot_change_format": "PASS",
+    "dispatcher_format_override": false,
+    "downstream_ready_only_after_reference_finalized": "PASS",
+    "previous_frame_to_synthetic_i2v_mapping": "PASS"
+  },
+  "regression": {
+    "continuity_test": "PASS",
+    "happyhorse_production_binding": "PASS",
+    "executor_foundation": "PASS",
+    "video_global_format_policy": "PASS",
+    "video_production_python_tests": {"status": "PASS", "count": 18},
+    "dispatcher_foundation": "PASS",
+    "dispatcher_files_modified": false
+  },
+  "network_and_cost": {
+    "session_network_call": false,
+    "sts_called": false,
+    "oss_upload_called": false,
+    "media_registration_called": false,
+    "project_created": false,
+    "task_created": false,
+    "video_generation": false,
+    "credits_consumed": false
+  },
+  "historical_probe_evidence_modified": false,
+  "formal_gate_added": false
+}

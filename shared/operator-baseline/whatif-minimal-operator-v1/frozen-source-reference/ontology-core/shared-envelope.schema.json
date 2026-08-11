@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://knowledge-runtime-prototype/local/ontology-core/shared-envelope.schema.json",
+  "title": "Shared Envelope",
+  "description": "所有知识单元共享的外壳。任何 Archetype 的知识单元都必须嵌套在本 Envelope 内。Envelope 提供身份、命名、作用域、状态、版本、缺失表达、关系、认识论引用等通用字段。Archetype 特定字段放在 envelope.archetype_payload 中。",
+  "type": "object",
+  "required": ["stable_id", "record_type", "domain_namespace", "preferred_label", "status", "version"],
+  "additionalProperties": false,
+  "properties": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-]+:[A-Za-z0-9_\\-\\.]+$",
+      "description": "稳定标识符，格式为 '<namespace>:<local>'。不因 preferred_label 变化而改变。用于跨引用与溯源。"
+    },
+    "record_type": {
+      "type": "string",
+      "enum": [
+        "concept_model",
+        "state_transition",
+        "observation_inference",
+        "causal_pattern",
+        "intervention_pattern",
+        "procedure_workflow",
+        "normative_rule",
+        "evaluation_decision",
+        "composition_record",
+        "audit_record",
+        "evidence",
+        "claim",
+        "provenance",
+        "observation_record",
+        "execution_record",
+        "feedback_record"
+      ],
+      "description": "记录类型。前八类为 Archetype 知识单元；其余为组合/审计/运行时/认识论记录。"
+    },
+    "domain_namespace": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "领域命名空间，用于防止跨领域同名概念静默合并。例如 domain_a:integrity 与 domain_b:integrity 不得因 label 相同视为同一概念。"
+    },
+    "subject_ref": {
+      "description": "指向本单元所描述主体的引用（可为另一 stable_id 或外部标识）。使用 field_state 表达缺失。",
+      "$ref": "#/$defs/optional_ref"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "当前首选标签。可以变化；变化不影响 stable_id。"
+    },
+    "definition": {
+      "type": "string",
+      "description": "本单元的简短定义（自然语言）。各 Archetype 在 archetype_payload 中可包含更具体的语义角色定义。"
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "别名列表。允许为空数组。"
+    },
+    "scope": {
+      "description": "本单元适用范围的说明（情境、边界、限定）。使用 field_state 表达未限定。",
+      "$ref": "#/$defs/optional_text"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["candidate", "validated", "approved", "deprecated", "retired"],
+      "description": "生命周期状态。见 ontology-core/lifecycle.md。"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "语义化版本号，遵循 MAJOR.MINOR.PATCH。"
+    },
+    "field_states": {
+      "type": "object",
+      "description": "各 Archetype 特定字段的缺失状态表。键为字段名，值为 field_state。用于表达『字段不完整但可解释』。",
+      "additionalProperties": { "$ref": "#/$defs/field_state" }
+    },
+    "typed_relations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/typed_relation" },
+      "description": "从本单元出发的受控关系列表。见 ontology-core/typed-relations.md。"
+    },
+    "claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本单元所主张的可验证命题的 stable_id 列表（Claim 单元）。"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "支持本单元的 Evidence 单元 stable_id 列表。"
+    },
+    "provenance_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "本单元溯源记录 stable_id 列表。见 runtime-records/provenance-record.schema.json。"
+    },
+    "archetype_payload": {
+      "type": "object",
+      "description": "Archetype 特定语义角色字段。结构与各 archetypes/<name>/schema.json 对应。非 Archetype 记录（如 evidence/claim）可不填或填对应结构。"
+    }
+  },
+  "record_type_semantic_roles": {
+    "_comment": "CANONICAL MACHINE ROLE MAP（唯一权威来源，CONSOLIDATED_RELATION_EXECUTION_CLOSURE_PATCH_V1 / RC-A）。record_type -> 该记录类型所承载的语义角色 token 集合（来自 typed-relations.schema.json 的 $defs.relation_role 枚举）。Relation Audit 由此确定性解析端点角色，不再在 audit/relation_audit.py 内手写第二副本。角色 token 必须属于 relation_role 枚举。",
+    "concept_model": ["Concept"],
+    "state_transition": ["State"],
+    "observation_inference": ["Observation", "Inference"],
+    "causal_pattern": ["Causal", "Mechanism"],
+    "intervention_pattern": ["Intervention", "Technique"],
+    "procedure_workflow": ["Procedure", "Technique"],
+    "normative_rule": ["Normative", "Guard"],
+    "evaluation_decision": ["Evaluation", "Claim"],
+    "composition_record": ["Composition"],
+    "audit_record": ["Audit"],
+    "evidence": ["Evidence"],
+    "claim": ["Claim"],
+    "provenance": ["Provenance"],
+    "observation_record": ["Observation"],
+    "execution_record": ["Execution"],
+    "feedback_record": ["Feedback"]
+  },
+  "$defs": {
+    "field_state": {
+      "type": "object",
+      "required": ["state", "reason"],
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "present",
+            "not_applicable",
+            "unknown",
+            "not_observed",
+            "not_provided",
+            "insufficient_evidence",
+            "conflicting",
+            "deferred",
+            "intentionally_omitted"
+          ]
+        },
+        "reason": { "type": "string", "description": "该状态的原因，必须可复核。" },
+        "impact": { "type": "string", "description": "对当前结论的影响。" },
+        "resolution_condition": { "type": "string", "description": "何种条件下可补全。" }
+      },
+      "additionalProperties": false
+    },
+    "optional_ref": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["field_state"],
+          "properties": {
+            "field_state": { "$ref": "#/$defs/field_state" },
+            "value": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        { "type": "string" }
+      ]
+    },
+    "optional_text": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["field_state"],
+          "properties": {
+            "field_state": { "$ref": "#/$defs/field_state" },
+            "value": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        { "type": "string" }
+      ]
+    },
+    "typed_relation": {
+      "type": "object",
+      "required": ["relation", "target"],
+      "properties": {
+        "relation": { "$ref": "typed-relations.schema.json#/$defs/controlled_relation", "description": "受控关系名，来自 ontology-core/typed-relations.schema.json 单一来源（语义见 typed-relations.md）。" },
+        "target": { "type": "string", "description": "目标 stable_id 或外部标识。" },
+        "direction": { "type": "string", "enum": ["forward", "reverse"], "default": "forward" },
+        "polarity": { "type": "string", "enum": ["positive", "negative"], "default": "positive" },
+        "confidence": { "type": "string", "enum": ["low", "medium", "high"], "default": "medium" },
+        "namespace_policy": { "type": "string", "enum": ["same", "cross", "any"], "default": "any" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

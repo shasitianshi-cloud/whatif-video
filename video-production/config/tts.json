@@ -1,0 +1,13 @@
+{
+  "provider": "volcengine",
+  "protocol": "v3_http_chunked_unidirectional",
+  "endpoint": "https://openspeech.bytedance.com/api/v3/tts/unidirectional",
+  "resource_id": "seed-tts-2.0",
+  "speaker": "zh_female_vv_uranus_bigtts",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "speech_rate": 15,
+  "loudness_rate": 0,
+  "concurrency_max": 5,
+  "max_text_utf8_bytes": 1024
+}

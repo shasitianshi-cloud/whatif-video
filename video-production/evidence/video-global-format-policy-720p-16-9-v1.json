@@ -1,0 +1,51 @@
+{
+  "task": "VIDEO_GLOBAL_FORMAT_POLICY_720P_16_9_V1",
+  "status": "PASS",
+  "canonical_source": "whatif-video/video-production/config/video-format.json",
+  "policy": {
+    "source": "GLOBAL_VIDEO_PRODUCTION_CONFIG",
+    "policy_id": "global-video-production-format.v1",
+    "width": 1280,
+    "height": 720,
+    "resolution": "720p",
+    "aspect_ratio": "16:9"
+  },
+  "bindings": {
+    "global_video_format_policy_bound": true,
+    "single_canonical_video_format_source": true,
+    "happyhorse_t2v_format_mapping_pass": true,
+    "happyhorse_i2v_format_mapping_pass": true,
+    "happyhorse_r2v_format_mapping_pass": true,
+    "planner_format_decision_removed": true,
+    "planner_global_format_inherited": true,
+    "dispatcher_format_override": false,
+    "continuity_format_contract_pass": true,
+    "image_motion_format_contract_pass": true
+  },
+  "boundaries": {
+    "subtitle_primary_color": "white",
+    "subtitle_burned_in_generation": false,
+    "final_platform_canvas_frozen": false,
+    "cover_format_policy_unchanged": true,
+    "happyhorse_protocol_modified": false
+  },
+  "protocol_sha256": {
+    "happyhorse-production-protocol-v1.json": "1845cfe40da03056e31422ac4e06d200d9dd23eb2522af09c91e96becc02ade1",
+    "happyhorse-production-protocol-v1-evidence.json": "fe1612f543f12b6b3ed4e321c3f2c5cfa2a9f04c10480ab0338bffd471507ffa"
+  },
+  "regression": {
+    "global_policy_static_synthetic": "PASS",
+    "vertical_platform_cannot_override_generation_format": "PASS",
+    "dispatcher_foundation": "PASS",
+    "executor_foundation": "PASS",
+    "happyhorse_production_binding": "PASS",
+    "video_production_python_tests": {"status": "PASS", "tests": 18},
+    "existing_executor_regression_pass": true
+  },
+  "external_effects": {
+    "real_provider_call": false,
+    "video_generation": false,
+    "credits_consumed": false
+  },
+  "next_stage": "HAPPYHORSE_CONTINUITY_EXECUTION_CLOSURE"
+}

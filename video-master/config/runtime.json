@@ -1,0 +1,6 @@
+{
+  "timezone": "Asia/Taipei",
+  "language": "zh-CN",
+  "model": "host-managed",
+  "knowledge_persistence": false
+}

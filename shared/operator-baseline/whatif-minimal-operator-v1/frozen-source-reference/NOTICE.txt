@@ -1,0 +1,38 @@
+REFERENCE COPY ONLY
+NOT PROJECT-OWNED SOURCE
+DO NOT MODIFY
+
+本目录下的三个文件不是本项目的源代码，也不是本项目的可维护资产。
+它们是【冻结动力池】(knowledge-runtime-prototype) 中三个最小只读依赖的逐字节副本，
+放在包内的唯一目的是让外部审计者在拿不到冻结动力池原件时，
+仍然可以独立查看依赖内容并独立复跑 smoke test。
+
+冻结源身份
+  FROZEN_SOURCE_RELEASE_ID  : kr-prototype-v1-20260807T100805Z
+  FROZEN_SOURCE_DIGEST      : 0d61e8cadf9900620e738b917ac6d1f4289cfd1f0f9c9bbf8b037b875b663278
+  FROZEN_SOURCE_STATUS      : FROZEN
+
+副本清单（SHA256 与冻结源原文件完全一致，由 verification/verify_package.py 复核）
+  audit/relation_audit.py
+    64dfc7796082a176f90601242dfec509624799f67289878d64431a470f454bae
+  ontology-core/typed-relations.schema.json
+    f0775eff4473cc197b29efe0b775b44cc60a49a611856c68a54a6fb965cbdbb9
+  ontology-core/shared-envelope.schema.json
+    e4f0f8e124e6b7c470cd9c31b5e3a3035e006adb5a007167dcb5c8ce5370d001
+
+使用方式
+  本副本不改变运算子原有的只读加载逻辑。
+  src/relation_operator.py 本来就支持通过环境变量指定冻结源根目录：
+
+      KR_FROZEN_SOURCE_ROOT=<...>/whatif-minimal-operator-v1/frozen-source-reference
+
+  该目录刻意保持了 audit/ 与 ontology-core/ 的原始相对结构，
+  因此 relation_audit.py 自身的 ROOT 解析逻辑无需任何修改即可定位两个 schema。
+
+  审计者若同时持有冻结动力池原件，应优先把 KR_FROZEN_SOURCE_ROOT 指向原件，
+  此时本目录仅作为对照物。
+
+约束
+  1. 禁止修改本目录下任何文件；一旦修改，SHA256 校验立即失败。
+  2. 本目录不构成对冻结动力池的分发，不包含其余 124 个文件。
+  3. 本项目对冻结源只有 open("r")，运行时不存在任何写路径。

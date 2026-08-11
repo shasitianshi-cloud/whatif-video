@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://knowledge-runtime-prototype/local/ontology-core/typed-relations.schema.json",
+  "title": "Typed Relations — Controlled Vocabulary (Three Coordinated Representations)",
+  "description": "受控关系词表的机器可引用权威来源之一。存在**三份协调一致的表示**，并非单文件 Single Source of Truth：(1) typed-relations.md = 人读语义权威（定义不可逆/方向/对立/可传递性/循环策略的真实语义）；(2) 本文件的 relation_registry[] = 机器元数据权威（被 Relation Audit / 组合校验确定性消费）；(3) $defs.controlled_relation.enum[] = 受控名枚举的**校验投影**（仅用于 JSON 结构校验，不含语义）。三者在 CI/审计中必须保持一致（registry 集合 == enum 集合；md 语义与 registry 元数据一致，冲突以 md 语义为准）。消费方 schema（shared-envelope、connector、composition-record）通过 $ref 引用 #/$defs/controlled_relation，不得各自复制 20 关系枚举。任何新增/修改关系必须先改本文件与 typed-relations.md，再使用。",
+  "relation_registry": [
+    {"relation": "defines", "source_role": ["Concept"], "target_role": ["Concept", "Archetype"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源定义/确立目标", "example": "glossary:integrity defines domain_a:integrity", "counter_example": "用 defines 表达因果"},
+    {"relation": "specializes", "source_role": ["Subtype"], "target_role": ["Supertype"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "transitive", "partonomy_guard": "none", "inference_policy": "allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源是目标的特化（反向以交换 source/target 表达）", "example": "domain_a:strong_integrity specializes domain_a:integrity", "counter_example": "把并列关系当 specialize"},
+    {"relation": "equivalent_to", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "bidirectional", "reciprocity": "symmetric", "inverse": "self", "opposite": "none", "semantic_transitivity": "transitive", "partonomy_guard": "none", "inference_policy": "allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "symmetric_cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "语义等价", "example": "domain_a:latency equivalent_to domain_b:response_time", "counter_example": "近似即标等价"},
+    {"relation": "distinct_from", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "bidirectional", "reciprocity": "symmetric", "inverse": "self", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "symmetric_cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "明确非同一/非等价", "example": "domain_a:risk distinct_from domain_a:uncertainty", "counter_example": "用 distinct 掩盖矛盾"},
+    {"relation": "part_of", "source_role": ["Part"], "target_role": ["Whole"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "has_part", "opposite": "none", "semantic_transitivity": "conditional", "partonomy_guard": "applicable", "inference_policy": "guarded", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源是目标的一部分", "example": "domain_a:cache part_of domain_a:system", "counter_example": "把因果当 part_of"},
+    {"relation": "has_part", "source_role": ["Whole"], "target_role": ["Part"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "part_of", "opposite": "none", "semantic_transitivity": "conditional", "partonomy_guard": "applicable", "inference_policy": "guarded", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "目标为源包含的部分", "example": "domain_a:system has_part domain_a:cache", "counter_example": "—"},
+    {"relation": "instantiates", "source_role": ["ANY"], "target_role": ["Concept", "Archetype"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源是目标的一个实例", "example": "run_42 instantiates procedure_workflow:deploy", "counter_example": "用 instantiates 表达引用"},
+    {"relation": "exploits", "source_role": ["Intervention"], "target_role": ["Mechanism", "Causal"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "干预利用某机制/因果", "example": "intervention:retry exploits causal:transient_failure", "counter_example": "把偶然当 exploits"},
+    {"relation": "affects", "source_role": ["Causal", "Intervention"], "target_role": ["Aspect"], "direction": "forward", "reciprocity": "unconstrained", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "源影响某方面（可形成反馈环，反向边合法）", "example": "causal:x affects aspect:y", "counter_example": "affects 当 supports"},
+    {"relation": "measures", "source_role": ["Signal", "Observation"], "target_role": ["Aspect"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源测量某方面", "example": "signal:latency_probe measures aspect:latency", "counter_example": "measures 当 indicates"},
+    {"relation": "indicates", "source_role": ["Signal", "Observation"], "target_role": ["Inference", "Claim"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源指示某推论", "example": "signal:spike indicates claim:overload", "counter_example": "indicates 当 proves"},
+    {"relation": "supports", "source_role": ["Evidence"], "target_role": ["Claim"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "refutes", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "证据支持命题（refutes 为对立极性，非可逆；二者 inverse 均为 none）", "example": "evidence:e1 supports claim:c1", "counter_example": "用 supports 表达因果"},
+    {"relation": "refutes", "source_role": ["Evidence"], "target_role": ["Claim"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "supports", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "证据反驳命题（supports 为对立极性，非可逆；二者 inverse 均为 none）", "example": "evidence:e2 refutes claim:c1", "counter_example": "—"},
+    {"relation": "requires", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "forward", "reciprocity": "unconstrained", "inverse": "none", "opposite": "none", "semantic_transitivity": "transitive", "partonomy_guard": "none", "inference_policy": "allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "domain_specific_audit_concern", "cross_namespace": "allowed", "semantic_meaning": "源要成立/执行需 B（通用依赖语义可传递；是否禁止循环由具体依赖域的 Domain Guard 判定，非本体层普适规则）", "example": "procedure:deploy requires capability:ci", "counter_example": "用 requires 表达 causes"},
+    {"relation": "precedes", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "transitive", "partonomy_guard": "none", "inference_policy": "allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源在目标之前发生/排序（时序偏序，语义可传递 A precedes B ∧ B precedes C ⇒ A precedes C）", "example": "step:build precedes step:test", "counter_example": "precedes 当 causes"},
+    {"relation": "supplies_input_to", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "forward", "reciprocity": "unconstrained", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "源为目标的输入（可互馈，反向边合法）", "example": "signal:s supplies_input_to evaluation:rule1", "counter_example": "—"},
+    {"relation": "conflicts_with", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "bidirectional", "reciprocity": "symmetric", "inverse": "self", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "symmetric_cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "两者互斥/矛盾", "example": "claim:c1 conflicts_with claim:c2", "counter_example": "用 conflicts 表达无关差异"},
+    {"relation": "substitutes_for", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "bidirectional", "reciprocity": "symmetric", "inverse": "self", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "symmetric_cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "可互相替代", "example": "technique:t1 substitutes_for technique:t2", "counter_example": "近似即替代"},
+    {"relation": "constrains", "source_role": ["Guard", "Node"], "target_role": ["ANY"], "direction": "forward", "reciprocity": "unconstrained", "inverse": "none", "opposite": "none", "semantic_transitivity": "non_transitive", "partonomy_guard": "none", "inference_policy": "not_allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "cycle_allowed", "cross_namespace": "allowed", "semantic_meaning": "源约束目标的适用（可互约束，反向边合法）", "example": "guard:g constrains intervention:i", "counter_example": "constrains 当 prohibits"},
+    {"relation": "derived_from", "source_role": ["ANY"], "target_role": ["ANY"], "direction": "forward", "reciprocity": "anti_reciprocal", "inverse": "none", "opposite": "none", "semantic_transitivity": "transitive", "partonomy_guard": "none", "inference_policy": "allowed", "storage_policy": "store_explicit_edges_only", "cycle_policy": "acyclic_by_definition", "cross_namespace": "allowed", "semantic_meaning": "源由目标派生", "example": "composition:r1 derived_from unit:u1", "counter_example": "derived_from 当 copies"}
+  ],
+  "$defs": {
+    "controlled_relation": {
+      "type": "string",
+      "description": "受控关系名枚举（校验投影）。relation_registry[] 为含元数据的机器权威；typed-relations.md 为人读语义权威。三者集合必须一致。",
+      "enum": [
+        "defines",
+        "specializes",
+        "equivalent_to",
+        "distinct_from",
+        "part_of",
+        "has_part",
+        "instantiates",
+        "exploits",
+        "affects",
+        "measures",
+        "indicates",
+        "supports",
+        "refutes",
+        "requires",
+        "precedes",
+        "supplies_input_to",
+        "conflicts_with",
+        "substitutes_for",
+        "constrains",
+        "derived_from"
+      ]
+    },
+    "relation_role": {
+      "type": "string",
+      "description": "端点角色词表（规范化的语义角色 token）。用于 Relation Audit 的端点兼容性判定；source_role/target_role 为允许的角色 token 集合（含 ANY）。",
+      "enum": [
+        "Concept", "Archetype", "Subtype", "Supertype",
+        "Aspect", "Mechanism", "Causal", "Intervention", "Technique", "Procedure",
+        "Signal", "Observation", "Inference", "Claim", "Evidence",
+        "Guard", "Node", "Normative", "State", "Evaluation",
+        "Part", "Whole", "Entity", "Composition", "Provenance",
+        "Execution", "Feedback", "Audit", "ANY"
+      ]
+    },
+    "direction": {
+      "type": "string",
+      "description": "方向性：forward=有方向（A→B）；bidirectional=对称（A↔B）。注意 directional ≠ asymmetric。",
+      "enum": ["forward", "bidirectional"]
+    },
+    "reciprocity": {
+      "type": "string",
+      "description": "互反性（独立于 direction）：symmetric=A R B ⇒ B R A；anti_reciprocal=A R B ⇒ NOT(B R A)；unconstrained=不对反向边作推断（动态关系如 affects/requires 允许反馈/互馈边）。注意 asymmetric ≠ acyclic。",
+      "enum": ["symmetric", "anti_reciprocal", "unconstrained"]
+    },
+    "semantic_transitivity": {
+      "type": "string",
+      "description": "语义代数可传递性：仅表示 A R B ∧ B R C ⇒ A R C 是否在关系语义上成立。transitive=成立；non_transitive=不成立；conditional=仅在 partonomy_guard 等条件满足时成立。注意 semantic transitivity ≠ inference policy ≠ storage closure。",
+      "enum": ["transitive", "non_transitive", "conditional"]
+    },
+    "inference_policy": {
+      "type": "string",
+      "description": "推断策略（最小枚举）：系统是否允许基于 semantic_transitivity 推断/派生新边并呈现。allowed=允许；guarded=仅在 guard 满足时允许（如 partonomy 相容）；not_allowed=不推断。与 storage_policy 独立。",
+      "enum": ["allowed", "not_allowed", "guarded"]
+    },
+    "storage_policy": {
+      "type": "string",
+      "description": "存储策略：canonical graph 是否物理存储推断闭包。当前固定 store_explicit_edges_only（不物化传递闭包）。与 semantic transitivity / inference policy 独立。",
+      "enum": ["store_explicit_edges_only"]
+    },
+    "cycle_policy": {
+      "type": "string",
+      "description": "循环语义：acyclic_by_definition=由定义禁止任何环（层级/偏序/派生物）；cycle_allowed=允许反馈/互馈环（动态关系）；cycle_conditionally_allowed=条件允许；domain_specific_audit_concern=本体层不普适禁止，由具体领域 Domain Guard 判定；symmetric_cycle_allowed=对称关系允许 A↔B 闭环。注意 asymmetric ≠ acyclic；不采用『asymmetric ⇒ no_cycle』隐式推理。",
+      "enum": ["acyclic_by_definition", "cycle_allowed", "cycle_conditionally_allowed", "domain_specific_audit_concern", "symmetric_cycle_allowed"]
+    },
+    "relation_entry": {
+      "type": "object",
+      "required": ["relation", "source_role", "target_role", "direction", "reciprocity", "inverse", "opposite", "semantic_transitivity", "inference_policy", "storage_policy", "cycle_policy", "cross_namespace", "semantic_meaning", "example", "counter_example"],
+      "additionalProperties": false,
+      "properties": {
+        "relation": {"type": "string", "description": "受控关系名，必须属于 $defs.controlled_relation 枚举。"},
+        "source_role": {"type": "array", "items": {"$ref": "#/$defs/relation_role"}, "description": "源端点允许的语义角色 token 集合（含 ANY）。"},
+        "target_role": {"type": "array", "items": {"$ref": "#/$defs/relation_role"}, "description": "目标端点允许的语义角色 token 集合（含 ANY）。"},
+        "direction": {"$ref": "#/$defs/direction"},
+        "reciprocity": {"$ref": "#/$defs/reciprocity"},
+        "inverse": {"type": "string", "description": "真逆关系名（端点互换的可逆关系）：none=无 / self=对称自逆 / 其它=对应关系名。supports/refutes 的『对立』不存于此，存于 opposite。"},
+        "opposite": {"type": "string", "description": "对立极性关系名（不可逆）：none=无 / 其它=对立关系名。仅 supports↔refutes 使用。"},
+        "semantic_transitivity": {"$ref": "#/$defs/semantic_transitivity"},
+        "partonomy_guard": {"type": "string", "enum": ["applicable", "none"], "default": "none", "description": "part_of/has_part 的相容 partonomy guard 是否适用（仅在 conditional transitivity 时需要）。"},
+        "inference_policy": {"$ref": "#/$defs/inference_policy"},
+        "storage_policy": {"$ref": "#/$defs/storage_policy"},
+        "cycle_policy": {"$ref": "#/$defs/cycle_policy"},
+        "cross_namespace": {"type": "string", "enum": ["allowed", "prohibited"]},
+        "semantic_meaning": {"type": "string"},
+        "example": {"type": "string"},
+        "counter_example": {"type": "string"}
+      }
+    }
+  }
+}

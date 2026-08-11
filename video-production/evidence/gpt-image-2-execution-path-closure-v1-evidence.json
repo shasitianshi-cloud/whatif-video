@@ -1,0 +1,68 @@
+{
+  "task": "GPT_IMAGE_2_EXECUTION_PATH_CLOSURE_V1",
+  "recorded_at": "2026-08-11T00:00:00+08:00",
+  "result": "BLOCKED_REAL_PROVIDER_EXECUTION_ONLY",
+  "official_contract": {
+    "documentation": "https://developers.openai.com/api/docs/guides/image-generation",
+    "runtime": "OpenAI Images API POST /v1/images/generations",
+    "model": "gpt-image-2",
+    "response_image_field": "data[0].b64_json",
+    "video_bound_request_size": "1280x720",
+    "size_constraints_verified": true
+  },
+  "implementation": {
+    "adapter": "asset-executor/adapters/gpt-image-2-production-adapter.js",
+    "image_artifact_schema": "asset-executor/schemas/image-artifact.schema.json",
+    "executor_request_schema": "asset-executor/schemas/executor-request.schema.json",
+    "test": "asset-executor/tests/gpt-image-2-execution-path.test.js",
+    "auth_source": "OPENAI_API_KEY",
+    "secret_recorded": false,
+    "prompt_mapping": "byte_for_byte_passthrough",
+    "fallback_router": false,
+    "dynamic_model_selection": false
+  },
+  "roles": {
+    "generated_reference": {"mapped": true, "size": "1280x720", "target_aspect_ratio": "16:9", "reference_source": "generated_reference"},
+    "image_motion_source": {"mapped": true, "size": "1280x720", "future_motion_output_contract": "1280x720/16:9"},
+    "cover": {"mapped": true, "size": "independent/auto_or_existing_contract", "inherits_video_frame_policy": false}
+  },
+  "synthetic_regressions": {
+    "gpt_image_2_successful_mapping": "PASS",
+    "generated_reference": "PASS",
+    "image_motion_source": "PASS",
+    "cover": "PASS",
+    "invalid_role_blocks": "PASS",
+    "missing_prompt_blocks": "PASS",
+    "provider_rejection_blocks": "PASS",
+    "ambiguous_submission_blocks": "PASS",
+    "unreadable_output_blocks": "PASS",
+    "artifact_sha_validation": "PASS",
+    "happyhorse_routing_unchanged": "PASS",
+    "continuity_regression_unchanged": "PASS",
+    "global_format_regression_unchanged": "PASS",
+    "dispatcher_foundation_regression": "PASS",
+    "executor_foundation_regression": "PASS"
+  },
+  "real_probe": {
+    "run_id": "gpt-image-2-real-probe-001",
+    "planned_output": "whatif-video/runs/gpt-image-2-real-probe-001/video-production/gpt-image-2-real-probe/gpt-image-2-generated-reference-probe.png",
+    "attempt_count": 0,
+    "generation_count": 0,
+    "ambiguous_submission": false,
+    "provider_called": false,
+    "blocked_before_request": true,
+    "blocking_code": "AUTH_UNAVAILABLE",
+    "blocking_reason": "OPENAI_API_KEY absent",
+    "image_artifact": null,
+    "visual_check": null
+  },
+  "unchanged_boundaries": {
+    "happyhorse_protocol_sha256": "1845cfe40da03056e31422ac4e06d200d9dd23eb2522af09c91e96becc02ade1",
+    "happyhorse_protocol_evidence_sha256": "fe1612f543f12b6b3ed4e321c3f2c5cfa2a9f04c10480ab0338bffd471507ffa",
+    "global_video_format_sha256": "69199f94d1089d197103246e3019793c882097039cb8a8e867829dc8cb64ff87",
+    "dispatcher_rules_sha256": "db9931b2291750b641ad20b50fd48032e1c9c2ee21b89063656287d0922e332b",
+    "continuity_implementation_sha256": "c72443722bcb692dd27bb4c6e6ccd7ad66f2e0b0f72cacae2bff2510e31316f7"
+  },
+  "network_and_cost": {"image_provider_call": false, "happyhorse_task_created": false, "video_generation": false, "credits_consumed": false},
+  "next_stage": "GPT_IMAGE_2_MINIMAL_REAL_PROBE"
+}

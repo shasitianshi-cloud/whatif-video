@@ -1,0 +1,6 @@
+{
+  "timezone": "Asia/Taipei",
+  "language": "简体中文",
+  "max_premise_retry": 1,
+  "operator_zip_sha256": "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80"
+}

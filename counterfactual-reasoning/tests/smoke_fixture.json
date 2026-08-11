@@ -1,0 +1,68 @@
+{
+  "premise_discovery": {
+    "status": "VALID",
+    "failure_reason": null,
+    "anchor": "人类突然永久失去痛觉",
+    "raw_premise": "如果全人类突然永久失去痛觉，但其他感觉与认知能力保持不变，会发生什么？",
+    "raw_output": "现实中痛觉既是伤害警报，也是促使人停止危险动作、保护受伤部位和就医的行为信号。把改变限定为全人类永久失去伤害性痛觉，但保留触觉、意识和既有生理结构，可形成单一且可传播的反事实。",
+    "premise": "如果全人类突然永久失去痛觉，但其他感觉与认知能力保持不变，会发生什么？",
+    "nodes": [
+      {"id":"human:population","record_type":"concept_model","label":"全人类"},
+      {"id":"mechanism:nociception","record_type":"causal_pattern","label":"伤害性痛觉机制"},
+      {"id":"signal:pain","record_type":"observation_record","label":"主观痛信号"},
+      {"id":"claim:tissue_damage","record_type":"claim","label":"存在组织损伤"},
+      {"id":"guard:avoidance","record_type":"normative_rule","label":"避痛与保护行为"},
+      {"id":"action:continued_exposure","record_type":"causal_pattern","label":"继续暴露于伤害"},
+      {"id":"aspect:tissue_integrity","record_type":"concept_model","archetype_role":["Aspect"],"label":"组织完整性"},
+      {"id":"state:injury","record_type":"state_transition","label":"累积性损伤状态"},
+      {"id":"evidence:congenital_insensitivity","record_type":"evidence","label":"先天性痛觉缺失病例经验"}
+    ],
+    "edges": [
+      {"source":"human:population","relation":"requires","target":"mechanism:nociception"},
+      {"source":"mechanism:nociception","relation":"precedes","target":"signal:pain"},
+      {"source":"signal:pain","relation":"indicates","target":"claim:tissue_damage"},
+      {"source":"signal:pain","relation":"precedes","target":"guard:avoidance"},
+      {"source":"guard:avoidance","relation":"conflicts_with","target":"action:continued_exposure"},
+      {"source":"action:continued_exposure","relation":"affects","target":"aspect:tissue_integrity"},
+      {"source":"action:continued_exposure","relation":"precedes","target":"state:injury"},
+      {"source":"evidence:congenital_insensitivity","relation":"supports","target":"claim:tissue_damage"}
+    ],
+    "perturbation": {
+      "kind":"remove_edge",
+      "rationale":"永久失去痛觉后，痛信号不再触发避痛与保护行为。",
+      "edge":{"source":"signal:pain","relation":"precedes","target":"guard:avoidance"}
+    },
+    "seed":"signal:pain"
+  },
+  "deep_reasoning": {
+    "decision":"STOP",
+    "raw_output":"在固定反事实契约后，主链条由伤害报警缺失扩展至个体行为、医疗监测、劳动规范和公共系统。竞争机制是视觉检查、可穿戴监测、照护与制度性防护；它们能部分替代报警，却不能恢复痛觉的即时、局部、持续反馈。短期事故和过度使用先增加，中期医疗系统转向主动筛查，长期社会规范接管部分风险控制。主因果闭合，继续扩展只会增加案例。",
+    "reasoning_source":"# 推演源\n\n## 反事实契约\n\n从同一时刻起，全人类永久失去伤害所产生的主观痛觉；触觉、温度感知、意识、记忆和运动能力保持基线状态。变化不消除组织损伤，也不自动消除炎症、感染或疾病。\n\n## 基线与直接效应\n\n现实基线中，痛觉把潜在或实际损伤转化为即时、局部且难以忽略的警报，并触发退缩、停止用力、保护伤处和求医。痛觉消失后，损伤仍会发生，但这条警报—行为链断开。烧伤、骨折、关节过度使用和内脏疾病更容易在视觉变化、功能下降或全身症状出现后才被发现。\n\n## 传播与竞争机制\n\n最先增加的是继续接触热源、继续负重或反复摩擦造成的累积损伤。儿童与无法稳定执行检查的人风险更高。视觉检查、触摸肿胀、体温、活动范围、血液指标、影像和可穿戴传感器构成竞争性补偿机制，但这些机制通常是间歇的、需要设备或他人解释，无法完全替代痛觉的连续反馈。\n\n医疗系统会从患者因痛就诊转向定期主动筛查；家庭、学校和雇主会建立皮肤、关节、牙齿与体温检查流程。危险劳动的许可、防护装备和强制休息会更严格。资源充足地区能以监测降低风险，资源不足地区则更可能积累未发现损伤，差距扩大。\n\n## 时间、阈值与机制变化\n\n数小时到数天内，意外伤害与过度使用上升；数周到数年内，慢性关节损伤、感染和延迟诊断增多。当损伤负担跨过医疗与照护容量阈值，主导风险由单次无痛事故转为系统性的漏检与监测不足。社会层面随后由生物警报主导转为制度化监测主导，但后者只能部分接管。\n\n## 边界与不确定性\n\n若温度感知或炎症不适也被取消，后果会更重，但不属于本契约。不同病因的先天性痛觉缺失不能直接等同于健康成年人突然失去痛觉，因此只能支持方向，不能精确给出全球发生率。技术适应速度、监测覆盖率和行为遵从度决定长期损伤幅度。\n\n## Terminal State\n\n长期稳定状态不是无痛乌托邦，而是一个把日常自检、传感器和制度性防护当作基础设施的社会。可预防损伤仍高于现实基线，且风险更多集中在儿童、弱照护者和监测资源不足的人群。",
+    "reasoning_graph": {
+      "seed":"signal:pain_absent",
+      "max_depth":6,
+      "nodes":[
+        {"id":"signal:pain_absent","record_type":"observation_record","label":"痛觉警报缺失"},
+        {"id":"claim:damage_unnoticed","record_type":"claim","label":"损伤更晚被发现"},
+        {"id":"action:continued_exposure","record_type":"causal_pattern","label":"伤害暴露继续"},
+        {"id":"aspect:injury_burden","record_type":"concept_model","archetype_role":["Aspect"],"label":"损伤负担"},
+        {"id":"state:active_screening","record_type":"state_transition","label":"主动筛查常态化"},
+        {"id":"guard:institutional_monitoring","record_type":"normative_rule","label":"制度化监测与防护"},
+        {"id":"claim:partial_compensation","record_type":"claim","label":"监测只能部分补偿"},
+        {"id":"evidence:congenital_insensitivity","record_type":"evidence","label":"先天性痛觉缺失病例经验"}
+      ],
+      "edges":[
+        {"source":"signal:pain_absent","relation":"indicates","target":"claim:damage_unnoticed"},
+        {"source":"signal:pain_absent","relation":"precedes","target":"action:continued_exposure"},
+        {"source":"action:continued_exposure","relation":"affects","target":"aspect:injury_burden"},
+        {"source":"action:continued_exposure","relation":"precedes","target":"state:active_screening"},
+        {"source":"guard:institutional_monitoring","relation":"constrains","target":"action:continued_exposure"},
+        {"source":"evidence:congenital_insensitivity","relation":"supports","target":"claim:damage_unnoticed"},
+        {"source":"evidence:congenital_insensitivity","relation":"supports","target":"claim:partial_compensation"}
+      ]
+    }
+  },
+  "master_finalization": {
+    "counterfactual_master":"# 如果全人类永久失去痛觉\n\n## 反事实契约\n\n从同一时刻起，全人类永久失去伤害产生的主观痛觉，但触觉、温度感知、意识、记忆和运动能力保持不变。组织损伤、炎症、感染和疾病仍照常发生。\n\n## 因果主链\n\n现实中的痛觉不仅是感受，也是即时、局部且持续的伤害警报。它会促使人退缩、停止用力、保护受伤部位并求医。痛觉消失后，损伤并未消失，断开的只是警报到保护行为的链条。人们更可能继续接触热源、继续负重或反复摩擦，烧伤、骨折、关节过度使用和内脏疾病也更容易在外观变化、功能下降或全身症状出现后才被发现。\n\n最初数小时到数天，意外伤害和过度使用会上升；数周到数年后，慢性关节损伤、感染和延迟诊断会累积。儿童以及无法稳定执行检查的人承受更高风险。\n\n## 补偿与机制变化\n\n视觉检查、肿胀触诊、体温、活动范围、血液指标、影像和可穿戴传感器会成为替代性警报。医疗系统将从“因痛就诊”转向定期主动筛查；家庭、学校和雇主会建立皮肤、关节、牙齿与体温检查流程，危险劳动会采用更严格的防护装备、强制休息和许可制度。\n\n这些机制只能部分补偿。它们通常是间歇性的，需要设备、资源或他人解释，无法完整替代痛觉的连续反馈。当损伤负担超过医疗和照护容量，主导风险会从单次无痛事故转为系统性的漏检与监测不足。社会的风险控制会由生物警报主导转为制度化监测主导。\n\n## 边界与不确定性\n\n若温度感知或炎症不适也同时消失，后果会更严重，但不属于本反事实。先天性痛觉缺失病例可支持风险方向，却不能直接代表健康成年人突然失去痛觉后的全球发生率。长期结果取决于技术适应速度、监测覆盖率和行为遵从度，资源不足地区的风险可能更集中。\n\n## Terminal State\n\n长期稳定状态不会是无痛乌托邦，而是一个可能把日常自检、传感器和制度性防护视为基础设施的社会。可预防损伤很可能高于现实基线，并更多集中在儿童、弱照护者和监测资源不足的人群。"
+  }
+}

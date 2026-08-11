@@ -1,0 +1,57 @@
+{
+  "_comment": "最小功能验证输入。Anchor = 人。所有知识由调用方显式提供，运算子自身不保存任何知识。节点的 archetype_role 为冻结源 resolve_roles() 明确提供的 escape hatch，用于 canonical record_type_semantic_roles 未覆盖的角色（Aspect）。",
+  "anchor": "human:person",
+  "propagate_seed": "human:micro_posture_shift",
+  "max_depth": 4,
+
+  "nodes": [
+    {"id": "human:person",                  "record_type": "concept_model",       "label": "人"},
+    {"id": "human:nociception",             "record_type": "causal_pattern",      "label": "伤害感受（痛觉机制）"},
+    {"id": "human:pain_signal",             "record_type": "observation_record",  "label": "痛信号"},
+    {"id": "claim:tissue_damage",           "record_type": "claim",               "label": "命题：存在组织损伤"},
+    {"id": "evidence:cipa_case_series",     "record_type": "evidence",            "label": "CIPA 病例系列证据"},
+    {"id": "aspect:tissue_integrity",       "record_type": "concept_model",       "archetype_role": ["Aspect"], "label": "组织完整性"},
+    {"id": "guard:pain_avoidance_reflex",   "record_type": "normative_rule",      "label": "避痛反射（Guard）"},
+    {"id": "human:micro_posture_shift",     "record_type": "causal_pattern",      "label": "无意识微姿势调整"},
+    {"id": "aspect:local_tissue_perfusion", "record_type": "concept_model",       "archetype_role": ["Aspect"], "label": "局部组织灌注"},
+    {"id": "human:sustained_local_pressure","record_type": "causal_pattern",      "label": "持续局部压力"},
+    {"id": "state:pressure_ulcer",          "record_type": "state_transition",    "label": "压疮状态"},
+    {"id": "intervention:ablate_nociception","record_type": "intervention_pattern","label": "干预：消除痛觉"},
+    {"id": "external:unregistered_blob",    "record_type": "not_a_registered_record_type", "label": "未注册记录类型（用于验证 fail-closed）"}
+  ],
+
+  "edges": [
+    {"source": "human:person",                  "relation": "requires",       "target": "human:nociception"},
+    {"source": "human:person",                  "relation": "requires",       "target": "human:micro_posture_shift"},
+    {"source": "human:nociception",             "relation": "requires",       "target": "human:pain_signal"},
+    {"source": "human:nociception",             "relation": "affects",        "target": "aspect:tissue_integrity"},
+    {"source": "human:nociception",             "relation": "precedes",       "target": "human:pain_signal"},
+    {"source": "human:pain_signal",             "relation": "measures",       "target": "aspect:tissue_integrity"},
+    {"source": "human:pain_signal",             "relation": "indicates",      "target": "claim:tissue_damage"},
+    {"source": "human:pain_signal",             "relation": "precedes",       "target": "guard:pain_avoidance_reflex"},
+    {"source": "evidence:cipa_case_series",     "relation": "supports",       "target": "claim:tissue_damage"},
+    {"source": "guard:pain_avoidance_reflex",   "relation": "constrains",     "target": "human:micro_posture_shift"},
+    {"source": "human:micro_posture_shift",     "relation": "affects",        "target": "aspect:local_tissue_perfusion"},
+    {"source": "human:micro_posture_shift",     "relation": "conflicts_with", "target": "human:sustained_local_pressure"},
+    {"source": "human:sustained_local_pressure","relation": "affects",        "target": "aspect:local_tissue_perfusion"},
+    {"source": "human:sustained_local_pressure","relation": "precedes",       "target": "state:pressure_ulcer"},
+    {"source": "intervention:ablate_nociception","relation": "exploits",      "target": "human:nociception"},
+
+    {"_negative_case": "端点角色不合法：supports 要求 source_role=Evidence",
+     "source": "intervention:ablate_nociception", "relation": "supports", "target": "claim:tissue_damage"},
+    {"_negative_case": "未知 record_type 必须 fail-closed，不得静默等同 Entity",
+     "source": "external:unregistered_blob", "relation": "affects", "target": "aspect:tissue_integrity"},
+    {"_negative_case": "causes 不在受控词表内，禁止另建关系本体",
+     "source": "human:nociception", "relation": "causes", "target": "human:pain_signal"}
+  ],
+
+  "perturbation": {
+    "kind": "remove_edge",
+    "rationale": "反事实：人类永久失去痛觉 —— 避痛反射不再约束无意识微姿势调整。",
+    "edge": {
+      "source": "guard:pain_avoidance_reflex",
+      "relation": "constrains",
+      "target": "human:micro_posture_shift"
+    }
+  }
+}

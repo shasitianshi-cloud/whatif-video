@@ -1,0 +1,71 @@
+{
+  "task": "GPT_IMAGE_2_EXECUTION_ROUTE_SELECTION_V1",
+  "recorded_at": "2026-08-11T01:59:34+08:00",
+  "capability_observation": {
+    "openai_api_key_nonempty": false,
+    "builtin_tool_actually_exposed": true,
+    "credential_value_recorded": false
+  },
+  "selection_contract": {
+    "order": ["openai_images_api", "builtin_image_generation", "blocked"],
+    "selected_route": "builtin_image_generation",
+    "selected_before_request": true,
+    "selection_count": 1,
+    "runtime_fallback": false
+  },
+  "identity": {
+    "logical_provider": "gpt-image-2",
+    "execution_route": "builtin_image_generation",
+    "execution_model_identity": "host-managed",
+    "model_identity_inferred": false
+  },
+  "real_probe": {
+    "run_id": "gpt-image-2-real-probe-001",
+    "asset_id": "gpt-image-2-generated-reference-probe",
+    "image_role": "generated_reference",
+    "request_count": 1,
+    "ambiguous_submission": false,
+    "prompt": "一片安静的开阔草地，低矮地平线，自然日光，写实摄影，稳定构图，宽幅16:9视觉，无人物，无标题，无字幕，无图形界面。",
+    "prompt_sha256": "08ed3edffc69d9ef01e4b76b15c00b46d747f16f9082ed0a59be93783760958b",
+    "prompt_passthrough": true,
+    "prompt_refined": false,
+    "local_path": "whatif-video/runs/gpt-image-2-real-probe-001/video-production/gpt-image-2-real-probe/gpt-image-2-generated-reference-probe.png",
+    "artifact_path": "whatif-video/runs/gpt-image-2-real-probe-001/video-production/gpt-image-2-real-probe/gpt-image-2-generated-reference-probe.png.artifact.json",
+    "file_format": "png",
+    "width": 1672,
+    "height": 941,
+    "aspect_ratio_numeric": 1.777896,
+    "target_aspect_ratio": "16:9",
+    "file_size_bytes": 2097817,
+    "sha256": "063c265e405e1374c96dca63087e7498eb0b3694c7e43a39bc0f078bbad550cb",
+    "visual_content_valid": true,
+    "visual_purity_pass": true,
+    "landscape_composition_pass": true
+  },
+  "regressions": {
+    "truth_table_A_api_and_builtin": "openai_images_api",
+    "truth_table_B_api_only": "openai_images_api",
+    "truth_table_C_builtin_only": "builtin_image_generation",
+    "truth_table_D_neither": "blocked",
+    "api_failure_no_fallback": "PASS",
+    "builtin_failure_no_fallback": "PASS",
+    "artifact_contract_unified": "PASS",
+    "generated_reference_route_independent": "PASS",
+    "image_motion_route_independent": "PASS",
+    "cover_route_independent": "PASS",
+    "dispatcher_unchanged": "PASS",
+    "continuity_regression": "PASS",
+    "global_format_regression": "PASS",
+    "executor_regression": "PASS"
+  },
+  "boundaries": {
+    "provider_registry_added": false,
+    "fallback_router_added": false,
+    "agent_added": false,
+    "dynamic_model_selector_added": false,
+    "dispatcher_classification_changed": false,
+    "production_script_provider_semantics_changed": false,
+    "video_generation": false,
+    "happyhorse_task_created": false
+  }
+}

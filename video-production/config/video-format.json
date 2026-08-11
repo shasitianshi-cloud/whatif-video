@@ -1,0 +1,28 @@
+{
+  "policy_id": "global-video-production-format.v1",
+  "video": {
+    "width": 1280,
+    "height": 720,
+    "resolution": "720p",
+    "aspect_ratio": "16:9"
+  },
+  "references": {
+    "generated_reference_target": "landscape_16_9",
+    "previous_asset_frame_inherits_video_format": true,
+    "deterministic_aspect_normalization_layer": "input_preparation"
+  },
+  "image_motion": {
+    "output_width": 1280,
+    "output_height": 720,
+    "output_aspect_ratio": "16:9"
+  },
+  "subtitles": {
+    "primary_color": "white",
+    "burned_in_generation": false,
+    "owner": "render_compiler"
+  },
+  "boundaries": {
+    "final_platform_canvas_frozen": false,
+    "cover_format_policy": "independent_unchanged"
+  }
+}
