@@ -1,0 +1,17 @@
+{
+  "record": "WHATIF_V2_CANONICAL_SOURCE_RECOVERY_BASELINE_V1",
+  "status": "RECOVERED_BASELINE_ONLY",
+  "source": "WHATIF_VIDEO_LIBRARY_DISASTER_RECOVERY_BACKUP_V2",
+  "source_snapshot_created_at": "2026-08-11T02:13:13+08:00",
+  "archive_file_count": 282,
+  "archive_directory_count_including_root": 99,
+  "manifest_entries_verified": 281,
+  "manifest_validation_pass": true,
+  "canonical_source_files_from_v2": 74,
+  "excluded_historical_files": 208,
+  "runtime_secrets_restored": false,
+  "runs_committed_to_git": false,
+  "post_v2_latest_state_claimed": false,
+  "production_ready": false,
+  "note": "Exact V2 source subset recovered and locally hash-validated. Later verified project deltas require separate reconstruction/audit; no byte-identity claim is made for lost post-V2 source."
+}
