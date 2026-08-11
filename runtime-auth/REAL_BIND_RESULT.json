@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "encrypted_runtime_auth_created": true,
+  "provider_runtime_preflight_ready": true,
+  "run_id_created": false,
+  "provider_generation_call_executed": false,
+  "credits_consumed": false,
+  "secret_value_exposed": false
+}
