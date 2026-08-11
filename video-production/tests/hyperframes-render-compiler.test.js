@@ -25,7 +25,8 @@ const input = {
     ]},
     { segment_id: 'seg-002', start_ms: 1000, duration_ms: 1000, end_ms: 2000, audio_asset_id: 'a2', visual_assets: [
       { asset_id: 'i1', render_treatment: 'image_motion', start_ms: 1000, duration_ms: 1000, end_ms: 2000,
-        motion_intent: 'pan', fit: { mode: 'cover_crop', target_width: 1280, target_height: 720, preserve_aspect_ratio: true, stretch_allowed: false } }
+        motion_intent: 'pan', motion_parameters: { start_x_percent: -2, end_x_percent: 2, start_y_percent: 0, end_y_percent: 0, start_scale: 1.04, end_scale: 1.04 },
+        fit: { mode: 'cover_crop', target_width: 1280, target_height: 720, preserve_aspect_ratio: true, stretch_allowed: false } }
     ]}
   ],
   subtitles: [
@@ -46,6 +47,7 @@ assert.strictEqual(p1.layers[0].treatment, 'direct_video');
 assert.strictEqual(p1.layers[1].type, 'image');
 assert.strictEqual(p1.layers[1].treatment, 'image_motion');
 assert.strictEqual(p1.layers[1].motion.intent, 'pan');
+assert.deepStrictEqual(p1.layers[1].motion.parameters, input.timeline[1].visual_assets[0].motion_parameters);
 assert.strictEqual(p1.layers[1].fit.stretch_allowed, false);
 assert.strictEqual(p1.subtitles[0].font_family, 'Noto Sans CJK SC');
 assert.strictEqual(p1.subtitles[0].primary_color, 'white');
@@ -59,3 +61,4 @@ console.log('RENDER_COMPILER_CREATIVE_DECISION=false');
 console.log('DIRECT_VIDEO_MAPPING_PASS=true');
 console.log('STATIC_IMAGE_MAPPING_PASS=true');
 console.log('IMAGE_MOTION_MAPPING_PASS=true');
+console.log('MOTION_PARAMETERS_PASSTHROUGH=true');
