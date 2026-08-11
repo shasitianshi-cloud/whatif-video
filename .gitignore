@@ -1,3 +1,7 @@
 .runtime-auth/
 __pycache__/
 *.pyc
+runtime-auth/*.json.tmp
+runtime-auth/*.plaintext*
+runtime-auth/*identity*
+runtime-auth/*private-key*
