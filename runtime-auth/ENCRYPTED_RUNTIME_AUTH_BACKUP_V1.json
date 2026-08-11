@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "status": "IMPLEMENTATION_ONLY_NO_REAL_SECRET_BOUND",
+  "transport": "age",
+  "encrypted_bundle": "runtime-auth/runtime-auth.v1.age",
+  "public_key_file": "runtime-auth/runtime-auth-public-key.txt",
+  "private_key_source": "github_actions_secret:AGE_RUNTIME_AUTH_PRIVATE_KEY",
+  "plaintext_runtime_root": ".runtime-auth/",
+  "plaintext_tracked_in_git": false,
+  "plaintext_allowed_in_evidence": false,
+  "plaintext_allowed_in_artifacts": false,
+  "happyhorse_rotation_persistence": "reencrypt_ciphertext_state",
+  "runtime_auth_state_mutable": true,
+  "runtime_auth_implementation_frozen_after_real_gate": true,
+  "provider_calls_allowed_during_binding": false,
+  "run_id_allowed_during_binding": false
+}
