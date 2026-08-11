@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import sys
 from pathlib import Path
 
@@ -17,6 +16,16 @@ def base_script():
         "recovery_schema_reconstructed": True,
         "historical_schema_byte_identical": False,
         "downstream_creative_replanning_required": False,
+        "execution_references": [
+            {
+                "asset_id": "ref-001",
+                "kind": "generated_reference",
+                "role": "execution_reference",
+                "generation_route": "gpt-image-2",
+                "prompt": "同一人物正面中景，亚洲人物，真实摄影感，干净背景，无额外图形叠加",
+                "in_content_timeline": False
+            }
+        ],
         "segments": [
             {
                 "segment_id": "seg-001",
@@ -48,26 +57,26 @@ def base_script():
                 "visual_assets": [
                     {
                         "asset_id": "vid-001",
-                        "visual_intent": "表现机器真实连续运行过程",
-                        "scene": "工厂设备运行区",
+                        "visual_intent": "表现人物延续同一状态并开始动作",
+                        "scene": "室内人物场景",
                         "asset_strategy": "generated_video",
                         "render_treatment": "direct_video",
                         "generation_route": "happyhorse",
-                        "generation_mode": "T2V",
-                        "prompt": "现代工厂内机器连续运行，部件真实运动，固定主体与环境，真实工业照明",
+                        "generation_mode": "I2V",
+                        "prompt": "同一亚洲人物在室内开始向前走动，环境与人物外观保持一致，真实动作",
                         "start_offset_ms": 0,
                         "duration_ms": 3000,
                         "transition_intent": "cut",
-                        "continuity": {"kind": "none"}
+                        "continuity": {"kind": "generated_reference", "reference_asset_id": "ref-001"}
                     },
                     {
                         "asset_id": "img-002",
-                        "visual_intent": "展示运行后的稳定结果状态",
-                        "scene": "同一工厂设备区",
+                        "visual_intent": "展示动作后的稳定结果状态",
+                        "scene": "同一室内场景",
                         "asset_strategy": "image",
                         "render_treatment": "static_image",
                         "generation_route": "gpt-image-2",
-                        "prompt": "同一工厂设备区运行结束后的稳定状态，真实摄影感，无额外图形叠加",
+                        "prompt": "同一室内环境的稳定结果状态，真实摄影感，无额外图形叠加",
                         "start_offset_ms": 3000,
                         "duration_ms": 2000,
                         "transition_intent": "continue_scene",
@@ -116,9 +125,12 @@ def run():
     expect_block(lambda s: s["segments"][0]["visual_assets"][0].update(start_offset_ms=1), "TIMELINE_DISORDER")
     expect_block(lambda s: s.update(historical_schema_byte_identical=True), "HISTORICAL_SCHEMA_IDENTITY_MUST_NOT_BE_CLAIMED")
     expect_block(lambda s: s["cover"].update(in_content_timeline=True), "COVER_MUST_NOT_ENTER_CONTENT_TIMELINE")
+    expect_block(lambda s: s.update(execution_references=[]), "GENERATED_REFERENCE_NOT_DECLARED")
+    expect_block(lambda s: s["execution_references"][0].update(in_content_timeline=True), "EXECUTION_REFERENCE_NOT_AUTOMATIC_RENDER_ASSET")
 
     print("PRODUCTION_SCRIPT_RECOVERY_SCHEMA_RECONSTRUCTED=true")
     print("HISTORICAL_SCHEMA_BYTE_IDENTICAL=false")
+    print("GENERATED_REFERENCE_EXPLICITLY_DECLARED=true")
     print("PRODUCTION_SCRIPT_RECOVERY_REGRESSION=PASS")
 
 
