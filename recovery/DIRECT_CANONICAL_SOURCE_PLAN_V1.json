@@ -1,0 +1,7 @@
+{
+  "status": "IN_PROGRESS",
+  "source": "Library V2 disaster-recovery snapshot",
+  "canonical_file_count": 74,
+  "historical_runs_excluded": true,
+  "runtime_secrets_excluded": true
+}
