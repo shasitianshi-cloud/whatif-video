@@ -26,9 +26,11 @@ jobs:
           python3 - <<'PY'
           import importlib.util
           import json
+          import sys
           import tempfile
           from pathlib import Path
 
+          sys.path.insert(0, str(Path('video-production/src').resolve()))
           path = Path('video-production/tests/test_render_input_closure.py')
           spec = importlib.util.spec_from_file_location('render_input_regression', path)
           mod = importlib.util.module_from_spec(spec)
