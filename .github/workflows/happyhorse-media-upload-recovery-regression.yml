@@ -1,0 +1,84 @@
+name: HappyHorse Media Upload Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/happyhorse/runtime/happyhorse-media-upload.mjs'
+      - 'video-production/happyhorse/runtime/package.json'
+      - '.github/workflows/happyhorse-media-upload-recovery-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  no-provider-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Materialize exact ali-oss runtime dependency
+        working-directory: video-production/happyhorse/runtime
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Validate media projection without STS OSS or provider calls
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p runs/media-regression-001/reference
+          printf 'synthetic-reference-bytes' > runs/media-regression-001/reference/ref.png
+          SHA="$(sha256sum runs/media-regression-001/reference/ref.png | awk '{print $1}')"
+          SIZE="$(stat -c '%s' runs/media-regression-001/reference/ref.png)"
+          cat > /tmp/reference.json <<JSON
+          {
+            "schema_version":1,
+            "run_id":"media-regression-001",
+            "dependent_asset_id":"vid-001",
+            "source_type":"generated_reference",
+            "source_asset_id":"ref-001",
+            "local_path":"runs/media-regression-001/reference/ref.png",
+            "sha256":"${SHA}",
+            "file_size_bytes":${SIZE},
+            "width":1280,
+            "height":720,
+            "created_by_frame_extraction":false,
+            "in_content_timeline":false
+          }
+          JSON
+          cat > /tmp/sts.json <<'JSON'
+          {
+            "credentials":"{\"accessKeyId\":\"test-ak\",\"accessKeySecret\":\"test-sk\",\"securityToken\":\"test-st\",\"expiration\":\"2099-01-01T00:00:00Z\"}",
+            "bucket":"test-bucket",
+            "region":"oss-cn-test",
+            "pathPrefix":"whatif/runtime/"
+          }
+          JSON
+          node video-production/happyhorse/runtime/happyhorse-media-upload.mjs --validate-only /tmp/reference.json "$PWD" /tmp/sts.json > /tmp/projection.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          x=json.load(open('/tmp/projection.json'))
+          b=pathlib.Path('runs/media-regression-001/reference/ref.png').read_bytes()
+          sha=hashlib.sha256(b).hexdigest()
+          assert x['sts_request']=={'method':'POST','path':'/v1/media/sts-token','body':{'fileTypes':['image']}}
+          o=x['oss']
+          assert o['sdk']=='ali-oss 6.23.0'
+          assert o['secure'] is True
+          assert o['key']==f'whatif/runtime/image/2026-08-10/{sha}.png'
+          assert o['mimeType']=='image/png'
+          assert o['single_threshold_bytes']==1048576
+          assert o['max_parallel_parts']==5
+          assert o['max_attempts']==3
+          r=x['registration_request']
+          assert r['method']=='POST' and r['path']=='/v1/media/asset'
+          body=r['body']
+          assert body['checksum']==sha and body['mediaId']==sha
+          assert body['ossPath']==f'oss://test-bucket/whatif/runtime/image/2026-08-10/{sha}.png'
+          assert body['fileName']=='ref.png'
+          assert body['fileSize']==len(b)
+          assert body['mimeType']=='image/png'
+          assert body['createSource']=='cli'
+          print('HAPPYHORSE_MEDIA_UPLOAD_PROVIDER_CALL=false')
+          print('ALI_OSS_VERSION=6.23.0')
+          print('MEDIA_REGISTRATION_IDENTITY_SHA_BOUND=true')
+          print('HAPPYHORSE_MEDIA_UPLOAD_RECOVERY_REGRESSION=PASS')
+          PY
