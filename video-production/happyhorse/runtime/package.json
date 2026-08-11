@@ -1,0 +1,8 @@
+{
+  "name": "whatif-video-happyhorse-runtime",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "ali-oss": "6.23.0"
+  }
+}
