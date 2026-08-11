@@ -5,7 +5,7 @@ on:
     branches:
       - migration/whatif-recovery-v2-clean-v1
     paths:
-      - recovery/transfer/READY
+      - READY
 
 permissions:
   contents: write
@@ -28,13 +28,12 @@ jobs:
           EXPECTED_FILE_COUNT: '74'
         run: |
           set -euo pipefail
-          shopt -s nullglob
-          parts=(recovery/transfer/part-*.b64)
-          test "${#parts[@]}" -ge 1
+          test -f READY
+          test -f part-00.b64
+          test -f v2-canonical-manifest.json
           mkdir -p .recovery-stage
-          cat "${parts[@]}" | base64 -d > .recovery-stage/v2-canonical-source.tar.gz
+          base64 -d part-00.b64 > .recovery-stage/v2-canonical-source.tar.gz
           echo "$EXPECTED_TAR_SHA256  .recovery-stage/v2-canonical-source.tar.gz" | sha256sum -c -
-          test -f recovery/transfer/v2-canonical-manifest.json
           python3 - <<'PY'
           import hashlib, json, pathlib, tarfile
           stage = pathlib.Path('.recovery-stage')
@@ -53,7 +52,7 @@ jobs:
                   if m.issym() or m.islnk():
                       raise SystemExit(f'links forbidden: {m.name}')
               tf.extractall(extract)
-          manifest = json.loads(pathlib.Path('recovery/transfer/v2-canonical-manifest.json').read_text())
+          manifest = json.loads(pathlib.Path('v2-canonical-manifest.json').read_text())
           entries = manifest.get('files') or manifest.get('entries') or manifest.get('canonical_files')
           if not isinstance(entries, list) or len(entries) != 74:
               raise SystemExit('manifest entry count mismatch')
@@ -84,7 +83,7 @@ jobs:
           cat > recovery/V2_CANONICAL_SOURCE_RECOVERY_V1.json <<'JSON'
           {
             "status": "PASS",
-            "source": "direct Work attachment recovery bridge",
+            "source": "verified root recovery payload",
             "canonical_file_count": 74,
             "manifest_match": true,
             "tar_sha256": "b668b7de4c497804d9e07ad24a294c8d6796ce15f321553d2b39c6f47e1b454d",
@@ -93,7 +92,9 @@ jobs:
             "production_ready": false
           }
           JSON
-          rm -rf recovery/transfer .recovery-stage .github/workflows/v2-canonical-recovery-bridge.yml
+          rm -rf recovery/transfer .recovery-stage
+          rm -f READY part-00.b64 v2-canonical-manifest.json
+          rm -f .github/workflows/v2-canonical-recovery-bridge.yml
 
       - name: Commit exact V2 canonical source baseline
         shell: bash
