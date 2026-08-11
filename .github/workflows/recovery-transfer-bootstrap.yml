@@ -24,7 +24,7 @@ jobs:
       - name: Materialize exact V2 canonical source subset
         shell: bash
         env:
-          EXPECTED_PARTS: "5"
+          EXPECTED_PARTS: "17"
           EXPECTED_TAR_SHA256: "b668b7de4c497804d9e07ad24a294c8d6796ce15f321553d2b39c6f47e1b454d"
         run: |
           set -euo pipefail
