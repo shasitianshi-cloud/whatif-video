@@ -1,0 +1,32 @@
+{
+  "record": "WHATIF_POST_V2_FORWARD_RECOVERY_DELTA_AUDIT_V1",
+  "status": "IN_PROGRESS",
+  "baseline": "WHATIF_VIDEO_LIBRARY_DISASTER_RECOVERY_BACKUP_V2",
+  "known_post_v2_verified_states": [
+    "VIDEO_ASSET_MANIFEST_AND_RENDER_INPUT_CLOSURE_V1=PASS",
+    "VISUAL_MATERIAL_PLANNING_CONTRACT_CLOSURE_V1=PASS",
+    "HYPERFRAMES_LOCAL_RUNTIME_MATERIALIZATION_AND_REAL_RENDER_PROBE_V1=PASS",
+    "HYPERFRAMES_RENDER_COMPILER_AND_EXECUTION_PATH_CLOSURE_V1=PASS",
+    "HYPERFRAMES_LOCAL_FRESHNESS_NETWORK_ELIMINATION_AND_RENDER_RESUME_V1=PASS",
+    "PROVIDER_RUNTIME_PREFLIGHT_FOUNDATION_V1=IMPLEMENTED",
+    "AUTH_RUNTIME_PERSISTENCE_V1=PASS"
+  ],
+  "recoverable_exact_from_library": [
+    "V2 source/config/prompts/tests/evidence",
+    "HappyHorse frozen production protocol and protocol evidence already included in V2"
+  ],
+  "recoverable_from_verified_contracts_but_not_byte_identical": [
+    "Asset Manifest / Render Input schemas and builders",
+    "Canonical Visual Material Planner contract and prompt",
+    "HyperFrames Render Compiler and render-plan schema",
+    "Provider Runtime Preflight integration",
+    "Runtime Auth loader/persistence integration; secret files excluded"
+  ],
+  "external_or_missing_implementation_requiring_separate_binding": [
+    "HappyHorse executable client/runtime implementation beyond frozen protocol contract",
+    "historical sibling asset-executor/asset-dispatcher/production-script/visual-planner implementations if not separately recoverable"
+  ],
+  "byte_identity_with_lost_post_v2_work_source": false,
+  "reconstructed_from_verified_contracts": false,
+  "production_ready": false
+}
