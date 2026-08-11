@@ -1,0 +1,121 @@
+name: Encrypted Runtime Auth Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - '.github/workflows/encrypted-runtime-auth-regression.yml'
+      - 'video-production/src/encrypted_runtime_auth.py'
+      - 'video-production/src/runtime_auth.py'
+      - 'video-production/src/provider_runtime_preflight.py'
+      - 'video-production/tests/test_encrypted_runtime_auth.py'
+      - '.gitignore'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Synthetic encrypt decrypt reload rotate reencrypt regression
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          age-keygen -o synthetic-age-identity.txt 2>age-keygen.stderr
+          RECIPIENT="$(sed -n 's/^# public key: //p' synthetic-age-identity.txt)"
+          test -n "$RECIPIENT"
+
+          python3 - "$RECIPIENT" <<'PY'
+          import json, sys
+          from pathlib import Path
+          import encrypted_runtime_auth as era
+
+          recipient = sys.argv[1]
+          payload = {
+              'schema_version': 1,
+              'volcengine': {'api_key': 'synthetic-not-a-real-secret'},
+              'happyhorse': {
+                  'accessToken': 'synthetic-access-v1',
+                  'refreshToken': 'synthetic-refresh-v1',
+                  'accessExpiresAt': 4102444800000,
+                  'refreshExpiresAt': 4102444800000,
+              },
+          }
+          era.encrypt_bundle(payload=payload, recipient=recipient, output=Path('synthetic-runtime-auth.age'))
+          PY
+
+          rm -rf .runtime-auth
+          python3 video-production/src/provider_runtime_preflight.py \
+            --encrypted-auth synthetic-runtime-auth.age \
+            --age-identity-file synthetic-age-identity.txt \
+            --result synthetic-preflight-v1.json
+
+          python3 - <<'PY'
+          import json, stat
+          from pathlib import Path
+          r = json.loads(Path('synthetic-preflight-v1.json').read_text())
+          assert r['provider_runtime_preflight_ready'] is True
+          assert r['encrypted_runtime_auth_loaded'] is True
+          assert r['encrypted_runtime_auth_transport'] == 'age'
+          assert r['run_id_created'] is False
+          assert r['provider_generation_call_executed'] is False
+          assert r['credits_consumed'] is False
+          assert stat.S_IMODE(Path('.runtime-auth').stat().st_mode) == 0o700
+          assert stat.S_IMODE(Path('.runtime-auth/volcengine/credential.json').stat().st_mode) == 0o600
+          assert stat.S_IMODE(Path('.runtime-auth/happyhorse/session.json').stat().st_mode) == 0o600
+          hh = json.loads(Path('.runtime-auth/happyhorse/session.json').read_text())
+          assert hh['refreshToken'] == 'synthetic-refresh-v1'
+          PY
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('.runtime-auth/happyhorse/session.json')
+          hh = json.loads(p.read_text())
+          hh['accessToken'] = 'synthetic-access-v2'
+          hh['refreshToken'] = 'synthetic-refresh-v2'
+          p.write_text(json.dumps(hh, separators=(',', ':')) + '\n')
+          p.chmod(0o600)
+          PY
+
+          python3 video-production/src/encrypted_runtime_auth.py reencrypt-materialized \
+            --recipient "$RECIPIENT" \
+            --output synthetic-runtime-auth-v2.age
+
+          rm -rf .runtime-auth
+          python3 video-production/src/provider_runtime_preflight.py \
+            --encrypted-auth synthetic-runtime-auth-v2.age \
+            --age-identity-file synthetic-age-identity.txt \
+            --result synthetic-preflight-v2.json
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          hh = json.loads(Path('.runtime-auth/happyhorse/session.json').read_text())
+          assert hh['accessToken'] == 'synthetic-access-v2'
+          assert hh['refreshToken'] == 'synthetic-refresh-v2'
+          r = json.loads(Path('synthetic-preflight-v2.json').read_text())
+          assert r['provider_runtime_preflight_ready'] is True
+          assert r['secret_value_exposed'] is False
+          PY
+
+          git check-ignore -q .runtime-auth/volcengine/credential.json
+          git check-ignore -q .runtime-auth/happyhorse/session.json
+          ! git status --porcelain | grep -E '(\.runtime-auth|synthetic-age-identity|synthetic-runtime-auth|synthetic-preflight)'
+
+          rm -rf .runtime-auth synthetic-age-identity.txt synthetic-runtime-auth.age synthetic-runtime-auth-v2.age synthetic-preflight-v1.json synthetic-preflight-v2.json age.tar.gz age age-keygen.stderr
