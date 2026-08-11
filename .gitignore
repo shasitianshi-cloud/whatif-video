@@ -1,0 +1,19 @@
+# Runtime secrets
+.runtime-auth/
+.env
+.env.*
+
+# Ephemeral run outputs
+runs/
+
+# Rebuildable dependencies and caches
+node_modules/
+__pycache__/
+.pytest_cache/
+*.pyc
+.npm/
+.cache/
+
+# Materialized render runtimes / downloads
+vendor/hyperframes/runtime/node_modules/
+vendor/chromium/**/chrome-headless-shell-linux64.zip
