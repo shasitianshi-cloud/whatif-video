@@ -5,23 +5,112 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 jobs:
   preflight:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Runtime inventory
+      - name: Runtime and network preflight
         shell: bash
         run: |
-          set -e
-          echo "RUNNER_OS=$(uname -s)"
-          echo "NODE=$(node --version || true)"
-          echo "PYTHON=$(python3 --version || true)"
-          echo "FFMPEG=$(ffmpeg -version | head -n 1 || true)"
-          echo "CHROMIUM=$(chromium --version || true)"
-          echo "NETWORK_TEST_SKIPPED=true"
-          echo "SECRETS_USED=false"
-          echo "PROVIDER_CALL=false"
+          set -u
+          mkdir -p evidence
+
+          node_version="$(node --version 2>/dev/null || true)"
+          python_version="$(python3 --version 2>/dev/null || true)"
+          ffmpeg_version="$(ffmpeg -version 2>/dev/null | head -n 1 || true)"
+
+          browser_cmd=""
+          browser_version=""
+          for cmd in google-chrome chromium chromium-browser; do
+            if command -v "$cmd" >/dev/null 2>&1; then
+              browser_cmd="$cmd"
+              browser_version="$($cmd --version 2>/dev/null || true)"
+              break
+            fi
+          done
+
+          probe() {
+            name="$1"
+            url="$2"
+            set +e
+            http_status="$(curl -sS --connect-timeout 10 --max-time 20 -o /dev/null -w '%{http_code}' "$url")"
+            curl_exit=$?
+            set -e
+            if [ "$curl_exit" -eq 0 ] && [ "$http_status" != "000" ]; then
+              reachable=true
+            else
+              reachable=false
+            fi
+            printf '%s|%s|%s\n' "$reachable" "$http_status" "$curl_exit"
+          }
+
+          IFS='|' read -r volc_reachable volc_status volc_exit <<EOF
+          $(probe volcengine https://openspeech.bytedance.com/)
+          EOF
+          IFS='|' read -r hh_reachable hh_status hh_exit <<EOF
+          $(probe happyhorse https://api-gateway.aorizon.com/)
+          EOF
+
+          export NODE_VERSION="$node_version"
+          export PYTHON_VERSION="$python_version"
+          export FFMPEG_VERSION="$ffmpeg_version"
+          export BROWSER_CMD="$browser_cmd"
+          export BROWSER_VERSION="$browser_version"
+          export VOLC_REACHABLE="$volc_reachable"
+          export VOLC_STATUS="$volc_status"
+          export VOLC_EXIT="$volc_exit"
+          export HH_REACHABLE="$hh_reachable"
+          export HH_STATUS="$hh_status"
+          export HH_EXIT="$hh_exit"
+
+          python3 - <<'PY'
+          import json, os, platform
+          evidence = {
+              "probe": "GITHUB_ACTIONS_PRODUCTION_RUNTIME_FEASIBILITY_PROBE_V1",
+              "runner_os": platform.platform(),
+              "node_version": os.environ.get("NODE_VERSION", ""),
+              "python_version": os.environ.get("PYTHON_VERSION", ""),
+              "ffmpeg_version": os.environ.get("FFMPEG_VERSION", ""),
+              "browser_command": os.environ.get("BROWSER_CMD", ""),
+              "browser_version": os.environ.get("BROWSER_VERSION", ""),
+              "volcengine_network_reachable": os.environ.get("VOLC_REACHABLE") == "true",
+              "volcengine_http_status": os.environ.get("VOLC_STATUS", ""),
+              "volcengine_curl_exit_code": int(os.environ.get("VOLC_EXIT", "-1")),
+              "happyhorse_network_reachable": os.environ.get("HH_REACHABLE") == "true",
+              "happyhorse_http_status": os.environ.get("HH_STATUS", ""),
+              "happyhorse_curl_exit_code": int(os.environ.get("HH_EXIT", "-1")),
+              "secrets_used": False,
+              "provider_credentials_sent": False,
+              "paid_provider_action_executed": False,
+              "run_id_created": False,
+          }
+          with open("evidence/runtime-preflight.json", "w", encoding="utf-8") as f:
+              json.dump(evidence, f, ensure_ascii=False, indent=2)
+          print(json.dumps(evidence, ensure_ascii=False, indent=2))
+          PY
+
+          test -n "$node_version"
+          test -n "$python_version"
+          test -n "$ffmpeg_version"
+          test "$volc_reachable" = true
+          test "$hh_reachable" = true
+
+      - name: Upload preflight evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-preflight-evidence
+          path: evidence/runtime-preflight.json
+          if-no-files-found: error
+          retention-days: 7
