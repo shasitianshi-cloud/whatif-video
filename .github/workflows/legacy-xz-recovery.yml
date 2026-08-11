@@ -1,0 +1,166 @@
+name: legacy-xz-recovery
+
+on:
+  push:
+    branches:
+      - migration/whatif-frozen-production-bundle-v1
+    paths:
+      - recovery/legacy-xz/READY
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-materialize:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: migration/whatif-frozen-production-bundle-v1
+          fetch-depth: 0
+
+      - name: Verify legacy staged XZ payload and materialize only on exact match
+        shell: bash
+        env:
+          EXPECTED_FILE_COUNT: "74"
+          EXPECTED_TOTAL_BYTES: "291173"
+          EXPECTED_CANONICAL_AGGREGATE_SHA256: "131540bef29dbe5ff4185542171414f445e569875274437310616353cc7a7fbc"
+          EXPECTED_OPERATOR_SHA256: "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80"
+        run: |
+          set -u
+          mkdir -p .legacy-xz-work recovery
+          status=FAIL
+          reason=UNKNOWN
+          observed_parts=0
+          observed_file_count=0
+          observed_total_bytes=0
+          observed_aggregate=""
+          xz_valid=false
+          tar_valid=false
+          materialized=false
+
+          shopt -s nullglob
+          parts=(recovery/v2-source.xz.b64.part-*)
+          observed_parts="${#parts[@]}"
+
+          if [ "$observed_parts" -ne 9 ]; then
+            reason=UNEXPECTED_PART_COUNT
+          elif ! cat "${parts[@]}" | base64 -d > .legacy-xz-work/source.xz 2>/dev/null; then
+            reason=BASE64_DECODE_FAILED
+          elif ! xz -t .legacy-xz-work/source.xz 2>/dev/null; then
+            reason=XZ_VALIDATION_FAILED
+          else
+            xz_valid=true
+            if ! xz -dc .legacy-xz-work/source.xz > .legacy-xz-work/source.tar 2>/dev/null; then
+              reason=XZ_DECOMPRESS_FAILED
+            elif ! tar -tf .legacy-xz-work/source.tar >/dev/null 2>&1; then
+              reason=TAR_VALIDATION_FAILED
+            else
+              tar_valid=true
+              if ! python3 - <<'PY'
+          import pathlib, tarfile
+          archive=pathlib.Path('.legacy-xz-work/source.tar')
+          root=pathlib.Path('.legacy-xz-work/extracted').resolve()
+          root.mkdir(parents=True, exist_ok=True)
+          with tarfile.open(archive, 'r:') as tf:
+              for m in tf.getmembers():
+                  target=(root / m.name).resolve()
+                  if root not in target.parents and target != root:
+                      raise SystemExit(f'unsafe path: {m.name}')
+                  if m.issym() or m.islnk():
+                      raise SystemExit(f'link forbidden: {m.name}')
+              tf.extractall(root)
+          PY
+              then
+                reason=UNSAFE_TAR
+              else
+                python3 - <<'PY' > .legacy-xz-work/observed.env
+          import hashlib, pathlib
+          base=pathlib.Path('.legacy-xz-work/extracted')
+          candidate=base/'whatif-video' if (base/'whatif-video').is_dir() else base
+          files=sorted(p for p in candidate.rglob('*') if p.is_file())
+          lines=[]
+          total=0
+          for p in files:
+              rel=p.relative_to(candidate).as_posix()
+              b=p.read_bytes()
+              total += len(b)
+              lines.append(f"{hashlib.sha256(b).hexdigest()}  {rel}")
+          aggregate=hashlib.sha256(('\n'.join(lines)+'\n').encode()).hexdigest()
+          print(f'OBSERVED_FILE_COUNT={len(files)}')
+          print(f'OBSERVED_TOTAL_BYTES={total}')
+          print(f'OBSERVED_AGGREGATE={aggregate}')
+          print(f'CANDIDATE_ROOT={candidate.as_posix()}')
+          PY
+                . .legacy-xz-work/observed.env
+                observed_file_count="$OBSERVED_FILE_COUNT"
+                observed_total_bytes="$OBSERVED_TOTAL_BYTES"
+                observed_aggregate="$OBSERVED_AGGREGATE"
+                if [ "$observed_file_count" != "$EXPECTED_FILE_COUNT" ]; then
+                  reason=FILE_COUNT_MISMATCH
+                elif [ "$observed_total_bytes" != "$EXPECTED_TOTAL_BYTES" ]; then
+                  reason=TOTAL_BYTES_MISMATCH
+                elif [ "$observed_aggregate" != "$EXPECTED_CANONICAL_AGGREGATE_SHA256" ]; then
+                  reason=CANONICAL_AGGREGATE_MISMATCH
+                else
+                  if [ ! -f "$CANDIDATE_ROOT/shared/operator-baseline/whatif-minimal-operator-v1-portable.zip" ]; then
+                    reason=OPERATOR_MISSING
+                  elif [ "$(sha256sum "$CANDIDATE_ROOT/shared/operator-baseline/whatif-minimal-operator-v1-portable.zip" | awk '{print $1}')" != "$EXPECTED_OPERATOR_SHA256" ]; then
+                    reason=OPERATOR_SHA_MISMATCH
+                  else
+                    cp -a "$CANDIDATE_ROOT"/. ./
+                    materialized=true
+                    status=PASS
+                    reason=EXACT_MATCH
+                  fi
+                fi
+              fi
+            fi
+          fi
+
+          export STATUS="$status" REASON="$reason" OBSERVED_PARTS="$observed_parts" OBSERVED_FILE_COUNT="$observed_file_count" OBSERVED_TOTAL_BYTES="$observed_total_bytes" OBSERVED_AGGREGATE="$observed_aggregate" XZ_VALID="$xz_valid" TAR_VALID="$tar_valid" MATERIALIZED="$materialized"
+          python3 - <<'PY'
+          import json, os, pathlib
+          def b(name): return os.environ.get(name, '').lower() == 'true'
+          rec={
+            'record':'WHATIF_LEGACY_XZ_SOURCE_DIAGNOSTIC_V1',
+            'status':os.environ['STATUS'],
+            'reason':os.environ['REASON'],
+            'observed_part_count':int(os.environ['OBSERVED_PARTS']),
+            'xz_valid':b('XZ_VALID'),
+            'tar_valid':b('TAR_VALID'),
+            'observed_file_count':int(os.environ['OBSERVED_FILE_COUNT']),
+            'expected_file_count':74,
+            'observed_total_bytes':int(os.environ['OBSERVED_TOTAL_BYTES']),
+            'expected_total_bytes':291173,
+            'observed_canonical_aggregate_sha256':os.environ['OBSERVED_AGGREGATE'],
+            'expected_canonical_aggregate_sha256':'131540bef29dbe5ff4185542171414f445e569875274437310616353cc7a7fbc',
+            'operator_expected_sha256':'41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80',
+            'canonical_source_materialized':b('MATERIALIZED'),
+            'runtime_secrets_migrated':False,
+            'provider_calls_executed':False,
+            'run_id_created':False,
+            'credits_consumed':False,
+          }
+          pathlib.Path('recovery/LEGACY_XZ_SOURCE_DIAGNOSTIC_V1.json').write_text(json.dumps(rec,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+          rm -rf .legacy-xz-work recovery/legacy-xz
+          if [ "$status" = PASS ]; then
+            rm -rf recovery/transfer
+            rm -f recovery/v2-source.b64.part-* recovery/v2-source.xz.b64.part-*
+            rm -f recovery/DIRECT_TREE_CAPABILITY_TEST.txt recovery/DIRECT_TREE_MIGRATION_NOTE.md recovery/STATUS.md recovery/RECOVERY_IN_PROGRESS.md
+            rm -f .github/workflows/recovery-transfer-bootstrap.yml .github/workflows/legacy-xz-recovery.yml
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "verify legacy V2 recovery payload"
+            git push origin HEAD:migration/whatif-frozen-production-bundle-v1
+          fi
+
+          test "$status" = PASS
