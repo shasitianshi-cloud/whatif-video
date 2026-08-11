@@ -9,6 +9,9 @@ CHROME_VERSION="152.0.7928.2"
 CHROME_ARCHIVE_SHA256="f0fa3d36fc961f17cb2c8b0b2c56c274b1834f1b7cdf3a8504af50706885d1b5"
 CHROME_EXECUTABLE_SHA256="55efa0c5ec72d027235402198607cdb438c673297a287186d6f16a7ada8908d4"
 HF_VERSION="0.7.106"
+FONT_COMMIT="f8d157532fbfaeda587e826d4cd5b21a49186f7c"
+FONT_SHA256="2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b"
+FONT_PATH="$ROOT/video-production/assets/fonts/NotoSansCJKsc-Regular.otf"
 
 command -v node >/dev/null
 command -v npm >/dev/null
@@ -48,6 +51,14 @@ if [[ "$HF_OBSERVED" != *"$HF_VERSION"* ]]; then
   exit 4
 fi
 
+mkdir -p "$(dirname "$FONT_PATH")"
+if [[ ! -s "$FONT_PATH" ]]; then
+  curl -fL --retry 2 --connect-timeout 15 --max-time 180 \
+    "https://raw.githubusercontent.com/notofonts/noto-cjk/${FONT_COMMIT}/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf" \
+    -o "$FONT_PATH"
+fi
+echo "$FONT_SHA256  $FONT_PATH" | sha256sum -c -
+
 export HYPERFRAMES_BROWSER_PATH="$BROWSER"
 export HYPERFRAMES_NO_TELEMETRY=1
 export HYPERFRAMES_NO_UPDATE_CHECK=1
@@ -55,4 +66,6 @@ export HYPERFRAMES_NO_UPDATE_CHECK=1
 printf '%s\n' "HYPERFRAMES_RUNTIME_MATERIALIZED=true"
 printf '%s\n' "HYPERFRAMES_VERSION=$HF_VERSION"
 printf '%s\n' "HYPERFRAMES_BROWSER_PATH=$BROWSER"
+printf '%s\n' "CJK_FONT_PATH=$FONT_PATH"
+printf '%s\n' "CJK_FONT_SHA256=$FONT_SHA256"
 printf '%s\n' "HYPERFRAMES_RUNTIME_MANIFEST=$MANIFEST"
