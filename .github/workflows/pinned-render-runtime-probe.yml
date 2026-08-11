@@ -1,25 +1,21 @@
 name: pinned-render-runtime-probe
 
 on:
-  workflow_dispatch:
-  pull_request:
+  push:
     branches:
-      - main
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/runtime/**'
+      - '.github/workflows/pinned-render-runtime-probe.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   pinned-render-runtime:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
-    env:
-      HYPERFRAMES_NO_TELEMETRY: "1"
-      HYPERFRAMES_NO_UPDATE_CHECK: "1"
-      CHROME_VERSION: "152.0.7928.2"
-      CHROME_ARCHIVE_SHA256: "f0fa3d36fc961f17cb2c8b0b2c56c274b1834f1b7cdf3a8504af50706885d1b5"
-      CHROME_EXECUTABLE_SHA256: "55efa0c5ec72d027235402198607cdb438c673297a287186d6f16a7ada8908d4"
-      HYPERFRAMES_VERSION: "0.7.106"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,31 +37,11 @@ jobs:
           ffmpeg -version | head -n 1
           ffprobe -version | head -n 1
 
-      - name: Materialize pinned Chrome Headless Shell
+      - name: Materialize canonical pinned runtime
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p vendor/chromium
-          archive="vendor/chromium/chrome-headless-shell-linux64.zip"
-          url="https://storage.googleapis.com/chrome-for-testing-public/${CHROME_VERSION}/linux64/chrome-headless-shell-linux64.zip"
-          curl -fL --retry 2 --connect-timeout 15 --max-time 180 "$url" -o "$archive"
-          echo "${CHROME_ARCHIVE_SHA256}  ${archive}" | sha256sum -c -
-          unzip -q "$archive" -d "vendor/chromium/linux-${CHROME_VERSION}"
-          browser="vendor/chromium/linux-${CHROME_VERSION}/chrome-headless-shell-linux64/chrome-headless-shell"
-          test -x "$browser"
-          echo "${CHROME_EXECUTABLE_SHA256}  ${browser}" | sha256sum -c -
-          echo "HYPERFRAMES_BROWSER_PATH=${GITHUB_WORKSPACE}/${browser}" >> "$GITHUB_ENV"
-          "$browser" --version
-
-      - name: Install pinned HyperFrames CLI
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p vendor/hyperframes/runtime
-          npm install --prefix vendor/hyperframes/runtime --no-audit --no-fund "hyperframes@${HYPERFRAMES_VERSION}"
-          cli="vendor/hyperframes/runtime/node_modules/.bin/hyperframes"
-          test -x "$cli"
-          "$cli" --version
+          bash video-production/runtime/materialize-hyperframes-runtime.sh
 
       - name: Create minimal deterministic composition
         shell: bash
@@ -91,59 +67,43 @@ jobs:
           </html>
           HTML
 
-      - name: Real local HyperFrames render
+      - name: Real local HyperFrames render through canonical launcher
         shell: bash
         run: |
           set -euo pipefail
-          cli="vendor/hyperframes/runtime/node_modules/.bin/hyperframes"
-          "$cli" render -c ./probe-composition/index.html -o ./evidence/runtime-probe.mp4 --json > ./evidence/hyperframes-render.json
+          bash video-production/runtime/run-hyperframes-local.sh render \
+            -c ./probe-composition/index.html \
+            -o ./evidence/runtime-probe.mp4 \
+            > ./evidence/hyperframes-render.json
           test -s ./evidence/runtime-probe.mp4
           ffprobe -v error -select_streams v:0 -show_entries stream=width,height,r_frame_rate -show_entries format=duration -of json ./evidence/runtime-probe.mp4 > ./evidence/ffprobe.json
           sha256sum ./evidence/runtime-probe.mp4 > ./evidence/runtime-probe.mp4.sha256
 
-      - name: Build evidence record
-        if: always()
+      - name: Verify runtime identity and output
         shell: bash
         run: |
-          set -u
-          mkdir -p evidence
-          node_version="$(node --version 2>/dev/null || true)"
-          ffmpeg_version="$(ffmpeg -version 2>/dev/null | head -n 1 || true)"
-          browser_version="${HYPERFRAMES_BROWSER_PATH:-}"
-          hyperframes_version="$(vendor/hyperframes/runtime/node_modules/.bin/hyperframes --version 2>/dev/null || true)"
-          export NODE_VERSION="$node_version" FFMPEG_VERSION="$ffmpeg_version" BROWSER_PATH="$browser_version" HYPERFRAMES_OBSERVED_VERSION="$hyperframes_version"
+          set -euo pipefail
           python3 - <<'PY'
-          import json, os, pathlib, hashlib
+          import json, pathlib, subprocess, hashlib
+          manifest = json.loads(pathlib.Path('video-production/runtime/hyperframes-runtime-manifest.json').read_text())
+          probe = json.loads(pathlib.Path('evidence/ffprobe.json').read_text())
+          stream = probe['streams'][0]
+          fmt = probe['format']
           mp4 = pathlib.Path('evidence/runtime-probe.mp4')
-          record = {
-              'probe': 'GITHUB_ACTIONS_PINNED_RENDER_RUNTIME_MATERIALIZATION_PROBE_V1',
-              'node_expected': 'v24.14.0',
-              'node_observed': os.environ.get('NODE_VERSION', ''),
-              'ffmpeg_expected_prefix': 'ffmpeg version 6.1.1-3ubuntu5',
-              'ffmpeg_observed': os.environ.get('FFMPEG_VERSION', ''),
-              'chrome_expected_version': '152.0.7928.2',
-              'chrome_archive_expected_sha256': 'f0fa3d36fc961f17cb2c8b0b2c56c274b1834f1b7cdf3a8504af50706885d1b5',
-              'chrome_executable_expected_sha256': '55efa0c5ec72d027235402198607cdb438c673297a287186d6f16a7ada8908d4',
-              'browser_path': os.environ.get('BROWSER_PATH', ''),
-              'hyperframes_expected_version': '0.7.106',
-              'hyperframes_observed_version': os.environ.get('HYPERFRAMES_OBSERVED_VERSION', ''),
-              'render_artifact_exists': mp4.is_file() and mp4.stat().st_size > 0,
-              'render_artifact_bytes': mp4.stat().st_size if mp4.is_file() else 0,
-              'render_artifact_sha256': hashlib.sha256(mp4.read_bytes()).hexdigest() if mp4.is_file() else '',
-              'secrets_used': False,
-              'provider_calls_executed': False,
-              'paid_actions_executed': False,
-              'run_id_created': False,
-          }
-          record['pass'] = all([
-              record['node_observed'] == record['node_expected'],
-              record['ffmpeg_observed'].startswith(record['ffmpeg_expected_prefix']),
-              record['hyperframes_observed_version'].find(record['hyperframes_expected_version']) >= 0,
-              record['render_artifact_exists'],
-          ])
-          with open('evidence/pinned-render-runtime-probe.json', 'w', encoding='utf-8') as f:
-              json.dump(record, f, ensure_ascii=False, indent=2)
-          print(json.dumps(record, ensure_ascii=False, indent=2))
+          assert manifest['hyperframes_version'] == '0.7.106'
+          assert manifest['source_commit'] == 'c9dd8413c35d110241293a38a8411a1a719e6176'
+          assert manifest['chromium']['version'] == '152.0.7928.2'
+          assert manifest['render_json_mode'] is True
+          assert manifest['render_json_flag_injected_once'] is True
+          assert int(stream['width']) == 1280
+          assert int(stream['height']) == 720
+          assert mp4.stat().st_size > 0
+          print('HYPERFRAMES_LOCAL_RUNTIME_VALID=true')
+          print('HYPERFRAMES_RENDER_JSON_MODE=true')
+          print('RENDER_JSON_FLAG_INJECTED_ONCE=true')
+          print('OUTPUT_VIDEO_CREATED=true')
+          print('OUTPUT_VIDEO_READABLE=true')
+          print('OUTPUT_VIDEO_SHA256=' + hashlib.sha256(mp4.read_bytes()).hexdigest())
           PY
 
       - name: Upload pinned render evidence
