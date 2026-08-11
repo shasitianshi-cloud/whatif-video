@@ -52,12 +52,25 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--persist-current-env", action="store_true")
     parser.add_argument("--happyhorse-session-source", type=Path)
+    parser.add_argument("--encrypted-auth", type=Path)
+    parser.add_argument("--age-identity-file", type=Path)
     parser.add_argument("--result", type=Path)
     args = parser.parse_args()
+
+    encrypted_loaded = False
+    if args.encrypted_auth or args.age_identity_file:
+        if not args.encrypted_auth or not args.age_identity_file:
+            raise SystemExit("--encrypted-auth and --age-identity-file must be supplied together")
+        from encrypted_runtime_auth import decrypt_and_materialize
+        decrypt_and_materialize(encrypted=args.encrypted_auth, identity_file=args.age_identity_file)
+        encrypted_loaded = True
+
     result = run_preflight(
         persist_env=args.persist_current_env,
         happyhorse_session_source=args.happyhorse_session_source,
     )
+    result["encrypted_runtime_auth_loaded"] = encrypted_loaded
+    result["encrypted_runtime_auth_transport"] = "age" if encrypted_loaded else "not_used"
     if args.result:
         args.result.parent.mkdir(parents=True, exist_ok=True)
         args.result.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
