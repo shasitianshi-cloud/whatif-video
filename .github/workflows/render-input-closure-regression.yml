@@ -23,14 +23,31 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m pytest -q video-production/tests/test_render_input_closure.py
           python3 - <<'PY'
+          import importlib.util
           import json
-          for path in (
+          import tempfile
+          from pathlib import Path
+
+          path = Path('video-production/tests/test_render_input_closure.py')
+          spec = importlib.util.spec_from_file_location('render_input_regression', path)
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+
+          with tempfile.TemporaryDirectory() as d:
+              mod.test_normalization_projection_and_boundaries(Path(d))
+          with tempfile.TemporaryDirectory() as d:
+              mod.test_missing_multi_asset_timing_blocks(Path(d))
+          with tempfile.TemporaryDirectory() as d:
+              mod.test_cross_run_and_sha_mismatch_block(Path(d))
+
+          for schema in (
               'video-production/schemas/asset-manifest.schema.json',
               'video-production/schemas/render-input.schema.json',
           ):
-              json.load(open(path, encoding='utf-8'))
+              json.load(open(schema, encoding='utf-8'))
+
+          print('RENDER_INPUT_CLOSURE_REGRESSION=PASS')
           print('ASSET_MANIFEST_SCHEMA_JSON_PARSE=PASS')
           print('RENDER_INPUT_SCHEMA_JSON_PARSE=PASS')
           PY
