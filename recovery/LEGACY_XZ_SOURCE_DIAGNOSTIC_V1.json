@@ -1,0 +1,20 @@
+{
+  "record": "WHATIF_LEGACY_XZ_SOURCE_DIAGNOSTIC_V1",
+  "status": "FAIL",
+  "reason": "XZ_VALIDATION_FAILED",
+  "observed_part_count": 9,
+  "xz_valid": false,
+  "tar_valid": false,
+  "observed_file_count": 0,
+  "expected_file_count": 74,
+  "observed_total_bytes": 0,
+  "expected_total_bytes": 291173,
+  "observed_canonical_aggregate_sha256": "",
+  "expected_canonical_aggregate_sha256": "131540bef29dbe5ff4185542171414f445e569875274437310616353cc7a7fbc",
+  "operator_expected_sha256": "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80",
+  "canonical_source_materialized": false,
+  "runtime_secrets_migrated": false,
+  "provider_calls_executed": false,
+  "run_id_created": false,
+  "credits_consumed": false
+}
