@@ -1,0 +1,57 @@
+name: recovery-transfer-bootstrap
+
+on:
+  push:
+    branches:
+      - migration/whatif-frozen-production-bundle-v1
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-recovery:
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: migration/whatif-frozen-production-bundle-v1
+          fetch-depth: 0
+
+      - name: Materialize staged recovery bundle when complete
+        shell: bash
+        env:
+          EXPECTED_PARTS: "8"
+          EXPECTED_TAR_SHA256: "4bda6a23610e694f1a84688388e1cda9e38296b694dbdfbe8055beddfa428671"
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          parts=(recovery/transfer/part-*.b64)
+          if [ "${#parts[@]}" -ne "$EXPECTED_PARTS" ]; then
+            echo "transfer incomplete: ${#parts[@]}/$EXPECTED_PARTS"
+            exit 0
+          fi
+          mkdir -p .recovery-transfer
+          cat "${parts[@]}" | base64 -d > .recovery-transfer/source.tar.gz
+          echo "$EXPECTED_TAR_SHA256  .recovery-transfer/source.tar.gz" | sha256sum -c -
+          python3 - <<'PY'
+          import pathlib, tarfile
+          archive=pathlib.Path('.recovery-transfer/source.tar.gz')
+          root=pathlib.Path('.').resolve()
+          with tarfile.open(archive,'r:gz') as tf:
+              for member in tf.getmembers():
+                  target=(root/member.name).resolve()
+                  if root not in target.parents and target != root:
+                      raise SystemExit(f'unsafe archive path: {member.name}')
+                  if member.issym() or member.islnk():
+                      raise SystemExit(f'links forbidden: {member.name}')
+              tf.extractall('.')
+          PY
+          test "$(sha256sum shared/operator-baseline/whatif-minimal-operator-v1-portable.zip | awk '{print $1}')" = "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80"
+          rm -rf recovery/transfer .recovery-transfer .github/workflows/recovery-transfer-bootstrap.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "recover exact V2 canonical source baseline"
+          git push origin HEAD:migration/whatif-frozen-production-bundle-v1
