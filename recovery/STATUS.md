@@ -1,0 +1,1 @@
+Migration status: V2 canonical source verified locally; direct file commit path selected. Chunk-transfer bootstrap is superseded and must not be treated as production source.
