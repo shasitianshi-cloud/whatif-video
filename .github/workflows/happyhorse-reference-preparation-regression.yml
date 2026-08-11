@@ -1,0 +1,21 @@
+name: HappyHorse Reference Preparation Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/prepare_happyhorse_reference.py'
+      - 'video-production/tests/test_happyhorse_reference_preparation.py'
+      - '.github/workflows/happyhorse-reference-preparation-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure FFmpeg
+        run: ffmpeg -version && ffprobe -version
+      - name: Run synthetic continuity regression
+        run: python3 video-production/tests/test_happyhorse_reference_preparation.py
