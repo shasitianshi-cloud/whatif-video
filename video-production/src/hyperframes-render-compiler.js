@@ -57,7 +57,10 @@ function compileRenderPlan(renderInput, assetManifest) {
         if (asset.asset_kind !== 'image') throw new Error('image_motion requires image');
         layers.push({
           type: 'image', treatment: 'image_motion', fit: visual.fit || null,
-          motion: { intent: visual.motion_intent || 'DEFAULT_DETERMINISTIC' }, ...common
+          motion: {
+            intent: visual.motion_intent || 'UNRESOLVED',
+            parameters: visual.motion_parameters ? canonicalize(visual.motion_parameters) : null
+          }, ...common
         });
       } else {
         throw new Error(`unsupported render treatment: ${visual.render_treatment}`);
