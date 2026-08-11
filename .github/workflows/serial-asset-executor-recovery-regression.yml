@@ -1,0 +1,21 @@
+name: Serial Asset Executor Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/run_asset_executor.py'
+      - 'video-production/src/asset_executor_recovery.py'
+      - 'video-production/src/prepare_happyhorse_reference.py'
+      - 'video-production/tests/test_serial_asset_executor_recovery.py'
+      - '.github/workflows/serial-asset-executor-recovery-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  no-provider-state-machine:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run serial executor regression without provider calls
+        run: python3 video-production/tests/test_serial_asset_executor_recovery.py
