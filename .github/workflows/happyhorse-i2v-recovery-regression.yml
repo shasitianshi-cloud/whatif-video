@@ -1,0 +1,88 @@
+name: HappyHorse I2V Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/happyhorse/runtime/happyhorse-i2v-runner.mjs'
+      - 'video-production/happyhorse/runtime/watermark-control.mjs'
+      - '.github/workflows/happyhorse-i2v-recovery-regression.yml'
+  workflow_dispatch:
+
+jobs:
+  no-provider-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Validate frozen I2V projection without provider call
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/i2v-task.json <<'JSON'
+          {
+            "task_id":"dispatch-vid-002",
+            "run_id":"i2v-regression-001",
+            "asset_id":"vid-002",
+            "role":"content_visual",
+            "generation_route":"happyhorse",
+            "expected_asset_kind":"video",
+            "generation_mode":"I2V",
+            "prompt":"同一亚洲人物继续向前行走，主体、环境和构图连续，真实动作",
+            "duration_ms":5000,
+            "continuity":{"kind":"previous_asset_frame","previous_asset_id":"vid-001"},
+            "in_content_timeline":true
+          }
+          JSON
+          cat > /tmp/registered.json <<'JSON'
+          {
+            "schema_version":1,
+            "run_id":"i2v-regression-001",
+            "dependent_asset_id":"vid-002",
+            "source_type":"previous_asset_frame",
+            "local_path":"runs/i2v-regression-001/reference.png",
+            "sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "provider_media_id":"907345200",
+            "oss_upload_attempt_count":1,
+            "oss_upload_mode":"multipart",
+            "oss_part_count":2,
+            "ambiguous_registration":false,
+            "recovery_executor_reconstructed":true,
+            "historical_executor_byte_identical":false
+          }
+          JSON
+          node video-production/happyhorse/runtime/happyhorse-i2v-runner.mjs --validate-only /tmp/i2v-task.json /tmp/registered.json > /tmp/i2v-projection.json
+          python3 - <<'PY'
+          import json
+          x=json.load(open('/tmp/i2v-projection.json'))
+          assert x['status']=='VALID'
+          p=x['projection']['taskBody']
+          assert p['prompt']=='同一亚洲人物继续向前行走，主体、环境和构图连续，真实动作'
+          assert p['taskType']=='I2V'
+          assert p['imageMediaIds']==['907345200']
+          assert p['imageInfoList']==[{'label':'image_1'}]
+          assert p['parameters']=={'durationS':5,'aspectRatio':'16:9','resolution':'720p','modelVersion':'1.5','shotType':'single','sourceChannel':'cli'}
+          assert p['concurrency']==1
+          assert 'ossPath' not in p and 'imageUrl' not in p
+          print('HAPPYHORSE_I2V_PROVIDER_CALL=false')
+          print('I2V_MEDIA_ID_SOURCE=REGISTERED_MEDIA_ID')
+          print('I2V_URL_OR_OSS_IDENTITY_USED=false')
+          print('HAPPYHORSE_I2V_RECOVERY_REGRESSION=PASS')
+          PY
+      - name: Reject lineage mismatch, missing media ID and unsupported duration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          r=json.load(open('/tmp/registered.json')); r['run_id']='other'; json.dump(r,open('/tmp/bad-run.json','w'))
+          r=json.load(open('/tmp/registered.json')); r['provider_media_id']=''; json.dump(r,open('/tmp/no-media.json','w'))
+          t=json.load(open('/tmp/i2v-task.json')); t['duration_ms']=3500; json.dump(t,open('/tmp/bad-duration.json','w'),ensure_ascii=False)
+          PY
+          if node video-production/happyhorse/runtime/happyhorse-i2v-runner.mjs --validate-only /tmp/i2v-task.json /tmp/bad-run.json; then exit 2; fi
+          if node video-production/happyhorse/runtime/happyhorse-i2v-runner.mjs --validate-only /tmp/i2v-task.json /tmp/no-media.json; then exit 2; fi
+          if node video-production/happyhorse/runtime/happyhorse-i2v-runner.mjs --validate-only /tmp/bad-duration.json /tmp/registered.json; then exit 2; fi
+          echo 'HAPPYHORSE_I2V_FAIL_CLOSED_REGRESSION=true'
