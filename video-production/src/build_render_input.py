@@ -78,7 +78,9 @@ def build_render_input(*, run_id: str, asset_manifest: dict, production_script: 
                     "stretch_allowed": False,
                 }
             if treatment == "image_motion":
-                item["motion_intent"] = str(v.get("motion_intent") or "DEFAULT_DETERMINISTIC")
+                item["motion_intent"] = str(v.get("motion_intent") or "UNRESOLVED")
+                if isinstance(v.get("motion_parameters"), dict):
+                    item["motion_parameters"] = dict(v["motion_parameters"])
             projected.append(item)
         if visual_total != duration:
             raise RuntimeError("timeline disorder")
