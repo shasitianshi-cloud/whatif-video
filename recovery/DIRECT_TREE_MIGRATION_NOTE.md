@@ -1,0 +1,1 @@
+Direct canonical-file migration is being used instead of chunk-staged archive execution. V2 canonical source is materialized locally and will be committed as individual repository files; runtime secrets and historical run outputs remain excluded.
