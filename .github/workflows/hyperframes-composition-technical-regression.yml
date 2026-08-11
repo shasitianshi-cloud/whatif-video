@@ -1,0 +1,111 @@
+name: HyperFrames Composition Technical Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/build-hyperframes-composition.js'
+      - 'video-production/src/hyperframes-render-compiler.js'
+      - 'video-production/runtime/**'
+      - '.github/workflows/hyperframes-composition-technical-regression.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  technical-render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+      - name: Materialize pinned render runtime and font
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash video-production/runtime/materialize-hyperframes-runtime.sh
+      - name: Create deterministic local fixture and render plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p technical-fixture/media technical-fixture/render
+          ffmpeg -hide_banner -loglevel error -f lavfi -i color=c=black:s=1280x720:r=30:d=1 -vf "drawbox=x=80:y=80:w=1120:h=560:color=white@0.12:t=fill" -c:v libx264 -pix_fmt yuv420p -y technical-fixture/media/direct.mp4
+          ffmpeg -hide_banner -loglevel error -f lavfi -i color=c=0x202020:s=1280x720 -frames:v 1 -y technical-fixture/media/motion.png
+          ffmpeg -hide_banner -loglevel error -f lavfi -i sine=frequency=440:sample_rate=48000:duration=2 -c:a pcm_s16le -y technical-fixture/media/narration.wav
+          cat > technical-fixture/render-plan.json <<'JSON'
+          {
+            "schema_version": 1,
+            "run_id": "technical-composition-recovery-v1",
+            "composition": {"width": 1280, "height": 720, "duration_ms": 2000},
+            "layers": [
+              {"type":"video","treatment":"direct_video","asset_id":"v1","local_path":"technical-fixture/media/direct.mp4","sha256":"fixture","start_ms":0,"duration_ms":1000,"end_ms":1000,"segment_id":"seg-001","fit":"cover","trim_mode":"deterministic"},
+              {"type":"image","treatment":"image_motion","asset_id":"i1","local_path":"technical-fixture/media/motion.png","sha256":"fixture","start_ms":1000,"duration_ms":1000,"end_ms":2000,"segment_id":"seg-002","fit":{"mode":"cover_crop","target_width":1280,"target_height":720,"preserve_aspect_ratio":true,"stretch_allowed":false},"motion":{"intent":"technical-fixture","parameters":{"from":{"x_percent":-2,"y_percent":0,"scale":1.04},"to":{"x_percent":2,"y_percent":0,"scale":1.04}}}}
+            ],
+            "audio": [
+              {"type":"audio","asset_id":"a1","local_path":"technical-fixture/media/narration.wav","sha256":"fixture","start_ms":0,"duration_ms":2000,"end_ms":2000,"segment_id":"seg-001"}
+            ],
+            "subtitles": [
+              {"type":"subtitle","segment_id":"seg-001","text":"如果人类永久不再需要睡眠，世界会发生什么？2026 AI Test.","start_ms":0,"end_ms":2000,"primary_color":"white","font_family":"Noto Sans CJK SC"}
+            ]
+          }
+          JSON
+          node video-production/src/build-hyperframes-composition.js \
+            technical-fixture/render-plan.json "$PWD" technical-fixture/render
+          grep -q "window.__timelines.main" technical-fixture/render/index.html
+          grep -q "Noto Sans CJK SC" technical-fixture/render/index.html
+          ! grep -Eq 'https?://' technical-fixture/render/index.html
+      - name: Render through canonical launcher
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash video-production/runtime/run-hyperframes-local.sh render \
+            -c technical-fixture/render/index.html \
+            -o technical-fixture/output.mp4 \
+            > technical-fixture/render-result.json
+          test -s technical-fixture/output.mp4
+      - name: Validate output artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          ffprobe -v error -show_streams -show_format -of json technical-fixture/output.mp4 > technical-fixture/ffprobe.json
+          python3 - <<'PY'
+          import json, pathlib, hashlib
+          p = pathlib.Path('technical-fixture/output.mp4')
+          d = json.loads(pathlib.Path('technical-fixture/ffprobe.json').read_text())
+          vs = next(s for s in d['streams'] if s['codec_type'] == 'video')
+          audio = [s for s in d['streams'] if s['codec_type'] == 'audio']
+          assert int(vs['width']) == 1280
+          assert int(vs['height']) == 720
+          assert audio, 'audio track missing'
+          duration = float(d['format']['duration'])
+          assert 1.9 <= duration <= 2.1, duration
+          print('HYPERFRAMES_COMPOSITION_TECHNICAL_REGRESSION=PASS')
+          print('DIRECT_VIDEO_VISIBLE_PATH_EXECUTED=true')
+          print('IMAGE_MOTION_PATH_EXECUTED=true')
+          print('AUDIO_TRACK_PRESENT=true')
+          print('CJK_FONT_BOUND=true')
+          print('OUTPUT_VIDEO_WIDTH=1280')
+          print('OUTPUT_VIDEO_HEIGHT=720')
+          print('OUTPUT_VIDEO_SHA256=' + hashlib.sha256(p.read_bytes()).hexdigest())
+          PY
+      - name: Upload technical evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hyperframes-composition-technical-regression
+          path: |
+            technical-fixture/render-plan.json
+            technical-fixture/render/index.html
+            technical-fixture/render-result.json
+            technical-fixture/ffprobe.json
+            technical-fixture/output.mp4
+          if-no-files-found: warn
+          retention-days: 7
