@@ -88,6 +88,8 @@ def validate_production_script(script: dict, narration_manifest: dict | None = N
             start = visual.get("start_offset_ms")
             duration = visual.get("duration_ms")
             _require(isinstance(start, int) and isinstance(duration, int) and duration > 0, "MISSING_VISUAL_TIMING_CONTRACT")
+            if strategy == "generated_video":
+                _require(3000 <= duration <= 15000 and duration % 1000 == 0, "HAPPYHORSE_DURATION_UNSUPPORTED")
             _require(start == cursor, "TIMELINE_DISORDER")
             cursor += duration
             _require(visual.get("transition_intent") in {"continue_scene", "cut"}, "TRANSITION_INTENT_REQUIRED")
