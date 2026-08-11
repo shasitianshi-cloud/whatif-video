@@ -24,10 +24,25 @@ def validate_production_script(script: dict, narration_manifest: dict | None = N
     _require(script.get("historical_schema_byte_identical") is False, "HISTORICAL_SCHEMA_IDENTITY_MUST_NOT_BE_CLAIMED")
     _require(script.get("downstream_creative_replanning_required") is False, "DOWNSTREAM_CREATIVE_REPLANNING_REQUIRED")
 
+    references = script.get("execution_references", [])
+    _require(isinstance(references, list), "INVALID_EXECUTION_REFERENCE_CONTRACT")
+    reference_ids: set[str] = set()
+    for ref in references:
+        aid = str(ref.get("asset_id", "")).strip()
+        _require(bool(aid) and aid not in reference_ids, "DUPLICATE_OR_MISSING_EXECUTION_REFERENCE_ID")
+        reference_ids.add(aid)
+        _require(ref.get("kind") == "generated_reference", "INVALID_EXECUTION_REFERENCE_CONTRACT")
+        _require(ref.get("role") == "execution_reference", "INVALID_EXECUTION_REFERENCE_CONTRACT")
+        _require(ref.get("generation_route") == "gpt-image-2", "GENERATED_REFERENCE_MUST_USE_IMAGE_GENERATION")
+        _require(ref.get("in_content_timeline") is False, "EXECUTION_REFERENCE_NOT_AUTOMATIC_RENDER_ASSET")
+        prompt = str(ref.get("prompt", "")).strip()
+        _require(bool(prompt), "REFERENCE_PROMPT_REQUIRED")
+        _require(_prompt_visual_purity(prompt), "VIDEO_BOUND_VISUAL_PURITY=false")
+
     segments = script.get("segments")
     _require(isinstance(segments, list) and segments, "PRODUCTION_SCRIPT_SCHEMA_VALID=false")
     seen_segments: set[str] = set()
-    seen_assets: set[str] = set()
+    seen_assets: set[str] = set(reference_ids)
     narration = None
     if narration_manifest is not None:
         _require(narration_manifest.get("run_id") == script["run_id"], "CROSS_RUN_PRODUCTION_SCRIPT_FORBIDDEN")
@@ -84,7 +99,9 @@ def validate_production_script(script: dict, narration_manifest: dict | None = N
                 _require(bool(str(continuity.get("previous_asset_id", "")).strip()), "PREVIOUS_ASSET_ID_REQUIRED")
                 _require(visual.get("generation_mode") == "I2V", "PREVIOUS_FRAME_REQUIRES_I2V")
             elif kind == "generated_reference":
-                _require(bool(str(continuity.get("reference_asset_id", "")).strip()), "REFERENCE_ASSET_ID_REQUIRED")
+                rid = str(continuity.get("reference_asset_id", "")).strip()
+                _require(bool(rid), "REFERENCE_ASSET_ID_REQUIRED")
+                _require(rid in reference_ids, "GENERATED_REFERENCE_NOT_DECLARED")
                 _require(visual.get("generation_mode") in {"I2V", "R2V"}, "GENERATED_REFERENCE_REQUIRES_I2V_OR_R2V")
             elif strategy == "generated_video":
                 _require(visual.get("generation_mode") == "T2V", "NO_CONTINUITY_GENERATED_VIDEO_REQUIRES_T2V")
