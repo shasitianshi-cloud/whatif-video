@@ -1,0 +1,22 @@
+{
+  "record": "RUNTIME_AUTH_REQUIRED_V1",
+  "runtime_auth_root": ".runtime-auth/",
+  "runtime_secret_included": false,
+  "providers": {
+    "volcengine_tts": {
+      "required": true,
+      "canonical_path": ".runtime-auth/volcengine/credential.json",
+      "reload": "provider_runtime_preflight"
+    },
+    "happyhorse": {
+      "required": true,
+      "canonical_path": ".runtime-auth/happyhorse/session.json",
+      "reload": "provider_runtime_preflight",
+      "refresh_contract": "video-production/happyhorse/contracts/happyhorse-production-protocol-v1.json"
+    },
+    "builtin_image": {"secret_required": false},
+    "hyperframes": {"secret_required": false}
+  },
+  "host_local_runtime_persistence": true,
+  "cross_host_secret_disaster_recovery": false
+}
