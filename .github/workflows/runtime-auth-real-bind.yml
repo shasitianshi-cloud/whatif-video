@@ -64,13 +64,14 @@ jobs:
           source.unlink()
           PY
 
-      - name: Encrypt, decrypt-verify, and run no-generation preflight
+      - name: Derive recipient, encrypt, decrypt-verify, and run no-generation preflight
         shell: bash
         run: |
           set -euo pipefail
           export PYTHONPATH="$PWD/video-production/src"
-          RECIPIENT="$(tr -d '\r\n' < runtime-auth/runtime-auth-public-key.txt)"
+          RECIPIENT="$(age-keygen -y .age-runtime-auth-identity)"
           test -n "$RECIPIENT"
+          printf '%s\n' "$RECIPIENT" > runtime-auth/runtime-auth-public-key.txt
 
           python3 video-production/src/encrypted_runtime_auth.py reencrypt-materialized \
             --recipient "$RECIPIENT" \
@@ -121,7 +122,7 @@ jobs:
           rm -rf .runtime-auth age.tar.gz age
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add runtime-auth/runtime-auth.v1.age runtime-auth/REAL_BIND_RESULT.json runtime-auth/BIND_READY
+          git add runtime-auth/runtime-auth.v1.age runtime-auth/runtime-auth-public-key.txt runtime-auth/REAL_BIND_RESULT.json runtime-auth/BIND_READY
           git diff --cached --quiet && exit 1 || true
           git commit -m 'bind encrypted runtime auth state'
           git push origin HEAD:migration/whatif-recovery-v2-clean-v1
