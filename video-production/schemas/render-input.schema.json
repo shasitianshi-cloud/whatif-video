@@ -41,6 +41,7 @@
                 "duration_ms": {"type": "integer", "minimum": 1},
                 "end_ms": {"type": "integer", "minimum": 1},
                 "motion_intent": {"type": "string"},
+                "motion_parameters": {"type": "object", "additionalProperties": true},
                 "fit": {
                   "type": "object",
                   "required": ["mode", "target_width", "target_height", "preserve_aspect_ratio", "stretch_allowed"],
