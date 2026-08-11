@@ -116,7 +116,7 @@ jobs:
           set -euo pipefail
           git check-ignore -q .runtime-auth/volcengine/credential.json
           git check-ignore -q .runtime-auth/happyhorse/session.json
-          ! git status --porcelain | grep -E '(\.runtime-auth|\.age-runtime-auth-identity|\.happyhorse-session-source)'
+          test -z "$(git ls-files .runtime-auth .age-runtime-auth-identity .happyhorse-session-source.json)"
 
       - name: Commit ciphertext state only
         shell: bash
