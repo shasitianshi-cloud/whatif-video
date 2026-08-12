@@ -99,9 +99,14 @@ def assert_static_contracts() -> dict:
     if "relative_to(PROJECT_ROOT)" not in renderer or '"FINAL_VIDEO_GATE"' not in renderer:
         raise RuntimeError("FINAL_RENDER_ENTRYPOINT_INVALID")
     materializer = (ROOT / "video-production/runtime/materialize-hyperframes-runtime.sh").read_text(encoding="utf-8")
-    for token in ("HYPERFRAMES_VERSION=\"0.7.106\"", "CHROMIUM_VERSION=\"152.0.7928.2\"", "NODE_VERSION=\"24.14.0\""):
-        if token not in materializer:
-            raise RuntimeError("PINNED_RENDER_RUNTIME_DRIFT")
+    required_runtime_tokens = (
+        'HF_VERSION="0.7.106"',
+        'CHROME_VERSION="152.0.7928.2"',
+        'NODE_OBSERVED="$(node --version)"',
+        '"$NODE_OBSERVED" != "v24.14.0"',
+    )
+    if any(token not in materializer for token in required_runtime_tokens):
+        raise RuntimeError("PINNED_RENDER_RUNTIME_DRIFT")
     return verify_upstream_freeze()
 
 
