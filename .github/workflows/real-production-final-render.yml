@@ -1,0 +1,112 @@
+name: Real Production Final HyperFrames Render
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/REAL_PRODUCTION_FINAL_RENDER_TRIGGER'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: whatif-real-production-final-render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+
+      - name: Preflight closed formal render
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          run_id='real-moon-disappear-20260812T0122Z'
+          root=Path('runs')/run_id/'video-production/render'
+          closure=json.loads((root/'render-closure-gate.json').read_text())
+          motion=json.loads((root/'production-motion-parameter-gate.json').read_text())
+          assert closure['run_id']==run_id
+          assert closure['status']=='READY_FOR_HYPERFRAMES_RENDER'
+          assert closure['execution_completeness']['asset_execution_completeness_pass'] is True
+          assert closure['provider_generation_executed'] is False
+          assert closure['creative_replanning_performed'] is False
+          assert motion['status']=='PASS'
+          assert motion['image_motion_layer_count']==8
+          assert motion['all_six_numeric_parameters_explicit'] is True
+          assert motion['renderer_fallback_required'] is False
+          assert motion['production_motion_guessing'] is False
+          assert not (root/'final.mp4').exists()
+          print(json.dumps({'status':'PASS','run_id':run_id,'ready_for_final_render':True}))
+          PY
+
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          command -v ffprobe >/dev/null
+
+      - name: Materialize pinned HyperFrames runtime
+        shell: bash
+        run: bash video-production/runtime/materialize-hyperframes-runtime.sh
+
+      - name: Render final video and Final Video Gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 video-production/src/render_final_video.py --run-id real-moon-disappear-20260812T0122Z
+
+      - name: Verify final gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          run_id='real-moon-disappear-20260812T0122Z'
+          root=Path('runs')/run_id/'video-production/render'
+          gate=json.loads((root/'final-video-gate.json').read_text())
+          video=Path(gate['artifact'])
+          assert gate['run_id']==run_id
+          assert gate['gate']=='FINAL_VIDEO_GATE'
+          assert gate['status']=='PASS'
+          assert gate['width']==1280 and gate['height']==720
+          assert gate['audio_track_present'] is True
+          assert gate['provider_generation_executed_during_render'] is False
+          assert gate['creative_replanning_performed_during_render'] is False
+          assert gate['latest_discovery_used'] is False
+          assert video.is_file() and video.stat().st_size==gate['file_size_bytes']>0
+          assert hashlib.sha256(video.read_bytes()).hexdigest()==gate['sha256']
+          print(json.dumps({
+            'run_id':run_id,
+            'FINAL_VIDEO_GATE':'PASS',
+            'sha256':gate['sha256'],
+            'file_size_bytes':gate['file_size_bytes'],
+            'width':gate['width'],
+            'height':gate['height'],
+            'duration_ms':gate['duration_ms'],
+            'audio_track_present':gate['audio_track_present']
+          }))
+          PY
+
+      - name: Commit final video artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-moon-disappear-20260812T0122Z'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/render"
+          git diff --cached --quiet && { echo 'NO_FINAL_RENDER_OUTPUT'; exit 1; }
+          git commit -m "render final video for $RUN_ID"
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
