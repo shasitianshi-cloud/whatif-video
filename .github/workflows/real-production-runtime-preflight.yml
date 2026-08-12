@@ -1,0 +1,90 @@
+name: Real Production Runtime Preflight
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/REAL_PRODUCTION_RUNTIME_PREFLIGHT_TRIGGER'
+
+permissions:
+  contents: read
+
+jobs:
+  runtime-preflight:
+    runs-on: ubuntu-24.04
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail closed on missing encrypted auth inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          test -s runtime-auth/runtime-auth.v1.age
+          test -s runtime-auth/runtime-auth-public-key.txt
+          test -s runtime-auth/REAL_BIND_RESULT.json
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Verify identity and decrypt current encrypted auth state
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          DERIVED="$(./age/age-keygen -y .age-runtime-auth-identity)"
+          EXPECTED="$(tr -d '\r\n' < runtime-auth/runtime-auth-public-key.txt)"
+          test "$DERIVED" = "$EXPECTED"
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/provider_runtime_preflight.py \
+            --encrypted-auth runtime-auth/runtime-auth.v1.age \
+            --age-identity-file .age-runtime-auth-identity \
+            --result real-production-runtime-preflight.json
+
+      - name: Gate production runtime readiness
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          bind = json.loads(Path('runtime-auth/REAL_BIND_RESULT.json').read_text())
+          pre = json.loads(Path('real-production-runtime-preflight.json').read_text())
+          assert bind['status'] == 'PASS'
+          assert pre['provider_runtime_preflight_ready'] is True
+          assert pre['encrypted_runtime_auth_loaded'] is True
+          assert pre['volcengine_tts_credential_present'] is True
+          assert pre['happyhorse_session_present'] is True
+          assert pre['happyhorse_session_valid'] is True or pre['happyhorse_refresh_supported'] is True
+          assert pre['run_id_created'] is False
+          assert pre['provider_generation_call_executed'] is False
+          assert pre['credits_consumed'] is False
+          assert pre['secret_value_exposed'] is False
+          print(json.dumps({
+            'REAL_PRODUCTION_RUNTIME_PREFLIGHT': 'PASS',
+            'VOLCENGINE_TTS_READY': True,
+            'HAPPYHORSE_READY': True,
+            'ENCRYPTED_RUNTIME_AUTH_LOADED': True,
+            'RUN_ID_CREATED': False,
+            'PROVIDER_GENERATION_CALL_EXECUTED': False,
+            'CREDITS_CONSUMED': False,
+            'SECRET_VALUE_EXPOSED': False
+          }, separators=(',', ':')))
+          PY
+
+      - name: Remove plaintext runtime auth
+        if: always()
+        shell: bash
+        run: |
+          rm -rf .runtime-auth .age-runtime-auth-identity real-production-runtime-preflight.json age age.tar.gz
