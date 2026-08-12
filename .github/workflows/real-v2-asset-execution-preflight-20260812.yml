@@ -1,0 +1,87 @@
+name: Real V2 Asset Execution Preflight 20260812
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'recovery/REAL_V2_ASSET_EXECUTION_PREFLIGHT_20260812_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Freeze dispatch and stop before first provider call
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from prepare_production_execution import prepare_or_advance
+
+          RUN_ID='real-v2-daily-20260812-001'
+          ROOT=Path.cwd()
+          result=prepare_or_advance(
+              RUN_ID,
+              execute_provider=False,
+              image_execution_adapter='volcengine_general3_t2i_api',
+          )
+          dispatch=json.loads((ROOT/'runs'/RUN_ID/'video-production/execution/asset-dispatch.json').read_text(encoding='utf-8'))
+          state=json.loads((ROOT/'runs'/RUN_ID/'video-production/execution/asset-executor-state.json').read_text(encoding='utf-8'))
+          tasks=dispatch['tasks']
+          assert len(tasks)==17
+          assert sum(x['generation_route']=='happyhorse' for x in tasks)==5
+          assert sum(x['generation_route']=='gpt-image-2' for x in tasks)==12
+          assert tasks[0]['task_id']=='dispatch-hh-seg-001a-hook'
+          assert tasks[0]['generation_route']=='happyhorse'
+          assert tasks[0]['duration_ms']==6000
+          assert result['status']=='PROVIDER_EXECUTION_REQUIRED'
+          assert state['status']=='PROVIDER_EXECUTION_REQUIRED'
+          assert state['provider_task_id']=='dispatch-hh-seg-001a-hook'
+          assert state['next_task_index']==0
+          assert state['artifact_paths_by_task_id']=={}
+          assert state['artifact_paths_by_asset_id']=={}
+          assert result['provider_execution_authorized'] is False
+          assert result['latest_discovery_used'] is False
+          evidence={
+              'schema_version':1,
+              'run_id':RUN_ID,
+              'gate':'REAL_V2_ASSET_EXECUTION_PREFLIGHT',
+              'status':'PASS',
+              'dispatch_task_count':len(tasks),
+              'happyhorse_task_count':5,
+              'image_task_count_including_cover':12,
+              'first_task_id':tasks[0]['task_id'],
+              'first_task_route':tasks[0]['generation_route'],
+              'first_task_duration_ms':tasks[0]['duration_ms'],
+              'image_execution_adapter':'volcengine_general3_t2i_api',
+              'next_task_index':0,
+              'provider_execution_authorized':False,
+              'provider_generation_executed':False,
+              'serial_execution':True,
+              'next_stage':'REAL_V2_ASSET_EXECUTION'
+          }
+          out=ROOT/'runs'/RUN_ID/'video-production/execution/real-v2-asset-execution-preflight.json'
+          out.write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(evidence,ensure_ascii=False,separators=(',',':')))
+          PY
+
+      - name: Commit frozen dispatch and preflight state
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-v2-daily-20260812-001'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/execution"
+          git diff --cached --quiet && { echo 'NO_ASSET_PREFLIGHT_OUTPUT'; exit 1; }
+          git commit -m "freeze V2 asset dispatch for $RUN_ID"
+          git push origin HEAD:implementation/global-production-v2
