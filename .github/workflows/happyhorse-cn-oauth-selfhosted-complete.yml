@@ -1,0 +1,93 @@
+name: HappyHorse CN OAuth Self-hosted Complete
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'runtime-auth/HAPPYHORSE_SELFHOSTED_COMPLETE'
+
+permissions:
+  contents: write
+
+jobs:
+  complete:
+    runs-on: [self-hosted, linux, x64, happyhorse-cn]
+    env:
+      HAPPYHORSE_OAUTH_CALLBACK_URL: ${{ secrets.HAPPYHORSE_OAUTH_CALLBACK_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+      - name: Fail closed on transaction and callback secret
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${HAPPYHORSE_OAUTH_CALLBACK_URL:-}"
+          test -s "$HOME/.happyhorse-oauth-github-bridge/transaction.json"
+          chmod 0600 "$HOME/.happyhorse-oauth-github-bridge/transaction.json"
+      - name: Exchange code and verify membership without generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          node <<'NODE'
+          const fs=require('node:fs');
+          const os=require('node:os');
+          const path=require('node:path');
+          const fail=(reason,details={})=>{console.error(JSON.stringify({status:'BLOCK',reason,...details}));process.exit(1)};
+          const statePath=path.join(os.homedir(),'.happyhorse-oauth-github-bridge','transaction.json');
+          const state=JSON.parse(fs.readFileSync(statePath,'utf8'));
+          if(state?.schema_version!==1||state?.appId!=='aorizon_cn'||typeof state.deviceId!=='string'||!state.deviceId||typeof state.codeVerifier!=='string'||state.codeVerifier.length!==43) fail('transaction_state_invalid');
+          let cb; try{cb=new URL(process.env.HAPPYHORSE_OAUTH_CALLBACK_URL)}catch{fail('callback_url_invalid')}
+          if(cb.protocol!=='http:'||cb.hostname!=='127.0.0.1'||cb.port!=='33897'||cb.pathname!=='/callback') fail('callback_route_mismatch');
+          const codes=cb.searchParams.getAll('code');
+          if(codes.length!==1||!codes[0].trim()) fail('callback_code_missing');
+          const authorizationCode=codes[0].trim();
+          const common={'User-Agent':'happyhorse-cli/0.1.9','X-App-Id':'aorizon_cn','X-Language':'zh-CN','X-Client-Type':'cli','X-Client-Version':'0.1.9','X-Client-Command':'login'};
+          (async()=>{
+            const tokenRes=await fetch('https://api-gateway.aorizon.com/api/v1/auth/cli/token',{method:'POST',headers:{...common,'Content-Type':'application/json'},body:JSON.stringify({authorizationCode,codeVerifier:state.codeVerifier,deviceId:state.deviceId,deviceName:'HappyHorse CLI (linux-x64)',appVersion:'0.1.9'})});
+            let body; try{body=await tokenRes.json()}catch{fail('token_exchange_non_json',{http_status:tokenRes.status})}
+            if(!tokenRes.ok||body?.success!==true) fail('token_exchange_rejected',{http_status:tokenRes.status,error_code:body?.errorCode??null,trace_id:body?.traceId??null});
+            const d=body?.data;
+            if(!d||typeof d.accessToken!=='string'||!d.accessToken||typeof d.refreshToken!=='string'||!d.refreshToken||!(Number(d.accessExpiresIn)>0)||!(Number(d.refreshExpiresIn)>0)) fail('token_exchange_success_shape_invalid');
+            const now=Date.now();
+            const session={appId:'aorizon_cn',deviceId:state.deviceId,accessToken:d.accessToken,refreshToken:d.refreshToken,accessExpiresAt:now+Number(d.accessExpiresIn)*1000,refreshExpiresAt:now+Number(d.refreshExpiresIn)*1000};
+            const membershipRes=await fetch('https://api-gateway.aorizon.com/api/v1/cli/membership/status',{method:'GET',headers:{...common,'X-Device-Id':state.deviceId,'Authorization':`Bearer ${d.accessToken}`}});
+            let membership=null; try{membership=await membershipRes.json()}catch{}
+            if(!membershipRes.ok||membership?.success===false) fail('membership_rejected',{http_status:membershipRes.status,error_code:membership?.errorCode??null,trace_id:membership?.traceId??null});
+            fs.writeFileSync('.happyhorse-session-source.json',JSON.stringify(session)+'\n',{mode:0o600});
+            fs.writeFileSync('runtime-auth/HAPPYHORSE_SELFHOSTED_EXCHANGE_RESULT.json',JSON.stringify({schema_version:1,status:'PASS',provider:'happyhorse_cn',token_exchange_http_status:tokenRes.status,membership_http_status:membershipRes.status,authenticated_session_valid:true,canonical_session_field_count:6,runner_boundary:'self_hosted',cli_executed:false,project_created:false,task_created:false,video_generation:false,credits_consumed:false,completed_at:new Date().toISOString()},null,2)+'\n');
+          })().catch(err=>fail('unexpected_exchange_error',{name:err?.name||'Error'}));
+          NODE
+      - name: Install pinned age and encrypt session with public recipient only
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          RECIPIENT="$(tr -d '\r\n' < runtime-auth/runtime-auth-public-key.txt)"
+          test -n "$RECIPIENT"
+          ./age/age --encrypt --recipient "$RECIPIENT" --output runtime-auth/happyhorse-session-import.v1.age .happyhorse-session-source.json
+          test -s runtime-auth/happyhorse-session-import.v1.age
+      - name: Clean plaintext transaction and session
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .happyhorse-session-source.json age.tar.gz
+          rm -rf age
+          rm -f "$HOME/.happyhorse-oauth-github-bridge/transaction.json"
+          rmdir "$HOME/.happyhorse-oauth-github-bridge" 2>/dev/null || true
+          test ! -e .happyhorse-session-source.json
+          test ! -e "$HOME/.happyhorse-oauth-github-bridge/transaction.json"
+      - name: Commit ciphertext handoff only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runtime-auth/happyhorse-session-import.v1.age runtime-auth/HAPPYHORSE_SELFHOSTED_EXCHANGE_RESULT.json
+          git diff --cached --quiet && exit 1 || true
+          git commit -m 'handoff refreshed HappyHorse CN session ciphertext'
+          git push origin HEAD:implementation/global-production-v2
