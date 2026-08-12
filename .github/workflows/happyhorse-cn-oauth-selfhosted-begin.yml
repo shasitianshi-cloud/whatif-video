@@ -1,0 +1,59 @@
+name: HappyHorse CN OAuth Self-hosted Begin
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'runtime-auth/HAPPYHORSE_SELFHOSTED_BEGIN'
+
+permissions:
+  contents: write
+
+jobs:
+  begin:
+    runs-on: [self-hosted, linux, x64, happyhorse-cn]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+      - name: Build fresh OAuth transaction on allowed-IP runner
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          STATE_DIR="$HOME/.happyhorse-oauth-github-bridge"
+          mkdir -p "$STATE_DIR"
+          chmod 0700 "$STATE_DIR"
+          node <<'NODE'
+          const fs=require('node:fs');
+          const os=require('node:os');
+          const path=require('node:path');
+          const crypto=require('node:crypto');
+          const stateDir=path.join(os.homedir(),'.happyhorse-oauth-github-bridge');
+          const statePath=path.join(stateDir,'transaction.json');
+          const deviceId=crypto.randomUUID();
+          const codeVerifier=crypto.randomBytes(32).toString('base64url');
+          if(codeVerifier.length!==43) throw new Error('unexpected verifier length');
+          const codeChallenge=crypto.createHash('sha256').update(codeVerifier,'ascii').digest('base64url');
+          const redirectUri='http://127.0.0.1:33897/callback';
+          const auth=new URL('https://happyhorse.cn/cli/auth');
+          auth.searchParams.set('code_challenge',codeChallenge);
+          auth.searchParams.set('redirect_uri',redirectUri);
+          const createdAt=new Date().toISOString();
+          fs.writeFileSync(statePath,JSON.stringify({schema_version:1,appId:'aorizon_cn',deviceId,codeVerifier,redirectUri,createdAt})+'\n',{mode:0o600});
+          fs.mkdirSync('runtime-auth',{recursive:true});
+          fs.writeFileSync('runtime-auth/HAPPYHORSE_SELFHOSTED_PENDING.json',JSON.stringify({schema_version:1,status:'WAITING_FOR_USER_AUTHORIZATION',provider:'happyhorse_cn',authorization_url:auth.toString(),callback_host:'127.0.0.1',callback_port:33897,callback_path:'/callback',transaction_state_location:'self_hosted_runner_private_home',cli_executed:false,generation_executed:false,credits_consumed:false,created_at:createdAt},null,2)+'\n');
+          NODE
+          test -s "$STATE_DIR/transaction.json"
+          chmod 0600 "$STATE_DIR/transaction.json"
+      - name: Commit sanitized authorization record only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runtime-auth/HAPPYHORSE_SELFHOSTED_PENDING.json
+          git diff --cached --quiet && exit 1 || true
+          git commit -m 'begin HappyHorse CN OAuth on self-hosted runner'
+          git push origin HEAD:implementation/global-production-v2
