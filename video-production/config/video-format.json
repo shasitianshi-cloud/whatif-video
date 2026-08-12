@@ -1,10 +1,39 @@
 {
-  "policy_id": "global-video-production-format.v1",
+  "policy_id": "global-video-production-format.v2",
   "video": {
     "width": 1280,
     "height": 720,
     "resolution": "720p",
-    "aspect_ratio": "16:9"
+    "aspect_ratio": "16:9",
+    "role": "content_stage_and_provider_frame"
+  },
+  "final_canvas": {
+    "width": 1280,
+    "height": 2276,
+    "aspect_ratio": "9:16",
+    "background": "black"
+  },
+  "content_stage": {
+    "x": 0,
+    "y": 778,
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9",
+    "fit": "cover"
+  },
+  "black_bars": {
+    "top": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 778
+    },
+    "bottom": {
+      "x": 0,
+      "y": 1498,
+      "width": 1280,
+      "height": 778
+    }
   },
   "references": {
     "generated_reference_target": "landscape_16_9",
@@ -18,11 +47,42 @@
   },
   "subtitles": {
     "primary_color": "white",
+    "font_family": "Noto Sans CJK SC",
+    "font_size_px": 52,
+    "line_height": 1.35,
+    "font_weight": 400,
+    "block_width_px": 1080,
+    "center_x_px": 640,
+    "center_y_px": 1887,
+    "region": "bottom_black_bar",
     "burned_in_generation": false,
     "owner": "render_compiler"
   },
+  "cover": {
+    "required": true,
+    "canvas_width": 1280,
+    "canvas_height": 2276,
+    "background_stage": {
+      "x": 0,
+      "y": 778,
+      "width": 1280,
+      "height": 720
+    },
+    "title": {
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 96,
+      "font_weight": 700,
+      "max_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "color": "white",
+      "region": "bottom_black_bar"
+    }
+  },
   "boundaries": {
-    "final_platform_canvas_frozen": false,
-    "cover_format_policy": "independent_unchanged"
+    "final_platform_canvas_frozen": true,
+    "source_visual_frame_remains_16_9": true,
+    "subtitle_over_content": false,
+    "cover_title_generated_by_image_model": false
   }
 }

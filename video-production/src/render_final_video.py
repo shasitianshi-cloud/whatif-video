@@ -1,4 +1,4 @@
-"""Render a closed current-run plan through the pinned HyperFrames runtime and gate the MP4."""
+"""Render a closed current-run plan through the pinned HyperFrames runtime and gate the vertical MP4."""
 from __future__ import annotations
 
 import argparse
@@ -46,6 +46,7 @@ def render_final_video(run_id: str) -> dict:
     plan_path = render_root / "render-plan.json"
     if not closure_path.is_file() or not plan_path.is_file():
         raise RuntimeError("FINAL_RENDER_INPUT_MISSING")
+
     closure = _read(closure_path)
     if closure.get("run_id") != run_id or closure.get("status") != "READY_FOR_HYPERFRAMES_RENDER":
         raise RuntimeError("RENDER_CLOSURE_GATE_INVALID")
@@ -53,13 +54,21 @@ def render_final_video(run_id: str) -> dict:
         raise RuntimeError("RENDER_PLAN_SHA256_MISMATCH")
     if closure.get("provider_generation_executed") is not False or closure.get("creative_replanning_performed") is not False:
         raise RuntimeError("RENDER_CLOSURE_BOUNDARY_INVALID")
+
     render_plan = _read(plan_path)
     if render_plan.get("run_id") != run_id:
         raise RuntimeError("CROSS_RUN_FINAL_RENDER_FORBIDDEN")
+    policy = _read(FORMAT_PATH)
+    canvas = policy["final_canvas"]
     composition = render_plan.get("composition") or {}
-    fmt = _read(FORMAT_PATH)["video"]
-    if composition.get("width") != fmt["width"] or composition.get("height") != fmt["height"]:
+    if (
+        render_plan.get("format_policy_id") != policy["policy_id"]
+        or composition.get("width") != canvas["width"]
+        or composition.get("height") != canvas["height"]
+        or composition.get("aspect_ratio") != canvas["aspect_ratio"]
+    ):
         raise RuntimeError("FINAL_VIDEO_FORMAT_POLICY_MISMATCH")
+
     expected_duration = int(composition.get("duration_ms") or 0)
     if expected_duration <= 0:
         raise RuntimeError("FINAL_VIDEO_DURATION_REQUIRED")
@@ -109,7 +118,7 @@ def render_final_video(run_id: str) -> dict:
         raise RuntimeError("FINAL_VIDEO_STREAM_MISSING")
     width = int(video_stream.get("width") or 0)
     height = int(video_stream.get("height") or 0)
-    if width != fmt["width"] or height != fmt["height"]:
+    if width != canvas["width"] or height != canvas["height"]:
         raise RuntimeError("FINAL_VIDEO_DIMENSIONS_INVALID")
     if not audio_streams:
         raise RuntimeError("FINAL_VIDEO_AUDIO_TRACK_MISSING")
@@ -133,6 +142,11 @@ def render_final_video(run_id: str) -> dict:
         "file_size_bytes": final_path.stat().st_size,
         "width": width,
         "height": height,
+        "aspect_ratio": canvas["aspect_ratio"],
+        "content_stage_width": policy["content_stage"]["width"],
+        "content_stage_height": policy["content_stage"]["height"],
+        "subtitle_region": policy["subtitles"]["region"],
+        "subtitle_font_size_px": policy["subtitles"]["font_size_px"],
         "duration_ms": duration_ms,
         "expected_duration_ms": expected_duration,
         "duration_tolerance_ms": tolerance_ms,

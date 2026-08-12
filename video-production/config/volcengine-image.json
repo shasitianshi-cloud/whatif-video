@@ -10,8 +10,9 @@
   "request_key": "high_aes_general_v30l_zt2i",
   "submit_action": "CVSync2AsyncSubmitTask",
   "query_action": "CVSync2AsyncGetResult",
-  "width": 1024,
-  "height": 1024,
+  "width": 1280,
+  "height": 720,
+  "target_aspect_ratio": "16:9",
   "timeout_seconds": 60,
   "poll_interval_seconds": 3,
   "max_polls": 100,
@@ -23,5 +24,12 @@
   "work_handoff_id": "WHATIF_VOLCENGINE_IMAGE_ADAPTER_WORK_HANDOFF_V1",
   "work_handoff_zip_sha256": "29afc8ff9a8287c3e0e3c20dab5212c0b3ff0b5ac5105e8df561c32cc985099a",
   "work_real_single_image_probe_pass": true,
-  "work_serial_3_task_smoke_pass": true
+  "work_serial_3_task_smoke_pass": true,
+  "resolution_change_from_work_probe": {
+    "work_probe_width": 1024,
+    "work_probe_height": 1024,
+    "production_target_width": 1280,
+    "production_target_height": 720,
+    "real_single_probe_required_before_next_production": true
+  }
 }

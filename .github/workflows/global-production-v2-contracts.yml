@@ -1,0 +1,106 @@
+name: Global Production V2 Contracts
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'anchor-program/**'
+      - 'governance/LLM_DECISION_GOVERNANCE_V1.md'
+      - 'counterfactual-reasoning/prompts/premise-discovery.md'
+      - 'video-production/config/video-format.json'
+      - 'video-production/config/visual-planning-policy.v2.json'
+      - 'video-production/config/volcengine-image.json'
+      - 'video-production/contracts/visual-material-planning-v2.md'
+      - 'video-production/prompts/visual-material-planner-v2.md'
+      - 'video-production/schemas/production-script.recovery-v2.schema.json'
+      - 'video-production/schemas/hyperframes-render-plan.schema.json'
+      - 'video-production/src/production_visual_planner.py'
+      - 'video-production/src/validate_production_script_v2.py'
+      - 'video-production/src/video-format-policy.js'
+      - 'video-production/src/hyperframes-render-compiler.js'
+      - 'video-production/src/build-hyperframes-composition.js'
+      - 'video-production/src/render_cover.py'
+      - 'video-production/src/render_final_video.py'
+      - 'video-production/src/volcengine_image_execution.py'
+      - 'video-production/tests/**'
+      - '.github/workflows/global-production-v2-contracts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          command -v ffprobe >/dev/null
+      - name: Python and JSON syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile \
+            anchor-program/src/daily_anchor_selector.py \
+            video-production/src/production_visual_planner.py \
+            video-production/src/validate_production_script_v2.py \
+            video-production/src/render_cover.py \
+            video-production/src/render_final_video.py \
+            video-production/src/volcengine_image_execution.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for name in [
+              'anchor-program/config/selection-policy.json',
+              'video-production/config/video-format.json',
+              'video-production/config/visual-planning-policy.v2.json',
+              'video-production/config/volcengine-image.json',
+              'video-production/schemas/production-script.recovery-v2.schema.json',
+              'video-production/schemas/hyperframes-render-plan.schema.json',
+          ]:
+              json.loads(Path(name).read_text(encoding='utf-8'))
+          print('GLOBAL_V2_JSON_PARSE=PASS')
+          PY
+      - name: Node syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check video-production/src/build-hyperframes-composition.js
+          node --check video-production/src/hyperframes-render-compiler.js
+          node --check video-production/src/video-format-policy.js
+      - name: Anchor Program contract
+        run: python3 anchor-program/tests/test_daily_anchor_selector.py
+      - name: Visual Planning V2 contract
+        run: python3 video-production/tests/test_visual_planning_contract_v2.py
+      - name: Host Visual Planner V2 regression
+        run: python3 video-production/tests/test_production_visual_planner_recovery.py
+      - name: Vertical format policy
+        run: node video-production/tests/video-global-format-policy.test.js
+      - name: Render compiler V2
+        run: node video-production/tests/hyperframes-render-compiler.test.js
+      - name: Strict motion contract
+        run: node video-production/tests/hyperframes-motion-parameter-contract.test.js
+      - name: Volcengine adapter unit
+        run: python3 video-production/tests/test_volcengine_image_adapter.py
+      - name: Volcengine 1280x720 serial mock
+        run: python3 video-production/tests/test_volcengine_image_executor_serial.py
+      - name: Materialize pinned CJK font
+        shell: bash
+        run: bash video-production/runtime/materialize-hyperframes-runtime.sh
+      - name: Deterministic cover render
+        run: python3 video-production/tests/test_render_cover.py
+      - name: No-provider proof
+        shell: bash
+        run: |
+          echo 'REAL_PROVIDER_CALL=false'
+          echo 'PROVIDER_GENERATION_EXECUTED=false'
+          echo 'CREDITS_CONSUMED=false'

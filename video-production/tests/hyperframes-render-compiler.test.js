@@ -3,7 +3,7 @@
 const assert = require('assert');
 const { compileRenderPlan, sha256Json } = require('../src/hyperframes-render-compiler.js');
 
-const runId = 'production-render-compiler-test';
+const runId = 'production-render-compiler-v2-test';
 const manifest = {
   schema_version: 1,
   run_id: runId,
@@ -25,7 +25,7 @@ const input = {
     ]},
     { segment_id: 'seg-002', start_ms: 1000, duration_ms: 1000, end_ms: 2000, audio_asset_id: 'a2', visual_assets: [
       { asset_id: 'i1', render_treatment: 'image_motion', start_ms: 1000, duration_ms: 1000, end_ms: 2000,
-        motion_intent: 'pan', motion_parameters: { start_x_percent: -2, end_x_percent: 2, start_y_percent: 0, end_y_percent: 0, start_scale: 1.04, end_scale: 1.04 },
+        motion_intent: 'pan', motion_parameters: { from: {x_percent:-2,y_percent:0,scale:1.04}, to:{x_percent:2,y_percent:0,scale:1.04} },
         fit: { mode: 'cover_crop', target_width: 1280, target_height: 720, preserve_aspect_ratio: true, stretch_allowed: false } }
     ]}
   ],
@@ -39,9 +39,13 @@ const p1 = compileRenderPlan(input, manifest);
 const p2 = compileRenderPlan(JSON.parse(JSON.stringify(input)), JSON.parse(JSON.stringify(manifest)));
 assert.deepStrictEqual(p1, p2);
 assert.strictEqual(sha256Json(p1), sha256Json(p2));
+assert.strictEqual(p1.format_policy_id, 'global-video-production-format.v2');
 assert.strictEqual(p1.composition.width, 1280);
-assert.strictEqual(p1.composition.height, 720);
+assert.strictEqual(p1.composition.height, 2276);
+assert.strictEqual(p1.composition.aspect_ratio, '9:16');
 assert.strictEqual(p1.composition.duration_ms, 2000);
+assert.deepStrictEqual(p1.layout.content_stage, {x:0,y:778,width:1280,height:720,aspect_ratio:'16:9',fit:'cover'});
+assert.strictEqual(p1.layers[0].stage.y, 778);
 assert.strictEqual(p1.layers[0].type, 'video');
 assert.strictEqual(p1.layers[0].treatment, 'direct_video');
 assert.strictEqual(p1.layers[1].type, 'image');
@@ -50,15 +54,17 @@ assert.strictEqual(p1.layers[1].motion.intent, 'pan');
 assert.deepStrictEqual(p1.layers[1].motion.parameters, input.timeline[1].visual_assets[0].motion_parameters);
 assert.strictEqual(p1.layers[1].fit.stretch_allowed, false);
 assert.strictEqual(p1.subtitles[0].font_family, 'Noto Sans CJK SC');
-assert.strictEqual(p1.subtitles[0].primary_color, 'white');
+assert.strictEqual(p1.subtitles[0].font_size_px, 52);
+assert.strictEqual(p1.subtitles[0].block_width_px, 1080);
+assert.strictEqual(p1.subtitles[0].center_y_px, 1887);
+assert.strictEqual(p1.subtitles[0].region, 'bottom_black_bar');
 assert.ok(!JSON.stringify(p1).includes('provider_metadata'));
 assert.ok(!JSON.stringify(p1).includes('authorization'));
 assert.ok(!JSON.stringify(p1).includes('media_id'));
 assert.ok(!JSON.stringify(p1).includes('task_id'));
-console.log('RENDER_COMPILER_REGRESSION_PASS=true');
-console.log('RENDER_COMPILER_DETERMINISTIC=true');
+console.log('RENDER_COMPILER_V2_REGRESSION_PASS=true');
+console.log('FINAL_CANVAS=1280x2276');
+console.log('CONTENT_STAGE=1280x720');
+console.log('SUBTITLE_FONT_SIZE=52');
+console.log('SUBTITLE_REGION=bottom_black_bar');
 console.log('RENDER_COMPILER_CREATIVE_DECISION=false');
-console.log('DIRECT_VIDEO_MAPPING_PASS=true');
-console.log('STATIC_IMAGE_MAPPING_PASS=true');
-console.log('IMAGE_MOTION_MAPPING_PASS=true');
-console.log('MOTION_PARAMETERS_PASSTHROUGH=true');

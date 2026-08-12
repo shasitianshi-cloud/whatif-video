@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 from pathlib import Path
 
@@ -10,6 +11,8 @@ EXECUTION_ADAPTER = "volcengine_general3_t2i_api"
 PROVIDER = "volcengine"
 PROVIDER_MODEL = "通用3.0-文生图"
 DEFAULT_CREDENTIAL_FILE = Path(".runtime-auth/volcengine-image/credential.txt")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+CONFIG_PATH = PROJECT_ROOT / "video-production" / "config" / "volcengine-image.json"
 
 
 def sha256_text(text: str) -> str:
@@ -34,6 +37,19 @@ def load_runtime_adapter(project_root: Path, credential_file: Path | None = None
     return VolcengineImageAdapter(ak, sk)
 
 
+def _image_config() -> dict:
+    data = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+    if (
+        data.get("provider") != PROVIDER
+        or data.get("width") != 1280
+        or data.get("height") != 720
+        or data.get("max_concurrency") != 1
+        or data.get("parallel_requests") is not False
+    ):
+        raise RuntimeError("VOLCENGINE_IMAGE_GLOBAL_FORMAT_CONTRACT_INVALID")
+    return data
+
+
 def execute_volcengine_image_task(task: dict, adapter: VolcengineImageAdapter, project_root: Path) -> tuple[Path, dict]:
     if task.get("generation_route") != "gpt-image-2" or task.get("expected_asset_kind") != "image":
         raise RuntimeError("VOLCENGINE_IMAGE_TASK_ROUTE_MISMATCH")
@@ -41,11 +57,23 @@ def execute_volcengine_image_task(task: dict, adapter: VolcengineImageAdapter, p
     if not prompt:
         raise RuntimeError("VOLCENGINE_IMAGE_PROMPT_REQUIRED")
 
-    result = adapter.generate(prompt)
+    config = _image_config()
+    requested_width = int(config["width"])
+    requested_height = int(config["height"])
+    result = adapter.generate(
+        prompt,
+        width=requested_width,
+        height=requested_height,
+        poll_interval=int(config["poll_interval_seconds"]),
+        max_polls=int(config["max_polls"]),
+    )
     data = result.image_bytes
     if not data:
         raise AdapterError("EMPTY_IMAGE", "provider returned zero image bytes")
     width, height = image_dimensions(data)
+    if width != requested_width or height != requested_height:
+        raise RuntimeError("VOLCENGINE_IMAGE_DIMENSIONS_MISMATCH")
+
     suffix = ".png" if data.startswith(b"\x89PNG\r\n\x1a\n") else ".jpg"
     out_dir = project_root / "runs" / task["run_id"] / "video-production" / "execution" / task["asset_id"]
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -77,6 +105,8 @@ def execute_volcengine_image_task(task: dict, adapter: VolcengineImageAdapter, p
         "file_size_bytes": image_path.stat().st_size,
         "width": width,
         "height": height,
+        "requested_width": requested_width,
+        "requested_height": requested_height,
         "max_concurrency_observed": adapter.max_in_flight,
         "control_returned_to_caller": True,
         "ambiguous_task_submission": False,

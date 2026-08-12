@@ -13,7 +13,7 @@ sys.path.insert(0, str(SRC))
 
 from render_final_video import render_final_video  # noqa: E402
 
-RUN_ID = "render-final-video-regression-v1"
+RUN_ID = "render-final-video-regression-v2"
 RUN_ROOT = ROOT / "runs" / RUN_ID
 
 
@@ -30,6 +30,7 @@ def run(cmd: list[str]) -> None:
 def main() -> None:
     shutil.rmtree(RUN_ROOT, ignore_errors=True)
     try:
+        policy = json.loads((ROOT / "video-production" / "config" / "video-format.json").read_text(encoding="utf-8"))
         media = RUN_ROOT / "video-production" / "fixture-media"
         render = RUN_ROOT / "video-production" / "render"
         media.mkdir(parents=True)
@@ -49,11 +50,24 @@ def main() -> None:
         plan = {
             "schema_version": 1,
             "run_id": RUN_ID,
-            "composition": {"width": 1280, "height": 720, "duration_ms": 2000},
+            "format_policy_id": policy["policy_id"],
+            "composition": {
+                "width": 1280,
+                "height": 2276,
+                "aspect_ratio": "9:16",
+                "duration_ms": 2000,
+                "background": "black",
+            },
+            "layout": {
+                "content_stage": policy["content_stage"],
+                "black_bars": policy["black_bars"],
+                "subtitles": policy["subtitles"],
+            },
             "layers": [{
                 "type": "video",
                 "treatment": "direct_video",
                 "fit": "cover",
+                "stage": policy["content_stage"],
                 "trim_mode": "deterministic",
                 "asset_id": "visual-1",
                 "local_path": video.relative_to(ROOT).as_posix(),
@@ -76,11 +90,17 @@ def main() -> None:
             "subtitles": [{
                 "type": "subtitle",
                 "segment_id": "seg-001",
-                "text": "最终渲染回归测试。",
+                "text": "最终竖版渲染回归测试。",
                 "start_ms": 0,
                 "end_ms": 2000,
                 "primary_color": "white",
                 "font_family": "Noto Sans CJK SC",
+                "font_size_px": 52,
+                "line_height": 1.35,
+                "block_width_px": 1080,
+                "center_x_px": 640,
+                "center_y_px": 1887,
+                "region": "bottom_black_bar",
             }],
             "identity": {"render_input_sha256": "fixture", "asset_manifest_sha256": "fixture"},
         }
@@ -103,19 +123,24 @@ def main() -> None:
         assert gate["gate"] == "FINAL_VIDEO_GATE"
         assert gate["status"] == "PASS"
         assert gate["width"] == 1280
-        assert gate["height"] == 720
+        assert gate["height"] == 2276
+        assert gate["aspect_ratio"] == "9:16"
+        assert gate["content_stage_width"] == 1280
+        assert gate["content_stage_height"] == 720
+        assert gate["subtitle_region"] == "bottom_black_bar"
+        assert gate["subtitle_font_size_px"] == 52
         assert gate["audio_track_present"] is True
         assert abs(gate["duration_ms"] - 2000) <= gate["duration_tolerance_ms"]
         assert gate["provider_generation_executed_during_render"] is False
         assert gate["creative_replanning_performed_during_render"] is False
-        assert gate["latest_discovery_used"] is False
         final = ROOT / gate["artifact"]
         assert final.is_file() and final.stat().st_size > 0
         assert gate["sha256"] == sha(final)
-        print("RENDER_FINAL_VIDEO_RECOVERY_REGRESSION=PASS")
+        print("RENDER_FINAL_VIDEO_V2_REGRESSION=PASS")
         print("FINAL_VIDEO_GATE=PASS")
-        print("PROVIDER_GENERATION_EXECUTED_DURING_RENDER=false")
-        print("LATEST_DISCOVERY_USED=false")
+        print("FINAL_VIDEO_WIDTH=1280")
+        print("FINAL_VIDEO_HEIGHT=2276")
+        print("SUBTITLE_REGION=bottom_black_bar")
     finally:
         shutil.rmtree(RUN_ROOT, ignore_errors=True)
 

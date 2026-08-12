@@ -1,25 +1,90 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "hyperframes-render-plan.schema.json",
-  "title": "Deterministic HyperFrames Render Plan",
+  "title": "Deterministic HyperFrames Render Plan V2",
   "type": "object",
-  "required": ["schema_version", "run_id", "composition", "layers", "audio", "subtitles"],
+  "required": [
+    "schema_version",
+    "run_id",
+    "format_policy_id",
+    "composition",
+    "layout",
+    "layers",
+    "audio",
+    "subtitles"
+  ],
   "properties": {
-    "schema_version": {"const": 1},
-    "run_id": {"type": "string", "minLength": 1},
+    "schema_version": {
+      "const": 1
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "format_policy_id": {
+      "const": "global-video-production-format.v2"
+    },
     "composition": {
       "type": "object",
-      "required": ["width", "height", "duration_ms"],
+      "required": [
+        "width",
+        "height",
+        "aspect_ratio",
+        "duration_ms",
+        "background"
+      ],
       "properties": {
-        "width": {"const": 1280},
-        "height": {"const": 720},
-        "duration_ms": {"type": "integer", "minimum": 1}
+        "width": {
+          "const": 1280
+        },
+        "height": {
+          "const": 2276
+        },
+        "aspect_ratio": {
+          "const": "9:16"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "background": {
+          "const": "black"
+        }
       },
       "additionalProperties": false
     },
-    "layers": {"type": "array"},
-    "audio": {"type": "array"},
-    "subtitles": {"type": "array"}
+    "layout": {
+      "type": "object",
+      "required": [
+        "content_stage",
+        "black_bars",
+        "subtitles"
+      ],
+      "properties": {
+        "content_stage": {
+          "type": "object"
+        },
+        "black_bars": {
+          "type": "object"
+        },
+        "subtitles": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "layers": {
+      "type": "array"
+    },
+    "audio": {
+      "type": "array"
+    },
+    "subtitles": {
+      "type": "array"
+    },
+    "identity": {
+      "type": "object"
+    }
   },
   "additionalProperties": false
 }
