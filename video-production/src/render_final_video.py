@@ -72,6 +72,7 @@ def render_final_video(run_id: str) -> dict:
         ["node", str(builder), str(plan_path), str(PROJECT_ROOT), str(composition_dir)],
         capture_output=True,
         text=True,
+        cwd=PROJECT_ROOT,
     )
     if build.returncode != 0:
         raise RuntimeError(f"HYPERFRAMES_COMPOSITION_BUILD_FAILED:{build.stderr.strip()[-1000:]}")
@@ -85,10 +86,13 @@ def render_final_video(run_id: str) -> dict:
     launcher = VP_ROOT / "runtime" / "run-hyperframes-local.sh"
     render_result_path = render_root / "hyperframes-render-result.json"
     render_stderr_path = render_root / "hyperframes-render-stderr.txt"
+    composition_arg = index_path.relative_to(PROJECT_ROOT).as_posix()
+    output_arg = final_path.relative_to(PROJECT_ROOT).as_posix()
     proc = subprocess.run(
-        ["bash", str(launcher), "render", "-c", str(index_path), "-o", str(final_path)],
+        ["bash", str(launcher), "render", "-c", composition_arg, "-o", output_arg],
         capture_output=True,
         text=True,
+        cwd=PROJECT_ROOT,
     )
     render_result_path.write_text((proc.stdout or "").strip() + "\n", encoding="utf-8")
     render_stderr_path.write_text(proc.stderr or "", encoding="utf-8")
