@@ -1,0 +1,116 @@
+name: Real V2 Daily TTS 20260812
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'recovery/REAL_V2_DAILY_TTS_20260812_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  tts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          command -v ffprobe >/dev/null
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Decrypt runtime auth and execute real TTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-v2-daily-20260812-001'
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/encrypted_runtime_auth.py decrypt-materialize \
+            --encrypted runtime-auth/runtime-auth.v1.age \
+            --identity-file .age-runtime-auth-identity
+          VOLCENGINE_TTS_API_KEY="$(python3 - <<'PY'
+          import json
+          from pathlib import Path
+          print(json.loads(Path('.runtime-auth/volcengine/credential.json').read_text())['api_key'], end='')
+          PY
+          )"
+          test -n "$VOLCENGINE_TTS_API_KEY"
+          export VOLCENGINE_TTS_API_KEY
+          python3 video-production/src/production_narration.py synthesize --run-id "$RUN_ID"
+
+      - name: Gate real V2 narration
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          run_id='real-v2-daily-20260812-001'
+          root=Path('runs')/run_id/'video-production/narration'
+          plan=json.loads((root/'narration-plan.json').read_text(encoding='utf-8'))
+          manifest=json.loads((root/'narration-audio-manifest.json').read_text(encoding='utf-8'))
+          gate=json.loads((root/'narration-completeness-gate.json').read_text(encoding='utf-8'))
+          upstream=json.loads((Path('runs')/run_id/'production-upstream-host-gate.json').read_text(encoding='utf-8'))
+          assert upstream['status']=='HOST_UPSTREAM_READY_FOR_TTS'
+          assert upstream['anchor']=='太阳风'
+          assert plan['run_id']==run_id and plan['segment_count_dynamic'] is True
+          assert manifest['run_id']==run_id
+          assert gate['run_id']==run_id and gate['narration_completeness_gate']=='PASS'
+          assert manifest['segment_count']==len(manifest['segments'])==plan['segment_count']
+          assert all(0 < int(x['duration_ms']) < 15000 for x in manifest['segments'])
+          summary={
+            'schema_version':1,
+            'run_id':run_id,
+            'gate':'REAL_V2_TTS_PRODUCTION_GATE',
+            'status':'PASS',
+            'provider':'volcengine',
+            'provider_generation_executed':True,
+            'segment_count':manifest['segment_count'],
+            'total_duration_ms':manifest['total_duration_ms'],
+            'segment_durations_ms':[int(x['duration_ms']) for x in manifest['segments']],
+            'all_segments_under_15000ms':True,
+            'same_run_lineage_verified':True,
+            'upstream_freeze_verified':True,
+            'next_stage':'VISUAL_PLANNER_V2',
+          }
+          (root/'real-v2-tts-production-gate.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps(summary,ensure_ascii=False,separators=(',',':')))
+          PY
+
+      - name: Remove plaintext auth
+        if: always()
+        shell: bash
+        run: |
+          rm -rf .runtime-auth .age-runtime-auth-identity age age.tar.gz
+
+      - name: Commit real V2 narration artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-v2-daily-20260812-001'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/narration"
+          git diff --cached --quiet && { echo 'NO_TTS_ARTIFACTS'; exit 1; }
+          git commit -m "synthesize real V2 narration for $RUN_ID"
+          git push origin HEAD:implementation/global-production-v2
