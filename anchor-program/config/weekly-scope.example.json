@@ -1,0 +1,23 @@
+{
+  "scope_version": 1,
+  "week_id": "2026-W33",
+  "theme": "太空",
+  "valid_from": "2026-08-10",
+  "valid_until": "2026-08-16",
+  "include": [
+    "天体",
+    "空间环境",
+    "航天基础设施",
+    "天文现象"
+  ],
+  "exclude": [
+    "纯数学概念",
+    "纯科幻虚构对象"
+  ],
+  "subscopes": [
+    "celestial_body",
+    "space_environment",
+    "astronomical_phenomenon",
+    "space_infrastructure"
+  ]
+}

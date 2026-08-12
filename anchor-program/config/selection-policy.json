@@ -1,0 +1,20 @@
+{
+  "policy_id": "anchor-program-selection.v1",
+  "candidate_count": 6,
+  "history_window_days": 30,
+  "minimum_interest_score": 3.5,
+  "max_consecutive_same_subscope": 2,
+  "weights": {
+    "curiosity": 0.30,
+    "recognizability": 0.15,
+    "consequence_depth": 0.25,
+    "visual_potential": 0.20,
+    "non_obviousness": 0.10
+  },
+  "boundaries": {
+    "anchor_selector_selects_object_only": true,
+    "anchor_selector_cannot_define_perturbation": true,
+    "anchor_selector_cannot_define_counterfactual": true,
+    "premise_discovery_remains_separate": true
+  }
+}
