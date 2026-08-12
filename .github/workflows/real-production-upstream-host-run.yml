@@ -1,0 +1,105 @@
+name: Real Production Upstream Host Run
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/REAL_PRODUCTION_UPSTREAM_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  upstream:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Execute real same-run host-managed upstream
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import copy
+          import json
+          import sys
+          from pathlib import Path
+
+          ROOT = Path.cwd()
+          sys.path.insert(0, str(ROOT / 'recovery'))
+          from production_upstream_host_bridge import run_upstream_host_managed
+
+          RUN_ID = 'real-moon-disappear-20260812T0122Z'
+          RESPONSE_PATH = ROOT / 'recovery/real-production-host-responses' / f'{RUN_ID}.json'
+          response = json.loads(RESPONSE_PATH.read_text(encoding='utf-8'))
+          assert response['run_id'] == RUN_ID
+          assert response['anchor'] == '月球'
+          assert response['counterfactual_contract'] == '如果月球永久消失'
+
+          def reasoning_host_call(stage, prompt, inputs):
+              assert prompt.strip()
+              assert inputs['run_id'] == RUN_ID
+              if stage not in ('premise_discovery', 'deep_reasoning', 'master_finalization'):
+                  raise RuntimeError('UNEXPECTED_REASONING_STAGE:' + stage)
+              return copy.deepcopy(response[stage])
+
+          vm_outputs = list(response['video_master_outputs'])
+          def video_master_model_call(prompt):
+              assert prompt.strip()
+              if not vm_outputs:
+                  raise RuntimeError('VIDEO_MASTER_HOST_RESPONSE_EXHAUSTED')
+              return vm_outputs.pop(0)
+
+          result = run_upstream_host_managed(
+              run_id=RUN_ID,
+              anchor='月球',
+              reasoning_host_call=reasoning_host_call,
+              video_master_model_call=video_master_model_call,
+              reasoning_model_name=response['reasoning_model'],
+              video_master_model_name=response['video_master_model'],
+          )
+          assert not vm_outputs
+          assert result['status'] == 'HOST_UPSTREAM_READY_FOR_TTS'
+          assert result['same_run_lineage_verified'] is True
+          assert result['provider_generation_executed'] is False
+          assert result['segment_count_dynamic'] is True
+
+          run_root = ROOT / 'runs' / RUN_ID
+          contract = {
+              'schema_version': 1,
+              'run_id': RUN_ID,
+              'anchor': response['anchor'],
+              'counterfactual_contract': response['counterfactual_contract'],
+              'default_constraints': response['default_constraints'],
+              'confirmed_by_user': True,
+              'production_lineage_root': True,
+          }
+          (run_root / 'input' / 'counterfactual-contract.json').write_text(
+              json.dumps(contract, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          (run_root / 'production-upstream-host-gate.json').write_text(
+              json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps({
+              'RUN_ID': RUN_ID,
+              'STATUS': result['status'],
+              'COUNTERFACTUAL_MASTER_SHA256': result['counterfactual_master_sha256'],
+              'VIDEO_MASTER_SHA256': result['video_master_sha256'],
+              'NARRATION_SEGMENT_COUNT': result['narration_segment_count'],
+              'SEGMENT_COUNT_DYNAMIC': result['segment_count_dynamic'],
+              'PROVIDER_GENERATION_EXECUTED': False,
+          }, ensure_ascii=False))
+          PY
+
+      - name: Commit formal production lineage
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-moon-disappear-20260812T0122Z'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID"
+          git diff --cached --quiet && { echo 'NO_FORMAL_RUN_OUTPUT'; exit 1; }
+          git commit -m "create formal production upstream run $RUN_ID"
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
