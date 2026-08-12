@@ -18,20 +18,31 @@ function projectRootAssetUrl(projectRoot, localPath) {
 }
 
 function normalizeMotion(motion) {
-  if (!motion || !motion.parameters || typeof motion.parameters !== 'object') {
+  if (!motion || !motion.parameters || typeof motion.parameters !== 'object' || Array.isArray(motion.parameters)) {
     throw new Error('MOTION_PARAMETERS_REQUIRED');
   }
   const p = motion.parameters;
-  const from = p.from && typeof p.from === 'object' ? p.from : {
+  const from = p.from && typeof p.from === 'object' && !Array.isArray(p.from) ? p.from : {
     x_percent: p.start_x_percent, y_percent: p.start_y_percent, scale: p.start_scale
   };
-  const to = p.to && typeof p.to === 'object' ? p.to : {
+  const to = p.to && typeof p.to === 'object' && !Array.isArray(p.to) ? p.to : {
     x_percent: p.end_x_percent, y_percent: p.end_y_percent, scale: p.end_scale
   };
-  const clean = (v, fallback) => Number.isFinite(Number(v)) ? Number(v) : fallback;
+  const requireNumber = (value) => {
+    if (typeof value !== 'number' || !Number.isFinite(value)) throw new Error('INVALID_MOTION_PARAMETERS');
+    return value;
+  };
   const result = {
-    from: { x_percent: clean(from.x_percent, 0), y_percent: clean(from.y_percent, 0), scale: clean(from.scale, 1) },
-    to: { x_percent: clean(to.x_percent, 0), y_percent: clean(to.y_percent, 0), scale: clean(to.scale, 1) }
+    from: {
+      x_percent: requireNumber(from.x_percent),
+      y_percent: requireNumber(from.y_percent),
+      scale: requireNumber(from.scale),
+    },
+    to: {
+      x_percent: requireNumber(to.x_percent),
+      y_percent: requireNumber(to.y_percent),
+      scale: requireNumber(to.scale),
+    },
   };
   for (const side of ['from', 'to']) {
     if (!(result[side].scale > 0)) throw new Error('INVALID_MOTION_PARAMETERS');
