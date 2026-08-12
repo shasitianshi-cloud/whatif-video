@@ -1,0 +1,57 @@
+name: HappyHorse CN Auth Error Static Probe
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - '.github/workflows/happyhorse-cn-auth-error-static-probe.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  static-probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify official CLI binary without execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo hh-cli.bin 'https://happyhorse-cli-releases.oss-accelerate.aliyuncs.com/happyhorse-cli/0.1.9/happyhorse-cli-linux-x64'
+          echo 'dd9f32e2fca68289e4ec542298fe3e40505333a6ae53c2b91d2070164b7d0f5a  hh-cli.bin' | sha256sum -c -
+          chmod 0400 hh-cli.bin
+          file hh-cli.bin
+      - name: Extract only auth/error-related printable strings
+        shell: bash
+        run: |
+          set -euo pipefail
+          strings -a -n 4 hh-cli.bin > hh-strings.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          lines=Path('hh-strings.txt').read_text(errors='replace').splitlines()
+          needles=('2024','authorizationcode','authorization code','auth code','invalid code','expired code','code expired','code invalid','login','/v1/auth/cli/token')
+          hits=[]
+          for i,line in enumerate(lines):
+              low=line.lower()
+              if any(n in low for n in needles):
+                  lo=max(0,i-4); hi=min(len(lines),i+5)
+                  hits.append((i+1, lines[lo:hi]))
+          print('STATIC_SHA_VERIFIED=true')
+          print(f'HIT_GROUPS={len(hits)}')
+          for idx,(line_no,group) in enumerate(hits[:80],1):
+              print(f'--- HIT {idx} line={line_no} ---')
+              for s in group:
+                  # avoid dumping JWT-like or long opaque strings
+                  if len(s)>300: s=s[:300]+'...[truncated]'
+                  print(s)
+          PY
+      - name: Assert binary was never executable
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -x hh-cli.bin
+          echo 'CLI_EXECUTED=false'
+          echo 'PROVIDER_API_CALLED=false'
+          echo 'GENERATION_EXECUTED=false'
