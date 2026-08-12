@@ -1,0 +1,4 @@
+run_id=real-moon-disappear-20260812T0122Z
+execution_adapter=volcengine_general3_t2i_api
+max_concurrency=1
+formal_image_task_count=9
