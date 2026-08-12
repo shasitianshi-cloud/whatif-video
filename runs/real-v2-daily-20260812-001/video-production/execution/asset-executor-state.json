@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "run_id": "real-v2-daily-20260812-001",
+  "serial_execution": true,
+  "project_reuse": false,
+  "latest_discovery_used": false,
+  "next_task_index": 0,
+  "artifact_paths_by_task_id": {},
+  "artifact_paths_by_asset_id": {},
+  "status": "PROVIDER_EXECUTION_REQUIRED",
+  "block_code": null,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false,
+  "provider_task_id": "dispatch-hh-seg-001a-hook"
+}

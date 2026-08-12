@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "real-v2-daily-20260812-001",
+  "production_script_sha256": "ac3ea2e8a95d7cdcff9c9c3746bb173790601accd9bb1ac34c8d2e9f7287f4fa",
+  "narration_manifest_sha256": "ccd61ec837b610f72930fed3e1b40dd7e114bea36bd5285dcb2eace0a37b121a",
+  "asset_dispatch": "runs/real-v2-daily-20260812-001/video-production/execution/asset-dispatch.json",
+  "asset_dispatch_sha256": "c1bc2ef309b4fb2cf9b9ea44745bf0e890c5572a21388c94e0d884c1efd7d0ea",
+  "serial_execution": true,
+  "latest_discovery_used": false,
+  "provider_execution_authorized": false,
+  "image_execution_adapter": "volcengine_general3_t2i_api",
+  "status": "PROVIDER_EXECUTION_REQUIRED",
+  "next_task_index": 0,
+  "block_code": null,
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false,
+  "provider_task_id": "dispatch-hh-seg-001a-hook"
+}
