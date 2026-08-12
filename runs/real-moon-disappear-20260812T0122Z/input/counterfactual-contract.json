@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "anchor": "月球",
+  "counterfactual_contract": "如果月球永久消失",
+  "default_constraints": [
+    "地球其他条件不变",
+    "太阳、时间尺度、物理规律不变",
+    "只推演由该变化产生的连锁影响"
+  ],
+  "confirmed_by_user": true,
+  "production_lineage_root": true
+}

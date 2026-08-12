@@ -1,0 +1,7 @@
+{
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "counterfactual_master_path": "/home/runner/work/whatif-video/whatif-video/runs/real-moon-disappear-20260812T0122Z/counterfactual-reasoning/counterfactual-master.md",
+  "expected_sha256": "fd8cec417ffd6886e6f29c0440956272264f88c396a42e5895e3e3b3fee6562d",
+  "actual_sha256": "fd8cec417ffd6886e6f29c0440956272264f88c396a42e5895e3e3b3fee6562d",
+  "verification_result": "PASS"
+}

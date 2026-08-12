@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "id": "celestial:moon",
+      "record_type": "concept_model",
+      "label": "月球"
+    },
+    {
+      "id": "mechanism:lunar_gravity",
+      "record_type": "causal_pattern",
+      "label": "月球引力作用"
+    },
+    {
+      "id": "signal:lunar_tidal_forcing",
+      "record_type": "observation_record",
+      "label": "月球潮汐驱动力"
+    },
+    {
+      "id": "claim:tidal_pattern",
+      "record_type": "claim",
+      "label": "地球海洋存在月球贡献的潮汐节律"
+    },
+    {
+      "id": "guard:tide_dependent_schedules",
+      "record_type": "normative_rule",
+      "label": "依赖既有潮汐节律的沿海活动安排"
+    },
+    {
+      "id": "action:solar_dominated_tides",
+      "record_type": "causal_pattern",
+      "label": "潮汐转为太阳作用占主导"
+    },
+    {
+      "id": "aspect:tidal_range",
+      "record_type": "concept_model",
+      "archetype_role": [
+        "Aspect"
+      ],
+      "label": "沿海潮差与潮流节律"
+    },
+    {
+      "id": "state:coastal_adjustment",
+      "record_type": "state_transition",
+      "label": "沿海生态与活动重新适应"
+    },
+    {
+      "id": "evidence:celestial_mechanics",
+      "record_type": "evidence",
+      "label": "地月引力与潮汐的天体力学观测"
+    }
+  ],
+  "edges": [
+    {
+      "source": "celestial:moon",
+      "relation": "requires",
+      "target": "mechanism:lunar_gravity"
+    },
+    {
+      "source": "mechanism:lunar_gravity",
+      "relation": "precedes",
+      "target": "signal:lunar_tidal_forcing"
+    },
+    {
+      "source": "signal:lunar_tidal_forcing",
+      "relation": "indicates",
+      "target": "claim:tidal_pattern"
+    },
+    {
+      "source": "signal:lunar_tidal_forcing",
+      "relation": "precedes",
+      "target": "guard:tide_dependent_schedules"
+    },
+    {
+      "source": "guard:tide_dependent_schedules",
+      "relation": "conflicts_with",
+      "target": "action:solar_dominated_tides"
+    },
+    {
+      "source": "action:solar_dominated_tides",
+      "relation": "affects",
+      "target": "aspect:tidal_range"
+    },
+    {
+      "source": "action:solar_dominated_tides",
+      "relation": "precedes",
+      "target": "state:coastal_adjustment"
+    },
+    {
+      "source": "evidence:celestial_mechanics",
+      "relation": "supports",
+      "target": "claim:tidal_pattern"
+    }
+  ],
+  "seed": "celestial:moon",
+  "max_depth": 5,
+  "perturbation": {
+    "kind": "set_attribute",
+    "rationale": "月球永久消失可在最小关系图中表示为月球节点的存在状态永久变为不存在；这与自然语言契约表达的是同一项变化。",
+    "node": "celestial:moon",
+    "attribute": "existence",
+    "value": false,
+    "mode": "permanent"
+  }
+}

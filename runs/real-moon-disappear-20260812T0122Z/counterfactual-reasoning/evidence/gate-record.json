@@ -1,0 +1,13 @@
+{
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "gate": "COUNTERFACTUAL_MASTER_GATE",
+  "status": "PASS",
+  "execution_mode": "real",
+  "real_execution_verified": true,
+  "artifact": "runs/real-moon-disappear-20260812T0122Z/counterfactual-reasoning/counterfactual-master.md",
+  "sha256": "fd8cec417ffd6886e6f29c0440956272264f88c396a42e5895e3e3b3fee6562d",
+  "operator_baseline_sha256": "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80",
+  "operator_baseline_unchanged": true,
+  "knowledge_persistence": false,
+  "completed_at": "2026-08-12T09:28:25+08:00"
+}

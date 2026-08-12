@@ -1,0 +1,7 @@
+{
+  "prompt_path": "prompts/premise-discovery.md",
+  "prompt_sha256": "bd71368b0c19a46e2c2c9ca999c1ea98a7167b5a4f0d32a6457ff9b1df4bbcb1",
+  "model": "GPT-5.6 Sol host-managed",
+  "input_ref": "input/anchor.json",
+  "output_ref": "evidence/premise-discovery-attempt-1-model-raw.txt"
+}

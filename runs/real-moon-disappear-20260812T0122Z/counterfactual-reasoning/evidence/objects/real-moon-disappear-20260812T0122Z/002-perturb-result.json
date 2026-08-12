@@ -1,0 +1,59 @@
+{
+  "perturbation": {
+    "kind": "set_attribute",
+    "rationale": "月球永久消失可在最小关系图中表示为月球节点的存在状态永久变为不存在；这与自然语言契约表达的是同一项变化。",
+    "node": "celestial:moon",
+    "attribute": "existence",
+    "value": false,
+    "mode": "permanent"
+  },
+  "edges_after": [
+    {
+      "source": "celestial:moon",
+      "relation": "requires",
+      "target": "mechanism:lunar_gravity"
+    },
+    {
+      "source": "mechanism:lunar_gravity",
+      "relation": "precedes",
+      "target": "signal:lunar_tidal_forcing"
+    },
+    {
+      "source": "signal:lunar_tidal_forcing",
+      "relation": "indicates",
+      "target": "claim:tidal_pattern"
+    },
+    {
+      "source": "signal:lunar_tidal_forcing",
+      "relation": "precedes",
+      "target": "guard:tide_dependent_schedules"
+    },
+    {
+      "source": "guard:tide_dependent_schedules",
+      "relation": "conflicts_with",
+      "target": "action:solar_dominated_tides"
+    },
+    {
+      "source": "action:solar_dominated_tides",
+      "relation": "affects",
+      "target": "aspect:tidal_range"
+    },
+    {
+      "source": "action:solar_dominated_tides",
+      "relation": "precedes",
+      "target": "state:coastal_adjustment"
+    },
+    {
+      "source": "evidence:celestial_mechanics",
+      "relation": "supports",
+      "target": "claim:tidal_pattern"
+    }
+  ],
+  "removed": [],
+  "added": [],
+  "notices": [
+    "ATTRIBUTE_DELTA:celestial:moon.existence = False (permanent)"
+  ],
+  "decision": "continue",
+  "invalid_reasons": []
+}

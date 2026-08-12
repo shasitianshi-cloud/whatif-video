@@ -1,0 +1,119 @@
+{
+  "seed": "signal:lunar_influence_absent",
+  "max_depth": 6,
+  "nodes": [
+    {
+      "id": "signal:lunar_influence_absent",
+      "record_type": "observation_record",
+      "label": "月球引力与反射光贡献消失"
+    },
+    {
+      "id": "claim:tides_not_zero",
+      "record_type": "claim",
+      "label": "太阳潮汐仍在，海洋潮汐不会归零"
+    },
+    {
+      "id": "action:tidal_reorganization",
+      "record_type": "causal_pattern",
+      "label": "潮汐与沿岸水流重新调整"
+    },
+    {
+      "id": "aspect:tidal_range",
+      "record_type": "concept_model",
+      "archetype_role": [
+        "Aspect"
+      ],
+      "label": "潮差与潮流节律"
+    },
+    {
+      "id": "state:coastal_adaptation",
+      "record_type": "state_transition",
+      "label": "沿海生态和人类活动适应新节律"
+    },
+    {
+      "id": "action:lunar_torque_removed",
+      "record_type": "causal_pattern",
+      "label": "月球潮汐扭矩长期作用消失"
+    },
+    {
+      "id": "aspect:spin_axis_evolution",
+      "record_type": "concept_model",
+      "archetype_role": [
+        "Aspect"
+      ],
+      "label": "自转与地轴长期演化"
+    },
+    {
+      "id": "state:long_term_climate_shift",
+      "record_type": "state_transition",
+      "label": "长期季节与气候分布可能进一步改变"
+    },
+    {
+      "id": "guard:coastal_replanning",
+      "record_type": "normative_rule",
+      "label": "港口与沿海活动重新安排作业节律"
+    },
+    {
+      "id": "claim:obliquity_uncertain",
+      "record_type": "claim",
+      "label": "无月地球地轴变化可能扩大但具体范围不唯一"
+    },
+    {
+      "id": "evidence:celestial_dynamics",
+      "record_type": "evidence",
+      "label": "潮汐观测与无月地球动力学研究"
+    }
+  ],
+  "edges": [
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "indicates",
+      "target": "claim:tides_not_zero"
+    },
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "precedes",
+      "target": "action:tidal_reorganization"
+    },
+    {
+      "source": "action:tidal_reorganization",
+      "relation": "affects",
+      "target": "aspect:tidal_range"
+    },
+    {
+      "source": "action:tidal_reorganization",
+      "relation": "precedes",
+      "target": "state:coastal_adaptation"
+    },
+    {
+      "source": "guard:coastal_replanning",
+      "relation": "constrains",
+      "target": "action:tidal_reorganization"
+    },
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "precedes",
+      "target": "action:lunar_torque_removed"
+    },
+    {
+      "source": "action:lunar_torque_removed",
+      "relation": "affects",
+      "target": "aspect:spin_axis_evolution"
+    },
+    {
+      "source": "action:lunar_torque_removed",
+      "relation": "precedes",
+      "target": "state:long_term_climate_shift"
+    },
+    {
+      "source": "evidence:celestial_dynamics",
+      "relation": "supports",
+      "target": "claim:tides_not_zero"
+    },
+    {
+      "source": "evidence:celestial_dynamics",
+      "relation": "supports",
+      "target": "claim:obliquity_uncertain"
+    }
+  ]
+}

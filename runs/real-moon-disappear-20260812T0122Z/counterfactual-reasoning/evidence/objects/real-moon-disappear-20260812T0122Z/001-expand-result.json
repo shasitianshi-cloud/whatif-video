@@ -1,0 +1,226 @@
+{
+  "seed": "celestial:moon",
+  "max_depth": 5,
+  "edges_legal": [
+    {
+      "source": "celestial:moon",
+      "relation": "requires",
+      "target": "mechanism:lunar_gravity"
+    },
+    {
+      "source": "mechanism:lunar_gravity",
+      "relation": "precedes",
+      "target": "signal:lunar_tidal_forcing"
+    },
+    {
+      "source": "signal:lunar_tidal_forcing",
+      "relation": "indicates",
+      "target": "claim:tidal_pattern"
+    },
+    {
+      "source": "signal:lunar_tidal_forcing",
+      "relation": "precedes",
+      "target": "guard:tide_dependent_schedules"
+    },
+    {
+      "source": "guard:tide_dependent_schedules",
+      "relation": "conflicts_with",
+      "target": "action:solar_dominated_tides"
+    },
+    {
+      "source": "action:solar_dominated_tides",
+      "relation": "affects",
+      "target": "aspect:tidal_range"
+    },
+    {
+      "source": "action:solar_dominated_tides",
+      "relation": "precedes",
+      "target": "state:coastal_adjustment"
+    },
+    {
+      "source": "evidence:celestial_mechanics",
+      "relation": "supports",
+      "target": "claim:tidal_pattern"
+    }
+  ],
+  "edges_rejected": [],
+  "layers": [
+    {
+      "depth": 1,
+      "steps": [
+        {
+          "from": "celestial:moon",
+          "relation": "requires",
+          "to": "mechanism:lunar_gravity",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "mechanism:lunar_gravity"
+      ],
+      "relation_types": [
+        "requires"
+      ],
+      "newly_dominant_relations": [
+        "requires"
+      ],
+      "newly_entered_roles": [
+        "Causal",
+        "Mechanism"
+      ],
+      "regime_change": false
+    },
+    {
+      "depth": 2,
+      "steps": [
+        {
+          "from": "mechanism:lunar_gravity",
+          "relation": "precedes",
+          "to": "signal:lunar_tidal_forcing",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "signal:lunar_tidal_forcing"
+      ],
+      "relation_types": [
+        "precedes"
+      ],
+      "newly_dominant_relations": [
+        "precedes"
+      ],
+      "newly_entered_roles": [
+        "Observation"
+      ],
+      "regime_change": true
+    },
+    {
+      "depth": 3,
+      "steps": [
+        {
+          "from": "signal:lunar_tidal_forcing",
+          "relation": "indicates",
+          "to": "claim:tidal_pattern",
+          "new_node": true
+        },
+        {
+          "from": "signal:lunar_tidal_forcing",
+          "relation": "precedes",
+          "to": "guard:tide_dependent_schedules",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "claim:tidal_pattern",
+        "guard:tide_dependent_schedules"
+      ],
+      "relation_types": [
+        "indicates",
+        "precedes"
+      ],
+      "newly_dominant_relations": [
+        "indicates"
+      ],
+      "newly_entered_roles": [
+        "Claim",
+        "Guard",
+        "Normative"
+      ],
+      "regime_change": true
+    },
+    {
+      "depth": 4,
+      "steps": [
+        {
+          "from": "guard:tide_dependent_schedules",
+          "relation": "conflicts_with",
+          "to": "action:solar_dominated_tides",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "action:solar_dominated_tides"
+      ],
+      "relation_types": [
+        "conflicts_with"
+      ],
+      "newly_dominant_relations": [
+        "conflicts_with"
+      ],
+      "newly_entered_roles": [],
+      "regime_change": true
+    },
+    {
+      "depth": 5,
+      "steps": [
+        {
+          "from": "action:solar_dominated_tides",
+          "relation": "conflicts_with",
+          "to": "guard:tide_dependent_schedules",
+          "new_node": false
+        },
+        {
+          "from": "action:solar_dominated_tides",
+          "relation": "affects",
+          "to": "aspect:tidal_range",
+          "new_node": true
+        },
+        {
+          "from": "action:solar_dominated_tides",
+          "relation": "precedes",
+          "to": "state:coastal_adjustment",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "aspect:tidal_range",
+        "state:coastal_adjustment"
+      ],
+      "relation_types": [
+        "affects",
+        "conflicts_with",
+        "precedes"
+      ],
+      "newly_dominant_relations": [
+        "affects"
+      ],
+      "newly_entered_roles": [
+        "Aspect",
+        "State"
+      ],
+      "regime_change": true
+    }
+  ],
+  "reached_nodes": [
+    "action:solar_dominated_tides",
+    "aspect:tidal_range",
+    "celestial:moon",
+    "claim:tidal_pattern",
+    "guard:tide_dependent_schedules",
+    "mechanism:lunar_gravity",
+    "signal:lunar_tidal_forcing",
+    "state:coastal_adjustment"
+  ],
+  "terminal_nodes": [
+    "aspect:tidal_range",
+    "claim:tidal_pattern",
+    "state:coastal_adjustment"
+  ],
+  "regime_change_depths": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "frontier_remaining": true,
+  "derived_view": [
+    {
+      "source": "mechanism:lunar_gravity",
+      "relation": "precedes",
+      "target": "guard:tide_dependent_schedules",
+      "origin": "inferred"
+    }
+  ],
+  "decision": "continue",
+  "invalid_reasons": []
+}

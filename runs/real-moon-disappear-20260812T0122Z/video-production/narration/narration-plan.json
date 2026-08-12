@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "source_video_master_path": "runs/real-moon-disappear-20260812T0122Z/video-master/video-master.md",
+  "source_video_master_sha256": "243bb81c5145748ae3cb3b8af726df3752594539f959ecbc65dfe35b84c8fd98",
+  "segment_count": 8,
+  "segment_count_dynamic": true,
+  "historical_probe_segment_count_binding": false,
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false,
+  "segmentation": {
+    "lossless": true,
+    "safe_initial_character_limit": 256,
+    "provider_max_text_utf8_bytes": 1024
+  },
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "source_start": 0,
+      "source_end": 52,
+      "text": "月球消失的那一刻，海水不会从海岸退光，也不会立刻淹没所有城市，最先消失的是月球持续拉动海洋的那部分力量。",
+      "utf8_byte_length": 156
+    },
+    {
+      "segment_id": "seg-002",
+      "order": 2,
+      "source_start": 52,
+      "source_end": 102,
+      "text": "太阳还在拉动海水，所以潮汐不会归零，但许多海湾和港口熟悉的涨落会变弱、换节奏，沿岸水流也会重新调整。",
+      "utf8_byte_length": 150
+    },
+    {
+      "segment_id": "seg-003",
+      "order": 3,
+      "source_start": 102,
+      "source_end": 162,
+      "text": "靠每天涨落海水露出和淹没的滩涂里，贝类、蟹、海藻和捕食者先面对一个不再熟悉的水位表，渔民和港口也要重新学习什么时候进出。",
+      "utf8_byte_length": 180
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "source_start": 162,
+      "source_end": 204,
+      "text": "夜里另一个变化更直观，天空失去月光，满月、月相、月食和由月球造成的日食从此不再出现。",
+      "utf8_byte_length": 126
+    },
+    {
+      "segment_id": "seg-005",
+      "order": 5,
+      "source_start": 204,
+      "source_end": 269,
+      "text": "地球本身却不会突然换成另一种转速，一天不会马上变长或变短，只是月球长期拖慢地球自转的那股潮汐作用消失，太阳留下的潮汐作用继续存在。",
+      "utf8_byte_length": 195
+    },
+    {
+      "segment_id": "seg-006",
+      "order": 6,
+      "source_start": 269,
+      "source_end": 346,
+      "text": "真正慢的变化要等很久才出现，没有月球持续参与地球自转轴的运动，地轴在几十万到上亿年的时间里可能比今天摆动得更大，但具体范围仍取决于整个太阳系怎样拉扯地球。",
+      "utf8_byte_length": 231
+    },
+    {
+      "segment_id": "seg-007",
+      "order": 7,
+      "source_start": 346,
+      "source_end": 420,
+      "text": "这会让长期季节和气候走向比今天多一层变化，可它不是第二天就发生的灾难，眼前的世界更像是先失去熟悉的潮汐和夜空，再让海岸生态与人类活动一点点重新适应。",
+      "utf8_byte_length": 222
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "source_start": 420,
+      "source_end": 495,
+      "text": "最后留下的是一个仍围着太阳运行、仍有白天黑夜和太阳潮汐的地球，只是海岸的节奏、夜晚的亮度，以及极长时间里的自转与气候变化，都走上了没有月球的新路线。\n",
+      "utf8_byte_length": 223
+    }
+  ]
+}

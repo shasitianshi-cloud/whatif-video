@@ -1,0 +1,194 @@
+{
+  "seed": "signal:lunar_influence_absent",
+  "max_depth": 6,
+  "edges_legal": [
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "indicates",
+      "target": "claim:tides_not_zero"
+    },
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "precedes",
+      "target": "action:tidal_reorganization"
+    },
+    {
+      "source": "action:tidal_reorganization",
+      "relation": "affects",
+      "target": "aspect:tidal_range"
+    },
+    {
+      "source": "action:tidal_reorganization",
+      "relation": "precedes",
+      "target": "state:coastal_adaptation"
+    },
+    {
+      "source": "guard:coastal_replanning",
+      "relation": "constrains",
+      "target": "action:tidal_reorganization"
+    },
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "precedes",
+      "target": "action:lunar_torque_removed"
+    },
+    {
+      "source": "action:lunar_torque_removed",
+      "relation": "affects",
+      "target": "aspect:spin_axis_evolution"
+    },
+    {
+      "source": "action:lunar_torque_removed",
+      "relation": "precedes",
+      "target": "state:long_term_climate_shift"
+    },
+    {
+      "source": "evidence:celestial_dynamics",
+      "relation": "supports",
+      "target": "claim:tides_not_zero"
+    },
+    {
+      "source": "evidence:celestial_dynamics",
+      "relation": "supports",
+      "target": "claim:obliquity_uncertain"
+    }
+  ],
+  "edges_rejected": [],
+  "layers": [
+    {
+      "depth": 1,
+      "steps": [
+        {
+          "from": "signal:lunar_influence_absent",
+          "relation": "indicates",
+          "to": "claim:tides_not_zero",
+          "new_node": true
+        },
+        {
+          "from": "signal:lunar_influence_absent",
+          "relation": "precedes",
+          "to": "action:tidal_reorganization",
+          "new_node": true
+        },
+        {
+          "from": "signal:lunar_influence_absent",
+          "relation": "precedes",
+          "to": "action:lunar_torque_removed",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "claim:tides_not_zero",
+        "action:tidal_reorganization",
+        "action:lunar_torque_removed"
+      ],
+      "relation_types": [
+        "indicates",
+        "precedes"
+      ],
+      "newly_dominant_relations": [
+        "indicates",
+        "precedes"
+      ],
+      "newly_entered_roles": [
+        "Causal",
+        "Claim",
+        "Mechanism"
+      ],
+      "regime_change": false
+    },
+    {
+      "depth": 2,
+      "steps": [
+        {
+          "from": "action:tidal_reorganization",
+          "relation": "affects",
+          "to": "aspect:tidal_range",
+          "new_node": true
+        },
+        {
+          "from": "action:tidal_reorganization",
+          "relation": "precedes",
+          "to": "state:coastal_adaptation",
+          "new_node": true
+        },
+        {
+          "from": "action:lunar_torque_removed",
+          "relation": "affects",
+          "to": "aspect:spin_axis_evolution",
+          "new_node": true
+        },
+        {
+          "from": "action:lunar_torque_removed",
+          "relation": "precedes",
+          "to": "state:long_term_climate_shift",
+          "new_node": true
+        }
+      ],
+      "new_nodes": [
+        "aspect:tidal_range",
+        "state:coastal_adaptation",
+        "aspect:spin_axis_evolution",
+        "state:long_term_climate_shift"
+      ],
+      "relation_types": [
+        "affects",
+        "precedes"
+      ],
+      "newly_dominant_relations": [
+        "affects"
+      ],
+      "newly_entered_roles": [
+        "Aspect",
+        "State"
+      ],
+      "regime_change": true
+    },
+    {
+      "depth": 3,
+      "steps": [],
+      "new_nodes": [],
+      "relation_types": [],
+      "newly_dominant_relations": [],
+      "newly_entered_roles": [],
+      "regime_change": false
+    }
+  ],
+  "reached_nodes": [
+    "action:lunar_torque_removed",
+    "action:tidal_reorganization",
+    "aspect:spin_axis_evolution",
+    "aspect:tidal_range",
+    "claim:tides_not_zero",
+    "signal:lunar_influence_absent",
+    "state:coastal_adaptation",
+    "state:long_term_climate_shift"
+  ],
+  "terminal_nodes": [
+    "aspect:spin_axis_evolution",
+    "aspect:tidal_range",
+    "claim:tides_not_zero",
+    "state:coastal_adaptation",
+    "state:long_term_climate_shift"
+  ],
+  "regime_change_depths": [
+    2
+  ],
+  "frontier_remaining": false,
+  "derived_view": [
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "precedes",
+      "target": "state:coastal_adaptation",
+      "origin": "inferred"
+    },
+    {
+      "source": "signal:lunar_influence_absent",
+      "relation": "precedes",
+      "target": "state:long_term_climate_shift",
+      "origin": "inferred"
+    }
+  ],
+  "decision": "stop",
+  "invalid_reasons": []
+}

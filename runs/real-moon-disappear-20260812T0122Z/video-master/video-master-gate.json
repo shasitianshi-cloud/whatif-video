@@ -1,0 +1,10 @@
+{
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "gate": "VIDEO_MASTER_GATE",
+  "status": "PASS",
+  "input_artifact": "/home/runner/work/whatif-video/whatif-video/runs/real-moon-disappear-20260812T0122Z/counterfactual-reasoning/counterfactual-master.md",
+  "input_sha256": "fd8cec417ffd6886e6f29c0440956272264f88c396a42e5895e3e3b3fee6562d",
+  "artifact": "runs/real-moon-disappear-20260812T0122Z/video-master/video-master.md",
+  "sha256": "243bb81c5145748ae3cb3b8af726df3752594539f959ecbc65dfe35b84c8fd98",
+  "completed_at": "2026-08-12T09:28:25+08:00"
+}

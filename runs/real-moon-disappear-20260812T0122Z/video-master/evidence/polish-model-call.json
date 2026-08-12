@@ -1,0 +1,8 @@
+{
+  "input_path": "/home/runner/work/whatif-video/whatif-video/runs/real-moon-disappear-20260812T0122Z/counterfactual-reasoning/counterfactual-master.md",
+  "prompt_path": "video-master/prompts/video-master-polish.md",
+  "prompt_sha256": "de659c717f2d374ffe0ee9e0e714570fa162f29c3cea469ac493546c5afdf491",
+  "model": "GPT-5.6 Sol host-managed",
+  "calls": 1,
+  "output_path": "runs/real-moon-disappear-20260812T0122Z/video-master/work/video-master-source.md"
+}
