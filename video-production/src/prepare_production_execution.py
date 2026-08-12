@@ -26,7 +26,13 @@ def _sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def prepare_or_advance(run_id: str, *, execute_provider: bool = False) -> dict:
+def prepare_or_advance(
+    run_id: str,
+    *,
+    execute_provider: bool = False,
+    image_execution_adapter: str | None = None,
+    image_credential_file: Path | None = None,
+) -> dict:
     run_root = PROJECT_ROOT / "runs" / run_id / "video-production"
     ps_root = run_root / "production-script"
     script_path = ps_root / "production-script.json"
@@ -58,7 +64,12 @@ def prepare_or_advance(run_id: str, *, execute_provider: bool = False) -> dict:
     else:
         _write(dispatch_path, dispatch)
     dispatch_sha = _sha(dispatch_path)
-    state = advance(dispatch, execute_provider=execute_provider)
+    state = advance(
+        dispatch,
+        execute_provider=execute_provider,
+        image_execution_adapter=image_execution_adapter,
+        image_credential_file=image_credential_file,
+    )
     result = {
         "schema_version": 1,
         "run_id": run_id,
@@ -69,6 +80,7 @@ def prepare_or_advance(run_id: str, *, execute_provider: bool = False) -> dict:
         "serial_execution": True,
         "latest_discovery_used": False,
         "provider_execution_authorized": bool(execute_provider),
+        "image_execution_adapter": image_execution_adapter,
         "status": state["status"],
         "next_task_index": state["next_task_index"],
         "block_code": state.get("block_code"),
@@ -89,8 +101,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--execute-provider", action="store_true")
+    parser.add_argument("--image-execution-adapter")
+    parser.add_argument("--image-credential-file", type=Path)
     args = parser.parse_args()
-    result = prepare_or_advance(args.run_id, execute_provider=args.execute_provider)
+    result = prepare_or_advance(
+        args.run_id,
+        execute_provider=args.execute_provider,
+        image_execution_adapter=args.image_execution_adapter,
+        image_credential_file=args.image_credential_file,
+    )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     if result["status"] == "BLOCK":
         raise SystemExit(3)
