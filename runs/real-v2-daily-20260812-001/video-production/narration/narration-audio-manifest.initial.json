@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "run_id": "real-v2-daily-20260812-001",
+  "source_video_master_sha256": "265b56842c2fa456739544c01da06b2a604e565dcd66b4d2dda63accc07b9a16",
+  "tts_provider": "volcengine",
+  "tts_protocol": "v3_http_chunked_unidirectional",
+  "resource_id": "seed-tts-2.0",
+  "speaker": "zh_female_vv_uranus_bigtts",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "speech_rate": 15,
+  "loudness_rate": 0,
+  "concurrency_max": 5,
+  "segment_count": 8,
+  "total_duration_ms": 116064,
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "text": "太阳风停止后，地球不会在同一秒变天，已经离开太阳的最后一批带电粒子还要继续飞过来；几天后，这股持续冲击真的断掉，极地上空平时由太阳风不断补充能量的极光开始明显减少，地球外层也不再一直承受同样的粒子压力。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-001.mp3",
+      "audio_sha256": "d61eafa3a174251d6e71098fe9b52a7aa9bdc18ad2a60e09c199f3c9957e4087",
+      "duration_ms": 16248,
+      "request_id": "dc6ac9c7-2b86-497c-9b0d-f4c18ed8597c"
+    },
+    {
+      "segment_id": "seg-002",
+      "order": 2,
+      "text": "磁层会向新的外部环境慢慢调整，许多由高速太阳风和持续磁场变化带来的日常空间天气变得更安静，卫星和电网少遇到这类持续背景造成的扰动。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-002.mp3",
+      "audio_sha256": "b6f8b74ab5e1deeaad47b0b83b2557d90a5511d0999d70fec1f94df822f6b702",
+      "duration_ms": 11160,
+      "request_id": "3615713a-13d5-4cb7-a26a-2899e5331552"
+    },
+    {
+      "segment_id": "seg-003",
+      "order": 3,
+      "text": "可太阳并没有被关掉，太阳光照常到达地球，而且契约也没有让所有日冕物质抛射一起消失，所以偶发的大团太阳等离子体仍可能冲过来，短时间重新点亮极光并搅动磁层。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-003.mp3",
+      "audio_sha256": "0028a2c28b0504e5daef1d5c75160b4f789a6159cc99c0dee64065bddacdbde0",
+      "duration_ms": 13608,
+      "request_id": "bf05d2da-bdab-43c8-8568-2a1ec7c4c92d"
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "text": "真正更大的变化在更远处，太阳风原本不断向外吹，在太阳系周围撑起一片巨大的磁化等离子体区域；没有新的太阳风补进来，这个日球层不会瞬间消失，却会随着旧的粒子继续远去而逐步缩小、重新寻找边界。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-004.mp3",
+      "audio_sha256": "347f79ba80dad2dcbc2bda70b6c7c8a11a5be70b379908822d3e8afde8af118d",
+      "duration_ms": 17328,
+      "request_id": "c7494d0b-f96b-4177-90da-cfd92e19997e"
+    },
+    {
+      "segment_id": "seg-005",
+      "order": 5,
+      "text": "这层环境原本会挡掉和改变一部分从银河系飞来的高能宇宙线，它变弱以后，更多银河宇宙线可以进入内太阳系，深空里的辐射条件会一点点变得比今天严苛。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-005.mp3",
+      "audio_sha256": "f5772665f83d95a81c70f577ffced68d5895bd9f0b918916d8c7d83a16ece7f8",
+      "duration_ms": 11712,
+      "request_id": "dfa08db4-7184-4612-af81-b754e3605c10"
+    },
+    {
+      "segment_id": "seg-006",
+      "order": 6,
+      "text": "地球表面并不会因此马上成为辐射灾区，因为地球自己的磁场和厚重大气还在，真正先需要重新算风险的是长时间飞在地球保护之外的宇航员、月球和火星任务，以及怕高能粒子的航天器电子设备。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-006.mp3",
+      "audio_sha256": "aa700dcc8d2a7f71b4d0601e9ac34de99f93ef52f73febf91659896f989c6830",
+      "duration_ms": 13992,
+      "request_id": "44ef48c7-e588-47c6-babe-cffd9ae9e69e"
+    },
+    {
+      "segment_id": "seg-007",
+      "order": 7,
+      "text": "连彗星也会留下变化，太阳风原本会拉扯它周围的带电气体，持续太阳风停止后，离子尾的形态会改变，可太阳光仍会加热彗星，尘埃和尘埃尾不会跟着一起消失。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-007.mp3",
+      "audio_sha256": "b56dcf8739fb12232fc70661159b235170e9694719b6678a3ce12d7a79c7be3b",
+      "duration_ms": 12936,
+      "request_id": "903c2869-b35a-4781-8399-60b51b54461b"
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "text": "最后留下的太阳系仍有阳光、行星轨道和地球的昼夜，只是行星际空间少了那股永不停歇的太阳风：地球附近平时更安静，极光更少，而远离地球以后，逐渐减弱的日球层保护让深空面对更多银河宇宙线，偶发太阳爆发仍能突然打破这份安静。\n",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-008.mp3",
+      "audio_sha256": "112eefd142d2a00f3c584ac0676edeafc8f573ffb6c9cee747c3d303571666a9",
+      "duration_ms": 19080,
+      "request_id": "6f183e8a-8645-4ada-9ee4-88e9ab68bb9b"
+    }
+  ],
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false
+}

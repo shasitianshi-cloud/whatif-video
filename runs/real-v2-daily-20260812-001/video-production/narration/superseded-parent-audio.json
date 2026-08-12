@@ -1,0 +1,32 @@
+{
+  "status": "SUPERSEDED_BY_DURATION_RESPLIT",
+  "artifacts": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "text": "太阳风停止后，地球不会在同一秒变天，已经离开太阳的最后一批带电粒子还要继续飞过来；几天后，这股持续冲击真的断掉，极地上空平时由太阳风不断补充能量的极光开始明显减少，地球外层也不再一直承受同样的粒子压力。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-001.mp3",
+      "audio_sha256": "d61eafa3a174251d6e71098fe9b52a7aa9bdc18ad2a60e09c199f3c9957e4087",
+      "duration_ms": 16248,
+      "request_id": "dc6ac9c7-2b86-497c-9b0d-f4c18ed8597c"
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "text": "真正更大的变化在更远处，太阳风原本不断向外吹，在太阳系周围撑起一片巨大的磁化等离子体区域；没有新的太阳风补进来，这个日球层不会瞬间消失，却会随着旧的粒子继续远去而逐步缩小、重新寻找边界。",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-004.mp3",
+      "audio_sha256": "347f79ba80dad2dcbc2bda70b6c7c8a11a5be70b379908822d3e8afde8af118d",
+      "duration_ms": 17328,
+      "request_id": "c7494d0b-f96b-4177-90da-cfd92e19997e"
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "text": "最后留下的太阳系仍有阳光、行星轨道和地球的昼夜，只是行星际空间少了那股永不停歇的太阳风：地球附近平时更安静，极光更少，而远离地球以后，逐渐减弱的日球层保护让深空面对更多银河宇宙线，偶发太阳爆发仍能突然打破这份安静。\n",
+      "audio_path": "runs/real-v2-daily-20260812-001/video-production/narration/audio/seg-008.mp3",
+      "audio_sha256": "112eefd142d2a00f3c584ac0676edeafc8f573ffb6c9cee747c3d303571666a9",
+      "duration_ms": 19080,
+      "request_id": "6f183e8a-8645-4ada-9ee4-88e9ab68bb9b"
+    }
+  ]
+}
