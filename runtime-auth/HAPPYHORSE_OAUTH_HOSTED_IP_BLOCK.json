@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "BLOCK",
+  "provider": "happyhorse_cn",
+  "app_id": "aorizon_cn",
+  "official_cli_version": "0.1.9",
+  "official_cli_sha256_verified": true,
+  "static_binary_error_text_present": "login is not allowed from your IP address",
+  "github_hosted_attempts": [
+    {"run_id": 31582396946, "token_exchange_http_status": 401, "provider_error_code": "2024"},
+    {"run_id": 31582955232, "token_exchange_http_status": 401, "provider_error_code": "2024"}
+  ],
+  "pkce_transaction_recreated_between_attempts": true,
+  "callback_secret_present": true,
+  "age_transaction_decrypt_verified": true,
+  "conclusion": "GITHUB_HOSTED_LOGIN_EXCHANGE_IP_BLOCKED",
+  "recommended_execution_boundary": "self_hosted_runner_for_token_exchange_only",
+  "generation_executed": false,
+  "credits_consumed": false,
+  "secret_values_persisted": false
+}
