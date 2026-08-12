@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "image-execution-artifact.schema.json",
+  "title": "Volcengine image execution artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task", "status", "provider", "model", "request_completed",
+    "control_returned_to_caller", "local_path", "sha256",
+    "file_size_bytes", "width", "height", "max_concurrency_observed",
+    "credential_values_logged"
+  ],
+  "properties": {
+    "task": {"type": "string", "minLength": 1},
+    "status": {"const": "PASS"},
+    "provider": {"const": "volcengine"},
+    "model": {"const": "通用3.0-文生图"},
+    "request_completed": {"const": true},
+    "control_returned_to_caller": {"const": true},
+    "local_path": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "file_size_bytes": {"type": "integer", "minimum": 1},
+    "width": {"type": "integer", "minimum": 1},
+    "height": {"type": "integer", "minimum": 1},
+    "provider_task_id": {"type": ["string", "null"]},
+    "provider_request_id": {"type": ["string", "null"]},
+    "max_concurrency_observed": {"const": 1},
+    "credential_values_logged": {"const": false},
+    "redacted_response": {"type": "object"}
+  }
+}
