@@ -1,0 +1,77 @@
+name: Real Production Visual Planner
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/REAL_PRODUCTION_VISUAL_PLANNER_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  visual-plan:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run real host-managed Visual Planner boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 - <<'PY'
+          import copy
+          import json
+          from pathlib import Path
+          from production_visual_planner import run_visual_planner
+          from prepare_production_execution import prepare_or_advance
+
+          RUN_ID='real-moon-disappear-20260812T0122Z'
+          ROOT=Path.cwd()
+          candidate_path=ROOT/'recovery/real-production-visual-plans'/f'{RUN_ID}.json'
+          candidate=json.loads(candidate_path.read_text(encoding='utf-8'))
+          assert candidate['run_id']==RUN_ID
+
+          calls=0
+          def planner_model_call(prompt):
+              global calls
+              calls += 1
+              assert prompt.strip()
+              return copy.deepcopy(candidate)
+
+          gate=run_visual_planner(
+              RUN_ID,
+              planner_model_call=planner_model_call,
+              model_name='GPT-5.6 Sol host-managed',
+          )
+          assert calls==1
+          assert gate['status']=='PASS'
+          assert gate['provider_generation_executed'] is False
+          execution=prepare_or_advance(RUN_ID, execute_provider=False)
+          assert execution['status']=='HOST_ACTION_REQUIRED'
+          assert execution['provider_execution_authorized'] is False
+          assert execution['latest_discovery_used'] is False
+          print(json.dumps({
+              'RUN_ID':RUN_ID,
+              'PRODUCTION_SCRIPT_GATE':'PASS',
+              'PRODUCTION_SCRIPT_SHA256':gate['sha256'],
+              'EXECUTION_STATUS':execution['status'],
+              'HOST_ACTION_TASK_ID':execution.get('host_action_task_id'),
+              'HOST_ACTION_REQUEST_PATH':execution.get('host_action_request_path'),
+              'PROVIDER_GENERATION_EXECUTED':False
+          },ensure_ascii=False,separators=(',',':')))
+          PY
+
+      - name: Commit production script and execution state
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-moon-disappear-20260812T0122Z'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/production-script" "runs/$RUN_ID/video-production/execution"
+          git diff --cached --quiet && { echo 'NO_VISUAL_PLANNER_OUTPUT'; exit 1; }
+          git commit -m "plan real visual production for $RUN_ID"
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
