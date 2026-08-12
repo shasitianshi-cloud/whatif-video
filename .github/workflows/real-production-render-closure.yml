@@ -1,0 +1,78 @@
+name: Real Production Render Closure
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/REAL_PRODUCTION_RENDER_CLOSURE_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  closure:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Finalize deterministic render closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/finalize_render_closure.py --run-id real-moon-disappear-20260812T0122Z
+
+      - name: Gate explicit production motion parameters
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, math
+          from pathlib import Path
+          run_id='real-moon-disappear-20260812T0122Z'
+          root=Path('runs')/run_id/'video-production/render'
+          gate=json.loads((root/'render-closure-gate.json').read_text())
+          plan=json.loads((root/'render-plan.json').read_text())
+          assert gate['status']=='READY_FOR_HYPERFRAMES_RENDER'
+          assert plan['run_id']==run_id
+          motions=[x for x in plan['layers'] if x.get('treatment')=='image_motion']
+          assert len(motions)==8
+          for layer in motions:
+              motion=layer.get('motion') or {}
+              params=motion.get('parameters')
+              assert isinstance(params,dict)
+              for side in ('from','to'):
+                  point=params.get(side)
+                  assert isinstance(point,dict)
+                  for key in ('x_percent','y_percent','scale'):
+                      value=point.get(key)
+                      assert isinstance(value,(int,float)) and not isinstance(value,bool)
+                      assert math.isfinite(float(value))
+                  assert float(point['scale'])>0
+                  assert abs(float(point['x_percent']))<=100
+                  assert abs(float(point['y_percent']))<=100
+          motion_gate={
+            'schema_version':1,
+            'run_id':run_id,
+            'status':'PASS',
+            'image_motion_layer_count':len(motions),
+            'all_six_numeric_parameters_explicit':True,
+            'renderer_fallback_required':False,
+            'production_motion_guessing':False,
+          }
+          (root/'production-motion-parameter-gate.json').write_text(json.dumps(motion_gate,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(motion_gate,ensure_ascii=False))
+          PY
+
+      - name: Commit render closure artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-moon-disappear-20260812T0122Z'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/render"
+          git diff --cached --quiet && { echo 'NO_RENDER_CLOSURE_OUTPUT'; exit 1; }
+          git commit -m "finalize render closure for $RUN_ID"
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
