@@ -1,0 +1,32 @@
+name: Full Production Implementation Preflight
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/full_production_implementation_preflight.py'
+      - '.github/workflows/full-production-implementation-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-provider-integration:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Syntax-check recovered provider-independent JavaScript entrypoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check video-production/src/hyperframes-render-compiler.js
+          node --check video-production/src/build-hyperframes-composition.js
+          node --check video-production/happyhorse/runtime/happyhorse-t2v-runner.mjs
+          node --check video-production/happyhorse/runtime/happyhorse-i2v-runner.mjs
+      - name: Run same-run no-provider integration preflight
+        run: python3 recovery/full_production_implementation_preflight.py
