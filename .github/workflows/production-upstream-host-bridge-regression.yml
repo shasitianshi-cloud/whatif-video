@@ -1,0 +1,22 @@
+name: Production Upstream Host Bridge Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/production_upstream_host_bridge.py'
+      - 'recovery/test_production_upstream_host_bridge.py'
+      - '.github/workflows/production-upstream-host-bridge-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host-callback-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run same-run host bridge regression
+        run: python3 recovery/test_production_upstream_host_bridge.py
