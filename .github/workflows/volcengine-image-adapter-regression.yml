@@ -1,0 +1,36 @@
+name: Volcengine Image Adapter Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/volcengine_image_adapter.py'
+      - 'video-production/src/volcengine_image_execution.py'
+      - 'video-production/src/run_asset_executor.py'
+      - 'video-production/src/prepare_production_execution.py'
+      - 'video-production/runtime/decrypt-volcengine-image-auth.mjs'
+      - 'video-production/schemas/image-execution-artifact.schema.json'
+      - 'video-production/tests/test_volcengine_image_adapter.py'
+      - 'video-production/tests/test_volcengine_image_executor_serial.py'
+      - 'runtime-auth/volcengine-image-runtime-auth.v1.json'
+      - '.github/workflows/volcengine-image-adapter-regression.yml'
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax
+        run: |
+          python3 -m py_compile \
+            video-production/src/volcengine_image_adapter.py \
+            video-production/src/volcengine_image_execution.py \
+            video-production/src/run_asset_executor.py \
+            video-production/src/prepare_production_execution.py
+      - name: Node runtime-auth syntax
+        run: node --check video-production/runtime/decrypt-volcengine-image-auth.mjs
+      - name: Adapter unit regression
+        run: python3 video-production/tests/test_volcengine_image_adapter.py
+      - name: 9-task serial executor regression
+        run: python3 video-production/tests/test_volcengine_image_executor_serial.py
