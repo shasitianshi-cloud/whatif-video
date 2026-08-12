@@ -1,0 +1,118 @@
+name: HappyHorse CN OAuth Phase A
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'runtime-auth/HAPPYHORSE_OAUTH_BEGIN'
+
+permissions:
+  contents: write
+
+jobs:
+  begin-oauth:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Build fresh PKCE transaction and authorization URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          node <<'NODE'
+          const fs = require('node:fs');
+          const crypto = require('node:crypto');
+
+          const deviceId = crypto.randomUUID();
+          const codeVerifier = crypto.randomBytes(32).toString('base64url');
+          if (codeVerifier.length !== 43) throw new Error('unexpected PKCE verifier length');
+          const codeChallenge = crypto.createHash('sha256').update(codeVerifier, 'ascii').digest('base64url');
+          const redirectUri = 'http://127.0.0.1:33897/callback';
+          const authorization = new URL('https://happyhorse.cn/cli/auth');
+          authorization.searchParams.set('code_challenge', codeChallenge);
+          authorization.searchParams.set('redirect_uri', redirectUri);
+          const createdAt = new Date().toISOString();
+
+          fs.writeFileSync('.happyhorse-oauth-state.json', JSON.stringify({
+            schema_version: 1,
+            provider: 'happyhorse_cn',
+            appId: 'aorizon_cn',
+            cli_emulation_version: '0.1.9',
+            deviceId,
+            codeVerifier,
+            redirectUri,
+            createdAt
+          }) + '\n', {mode: 0o600});
+
+          fs.mkdirSync('runtime-auth', {recursive: true});
+          fs.writeFileSync('runtime-auth/HAPPYHORSE_OAUTH_PENDING.json', JSON.stringify({
+            schema_version: 1,
+            status: 'WAITING_FOR_USER_AUTHORIZATION',
+            provider: 'happyhorse_cn',
+            app_id: 'aorizon_cn',
+            authorization_url: authorization.toString(),
+            callback_host: '127.0.0.1',
+            callback_port: 33897,
+            callback_path: '/callback',
+            cli_executed: false,
+            generation_executed: false,
+            credits_consumed: false,
+            created_at: createdAt
+          }, null, 2) + '\n');
+          NODE
+
+      - name: Encrypt OAuth transaction state with tracked Age recipient
+        shell: bash
+        run: |
+          set -euo pipefail
+          RECIPIENT="$(tr -d '\r\n' < runtime-auth/runtime-auth-public-key.txt)"
+          test -n "$RECIPIENT"
+          age --encrypt --recipient "$RECIPIENT" --output runtime-auth/happyhorse-oauth-transaction.v1.age .happyhorse-oauth-state.json
+          rm -f .happyhorse-oauth-state.json age.tar.gz
+          rm -rf age
+          test -s runtime-auth/happyhorse-oauth-transaction.v1.age
+
+      - name: Verify no plaintext transaction is tracked
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e .happyhorse-oauth-state.json
+          test -z "$(git ls-files .happyhorse-oauth-state.json)"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('runtime-auth/HAPPYHORSE_OAUTH_PENDING.json').read_text())
+          assert p['status']=='WAITING_FOR_USER_AUTHORIZATION'
+          assert p['authorization_url'].startswith('https://happyhorse.cn/cli/auth?')
+          assert 'code_challenge=' in p['authorization_url']
+          assert 'redirect_uri=' in p['authorization_url']
+          assert 'code_challenge_method=' not in p['authorization_url']
+          assert p['callback_port']==33897
+          assert p['cli_executed'] is False
+          assert p['generation_executed'] is False
+          assert p['credits_consumed'] is False
+          PY
+
+      - name: Commit encrypted transaction and sanitized pending record
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runtime-auth/happyhorse-oauth-transaction.v1.age runtime-auth/HAPPYHORSE_OAUTH_PENDING.json
+          git diff --cached --quiet && exit 1 || true
+          git commit -m 'begin HappyHorse CN OAuth transaction'
+          git push origin HEAD:implementation/global-production-v2
