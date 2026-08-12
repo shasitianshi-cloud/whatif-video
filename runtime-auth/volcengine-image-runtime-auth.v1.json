@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "format": "whatif-x25519-hkdf-sha256-aes256gcm-v1",
+  "recipient": "age1ugr2762s8rzmxqfs8kytkhaqrsfuhsk6fy6z9nrld9l9kl34x3vqmy2kcg",
+  "ephemeral_public_key_b64": "L/xif5uSC+PBhWaQD6ST1p70vshwlWz6Tm/i1wGf3Vk=",
+  "salt_b64": "0IJLM17mK0n1xjSa8YYDa8aeA8bT+yitJblvRcLfGjE=",
+  "nonce_b64": "6Ycw1WWxLr60bjjy",
+  "ciphertext_b64": "yiScIFWNfYdZKlb9CPV8OMtT0uNr8W4ALRdrCjlcr8Ze3udF/Xxz7RzIM2PQlY8/GozMAknlLM1ueBpjZiTpeyZ9ljFRxma3uhJIWxOEtCHWclQRpNB3Giw1sKkFc3tWJeihLb9nwmJAp8HqmX2Qd8+8UlHGWNQbNEuXUDFWgylJIwm/szqygT67RLG3syDKuud0pWi9X5xo/fGKtRk/Pum0peMNiRzdThmUetOcmMq+0Nq0Mv8xSNA=",
+  "aad": "whatif-volcengine-image-runtime-auth-v1"
+}
