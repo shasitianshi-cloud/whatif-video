@@ -1,0 +1,28 @@
+name: Production Narration Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/production_narration.py'
+      - 'video-production/tests/test_production_narration_recovery.py'
+      - '.github/workflows/production-narration-recovery-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-provider-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Preserve historical probe while validating production path
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'SEGMENT_COUNT must remain 10' video-production/src/orchestrator.py
+          grep -q 'segment_count_dynamic' video-production/src/production_narration.py
+      - name: Run dynamic production narration regression
+        run: python3 video-production/tests/test_production_narration_recovery.py
