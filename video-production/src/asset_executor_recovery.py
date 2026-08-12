@@ -1,7 +1,8 @@
 """Provider-independent Asset Executor recovery boundary.
 
-This module never substitutes a provider route. Builtin image generation is host-managed:
-we emit an exact request and validate a returned receipt. HappyHorse execution artifacts are
+This module never substitutes a provider route. Historical builtin image generation remains
+host-managed, while the recovered Volcengine image execution adapter may return a canonical
+image artifact on the same logical gpt-image-2 route. HappyHorse execution artifacts are
 validated here after a provider-specific runner executes them.
 """
 from __future__ import annotations
@@ -53,13 +54,21 @@ def make_host_image_request(task: dict) -> dict:
 
 
 def validate_host_image_receipt(task: dict, receipt: dict, project_root: Path) -> dict:
+    """Validate either the historical host image receipt or a canonical Volcengine image artifact.
+
+    The logical route stays ``gpt-image-2``. ``execution_route`` selects the physical executor.
+    No provider substitution is performed here; this only validates an already-produced artifact.
+    """
     request = make_host_image_request(task)
+    execution_route = str(receipt.get("execution_route", "")).strip()
+    allowed_execution_routes = {"builtin_image_generation", "volcengine_general3_t2i_api"}
+    if execution_route not in allowed_execution_routes:
+        raise RuntimeError("HOST_IMAGE_RECEIPT_MISMATCH:execution_route")
     required_equal = {
         "run_id": task["run_id"],
         "task_id": task["task_id"],
         "asset_id": task["asset_id"],
         "generation_route": "gpt-image-2",
-        "execution_route": "builtin_image_generation",
         "asset_kind": "image",
         "role": task["role"],
         "in_content_timeline": bool(task["in_content_timeline"]),
@@ -70,6 +79,19 @@ def validate_host_image_receipt(task: dict, receipt: dict, project_root: Path) -
             raise RuntimeError(f"HOST_IMAGE_RECEIPT_MISMATCH:{key}")
     if receipt.get("status") != "SUCCESS":
         raise RuntimeError("HOST_IMAGE_EXECUTION_NOT_SUCCESS")
+    if execution_route == "volcengine_general3_t2i_api":
+        if receipt.get("provider") != "volcengine":
+            raise RuntimeError("VOLCENGINE_IMAGE_PROVIDER_MISMATCH")
+        if not str(receipt.get("provider_model", "")).strip():
+            raise RuntimeError("VOLCENGINE_IMAGE_MODEL_REQUIRED")
+        if receipt.get("prompt_passthrough") is not True:
+            raise RuntimeError("VOLCENGINE_IMAGE_PROMPT_PASSTHROUGH_REQUIRED")
+        if receipt.get("control_returned_to_caller") is not True:
+            raise RuntimeError("VOLCENGINE_IMAGE_CONTROL_RETURN_REQUIRED")
+        if receipt.get("ambiguous_task_submission") is not False:
+            raise RuntimeError("AMBIGUOUS_IMAGE_SUBMISSION")
+        if int(receipt.get("max_concurrency_observed") or 0) != 1:
+            raise RuntimeError("VOLCENGINE_IMAGE_SERIAL_EXECUTION_REQUIRED")
     local_path = str(receipt.get("local_path", "")).strip()
     if not local_path:
         raise RuntimeError("HOST_IMAGE_LOCAL_PATH_REQUIRED")
@@ -87,7 +109,10 @@ def validate_host_image_receipt(task: dict, receipt: dict, project_root: Path) -
     if int(receipt.get("width") or 0) <= 0 or int(receipt.get("height") or 0) <= 0:
         raise RuntimeError("HOST_IMAGE_DIMENSIONS_REQUIRED")
     out = dict(receipt)
-    out["model_identity"] = str(receipt.get("model_identity") or "host-managed")
+    if execution_route == "volcengine_general3_t2i_api":
+        out["model_identity"] = str(receipt.get("provider_model") or "volcengine")
+    else:
+        out["model_identity"] = str(receipt.get("model_identity") or "host-managed")
     out["recovery_executor_reconstructed"] = True
     out["historical_executor_byte_identical"] = False
     return out
