@@ -1,0 +1,179 @@
+name: Real V2 Daily Upstream 20260812
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'recovery/REAL_V2_DAILY_UPSTREAM_20260812_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  upstream:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Execute same-run host-managed Counterfactual and Video Master
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/recovery:$PWD/counterfactual-reasoning/src:$PWD/video-master/src:$PWD/video-production/src"
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          from recovery.production_upstream_host_bridge import run_upstream_host_managed
+
+          ROOT = Path('.').resolve()
+          RUN_ID = 'real-v2-daily-20260812-001'
+          ANCHOR = '太阳风'
+          TITLE = '如果太阳风永久停止'
+          DAILY_GATE = ROOT / 'anchor-program/runs/2026-08-12/daily-anchor-selection-gate.json'
+          RESP = ROOT / 'recovery/real-v2-host-responses' / RUN_ID
+
+          def read_json(path):
+              return json.loads(Path(path).read_text(encoding='utf-8'))
+          def sha(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          def write_json(path, value):
+              path = Path(path)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+
+          gate = read_json(DAILY_GATE)
+          if gate.get('status') != 'PASS' or gate.get('selected_anchor') != ANCHOR:
+              raise RuntimeError('DAILY_ANCHOR_SELECTION_GATE_INVALID')
+
+          premise = read_json(RESP / 'premise.json')
+          deep = read_json(RESP / 'deep-reasoning.json')
+          master = (RESP / 'counterfactual-master.md').read_text(encoding='utf-8')
+          video = (RESP / 'video-master.md').read_text(encoding='utf-8')
+          manifest = read_json(RESP / 'manifest.json')
+          if premise.get('anchor') != ANCHOR or premise.get('raw_premise') != TITLE:
+              raise RuntimeError('PREMISE_HOST_RESPONSE_IDENTITY_INVALID')
+          if manifest.get('selected_anchor') != ANCHOR or manifest.get('raw_premise') != TITLE:
+              raise RuntimeError('HOST_RESPONSE_MANIFEST_INVALID')
+
+          reasoning_calls = []
+          def reasoning_host_call(stage, prompt, inputs):
+              reasoning_calls.append(stage)
+              if stage == 'premise_discovery':
+                  return premise
+              if stage == 'deep_reasoning':
+                  return deep
+              if stage == 'master_finalization':
+                  return {'counterfactual_master': master}
+              raise RuntimeError('UNEXPECTED_REASONING_STAGE:' + stage)
+
+          video_calls = []
+          def video_model_call(prompt):
+              video_calls.append(len(video_calls) + 1)
+              return video
+
+          result = run_upstream_host_managed(
+              run_id=RUN_ID,
+              anchor=ANCHOR,
+              expected_counterfactual_contract=TITLE,
+              reasoning_model_name='GPT-5.6 Sol host-managed',
+              reasoning_host_call=reasoning_host_call,
+              video_master_model_name='GPT-5.6 Sol host-managed',
+              video_master_model_call=video_model_call,
+          )
+          if reasoning_calls != ['premise_discovery', 'deep_reasoning', 'master_finalization']:
+              raise RuntimeError('REASONING_HOST_CALL_SEQUENCE_INVALID')
+          if video_calls != [1, 2]:
+              raise RuntimeError('VIDEO_MASTER_HOST_CALL_SEQUENCE_INVALID')
+          if result.get('status') != 'HOST_UPSTREAM_READY_FOR_TTS' or result.get('provider_generation_executed') is not False:
+              raise RuntimeError('UPSTREAM_HOST_RESULT_INVALID')
+
+          run_root = ROOT / 'runs' / RUN_ID
+          premise_source = read_json(run_root / 'counterfactual-reasoning/work/premise-source.json')
+          if premise_source.get('raw_premise') != TITLE or premise_source.get('anchor') != ANCHOR:
+              raise RuntimeError('FROZEN_PREMISE_IDENTITY_INVALID')
+
+          write_json(run_root / 'input/anchor-selection-lineage.json', {
+              'schema_version': 1,
+              'run_id': RUN_ID,
+              'date': gate['date'],
+              'week_id': gate['week_id'],
+              'scope': gate['scope'],
+              'anchor_selection_gate': DAILY_GATE.relative_to(ROOT).as_posix(),
+              'anchor_selection_gate_sha256': sha(DAILY_GATE),
+              'selected_anchor': ANCHOR,
+              'selected_subscope': gate['selected_subscope'],
+              'interest_score': gate['interest_score'],
+              'daily_anchor_selection_pass': True,
+              'anchor_selector_defined_counterfactual': False,
+              'premise_discovery_defined_counterfactual': True,
+          })
+          write_json(run_root / 'input/counterfactual-contract.json', {
+              'schema_version': 1,
+              'run_id': RUN_ID,
+              'anchor': ANCHOR,
+              'raw_premise': TITLE,
+              'premise': premise['premise'],
+              'perturbation': premise['perturbation'],
+              'source': 'PREMISE_DISCOVERY',
+              'weekly_scope_authorized': True,
+              'daily_anchor_selection_gate_sha256': sha(DAILY_GATE),
+          })
+          result.update({
+              'daily_anchor_selection_gate': DAILY_GATE.relative_to(ROOT).as_posix(),
+              'daily_anchor_selection_gate_sha256': sha(DAILY_GATE),
+              'daily_anchor_interest_score': gate['interest_score'],
+              'counterfactual_display_title': TITLE,
+              'counterfactual_contract_path': f'runs/{RUN_ID}/input/counterfactual-contract.json',
+              'counterfactual_contract_sha256': sha(run_root / 'input/counterfactual-contract.json'),
+              'anchor_selection_lineage_path': f'runs/{RUN_ID}/input/anchor-selection-lineage.json',
+              'anchor_selection_lineage_sha256': sha(run_root / 'input/anchor-selection-lineage.json'),
+              'host_response_manifest': (RESP / 'manifest.json').relative_to(ROOT).as_posix(),
+              'host_response_manifest_sha256': sha(RESP / 'manifest.json'),
+              'reasoning_host_call_count': len(reasoning_calls),
+              'video_master_host_call_count': len(video_calls),
+              'selected_by_daily_anchor_program': True,
+          })
+          write_json(run_root / 'production-upstream-host-gate.json', result)
+          print(json.dumps(result, ensure_ascii=False))
+          PY
+
+      - name: Verify V2 upstream gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          run='real-v2-daily-20260812-001'
+          p=Path('runs')/run/'production-upstream-host-gate.json'
+          g=json.loads(p.read_text(encoding='utf-8'))
+          assert g['status']=='HOST_UPSTREAM_READY_FOR_TTS'
+          assert g['anchor']=='太阳风'
+          assert g['counterfactual_display_title']=='如果太阳风永久停止'
+          assert g['selected_by_daily_anchor_program'] is True
+          assert g['same_run_lineage_verified'] is True
+          assert g['provider_generation_executed'] is False
+          assert g['reasoning_host_call_count']==3
+          assert g['video_master_host_call_count']==2
+          assert g['narration_segment_count'] > 0
+          print('REAL_V2_DAILY_UPSTREAM_GATE=PASS')
+          print('RUN_ID='+run)
+          print('ANCHOR='+g['anchor'])
+          print('DISPLAY_TITLE='+g['counterfactual_display_title'])
+          print('NARRATION_SEGMENT_COUNT='+str(g['narration_segment_count']))
+          print('PROVIDER_GENERATION_EXECUTED=false')
+          PY
+
+      - name: Commit real V2 upstream artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runs/real-v2-daily-20260812-001
+          git diff --cached --quiet && { echo 'NO_UPSTREAM_ARTIFACTS'; exit 1; }
+          git commit -m 'record real V2 daily upstream for solar wind'
+          git push origin HEAD:implementation/global-production-v2
