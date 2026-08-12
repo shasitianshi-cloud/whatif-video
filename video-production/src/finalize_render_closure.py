@@ -16,7 +16,7 @@ from asset_executor_recovery import (
     validate_happyhorse_artifact,
     validate_host_image_receipt,
 )
-from build_asset_dispatch import validate_asset_dispatch
+from build_asset_dispatch import build_asset_dispatch, validate_asset_dispatch
 from build_asset_manifest import build_asset_manifest, validate_asset_manifest
 from build_render_input import build_render_input, validate_render_input
 from validate_production_script import validate_production_script
@@ -79,6 +79,9 @@ def finalize_render_closure(run_id: str) -> dict:
         raise RuntimeError("NARRATION_COMPLETENESS_GATE_INVALID")
     validate_production_script(script, narration)
     validate_asset_dispatch(dispatch)
+    expected_dispatch = build_asset_dispatch(script)
+    if dispatch != expected_dispatch:
+        raise RuntimeError("ASSET_DISPATCH_DRIFT")
     if state.get("status") != "COMPLETE" or state.get("serial_execution") is not True or state.get("latest_discovery_used") is not False:
         raise RuntimeError("ASSET_EXECUTION_NOT_COMPLETE")
 
