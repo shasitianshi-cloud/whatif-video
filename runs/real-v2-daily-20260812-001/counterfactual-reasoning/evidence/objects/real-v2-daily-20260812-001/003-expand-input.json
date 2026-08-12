@@ -1,0 +1,136 @@
+{
+  "seed": "signal:background_solar_wind_absent",
+  "max_depth": 6,
+  "nodes": [
+    {
+      "id": "signal:background_solar_wind_absent",
+      "record_type": "observation_record",
+      "label": "最后一批背景太阳风离开后持续太阳风输入消失"
+    },
+    {
+      "id": "action:magnetosphere_input_declines",
+      "record_type": "causal_pattern",
+      "label": "磁层持续动压与能量输入下降"
+    },
+    {
+      "id": "state:quiet_space_weather",
+      "record_type": "state_transition",
+      "label": "常态空间天气与极光背景减弱"
+    },
+    {
+      "id": "signal:episodic_cme_remains",
+      "record_type": "observation_record",
+      "label": "偶发日冕物质抛射未被契约自动删除"
+    },
+    {
+      "id": "claim:cme_events_remain",
+      "record_type": "claim",
+      "label": "偶发太阳爆发仍可能扰动磁层"
+    },
+    {
+      "id": "action:cme_disturbance",
+      "record_type": "causal_pattern",
+      "label": "偶发等离子体事件造成短时磁层扰动"
+    },
+    {
+      "id": "action:heliosphere_rebalances",
+      "record_type": "causal_pattern",
+      "label": "日球层停止获得持续太阳风补充并重新平衡"
+    },
+    {
+      "id": "aspect:cosmic_ray_modulation",
+      "record_type": "concept_model",
+      "archetype_role": [
+        "Aspect"
+      ],
+      "label": "银河宇宙线调制强度"
+    },
+    {
+      "id": "state:deep_space_radiation_increases",
+      "record_type": "state_transition",
+      "label": "深空银河宇宙线环境增强"
+    },
+    {
+      "id": "action:spaceflight_protection_adjusts",
+      "record_type": "causal_pattern",
+      "label": "深空任务重新规划屏蔽与累计剂量"
+    },
+    {
+      "id": "guard:spaceflight_protection",
+      "record_type": "normative_rule",
+      "label": "载人航天与航天器辐射防护要求"
+    },
+    {
+      "id": "state:comet_plasma_change",
+      "record_type": "state_transition",
+      "label": "彗星离子尾与等离子体相互作用改变"
+    },
+    {
+      "id": "evidence:heliophysics",
+      "record_type": "evidence",
+      "label": "太阳风、磁层、日球层与宇宙线观测"
+    }
+  ],
+  "edges": [
+    {
+      "source": "signal:background_solar_wind_absent",
+      "relation": "precedes",
+      "target": "action:magnetosphere_input_declines"
+    },
+    {
+      "source": "action:magnetosphere_input_declines",
+      "relation": "precedes",
+      "target": "state:quiet_space_weather"
+    },
+    {
+      "source": "signal:episodic_cme_remains",
+      "relation": "indicates",
+      "target": "claim:cme_events_remain"
+    },
+    {
+      "source": "signal:episodic_cme_remains",
+      "relation": "precedes",
+      "target": "action:cme_disturbance"
+    },
+    {
+      "source": "action:cme_disturbance",
+      "relation": "conflicts_with",
+      "target": "state:quiet_space_weather"
+    },
+    {
+      "source": "signal:background_solar_wind_absent",
+      "relation": "precedes",
+      "target": "action:heliosphere_rebalances"
+    },
+    {
+      "source": "action:heliosphere_rebalances",
+      "relation": "affects",
+      "target": "aspect:cosmic_ray_modulation"
+    },
+    {
+      "source": "aspect:cosmic_ray_modulation",
+      "relation": "precedes",
+      "target": "state:deep_space_radiation_increases"
+    },
+    {
+      "source": "state:deep_space_radiation_increases",
+      "relation": "precedes",
+      "target": "action:spaceflight_protection_adjusts"
+    },
+    {
+      "source": "guard:spaceflight_protection",
+      "relation": "constrains",
+      "target": "action:spaceflight_protection_adjusts"
+    },
+    {
+      "source": "signal:background_solar_wind_absent",
+      "relation": "precedes",
+      "target": "state:comet_plasma_change"
+    },
+    {
+      "source": "evidence:heliophysics",
+      "relation": "supports",
+      "target": "claim:cme_events_remain"
+    }
+  ]
+}

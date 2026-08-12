@@ -1,0 +1,180 @@
+{
+  "projection": "WHATIF_MINIMAL_OPERATOR_PROJECTION_V1",
+  "intent": "expand",
+  "decision": "STOP",
+  "invalid_reasons": [],
+  "result": {
+    "seed": "celestial:solar_wind",
+    "max_depth": 5,
+    "edges_legal": [
+      {
+        "source": "celestial:solar_wind",
+        "relation": "requires",
+        "target": "mechanism:magnetosphere_coupling"
+      },
+      {
+        "source": "mechanism:magnetosphere_coupling",
+        "relation": "precedes",
+        "target": "signal:geomagnetic_activity"
+      },
+      {
+        "source": "signal:geomagnetic_activity",
+        "relation": "indicates",
+        "target": "claim:solar_wind_driven_weather"
+      },
+      {
+        "source": "celestial:solar_wind",
+        "relation": "requires",
+        "target": "mechanism:heliosphere_support"
+      },
+      {
+        "source": "mechanism:heliosphere_support",
+        "relation": "affects",
+        "target": "aspect:cosmic_ray_modulation"
+      },
+      {
+        "source": "aspect:cosmic_ray_modulation",
+        "relation": "precedes",
+        "target": "state:deep_space_radiation"
+      },
+      {
+        "source": "evidence:heliophysics",
+        "relation": "supports",
+        "target": "claim:solar_wind_driven_weather"
+      }
+    ],
+    "edges_rejected": [],
+    "layers": [
+      {
+        "depth": 1,
+        "steps": [
+          {
+            "from": "celestial:solar_wind",
+            "relation": "requires",
+            "to": "mechanism:magnetosphere_coupling",
+            "new_node": true
+          },
+          {
+            "from": "celestial:solar_wind",
+            "relation": "requires",
+            "to": "mechanism:heliosphere_support",
+            "new_node": true
+          }
+        ],
+        "new_nodes": [
+          "mechanism:magnetosphere_coupling",
+          "mechanism:heliosphere_support"
+        ],
+        "relation_types": [
+          "requires"
+        ],
+        "newly_dominant_relations": [
+          "requires"
+        ],
+        "newly_entered_roles": [
+          "Causal",
+          "Mechanism"
+        ],
+        "regime_change": false
+      },
+      {
+        "depth": 2,
+        "steps": [
+          {
+            "from": "mechanism:magnetosphere_coupling",
+            "relation": "precedes",
+            "to": "signal:geomagnetic_activity",
+            "new_node": true
+          },
+          {
+            "from": "mechanism:heliosphere_support",
+            "relation": "affects",
+            "to": "aspect:cosmic_ray_modulation",
+            "new_node": true
+          }
+        ],
+        "new_nodes": [
+          "signal:geomagnetic_activity",
+          "aspect:cosmic_ray_modulation"
+        ],
+        "relation_types": [
+          "affects",
+          "precedes"
+        ],
+        "newly_dominant_relations": [
+          "affects",
+          "precedes"
+        ],
+        "newly_entered_roles": [
+          "Aspect",
+          "Observation"
+        ],
+        "regime_change": true
+      },
+      {
+        "depth": 3,
+        "steps": [
+          {
+            "from": "signal:geomagnetic_activity",
+            "relation": "indicates",
+            "to": "claim:solar_wind_driven_weather",
+            "new_node": true
+          },
+          {
+            "from": "aspect:cosmic_ray_modulation",
+            "relation": "precedes",
+            "to": "state:deep_space_radiation",
+            "new_node": true
+          }
+        ],
+        "new_nodes": [
+          "claim:solar_wind_driven_weather",
+          "state:deep_space_radiation"
+        ],
+        "relation_types": [
+          "indicates",
+          "precedes"
+        ],
+        "newly_dominant_relations": [
+          "indicates"
+        ],
+        "newly_entered_roles": [
+          "Claim",
+          "State"
+        ],
+        "regime_change": true
+      },
+      {
+        "depth": 4,
+        "steps": [],
+        "new_nodes": [],
+        "relation_types": [],
+        "newly_dominant_relations": [],
+        "newly_entered_roles": [],
+        "regime_change": false
+      }
+    ],
+    "reached_nodes": [
+      "aspect:cosmic_ray_modulation",
+      "celestial:solar_wind",
+      "claim:solar_wind_driven_weather",
+      "mechanism:heliosphere_support",
+      "mechanism:magnetosphere_coupling",
+      "signal:geomagnetic_activity",
+      "state:deep_space_radiation"
+    ],
+    "terminal_nodes": [
+      "claim:solar_wind_driven_weather",
+      "state:deep_space_radiation"
+    ],
+    "regime_change_depths": [
+      2,
+      3
+    ],
+    "frontier_remaining": false,
+    "derived_view": [],
+    "decision": "stop",
+    "invalid_reasons": []
+  },
+  "evidence_seq": 1
+}

@@ -1,0 +1,8 @@
+{
+  "input_path": "runs/real-v2-daily-20260812-001/video-master/work/video-master-source.md",
+  "prompt_path": "video-master/prompts/video-master-language-lowering.md",
+  "prompt_sha256": "5f68d31307eeb3cce2d67156d2a0a19509ce249efa847c47b8636562eaae2871",
+  "model": "GPT-5.6 Sol host-managed",
+  "calls": 1,
+  "output_path": "runs/real-v2-daily-20260812-001/video-master/video-master.md"
+}

@@ -1,0 +1,8 @@
+{
+  "run_id": "real-v2-daily-20260812-001",
+  "operator_decision": "STOP",
+  "operator_stop_meaning": "graph_frontier_exhausted_only",
+  "semantic_decision": "STOP",
+  "semantic_stop_meaning": "main_mechanisms_closed_and_further_expansion_does_not_materially_change_terminal",
+  "regime_change_meaning": "structural_transition_hint_only"
+}

@@ -1,0 +1,61 @@
+{
+  "projection": "WHATIF_MINIMAL_OPERATOR_PROJECTION_V1",
+  "intent": "perturb",
+  "decision": "CONTINUE",
+  "invalid_reasons": [],
+  "result": {
+    "perturbation": {
+      "kind": "set_attribute",
+      "rationale": "‘太阳风永久停止’可在最小关系图中表示为持续背景太阳风的继续发射状态从当前时刻起永久变为不存在；已发出的太阳风继续传播，避免把变化错误地处理成整个太阳系同一瞬间清空。",
+      "node": "celestial:solar_wind",
+      "attribute": "ongoing_emission",
+      "value": false,
+      "mode": "permanent"
+    },
+    "edges_after": [
+      {
+        "source": "celestial:solar_wind",
+        "relation": "requires",
+        "target": "mechanism:magnetosphere_coupling"
+      },
+      {
+        "source": "mechanism:magnetosphere_coupling",
+        "relation": "precedes",
+        "target": "signal:geomagnetic_activity"
+      },
+      {
+        "source": "signal:geomagnetic_activity",
+        "relation": "indicates",
+        "target": "claim:solar_wind_driven_weather"
+      },
+      {
+        "source": "celestial:solar_wind",
+        "relation": "requires",
+        "target": "mechanism:heliosphere_support"
+      },
+      {
+        "source": "mechanism:heliosphere_support",
+        "relation": "affects",
+        "target": "aspect:cosmic_ray_modulation"
+      },
+      {
+        "source": "aspect:cosmic_ray_modulation",
+        "relation": "precedes",
+        "target": "state:deep_space_radiation"
+      },
+      {
+        "source": "evidence:heliophysics",
+        "relation": "supports",
+        "target": "claim:solar_wind_driven_weather"
+      }
+    ],
+    "removed": [],
+    "added": [],
+    "notices": [
+      "ATTRIBUTE_DELTA:celestial:solar_wind.ongoing_emission = False (permanent)"
+    ],
+    "decision": "continue",
+    "invalid_reasons": []
+  },
+  "evidence_seq": 2
+}

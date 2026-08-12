@@ -1,0 +1,495 @@
+{
+  "expand": {
+    "projection": "WHATIF_MINIMAL_OPERATOR_PROJECTION_V1",
+    "intent": "expand",
+    "decision": "STOP",
+    "invalid_reasons": [],
+    "result": {
+      "seed": "signal:background_solar_wind_absent",
+      "max_depth": 6,
+      "edges_legal": [
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "action:magnetosphere_input_declines"
+        },
+        {
+          "source": "action:magnetosphere_input_declines",
+          "relation": "precedes",
+          "target": "state:quiet_space_weather"
+        },
+        {
+          "source": "signal:episodic_cme_remains",
+          "relation": "indicates",
+          "target": "claim:cme_events_remain"
+        },
+        {
+          "source": "signal:episodic_cme_remains",
+          "relation": "precedes",
+          "target": "action:cme_disturbance"
+        },
+        {
+          "source": "action:cme_disturbance",
+          "relation": "conflicts_with",
+          "target": "state:quiet_space_weather"
+        },
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "action:heliosphere_rebalances"
+        },
+        {
+          "source": "action:heliosphere_rebalances",
+          "relation": "affects",
+          "target": "aspect:cosmic_ray_modulation"
+        },
+        {
+          "source": "aspect:cosmic_ray_modulation",
+          "relation": "precedes",
+          "target": "state:deep_space_radiation_increases"
+        },
+        {
+          "source": "state:deep_space_radiation_increases",
+          "relation": "precedes",
+          "target": "action:spaceflight_protection_adjusts"
+        },
+        {
+          "source": "guard:spaceflight_protection",
+          "relation": "constrains",
+          "target": "action:spaceflight_protection_adjusts"
+        },
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "state:comet_plasma_change"
+        },
+        {
+          "source": "evidence:heliophysics",
+          "relation": "supports",
+          "target": "claim:cme_events_remain"
+        }
+      ],
+      "edges_rejected": [],
+      "layers": [
+        {
+          "depth": 1,
+          "steps": [
+            {
+              "from": "signal:background_solar_wind_absent",
+              "relation": "precedes",
+              "to": "action:magnetosphere_input_declines",
+              "new_node": true
+            },
+            {
+              "from": "signal:background_solar_wind_absent",
+              "relation": "precedes",
+              "to": "action:heliosphere_rebalances",
+              "new_node": true
+            },
+            {
+              "from": "signal:background_solar_wind_absent",
+              "relation": "precedes",
+              "to": "state:comet_plasma_change",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "action:magnetosphere_input_declines",
+            "action:heliosphere_rebalances",
+            "state:comet_plasma_change"
+          ],
+          "relation_types": [
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "precedes"
+          ],
+          "newly_entered_roles": [
+            "Causal",
+            "Mechanism",
+            "State"
+          ],
+          "regime_change": false
+        },
+        {
+          "depth": 2,
+          "steps": [
+            {
+              "from": "action:magnetosphere_input_declines",
+              "relation": "precedes",
+              "to": "state:quiet_space_weather",
+              "new_node": true
+            },
+            {
+              "from": "action:heliosphere_rebalances",
+              "relation": "affects",
+              "to": "aspect:cosmic_ray_modulation",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "state:quiet_space_weather",
+            "aspect:cosmic_ray_modulation"
+          ],
+          "relation_types": [
+            "affects",
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "affects"
+          ],
+          "newly_entered_roles": [
+            "Aspect"
+          ],
+          "regime_change": true
+        },
+        {
+          "depth": 3,
+          "steps": [
+            {
+              "from": "state:quiet_space_weather",
+              "relation": "conflicts_with",
+              "to": "action:cme_disturbance",
+              "new_node": true
+            },
+            {
+              "from": "aspect:cosmic_ray_modulation",
+              "relation": "precedes",
+              "to": "state:deep_space_radiation_increases",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "action:cme_disturbance",
+            "state:deep_space_radiation_increases"
+          ],
+          "relation_types": [
+            "conflicts_with",
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "conflicts_with"
+          ],
+          "newly_entered_roles": [],
+          "regime_change": true
+        },
+        {
+          "depth": 4,
+          "steps": [
+            {
+              "from": "action:cme_disturbance",
+              "relation": "conflicts_with",
+              "to": "state:quiet_space_weather",
+              "new_node": false
+            },
+            {
+              "from": "state:deep_space_radiation_increases",
+              "relation": "precedes",
+              "to": "action:spaceflight_protection_adjusts",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "action:spaceflight_protection_adjusts"
+          ],
+          "relation_types": [
+            "conflicts_with",
+            "precedes"
+          ],
+          "newly_dominant_relations": [],
+          "newly_entered_roles": [],
+          "regime_change": false
+        },
+        {
+          "depth": 5,
+          "steps": [],
+          "new_nodes": [],
+          "relation_types": [],
+          "newly_dominant_relations": [],
+          "newly_entered_roles": [],
+          "regime_change": false
+        }
+      ],
+      "reached_nodes": [
+        "action:cme_disturbance",
+        "action:heliosphere_rebalances",
+        "action:magnetosphere_input_declines",
+        "action:spaceflight_protection_adjusts",
+        "aspect:cosmic_ray_modulation",
+        "signal:background_solar_wind_absent",
+        "state:comet_plasma_change",
+        "state:deep_space_radiation_increases",
+        "state:quiet_space_weather"
+      ],
+      "terminal_nodes": [
+        "action:spaceflight_protection_adjusts",
+        "state:comet_plasma_change"
+      ],
+      "regime_change_depths": [
+        2,
+        3
+      ],
+      "frontier_remaining": false,
+      "derived_view": [
+        {
+          "source": "aspect:cosmic_ray_modulation",
+          "relation": "precedes",
+          "target": "action:spaceflight_protection_adjusts",
+          "origin": "inferred"
+        },
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "state:quiet_space_weather",
+          "origin": "inferred"
+        }
+      ],
+      "decision": "stop",
+      "invalid_reasons": []
+    },
+    "evidence_seq": 3
+  },
+  "propagate": {
+    "projection": "WHATIF_MINIMAL_OPERATOR_PROJECTION_V1",
+    "intent": "propagate",
+    "decision": "STOP",
+    "invalid_reasons": [],
+    "result": {
+      "seed": "signal:background_solar_wind_absent",
+      "max_depth": 6,
+      "edges_legal": [
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "action:magnetosphere_input_declines"
+        },
+        {
+          "source": "action:magnetosphere_input_declines",
+          "relation": "precedes",
+          "target": "state:quiet_space_weather"
+        },
+        {
+          "source": "signal:episodic_cme_remains",
+          "relation": "indicates",
+          "target": "claim:cme_events_remain"
+        },
+        {
+          "source": "signal:episodic_cme_remains",
+          "relation": "precedes",
+          "target": "action:cme_disturbance"
+        },
+        {
+          "source": "action:cme_disturbance",
+          "relation": "conflicts_with",
+          "target": "state:quiet_space_weather"
+        },
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "action:heliosphere_rebalances"
+        },
+        {
+          "source": "action:heliosphere_rebalances",
+          "relation": "affects",
+          "target": "aspect:cosmic_ray_modulation"
+        },
+        {
+          "source": "aspect:cosmic_ray_modulation",
+          "relation": "precedes",
+          "target": "state:deep_space_radiation_increases"
+        },
+        {
+          "source": "state:deep_space_radiation_increases",
+          "relation": "precedes",
+          "target": "action:spaceflight_protection_adjusts"
+        },
+        {
+          "source": "guard:spaceflight_protection",
+          "relation": "constrains",
+          "target": "action:spaceflight_protection_adjusts"
+        },
+        {
+          "source": "signal:background_solar_wind_absent",
+          "relation": "precedes",
+          "target": "state:comet_plasma_change"
+        },
+        {
+          "source": "evidence:heliophysics",
+          "relation": "supports",
+          "target": "claim:cme_events_remain"
+        }
+      ],
+      "edges_rejected": [],
+      "layers": [
+        {
+          "depth": 1,
+          "steps": [
+            {
+              "from": "signal:background_solar_wind_absent",
+              "relation": "precedes",
+              "to": "action:magnetosphere_input_declines",
+              "new_node": true
+            },
+            {
+              "from": "signal:background_solar_wind_absent",
+              "relation": "precedes",
+              "to": "action:heliosphere_rebalances",
+              "new_node": true
+            },
+            {
+              "from": "signal:background_solar_wind_absent",
+              "relation": "precedes",
+              "to": "state:comet_plasma_change",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "action:magnetosphere_input_declines",
+            "action:heliosphere_rebalances",
+            "state:comet_plasma_change"
+          ],
+          "relation_types": [
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "precedes"
+          ],
+          "newly_entered_roles": [
+            "Causal",
+            "Mechanism",
+            "State"
+          ],
+          "regime_change": false
+        },
+        {
+          "depth": 2,
+          "steps": [
+            {
+              "from": "action:magnetosphere_input_declines",
+              "relation": "precedes",
+              "to": "state:quiet_space_weather",
+              "new_node": true
+            },
+            {
+              "from": "action:heliosphere_rebalances",
+              "relation": "affects",
+              "to": "aspect:cosmic_ray_modulation",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "state:quiet_space_weather",
+            "aspect:cosmic_ray_modulation"
+          ],
+          "relation_types": [
+            "affects",
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "affects"
+          ],
+          "newly_entered_roles": [
+            "Aspect"
+          ],
+          "regime_change": true
+        },
+        {
+          "depth": 3,
+          "steps": [
+            {
+              "from": "state:quiet_space_weather",
+              "relation": "conflicts_with",
+              "to": "action:cme_disturbance",
+              "new_node": true
+            },
+            {
+              "from": "aspect:cosmic_ray_modulation",
+              "relation": "precedes",
+              "to": "state:deep_space_radiation_increases",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "action:cme_disturbance",
+            "state:deep_space_radiation_increases"
+          ],
+          "relation_types": [
+            "conflicts_with",
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "conflicts_with"
+          ],
+          "newly_entered_roles": [],
+          "regime_change": true
+        },
+        {
+          "depth": 4,
+          "steps": [
+            {
+              "from": "action:cme_disturbance",
+              "relation": "conflicts_with",
+              "to": "state:quiet_space_weather",
+              "new_node": false
+            },
+            {
+              "from": "state:deep_space_radiation_increases",
+              "relation": "precedes",
+              "to": "action:spaceflight_protection_adjusts",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "action:spaceflight_protection_adjusts"
+          ],
+          "relation_types": [
+            "conflicts_with",
+            "precedes"
+          ],
+          "newly_dominant_relations": [],
+          "newly_entered_roles": [],
+          "regime_change": false
+        },
+        {
+          "depth": 5,
+          "steps": [],
+          "new_nodes": [],
+          "relation_types": [],
+          "newly_dominant_relations": [],
+          "newly_entered_roles": [],
+          "regime_change": false
+        }
+      ],
+      "reached_nodes": [
+        "action:cme_disturbance",
+        "action:heliosphere_rebalances",
+        "action:magnetosphere_input_declines",
+        "action:spaceflight_protection_adjusts",
+        "aspect:cosmic_ray_modulation",
+        "signal:background_solar_wind_absent",
+        "state:comet_plasma_change",
+        "state:deep_space_radiation_increases",
+        "state:quiet_space_weather"
+      ],
+      "terminal_nodes": [
+        "action:spaceflight_protection_adjusts",
+        "state:comet_plasma_change"
+      ],
+      "regime_change_depths": [
+        2,
+        3
+      ],
+      "frontier_remaining": false,
+      "derived_view": [],
+      "decision": "stop",
+      "invalid_reasons": []
+    },
+    "evidence_seq": 4
+  },
+  "run_id": "real-v2-daily-20260812-001",
+  "operator_decision": "STOP",
+  "operator_stop_meaning": "graph_frontier_exhausted_only",
+  "semantic_decision": "STOP",
+  "semantic_stop_meaning": "main_mechanisms_closed_and_further_expansion_does_not_materially_change_terminal",
+  "regime_change_meaning": "structural_transition_hint_only"
+}

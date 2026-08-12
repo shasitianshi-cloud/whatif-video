@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "run_id": "real-v2-daily-20260812-001",
+  "source_video_master_path": "runs/real-v2-daily-20260812-001/video-master/video-master.md",
+  "source_video_master_sha256": "265b56842c2fa456739544c01da06b2a604e565dcd66b4d2dda63accc07b9a16",
+  "segment_count": 8,
+  "segment_count_dynamic": true,
+  "historical_probe_segment_count_binding": false,
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false,
+  "segmentation": {
+    "lossless": true,
+    "safe_initial_character_limit": 256,
+    "provider_max_text_utf8_bytes": 1024
+  },
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "source_start": 0,
+      "source_end": 101,
+      "text": "太阳风停止后，地球不会在同一秒变天，已经离开太阳的最后一批带电粒子还要继续飞过来；几天后，这股持续冲击真的断掉，极地上空平时由太阳风不断补充能量的极光开始明显减少，地球外层也不再一直承受同样的粒子压力。",
+      "utf8_byte_length": 303
+    },
+    {
+      "segment_id": "seg-002",
+      "order": 2,
+      "source_start": 101,
+      "source_end": 166,
+      "text": "磁层会向新的外部环境慢慢调整，许多由高速太阳风和持续磁场变化带来的日常空间天气变得更安静，卫星和电网少遇到这类持续背景造成的扰动。",
+      "utf8_byte_length": 195
+    },
+    {
+      "segment_id": "seg-003",
+      "order": 3,
+      "source_start": 166,
+      "source_end": 242,
+      "text": "可太阳并没有被关掉，太阳光照常到达地球，而且契约也没有让所有日冕物质抛射一起消失，所以偶发的大团太阳等离子体仍可能冲过来，短时间重新点亮极光并搅动磁层。",
+      "utf8_byte_length": 228
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "source_start": 242,
+      "source_end": 335,
+      "text": "真正更大的变化在更远处，太阳风原本不断向外吹，在太阳系周围撑起一片巨大的磁化等离子体区域；没有新的太阳风补进来，这个日球层不会瞬间消失，却会随着旧的粒子继续远去而逐步缩小、重新寻找边界。",
+      "utf8_byte_length": 279
+    },
+    {
+      "segment_id": "seg-005",
+      "order": 5,
+      "source_start": 335,
+      "source_end": 405,
+      "text": "这层环境原本会挡掉和改变一部分从银河系飞来的高能宇宙线，它变弱以后，更多银河宇宙线可以进入内太阳系，深空里的辐射条件会一点点变得比今天严苛。",
+      "utf8_byte_length": 210
+    },
+    {
+      "segment_id": "seg-006",
+      "order": 6,
+      "source_start": 405,
+      "source_end": 492,
+      "text": "地球表面并不会因此马上成为辐射灾区，因为地球自己的磁场和厚重大气还在，真正先需要重新算风险的是长时间飞在地球保护之外的宇航员、月球和火星任务，以及怕高能粒子的航天器电子设备。",
+      "utf8_byte_length": 261
+    },
+    {
+      "segment_id": "seg-007",
+      "order": 7,
+      "source_start": 492,
+      "source_end": 564,
+      "text": "连彗星也会留下变化，太阳风原本会拉扯它周围的带电气体，持续太阳风停止后，离子尾的形态会改变，可太阳光仍会加热彗星，尘埃和尘埃尾不会跟着一起消失。",
+      "utf8_byte_length": 216
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "source_start": 564,
+      "source_end": 672,
+      "text": "最后留下的太阳系仍有阳光、行星轨道和地球的昼夜，只是行星际空间少了那股永不停歇的太阳风：地球附近平时更安静，极光更少，而远离地球以后，逐渐减弱的日球层保护让深空面对更多银河宇宙线，偶发太阳爆发仍能突然打破这份安静。\n",
+      "utf8_byte_length": 322
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "nodes": [
+    {
+      "id": "celestial:solar_wind",
+      "record_type": "concept_model",
+      "label": "持续背景太阳风"
+    },
+    {
+      "id": "mechanism:magnetosphere_coupling",
+      "record_type": "causal_pattern",
+      "label": "太阳风与地球磁层持续耦合"
+    },
+    {
+      "id": "signal:geomagnetic_activity",
+      "record_type": "observation_record",
+      "label": "常态空间天气与极光活动"
+    },
+    {
+      "id": "claim:solar_wind_driven_weather",
+      "record_type": "claim",
+      "label": "太阳风持续输入驱动大量地磁活动"
+    },
+    {
+      "id": "mechanism:heliosphere_support",
+      "record_type": "causal_pattern",
+      "label": "太阳风维持日球层压力与磁化等离子体环境"
+    },
+    {
+      "id": "aspect:cosmic_ray_modulation",
+      "record_type": "concept_model",
+      "archetype_role": [
+        "Aspect"
+      ],
+      "label": "银河宇宙线在日球层内的调制"
+    },
+    {
+      "id": "state:deep_space_radiation",
+      "record_type": "state_transition",
+      "label": "深空辐射环境重新平衡"
+    },
+    {
+      "id": "evidence:heliophysics",
+      "record_type": "evidence",
+      "label": "太阳风、磁层、日球层和宇宙线观测"
+    }
+  ],
+  "edges": [
+    {
+      "source": "celestial:solar_wind",
+      "relation": "requires",
+      "target": "mechanism:magnetosphere_coupling"
+    },
+    {
+      "source": "mechanism:magnetosphere_coupling",
+      "relation": "precedes",
+      "target": "signal:geomagnetic_activity"
+    },
+    {
+      "source": "signal:geomagnetic_activity",
+      "relation": "indicates",
+      "target": "claim:solar_wind_driven_weather"
+    },
+    {
+      "source": "celestial:solar_wind",
+      "relation": "requires",
+      "target": "mechanism:heliosphere_support"
+    },
+    {
+      "source": "mechanism:heliosphere_support",
+      "relation": "affects",
+      "target": "aspect:cosmic_ray_modulation"
+    },
+    {
+      "source": "aspect:cosmic_ray_modulation",
+      "relation": "precedes",
+      "target": "state:deep_space_radiation"
+    },
+    {
+      "source": "evidence:heliophysics",
+      "relation": "supports",
+      "target": "claim:solar_wind_driven_weather"
+    }
+  ],
+  "seed": "celestial:solar_wind",
+  "max_depth": 5
+}

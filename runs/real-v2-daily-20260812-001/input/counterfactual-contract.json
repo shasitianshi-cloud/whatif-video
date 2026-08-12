@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "real-v2-daily-20260812-001",
+  "anchor": "太阳风",
+  "raw_premise": "如果太阳风永久停止",
+  "premise": "从当前时刻起，太阳永久停止向外持续发出太阳风；已经离开太阳的太阳风仍按原有状态继续向外传播，直到离开相关区域。太阳的光和其他电磁辐射、质量、引力、自转、行星轨道与物理规律保持基线，不额外制造爆炸、能量脉冲或替代粒子流；本契约只移除持续的背景太阳风，不自动假定所有偶发日冕物质抛射也消失。",
+  "perturbation": {
+    "kind": "set_attribute",
+    "rationale": "‘太阳风永久停止’可在最小关系图中表示为持续背景太阳风的继续发射状态从当前时刻起永久变为不存在；已发出的太阳风继续传播，避免把变化错误地处理成整个太阳系同一瞬间清空。",
+    "node": "celestial:solar_wind",
+    "attribute": "ongoing_emission",
+    "value": false,
+    "mode": "permanent"
+  },
+  "source": "PREMISE_DISCOVERY",
+  "weekly_scope_authorized": true,
+  "daily_anchor_selection_gate_sha256": "2428481539adb3ee433a0f26b11df07c71936537545ab24b7129b7e114aebcc5"
+}

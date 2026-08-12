@@ -1,0 +1,252 @@
+{
+  "expand": {
+    "projection": "WHATIF_MINIMAL_OPERATOR_PROJECTION_V1",
+    "intent": "expand",
+    "decision": "STOP",
+    "invalid_reasons": [],
+    "result": {
+      "seed": "celestial:solar_wind",
+      "max_depth": 5,
+      "edges_legal": [
+        {
+          "source": "celestial:solar_wind",
+          "relation": "requires",
+          "target": "mechanism:magnetosphere_coupling"
+        },
+        {
+          "source": "mechanism:magnetosphere_coupling",
+          "relation": "precedes",
+          "target": "signal:geomagnetic_activity"
+        },
+        {
+          "source": "signal:geomagnetic_activity",
+          "relation": "indicates",
+          "target": "claim:solar_wind_driven_weather"
+        },
+        {
+          "source": "celestial:solar_wind",
+          "relation": "requires",
+          "target": "mechanism:heliosphere_support"
+        },
+        {
+          "source": "mechanism:heliosphere_support",
+          "relation": "affects",
+          "target": "aspect:cosmic_ray_modulation"
+        },
+        {
+          "source": "aspect:cosmic_ray_modulation",
+          "relation": "precedes",
+          "target": "state:deep_space_radiation"
+        },
+        {
+          "source": "evidence:heliophysics",
+          "relation": "supports",
+          "target": "claim:solar_wind_driven_weather"
+        }
+      ],
+      "edges_rejected": [],
+      "layers": [
+        {
+          "depth": 1,
+          "steps": [
+            {
+              "from": "celestial:solar_wind",
+              "relation": "requires",
+              "to": "mechanism:magnetosphere_coupling",
+              "new_node": true
+            },
+            {
+              "from": "celestial:solar_wind",
+              "relation": "requires",
+              "to": "mechanism:heliosphere_support",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "mechanism:magnetosphere_coupling",
+            "mechanism:heliosphere_support"
+          ],
+          "relation_types": [
+            "requires"
+          ],
+          "newly_dominant_relations": [
+            "requires"
+          ],
+          "newly_entered_roles": [
+            "Causal",
+            "Mechanism"
+          ],
+          "regime_change": false
+        },
+        {
+          "depth": 2,
+          "steps": [
+            {
+              "from": "mechanism:magnetosphere_coupling",
+              "relation": "precedes",
+              "to": "signal:geomagnetic_activity",
+              "new_node": true
+            },
+            {
+              "from": "mechanism:heliosphere_support",
+              "relation": "affects",
+              "to": "aspect:cosmic_ray_modulation",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "signal:geomagnetic_activity",
+            "aspect:cosmic_ray_modulation"
+          ],
+          "relation_types": [
+            "affects",
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "affects",
+            "precedes"
+          ],
+          "newly_entered_roles": [
+            "Aspect",
+            "Observation"
+          ],
+          "regime_change": true
+        },
+        {
+          "depth": 3,
+          "steps": [
+            {
+              "from": "signal:geomagnetic_activity",
+              "relation": "indicates",
+              "to": "claim:solar_wind_driven_weather",
+              "new_node": true
+            },
+            {
+              "from": "aspect:cosmic_ray_modulation",
+              "relation": "precedes",
+              "to": "state:deep_space_radiation",
+              "new_node": true
+            }
+          ],
+          "new_nodes": [
+            "claim:solar_wind_driven_weather",
+            "state:deep_space_radiation"
+          ],
+          "relation_types": [
+            "indicates",
+            "precedes"
+          ],
+          "newly_dominant_relations": [
+            "indicates"
+          ],
+          "newly_entered_roles": [
+            "Claim",
+            "State"
+          ],
+          "regime_change": true
+        },
+        {
+          "depth": 4,
+          "steps": [],
+          "new_nodes": [],
+          "relation_types": [],
+          "newly_dominant_relations": [],
+          "newly_entered_roles": [],
+          "regime_change": false
+        }
+      ],
+      "reached_nodes": [
+        "aspect:cosmic_ray_modulation",
+        "celestial:solar_wind",
+        "claim:solar_wind_driven_weather",
+        "mechanism:heliosphere_support",
+        "mechanism:magnetosphere_coupling",
+        "signal:geomagnetic_activity",
+        "state:deep_space_radiation"
+      ],
+      "terminal_nodes": [
+        "claim:solar_wind_driven_weather",
+        "state:deep_space_radiation"
+      ],
+      "regime_change_depths": [
+        2,
+        3
+      ],
+      "frontier_remaining": false,
+      "derived_view": [],
+      "decision": "stop",
+      "invalid_reasons": []
+    },
+    "evidence_seq": 1
+  },
+  "perturb": {
+    "projection": "WHATIF_MINIMAL_OPERATOR_PROJECTION_V1",
+    "intent": "perturb",
+    "decision": "CONTINUE",
+    "invalid_reasons": [],
+    "result": {
+      "perturbation": {
+        "kind": "set_attribute",
+        "rationale": "‘太阳风永久停止’可在最小关系图中表示为持续背景太阳风的继续发射状态从当前时刻起永久变为不存在；已发出的太阳风继续传播，避免把变化错误地处理成整个太阳系同一瞬间清空。",
+        "node": "celestial:solar_wind",
+        "attribute": "ongoing_emission",
+        "value": false,
+        "mode": "permanent"
+      },
+      "edges_after": [
+        {
+          "source": "celestial:solar_wind",
+          "relation": "requires",
+          "target": "mechanism:magnetosphere_coupling"
+        },
+        {
+          "source": "mechanism:magnetosphere_coupling",
+          "relation": "precedes",
+          "target": "signal:geomagnetic_activity"
+        },
+        {
+          "source": "signal:geomagnetic_activity",
+          "relation": "indicates",
+          "target": "claim:solar_wind_driven_weather"
+        },
+        {
+          "source": "celestial:solar_wind",
+          "relation": "requires",
+          "target": "mechanism:heliosphere_support"
+        },
+        {
+          "source": "mechanism:heliosphere_support",
+          "relation": "affects",
+          "target": "aspect:cosmic_ray_modulation"
+        },
+        {
+          "source": "aspect:cosmic_ray_modulation",
+          "relation": "precedes",
+          "target": "state:deep_space_radiation"
+        },
+        {
+          "source": "evidence:heliophysics",
+          "relation": "supports",
+          "target": "claim:solar_wind_driven_weather"
+        }
+      ],
+      "removed": [],
+      "added": [],
+      "notices": [
+        "ATTRIBUTE_DELTA:celestial:solar_wind.ongoing_emission = False (permanent)"
+      ],
+      "decision": "continue",
+      "invalid_reasons": []
+    },
+    "evidence_seq": 2
+  },
+  "natural_premise": "从当前时刻起，太阳永久停止向外持续发出太阳风；已经离开太阳的太阳风仍按原有状态继续向外传播，直到离开相关区域。太阳的光和其他电磁辐射、质量、引力、自转、行星轨道与物理规律保持基线，不额外制造爆炸、能量脉冲或替代粒子流；本契约只移除持续的背景太阳风，不自动假定所有偶发日冕物质抛射也消失。",
+  "structural_perturbation": {
+    "kind": "set_attribute",
+    "rationale": "‘太阳风永久停止’可在最小关系图中表示为持续背景太阳风的继续发射状态从当前时刻起永久变为不存在；已发出的太阳风继续传播，避免把变化错误地处理成整个太阳系同一瞬间清空。",
+    "node": "celestial:solar_wind",
+    "attribute": "ongoing_emission",
+    "value": false,
+    "mode": "permanent"
+  }
+}

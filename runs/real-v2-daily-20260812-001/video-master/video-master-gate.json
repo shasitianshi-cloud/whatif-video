@@ -1,0 +1,10 @@
+{
+  "run_id": "real-v2-daily-20260812-001",
+  "gate": "VIDEO_MASTER_GATE",
+  "status": "PASS",
+  "input_artifact": "/home/runner/work/whatif-video/whatif-video/runs/real-v2-daily-20260812-001/counterfactual-reasoning/counterfactual-master.md",
+  "input_sha256": "b988d3396a24f15cae15b22591f159810c5d306827ee4a335db7a168f61af85e",
+  "artifact": "runs/real-v2-daily-20260812-001/video-master/video-master.md",
+  "sha256": "265b56842c2fa456739544c01da06b2a604e565dcd66b4d2dda63accc07b9a16",
+  "completed_at": "2026-08-12T15:14:44+08:00"
+}
