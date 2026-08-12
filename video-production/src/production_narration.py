@@ -18,9 +18,6 @@ from tts_adapter import VolcengineTTSAdapter
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 VIDEO_PRODUCTION_ROOT = PROJECT_ROOT / "video-production"
 TTS_CONFIG_PATH = VIDEO_PRODUCTION_ROOT / "config/tts.json"
-# UTF-8 code points may occupy up to 4 bytes. This conservative character
-# ceiling guarantees an initially segmented unit cannot exceed the frozen
-# provider limit solely because of multibyte Unicode.
 SAFE_INITIAL_CHARACTER_LIMIT = 256
 
 
@@ -188,13 +185,24 @@ def synthesize_narration(run_id: str, *, adapter_factory=VolcengineTTSAdapter) -
         ],
         "historical_entrypoint_byte_identical": False,
     }
-    (narration / "evidence.json").write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    # The frozen duration policy remains authoritative. This may losslessly
-    # replace only oversized units and regenerate only their child audio.
-    if gate["narration_completeness_gate"] == "PASS" and any(
-        x["duration_ms"] >= 15000 for x in manifest_segments
-    ):
-        return enforce_narration_duration(run_id)
+    evidence_path = narration / "evidence.json"
+    evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    oversized = any(x["duration_ms"] >= 15000 for x in manifest_segments)
+    if oversized:
+        result = enforce_narration_duration(run_id)
+        final_plan = json.loads(plan_path.read_text(encoding="utf-8"))
+        final_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        evidence.update({
+            "duration_resplit_applied": True,
+            "narration_plan_sha256": sha256_file(plan_path),
+            "narration_audio_manifest_sha256": sha256_file(manifest_path),
+            "final_segment_count": final_plan["segment_count"],
+            "final_total_duration_ms": final_manifest["total_duration_ms"],
+        })
+        evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return result
+    evidence["duration_resplit_applied"] = False
+    evidence_path.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return {"manifest": manifest_path, "gate": gate_path, "gate_data": gate}
 
 
