@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "contract_version": 2,
+  "run_id": "real-v2-daily-20260812-001",
+  "gate": "PRODUCTION_SCRIPT_VALIDATION_V2",
+  "status": "PASS",
+  "artifact": "runs/real-v2-daily-20260812-001/video-production/production-script/production-script.json",
+  "sha256": "ac3ea2e8a95d7cdcff9c9c3746bb173790601accd9bb1ac34c8d2e9f7287f4fa",
+  "narration_manifest_sha256": "ccd61ec837b610f72930fed3e1b40dd7e114bea36bd5285dcb2eace0a37b121a",
+  "video_master_sha256": "265b56842c2fa456739544c01da06b2a604e565dcd66b4d2dda63accc07b9a16",
+  "happyhorse_required_segments": 5,
+  "happyhorse_primary_segments": 5,
+  "first_segment_happyhorse_primary": true,
+  "first_three_second_hook_contract": "PASS",
+  "cover_required": true,
+  "cover_title_exact": true,
+  "creative_replanning_performed": false,
+  "physical_provider_selected_by_llm": false,
+  "provider_generation_executed": false
+}

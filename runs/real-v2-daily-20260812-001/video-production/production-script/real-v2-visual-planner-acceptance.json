@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "run_id": "real-v2-daily-20260812-001",
+  "gate": "REAL_V2_VISUAL_PLANNER_ACCEPTANCE",
+  "status": "PASS",
+  "narration_segment_count": 11,
+  "happyhorse_required_segments": 5,
+  "happyhorse_primary_segments": 5,
+  "first_segment_happyhorse_primary": true,
+  "first_three_second_hook_contract": "PASS",
+  "cover_required": true,
+  "cover_title_exact": true,
+  "dispatch_task_count": 17,
+  "happyhorse_task_count": 5,
+  "image_task_count_including_cover": 12,
+  "physical_provider_selected_by_llm": false,
+  "provider_generation_executed": false,
+  "next_stage": "ASSET_EXECUTION_PREFLIGHT_V2"
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "contract_version": 2,
+  "run_id": "real-v2-daily-20260812-001",
+  "planner_prompt": "video-production/prompts/visual-material-planner-v2.md",
+  "planner_prompt_sha256": "3875b2785003b98165e4901bd574ea511752a51a710a07787a2f17c93296934f",
+  "production_script_schema": "video-production/schemas/production-script.recovery-v2.schema.json",
+  "production_script_schema_sha256": "2b33088a6a9988d422e740e4faa573aa11dda04ea0e7805766f43b60607b8e27",
+  "visual_planning_policy": "video-production/config/visual-planning-policy.v2.json",
+  "visual_planning_policy_sha256": "b65da75d1d98e5eb23c1bfb80a86e66b709e90aa0d47a63ba1121b1f23933079",
+  "narration_manifest_sha256": "ccd61ec837b610f72930fed3e1b40dd7e114bea36bd5285dcb2eace0a37b121a",
+  "video_master_sha256": "265b56842c2fa456739544c01da06b2a604e565dcd66b4d2dda63accc07b9a16",
+  "counterfactual_display_title": "如果太阳风永久停止",
+  "model": "GPT-5.6 Sol host-managed",
+  "model_calls": 1,
+  "prompt_refinement_after_model": false,
+  "downstream_creative_replanning_required": false,
+  "physical_provider_selected_by_llm": false,
+  "production_script_sha256": "ac3ea2e8a95d7cdcff9c9c3746bb173790601accd9bb1ac34c8d2e9f7287f4fa",
+  "validation_summary": {
+    "visual_planning_policy_id": "visual-planning-policy.v2",
+    "segment_count": 11,
+    "happyhorse_required_segments": 5,
+    "happyhorse_primary_segments": 5,
+    "happyhorse_primary_segment_ids": [
+      "seg-001a",
+      "seg-001b",
+      "seg-003",
+      "seg-004b",
+      "seg-007"
+    ],
+    "happyhorse_coverage_ratio_by_segment": {
+      "seg-001a": 0.7936507936507936,
+      "seg-001b": 0.7490636704119851,
+      "seg-002": 0.0,
+      "seg-003": 0.6613756613756614,
+      "seg-004a": 0.0,
+      "seg-004b": 0.7002801120448179,
+      "seg-005": 0.0,
+      "seg-006": 0.0,
+      "seg-007": 0.6184291898577613,
+      "seg-008a": 0.0,
+      "seg-008b": 0.0
+    },
+    "first_segment_happyhorse_primary": true,
+    "first_three_second_hook_contract": "PASS",
+    "cover_required": true,
+    "cover_title_exact": true
+  },
+  "recovery_boundary_reconstructed": true,
+  "historical_boundary_byte_identical": false
+}
