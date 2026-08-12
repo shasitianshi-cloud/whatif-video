@@ -1,0 +1,99 @@
+name: Volcengine Image Real Probe
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/VOLCENGINE_IMAGE_REAL_PROBE_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Materialize encrypted image credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          node video-production/runtime/decrypt-volcengine-image-auth.mjs \
+            runtime-auth/volcengine-image-runtime-auth.v1.json \
+            .age-runtime-auth-identity \
+            .runtime-auth/volcengine-image/credential.txt
+
+      - name: Execute one real technical image probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          from volcengine_image_adapter import VolcengineImageAdapter, image_dimensions, load_access_key
+
+          credential = Path('.runtime-auth/volcengine-image/credential.txt')
+          ak, sk = load_access_key(credential)
+          client = VolcengineImageAdapter(ak, sk)
+          prompt = 'A realistic empty coastal harbor at dawn, wide landscape composition, natural lighting, no text, no logo.'
+          result = client.generate(prompt)
+          data = result.image_bytes
+          if not data:
+              raise RuntimeError('EMPTY_IMAGE')
+          width, height = image_dimensions(data)
+          artifact = Path('recovery/volcengine-image-real-probe/probe-image.bin')
+          artifact.parent.mkdir(parents=True, exist_ok=True)
+          artifact.write_bytes(data)
+          if artifact.read_bytes() != data:
+              raise RuntimeError('ARTIFACT_READBACK_MISMATCH')
+          evidence = {
+              'schema_version': 1,
+              'status': 'PASS',
+              'provider': 'volcengine',
+              'provider_model': '通用3.0-文生图',
+              'execution_adapter': 'volcengine_general3_t2i_api',
+              'real_image_programmatic_call': True,
+              'control_returned_to_caller': True,
+              'artifact_readback_pass': True,
+              'image_sha256': hashlib.sha256(data).hexdigest(),
+              'file_size_bytes': len(data),
+              'width': width,
+              'height': height,
+              'provider_task_id': result.task_id,
+              'provider_request_id': result.request_id,
+              'max_in_flight_requests': client.max_in_flight,
+              'generation_request_count': client.generation_requests,
+              'credential_values_logged': False,
+              'formal_run_touched': False,
+          }
+          Path('recovery/volcengine-image-real-probe/evidence.json').write_text(
+              json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps({k:v for k,v in evidence.items() if k not in {'provider_task_id','provider_request_id'}}, ensure_ascii=False))
+          artifact.unlink()
+          PY
+
+      - name: Remove plaintext credential
+        if: always()
+        shell: bash
+        run: rm -rf .runtime-auth .age-runtime-auth-identity
+
+      - name: Commit sanitized real probe evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add recovery/volcengine-image-real-probe/evidence.json
+          git diff --cached --quiet && { echo 'NO_PROBE_EVIDENCE'; exit 1; }
+          git commit -m 'record real Volcengine image probe evidence'
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
