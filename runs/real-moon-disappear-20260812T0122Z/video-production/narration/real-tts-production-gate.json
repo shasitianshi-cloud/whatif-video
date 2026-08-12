@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "status": "PASS",
+  "provider": "volcengine",
+  "provider_generation_executed": true,
+  "segment_count": 8,
+  "total_duration_ms": 86472,
+  "all_segments_under_15000ms": true,
+  "same_run_lineage_verified": true,
+  "next_stage": "VISUAL_PLANNER"
+}

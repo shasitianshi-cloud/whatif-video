@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "source_video_master_sha256": "243bb81c5145748ae3cb3b8af726df3752594539f959ecbc65dfe35b84c8fd98",
+  "tts_provider": "volcengine",
+  "tts_protocol": "v3_http_chunked_unidirectional",
+  "resource_id": "seed-tts-2.0",
+  "speaker": "zh_female_vv_uranus_bigtts",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "speech_rate": 15,
+  "loudness_rate": 0,
+  "concurrency_max": 5,
+  "segment_count": 8,
+  "total_duration_ms": 86472,
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "text": "月球消失的那一刻，海水不会从海岸退光，也不会立刻淹没所有城市，最先消失的是月球持续拉动海洋的那部分力量。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-001.mp3",
+      "audio_sha256": "e078e9019bdaf735a7dce6967f85ec213fa742620f26f50413b104a5a682aec6",
+      "duration_ms": 8616,
+      "request_id": "8b619f31-00c6-4678-9642-ddc8f3e7e53e"
+    },
+    {
+      "segment_id": "seg-002",
+      "order": 2,
+      "text": "太阳还在拉动海水，所以潮汐不会归零，但许多海湾和港口熟悉的涨落会变弱、换节奏，沿岸水流也会重新调整。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-002.mp3",
+      "audio_sha256": "8aa6856dd34fe1dc0217126b38863d5d85bada6467b21aad03d264f8bd79f11f",
+      "duration_ms": 8736,
+      "request_id": "f79c1912-db6b-4334-a2d7-d835eb91da95"
+    },
+    {
+      "segment_id": "seg-003",
+      "order": 3,
+      "text": "靠每天涨落海水露出和淹没的滩涂里，贝类、蟹、海藻和捕食者先面对一个不再熟悉的水位表，渔民和港口也要重新学习什么时候进出。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-003.mp3",
+      "audio_sha256": "d9470eb27e645f9a44906899d3dda49816e62d1dd5d08579b9c2d4f5df64aa0e",
+      "duration_ms": 11016,
+      "request_id": "cf41fb64-2430-4a3f-9b4b-b09a8ca08955"
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "text": "夜里另一个变化更直观，天空失去月光，满月、月相、月食和由月球造成的日食从此不再出现。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-004.mp3",
+      "audio_sha256": "1f65f42a878a04eb3697ba251df8f3cff54cbe0ff74aee395809bbd47168c1a6",
+      "duration_ms": 7560,
+      "request_id": "1a63dce4-cc87-4568-9042-dab0aab93402"
+    },
+    {
+      "segment_id": "seg-005",
+      "order": 5,
+      "text": "地球本身却不会突然换成另一种转速，一天不会马上变长或变短，只是月球长期拖慢地球自转的那股潮汐作用消失，太阳留下的潮汐作用继续存在。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-005.mp3",
+      "audio_sha256": "557f1ab4087670bd3d8085b778df40bf046f99154a2eaa0a0f4ded24663d771f",
+      "duration_ms": 11184,
+      "request_id": "6333b401-b933-475e-a9e5-77594fcffb19"
+    },
+    {
+      "segment_id": "seg-006",
+      "order": 6,
+      "text": "真正慢的变化要等很久才出现，没有月球持续参与地球自转轴的运动，地轴在几十万到上亿年的时间里可能比今天摆动得更大，但具体范围仍取决于整个太阳系怎样拉扯地球。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-006.mp3",
+      "audio_sha256": "6687350cac9bf0621e09bb606226fa94fb30a9b926dd6a6bed21b434806f897e",
+      "duration_ms": 13320,
+      "request_id": "7a140ec1-4d99-407c-8866-d0984a2d3ae0"
+    },
+    {
+      "segment_id": "seg-007",
+      "order": 7,
+      "text": "这会让长期季节和气候走向比今天多一层变化，可它不是第二天就发生的灾难，眼前的世界更像是先失去熟悉的潮汐和夜空，再让海岸生态与人类活动一点点重新适应。",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-007.mp3",
+      "audio_sha256": "e194e3d615fb0e284f406698ed08f5dc6d41586b9d0f742d3d274f25677f3988",
+      "duration_ms": 13272,
+      "request_id": "eda2cf72-aa93-4410-913b-78f92cc73438"
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "text": "最后留下的是一个仍围着太阳运行、仍有白天黑夜和太阳潮汐的地球，只是海岸的节奏、夜晚的亮度，以及极长时间里的自转与气候变化，都走上了没有月球的新路线。\n",
+      "audio_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-008.mp3",
+      "audio_sha256": "b11238fb644941b29e5e8c875cd2a1ad37f7a17af3ff13b51a3bc18012762d16",
+      "duration_ms": 12768,
+      "request_id": "57ccffa2-304e-414b-b7ff-b07f80c0db5e"
+    }
+  ],
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false
+}
