@@ -1,0 +1,143 @@
+name: Real Production Volcengine Images
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'recovery/REAL_PRODUCTION_VOLCENGINE_IMAGES_TRIGGER'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: whatif-real-production-volcengine-images
+  cancel-in-progress: false
+
+jobs:
+  images:
+    runs-on: ubuntu-24.04
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preflight formal run image boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          run_id='real-moon-disappear-20260812T0122Z'
+          root=Path('runs')/run_id/'video-production/execution'
+          dispatch=json.loads((root/'asset-dispatch.json').read_text())
+          state=json.loads((root/'asset-executor-state.json').read_text())
+          assert dispatch['run_id']==run_id
+          assert len(dispatch['tasks'])==9
+          assert all(t['generation_route']=='gpt-image-2' and t['expected_asset_kind']=='image' for t in dispatch['tasks'])
+          assert state['run_id']==run_id
+          assert state['serial_execution'] is True
+          assert state['latest_discovery_used'] is False
+          assert state['next_task_index']==0
+          assert state['artifact_paths_by_task_id']=={}
+          assert state['artifact_paths_by_asset_id']=={}
+          print(json.dumps({'status':'PASS','run_id':run_id,'task_count':9,'max_concurrency':1,'provider_execution_pending':True}))
+          PY
+
+      - name: Materialize encrypted image credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          node video-production/runtime/decrypt-volcengine-image-auth.mjs \
+            runtime-auth/volcengine-image-runtime-auth.v1.json \
+            .age-runtime-auth-identity \
+            .runtime-auth/volcengine-image/credential.txt
+
+      - name: Execute nine formal image tasks strictly serially
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/prepare_production_execution.py \
+            --run-id real-moon-disappear-20260812T0122Z \
+            --execute-provider \
+            --image-execution-adapter volcengine_general3_t2i_api \
+            --image-credential-file .runtime-auth/volcengine-image/credential.txt
+
+      - name: Gate formal image execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          run_id='real-moon-disappear-20260812T0122Z'
+          project=Path.cwd()
+          root=project/'runs'/run_id/'video-production/execution'
+          state=json.loads((root/'asset-executor-state.json').read_text())
+          status=json.loads((root/'production-execution-status.json').read_text())
+          dispatch=json.loads((root/'asset-dispatch.json').read_text())
+          assert state['status']=='COMPLETE'
+          assert status['status']=='COMPLETE'
+          assert state['next_task_index']==len(dispatch['tasks'])==9
+          comp=state['completeness']
+          assert comp['asset_execution_completeness_pass'] is True
+          assert comp['success_task_count']==9
+          assert comp['missing_task_ids']==[]
+          assert comp['unexpected_task_ids']==[]
+          artifacts=[]
+          for task in dispatch['tasks']:
+              rel=state['artifact_paths_by_task_id'][task['task_id']]
+              artifact=json.loads((project/rel).read_text())
+              image=project/artifact['local_path']
+              assert artifact['status']=='SUCCESS'
+              assert artifact['run_id']==run_id
+              assert artifact['task_id']==task['task_id']
+              assert artifact['asset_id']==task['asset_id']
+              assert artifact['execution_route']=='volcengine_general3_t2i_api'
+              assert artifact['prompt_passthrough'] is True
+              assert artifact['control_returned_to_caller'] is True
+              assert artifact['ambiguous_task_submission'] is False
+              assert artifact['max_concurrency_observed']==1
+              assert image.is_file() and image.stat().st_size==artifact['file_size_bytes']>0
+              assert hashlib.sha256(image.read_bytes()).hexdigest()==artifact['sha256']
+              artifacts.append({'task_id':task['task_id'],'asset_id':task['asset_id'],'sha256':artifact['sha256'],'width':artifact['width'],'height':artifact['height']})
+          gate={
+            'schema_version':1,
+            'run_id':run_id,
+            'status':'PASS',
+            'provider':'volcengine',
+            'execution_adapter':'volcengine_general3_t2i_api',
+            'formal_generation_request_count':9,
+            'success_count':9,
+            'max_in_flight_requests':1,
+            'serial_execution':True,
+            'control_returned_after_each_call':True,
+            'credential_values_logged':False,
+            'asset_execution_complete':True,
+            'artifacts':artifacts,
+          }
+          (root/'real-volcengine-image-production-gate.json').write_text(json.dumps(gate,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in gate.items() if k!='artifacts'},ensure_ascii=False))
+          PY
+
+      - name: Remove plaintext credential
+        if: always()
+        shell: bash
+        run: rm -rf .runtime-auth .age-runtime-auth-identity
+
+      - name: Commit formal image artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-moon-disappear-20260812T0122Z'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/execution"
+          git diff --cached --quiet && { echo 'NO_FORMAL_IMAGE_OUTPUT'; exit 1; }
+          git commit -m "generate formal serial Volcengine images for $RUN_ID"
+          git push origin HEAD:migration/whatif-recovery-v2-clean-v1
