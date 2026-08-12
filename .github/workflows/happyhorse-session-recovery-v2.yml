@@ -1,0 +1,151 @@
+name: HappyHorse Session Recovery V2
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'recovery/HAPPYHORSE_SESSION_RECOVERY_V2_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  recover-auth:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+      HAPPYHORSE_SESSION_JSON: ${{ secrets.HAPPYHORSE_SESSION_JSON }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Fail closed if recovery secret is unavailable
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          test -n "${HAPPYHORSE_SESSION_JSON:-}"
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Materialize old bundle and replace HappyHorse session from GitHub Secret
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/encrypted_runtime_auth.py decrypt-materialize \
+            --encrypted runtime-auth/runtime-auth.v1.age \
+            --identity-file .age-runtime-auth-identity
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          raw=json.loads(os.environ['HAPPYHORSE_SESSION_JSON'])
+          if not isinstance(raw,dict): raise SystemExit('HAPPYHORSE_SESSION_SECRET_SCHEMA_INVALID')
+          required = raw.get('accessToken') or raw.get('access_token')
+          refresh = raw.get('refreshToken') or raw.get('refresh_token')
+          if not required or not refresh: raise SystemExit('HAPPYHORSE_SESSION_SECRET_FIELDS_MISSING')
+          p=Path('.runtime-auth/happyhorse/session.json')
+          p.parent.mkdir(parents=True,exist_ok=True)
+          p.write_text(json.dumps(raw,separators=(',',':'))+'\n',encoding='utf-8')
+          p.chmod(0o600)
+          print('HAPPYHORSE_SECRET_MATERIALIZED=true')
+          print('CREDENTIAL_VALUES_LOGGED=false')
+          PY
+
+      - name: Verify or refresh session against membership endpoint without generation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const p='.runtime-auth/happyhorse/session.json';
+          const raw=JSON.parse(fs.readFileSync(p,'utf8'));
+          const s={
+            appId: raw.appId ?? raw.app_id ?? 'aorizon_cn',
+            deviceId: raw.deviceId ?? raw.device_id ?? null,
+            accessToken: raw.accessToken ?? raw.access_token ?? null,
+            refreshToken: raw.refreshToken ?? raw.refresh_token ?? null,
+            accessExpiresAt: raw.accessExpiresAt ?? raw.access_expires_at ?? raw.accessExpiryMs ?? raw.expires_at ?? null,
+            refreshExpiresAt: raw.refreshExpiresAt ?? raw.refresh_expires_at ?? raw.refreshExpiryMs ?? null,
+          };
+          if (!s.accessToken || !s.refreshToken) throw new Error('HAPPYHORSE_SESSION_FIELDS_MISSING');
+          const API='https://api-gateway.aorizon.com/api';
+          const headers=(auth=true)=>({
+            'User-Agent':'happyhorse-cli/0.1.9','X-App-Id':s.appId,'X-Language':'zh-CN','X-Client-Type':'cli','X-Client-Version':'0.1.9','X-Client-Command':'membership-status',
+            ...(s.deviceId?{'X-Device-Id':s.deviceId}:{}),...(auth?{Authorization:`Bearer ${s.accessToken}`}:{})
+          });
+          async function membership(){
+            const r=await fetch(`${API}/v1/cli/membership/status`,{headers:headers(true)});
+            let b={}; try{b=await r.json();}catch{}
+            return {r,b};
+          }
+          async function refresh(){
+            const r=await fetch(`${API}/v1/auth/token/refresh`,{method:'POST',headers:{...headers(false),'Content-Type':'application/json'},body:JSON.stringify({refreshToken:s.refreshToken})});
+            let b={}; try{b=await r.json();}catch{}
+            if(!r.ok || b?.success===false) throw new Error('HAPPYHORSE_RECOVERY_REFRESH_REJECTED');
+            const d=b?.data??b;
+            if(!d?.accessToken||!d?.refreshToken||!Number.isFinite(Number(d?.accessExpiresIn))||!Number.isFinite(Number(d?.refreshExpiresIn))) throw new Error('HAPPYHORSE_RECOVERY_REFRESH_INVALID');
+            const now=Date.now(); s.accessToken=d.accessToken; s.refreshToken=d.refreshToken; s.accessExpiresAt=now+Number(d.accessExpiresIn)*1000; s.refreshExpiresAt=now+Number(d.refreshExpiresIn)*1000;
+            fs.writeFileSync(p,JSON.stringify(s)+'\n',{mode:0o600}); fs.chmodSync(p,0o600);
+          }
+          let m=await membership();
+          const code=String(m.b?.errorCode??'');
+          if(m.r.status===401 || code==='2005' || code==='40102') { await refresh(); m=await membership(); }
+          if(!m.r.ok || m.b?.success===false) throw new Error('HAPPYHORSE_MEMBERSHIP_AUTH_REJECTED');
+          console.log('HAPPYHORSE_LIVE_AUTH_PASS=true');
+          console.log('PROVIDER_GENERATION_CALL_EXECUTED=false');
+          console.log('CREDENTIAL_VALUES_LOGGED=false');
+          JS
+
+      - name: Reencrypt refreshed session into canonical runtime auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          RECIPIENT="$(age-keygen -y .age-runtime-auth-identity)"
+          python3 video-production/src/encrypted_runtime_auth.py reencrypt-materialized \
+            --recipient "$RECIPIENT" \
+            --output runtime-auth/runtime-auth.v1.age
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          Path('runtime-auth/HAPPYHORSE_SESSION_RECOVERY_V2_RESULT.json').write_text(json.dumps({
+            'schema_version':1,'status':'PASS','happyhorse_live_auth_pass':True,
+            'session_source':'github_secret','encrypted_runtime_auth_updated':True,
+            'provider_generation_call_executed':False,'credits_consumed':False,'credential_values_logged':False
+          },indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Remove plaintext auth
+        if: always()
+        shell: bash
+        run: rm -rf .runtime-auth .age-runtime-auth-identity age age.tar.gz
+
+      - name: Commit ciphertext and sanitized recovery evidence only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e .runtime-auth
+          test ! -e .age-runtime-auth-identity
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add runtime-auth/runtime-auth.v1.age runtime-auth/HAPPYHORSE_SESSION_RECOVERY_V2_RESULT.json
+          git diff --cached --quiet && { echo 'NO_RECOVERY_OUTPUT'; exit 1; }
+          git commit -m 'recover HappyHorse runtime session V2'
+          git push origin HEAD:implementation/global-production-v2
