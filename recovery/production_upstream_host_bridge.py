@@ -33,9 +33,13 @@ def run_upstream_host_managed(
     video_master_model_call: Callable[[str], str],
     reasoning_model_name: str = "host-managed",
     video_master_model_name: str = "host-managed",
+    expected_counterfactual_contract: str | None = None,
 ) -> dict[str, Any]:
     if not callable(reasoning_host_call) or not callable(video_master_model_call):
         raise RuntimeError("HOST_MODEL_CALLBACK_REQUIRED")
+    if expected_counterfactual_contract is not None and not expected_counterfactual_contract.strip():
+        raise RuntimeError("EXPECTED_COUNTERFACTUAL_CONTRACT_INVALID")
+
     reasoning = _load(
         "whatif_counterfactual_reasoning",
         PROJECT_ROOT / "counterfactual-reasoning" / "src" / "counterfactual_reasoning.py",
@@ -68,6 +72,17 @@ def run_upstream_host_managed(
         or reasoning_gate.get("real_execution_verified") is not True
     ):
         raise RuntimeError("COUNTERFACTUAL_MASTER_GATE_INVALID")
+
+    premise_source_path = reasoning_root / "work" / "premise-source.json"
+    if not premise_source_path.is_file():
+        raise RuntimeError("PREMISE_SOURCE_MISSING")
+    premise_source = json.loads(premise_source_path.read_text(encoding="utf-8"))
+    if premise_source.get("anchor") != anchor:
+        raise RuntimeError("PREMISE_SOURCE_ANCHOR_MISMATCH")
+    if expected_counterfactual_contract is not None:
+        if premise_source.get("raw_premise") != expected_counterfactual_contract:
+            raise RuntimeError("COUNTERFACTUAL_CONTRACT_MISMATCH")
+
     master_path = PROJECT_ROOT / reasoning_gate["artifact"]
 
     vm_gate = video_master.run_video_master(
@@ -100,6 +115,7 @@ def run_upstream_host_managed(
         "segment_count_dynamic": plan["segment_count_dynamic"],
         "same_run_lineage_verified": True,
         "host_model_callbacks_injected": True,
+        "expected_counterfactual_contract_verified": expected_counterfactual_contract is not None,
         "provider_generation_executed": False,
         "recovery_bridge_reconstructed": True,
         "historical_bridge_byte_identical": False,
