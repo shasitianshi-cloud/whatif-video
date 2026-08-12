@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "status": "READY_FOR_HYPERFRAMES_RENDER",
+  "asset_manifest": "runs/real-moon-disappear-20260812T0122Z/video-production/render/asset-manifest.json",
+  "asset_manifest_sha256": "f107014a208c3327bed97a443bda2ec9ee92c0f4adbdcab683d6b9704cb180b2",
+  "render_input": "runs/real-moon-disappear-20260812T0122Z/video-production/render/render-input.json",
+  "render_input_sha256": "2fe1b47cb90ff17c9ec60185b9a2f8925974572a10621a4ab0dca1ac1d4c1aeb",
+  "render_plan": "runs/real-moon-disappear-20260812T0122Z/video-production/render/render-plan.json",
+  "render_plan_sha256": "67ff5446e78da8210226ee3476f87ddf90b9dba5514776c1df9cf40c07de0a2c",
+  "execution_completeness": {
+    "dispatch_task_count": 9,
+    "executed_task_count": 9,
+    "success_task_count": 9,
+    "missing_task_ids": [],
+    "unexpected_task_ids": [],
+    "blocked_task_ids": [],
+    "host_action_required_task_ids": [],
+    "asset_execution_completeness_pass": true
+  },
+  "latest_discovery_used": false,
+  "provider_generation_executed": false,
+  "creative_replanning_performed": false,
+  "recovery_closure_reconstructed": true,
+  "historical_closure_byte_identical": false
+}

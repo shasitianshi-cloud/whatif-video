@@ -1,0 +1,435 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "composition": {
+    "width": 1280,
+    "height": 720,
+    "duration_ms": 86472
+  },
+  "layers": [
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "very slow pull back to reveal that the whole coast remains physically intact",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-001-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/visual-seg-001-01.jpg",
+      "sha256": "3e3054fcff623f680c45036813a08ef0a69a6d756472ddf0b26ebc70ffa5532a",
+      "start_ms": 0,
+      "duration_ms": 8616,
+      "end_ms": 8616,
+      "segment_id": "seg-001"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "slow push toward the waterline and harbor structures",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 1.5,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-002-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-002-01/visual-seg-002-01.jpg",
+      "sha256": "12a963aa75f463b95593ce0c8aefa76c66789aa3cf0bec127617dd6a7f3c9591",
+      "start_ms": 8616,
+      "duration_ms": 8736,
+      "end_ms": 17352,
+      "segment_id": "seg-002"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "slow lateral pan across wildlife, shoreline and workers in one connected setting",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-003-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-003-01/visual-seg-003-01.jpg",
+      "sha256": "80e45405f7e26592209bd500a766869fd63c3cefdf8579695b11f9f39b5cf284",
+      "start_ms": 17352,
+      "duration_ms": 11016,
+      "end_ms": 28368,
+      "segment_id": "seg-003"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "slow push into the empty moonless sky",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": -1
+          }
+        }
+      },
+      "asset_id": "visual-seg-004-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-004-01/visual-seg-004-01.jpg",
+      "sha256": "f87ad476423b3b090e4b6f95e4a8f2961c8e868b4bd48b8705d1a8ba302829ba",
+      "start_ms": 28368,
+      "duration_ms": 7560,
+      "end_ms": 35928,
+      "segment_id": "seg-004"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "slow diagonal push toward the sunlit Earth",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": -1,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 1,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-005-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-005-01/visual-seg-005-01.jpg",
+      "sha256": "1473d346337ee5d23ebab2e3ae6db0b37fd1efbe61971012e3c955e2e3993062",
+      "start_ms": 35928,
+      "duration_ms": 11184,
+      "end_ms": 47112,
+      "segment_id": "seg-005"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "very slow pull back that emphasizes the isolated tilted Earth",
+        "parameters": {
+          "from": {
+            "scale": 1.06,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-006-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-006-01/visual-seg-006-01.jpg",
+      "sha256": "9711fd253778ac4b302eca3b19f4a8f67fc862da5beb6e256c0f2383ccca4cca",
+      "start_ms": 47112,
+      "duration_ms": 13320,
+      "end_ms": 60432,
+      "segment_id": "seg-006"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "slow lateral drift across the adapted harbor and wetland",
+        "parameters": {
+          "from": {
+            "scale": 1.03,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.03,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-007-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-007-01/visual-seg-007-01.jpg",
+      "sha256": "770fbd650ba51a1c4c5defa9d6097aeac5d67e715ef50e42845ec7ae1ff61866",
+      "start_ms": 60432,
+      "duration_ms": 13272,
+      "end_ms": 73704,
+      "segment_id": "seg-007"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "motion": {
+        "intent": "very slow pull back into the final stable planetary view",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-008-01",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-008-01/visual-seg-008-01.jpg",
+      "sha256": "be887949b51617279247b70520e264036e20f3073dcaaf14e25914e9f41e8aee",
+      "start_ms": 73704,
+      "duration_ms": 12768,
+      "end_ms": 86472,
+      "segment_id": "seg-008"
+    }
+  ],
+  "audio": [
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-001",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-001.mp3",
+      "sha256": "e078e9019bdaf735a7dce6967f85ec213fa742620f26f50413b104a5a682aec6",
+      "start_ms": 0,
+      "duration_ms": 8616,
+      "end_ms": 8616,
+      "segment_id": "seg-001"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-002",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-002.mp3",
+      "sha256": "8aa6856dd34fe1dc0217126b38863d5d85bada6467b21aad03d264f8bd79f11f",
+      "start_ms": 8616,
+      "duration_ms": 8736,
+      "end_ms": 17352,
+      "segment_id": "seg-002"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-003",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-003.mp3",
+      "sha256": "d9470eb27e645f9a44906899d3dda49816e62d1dd5d08579b9c2d4f5df64aa0e",
+      "start_ms": 17352,
+      "duration_ms": 11016,
+      "end_ms": 28368,
+      "segment_id": "seg-003"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-004",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-004.mp3",
+      "sha256": "1f65f42a878a04eb3697ba251df8f3cff54cbe0ff74aee395809bbd47168c1a6",
+      "start_ms": 28368,
+      "duration_ms": 7560,
+      "end_ms": 35928,
+      "segment_id": "seg-004"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-005",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-005.mp3",
+      "sha256": "557f1ab4087670bd3d8085b778df40bf046f99154a2eaa0a0f4ded24663d771f",
+      "start_ms": 35928,
+      "duration_ms": 11184,
+      "end_ms": 47112,
+      "segment_id": "seg-005"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-006",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-006.mp3",
+      "sha256": "6687350cac9bf0621e09bb606226fa94fb30a9b926dd6a6bed21b434806f897e",
+      "start_ms": 47112,
+      "duration_ms": 13320,
+      "end_ms": 60432,
+      "segment_id": "seg-006"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-007",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-007.mp3",
+      "sha256": "e194e3d615fb0e284f406698ed08f5dc6d41586b9d0f742d3d274f25677f3988",
+      "start_ms": 60432,
+      "duration_ms": 13272,
+      "end_ms": 73704,
+      "segment_id": "seg-007"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-008",
+      "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/narration/audio/seg-008.mp3",
+      "sha256": "b11238fb644941b29e5e8c875cd2a1ad37f7a17af3ff13b51a3bc18012762d16",
+      "start_ms": 73704,
+      "duration_ms": 12768,
+      "end_ms": 86472,
+      "segment_id": "seg-008"
+    }
+  ],
+  "subtitles": [
+    {
+      "type": "subtitle",
+      "segment_id": "seg-001",
+      "text": "月球消失的那一刻，海水不会从海岸退光，也不会立刻淹没所有城市，最先消失的是月球持续拉动海洋的那部分力量。",
+      "start_ms": 0,
+      "end_ms": 8616,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-002",
+      "text": "太阳还在拉动海水，所以潮汐不会归零，但许多海湾和港口熟悉的涨落会变弱、换节奏，沿岸水流也会重新调整。",
+      "start_ms": 8616,
+      "end_ms": 17352,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-003",
+      "text": "靠每天涨落海水露出和淹没的滩涂里，贝类、蟹、海藻和捕食者先面对一个不再熟悉的水位表，渔民和港口也要重新学习什么时候进出。",
+      "start_ms": 17352,
+      "end_ms": 28368,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-004",
+      "text": "夜里另一个变化更直观，天空失去月光，满月、月相、月食和由月球造成的日食从此不再出现。",
+      "start_ms": 28368,
+      "end_ms": 35928,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-005",
+      "text": "地球本身却不会突然换成另一种转速，一天不会马上变长或变短，只是月球长期拖慢地球自转的那股潮汐作用消失，太阳留下的潮汐作用继续存在。",
+      "start_ms": 35928,
+      "end_ms": 47112,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-006",
+      "text": "真正慢的变化要等很久才出现，没有月球持续参与地球自转轴的运动，地轴在几十万到上亿年的时间里可能比今天摆动得更大，但具体范围仍取决于整个太阳系怎样拉扯地球。",
+      "start_ms": 47112,
+      "end_ms": 60432,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-007",
+      "text": "这会让长期季节和气候走向比今天多一层变化，可它不是第二天就发生的灾难，眼前的世界更像是先失去熟悉的潮汐和夜空，再让海岸生态与人类活动一点点重新适应。",
+      "start_ms": 60432,
+      "end_ms": 73704,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-008",
+      "text": "最后留下的是一个仍围着太阳运行、仍有白天黑夜和太阳潮汐的地球，只是海岸的节奏、夜晚的亮度，以及极长时间里的自转与气候变化，都走上了没有月球的新路线。\n",
+      "start_ms": 73704,
+      "end_ms": 86472,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC"
+    }
+  ],
+  "identity": {
+    "render_input_sha256": "5b8197460d8ef0d096620f4ca3d7c13d22cf2c3dc9bb24b2d549349f64739d7c",
+    "asset_manifest_sha256": "15a775f7476be59742b1d31d3368d4016cb40c91f2c8739f12aa32370a19deeb"
+  }
+}

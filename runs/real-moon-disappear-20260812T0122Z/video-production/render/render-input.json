@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "content_frame": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9"
+  },
+  "timeline": [
+    {
+      "segment_id": "seg-001",
+      "start_ms": 0,
+      "duration_ms": 8616,
+      "end_ms": 8616,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-001-01",
+          "render_treatment": "image_motion",
+          "start_ms": 0,
+          "duration_ms": 8616,
+          "end_ms": 8616,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "very slow pull back to reveal that the whole coast remains physically intact",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-001"
+    },
+    {
+      "segment_id": "seg-002",
+      "start_ms": 8616,
+      "duration_ms": 8736,
+      "end_ms": 17352,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-002-01",
+          "render_treatment": "image_motion",
+          "start_ms": 8616,
+          "duration_ms": 8736,
+          "end_ms": 17352,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "slow push toward the waterline and harbor structures",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 1.5,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-002"
+    },
+    {
+      "segment_id": "seg-003",
+      "start_ms": 17352,
+      "duration_ms": 11016,
+      "end_ms": 28368,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-003-01",
+          "render_treatment": "image_motion",
+          "start_ms": 17352,
+          "duration_ms": 11016,
+          "end_ms": 28368,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "slow lateral pan across wildlife, shoreline and workers in one connected setting",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-003"
+    },
+    {
+      "segment_id": "seg-004",
+      "start_ms": 28368,
+      "duration_ms": 7560,
+      "end_ms": 35928,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-004-01",
+          "render_treatment": "image_motion",
+          "start_ms": 28368,
+          "duration_ms": 7560,
+          "end_ms": 35928,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "slow push into the empty moonless sky",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": -1,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-004"
+    },
+    {
+      "segment_id": "seg-005",
+      "start_ms": 35928,
+      "duration_ms": 11184,
+      "end_ms": 47112,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-005-01",
+          "render_treatment": "image_motion",
+          "start_ms": 35928,
+          "duration_ms": 11184,
+          "end_ms": 47112,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "slow diagonal push toward the sunlit Earth",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -1,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 1,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-005"
+    },
+    {
+      "segment_id": "seg-006",
+      "start_ms": 47112,
+      "duration_ms": 13320,
+      "end_ms": 60432,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-006-01",
+          "render_treatment": "image_motion",
+          "start_ms": 47112,
+          "duration_ms": 13320,
+          "end_ms": 60432,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "very slow pull back that emphasizes the isolated tilted Earth",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.06
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-006"
+    },
+    {
+      "segment_id": "seg-007",
+      "start_ms": 60432,
+      "duration_ms": 13272,
+      "end_ms": 73704,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-007-01",
+          "render_treatment": "image_motion",
+          "start_ms": 60432,
+          "duration_ms": 13272,
+          "end_ms": 73704,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "slow lateral drift across the adapted harbor and wetland",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.03
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.03
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-007"
+    },
+    {
+      "segment_id": "seg-008",
+      "start_ms": 73704,
+      "duration_ms": 12768,
+      "end_ms": 86472,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-008-01",
+          "render_treatment": "image_motion",
+          "start_ms": 73704,
+          "duration_ms": 12768,
+          "end_ms": 86472,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "very slow pull back into the final stable planetary view",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-008"
+    }
+  ],
+  "subtitles": [
+    {
+      "segment_id": "seg-001",
+      "text": "月球消失的那一刻，海水不会从海岸退光，也不会立刻淹没所有城市，最先消失的是月球持续拉动海洋的那部分力量。",
+      "start_ms": 0,
+      "end_ms": 8616,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-002",
+      "text": "太阳还在拉动海水，所以潮汐不会归零，但许多海湾和港口熟悉的涨落会变弱、换节奏，沿岸水流也会重新调整。",
+      "start_ms": 8616,
+      "end_ms": 17352,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-003",
+      "text": "靠每天涨落海水露出和淹没的滩涂里，贝类、蟹、海藻和捕食者先面对一个不再熟悉的水位表，渔民和港口也要重新学习什么时候进出。",
+      "start_ms": 17352,
+      "end_ms": 28368,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-004",
+      "text": "夜里另一个变化更直观，天空失去月光，满月、月相、月食和由月球造成的日食从此不再出现。",
+      "start_ms": 28368,
+      "end_ms": 35928,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-005",
+      "text": "地球本身却不会突然换成另一种转速，一天不会马上变长或变短，只是月球长期拖慢地球自转的那股潮汐作用消失，太阳留下的潮汐作用继续存在。",
+      "start_ms": 35928,
+      "end_ms": 47112,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-006",
+      "text": "真正慢的变化要等很久才出现，没有月球持续参与地球自转轴的运动，地轴在几十万到上亿年的时间里可能比今天摆动得更大，但具体范围仍取决于整个太阳系怎样拉扯地球。",
+      "start_ms": 47112,
+      "end_ms": 60432,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-007",
+      "text": "这会让长期季节和气候走向比今天多一层变化，可它不是第二天就发生的灾难，眼前的世界更像是先失去熟悉的潮汐和夜空，再让海岸生态与人类活动一点点重新适应。",
+      "start_ms": 60432,
+      "end_ms": 73704,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-008",
+      "text": "最后留下的是一个仍围着太阳运行、仍有白天黑夜和太阳潮汐的地球，只是海岸的节奏、夜晚的亮度，以及极长时间里的自转与气候变化，都走上了没有月球的新路线。\n",
+      "start_ms": 73704,
+      "end_ms": 86472,
+      "primary_color": "white"
+    }
+  ]
+}
