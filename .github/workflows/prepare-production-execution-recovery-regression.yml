@@ -1,0 +1,22 @@
+name: Prepare Production Execution Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/prepare_production_execution.py'
+      - 'video-production/tests/test_prepare_production_execution_recovery.py'
+      - '.github/workflows/prepare-production-execution-recovery-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-entrypoint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run production execution entrypoint regression
+        run: python3 video-production/tests/test_prepare_production_execution_recovery.py
