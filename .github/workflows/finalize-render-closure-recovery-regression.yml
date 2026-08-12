@@ -1,0 +1,25 @@
+name: Finalize Render Closure Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/finalize_render_closure.py'
+      - 'video-production/tests/test_finalize_render_closure_recovery.py'
+      - '.github/workflows/finalize-render-closure-recovery-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic-closure:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Run deterministic post-execution render closure regression
+        run: python3 video-production/tests/test_finalize_render_closure_recovery.py
