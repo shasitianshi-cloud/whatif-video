@@ -1,8 +1,10 @@
 """Serial recovery Asset Executor orchestrator.
 
-Explicit-state only: no latest/mtime/directory discovery. Builtin image generation is a
-host action boundary. HappyHorse tasks execute serially via the canonical reconstructed
-T2V/I2V runners. Any BLOCK stops the run.
+Explicit-state only: no latest/mtime/directory discovery. Historical builtin image host-action
+behavior remains available when no physical image adapter is selected. The recovered Volcengine
+General 3.0 adapter is an explicit opt-in execution adapter and remains strictly serial.
+HappyHorse tasks execute serially via the canonical reconstructed T2V/I2V runners. Any BLOCK
+stops the run.
 """
 from __future__ import annotations
 
@@ -18,6 +20,12 @@ from asset_executor_recovery import (
     validate_host_image_receipt,
 )
 from prepare_happyhorse_reference import prepare_reference
+from volcengine_image_adapter import AdapterError, VolcengineImageAdapter
+from volcengine_image_execution import (
+    EXECUTION_ADAPTER as VOLCENGINE_IMAGE_EXECUTION_ADAPTER,
+    execute_volcengine_image_task,
+    load_runtime_adapter,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -91,6 +99,11 @@ def _record_artifact(state: dict, artifact_path: Path, artifact: dict) -> None:
     state["artifact_paths_by_asset_id"][artifact["asset_id"]] = rel
 
 
+def _clear_pending_markers(state: dict) -> None:
+    for key in ("host_action_task_id", "host_action_request_path", "provider_task_id", "image_execution_adapter"):
+        state.pop(key, None)
+
+
 def host_request_path(task: dict) -> Path:
     return PROJECT_ROOT / "runs" / task["run_id"] / "video-production" / "execution" / task["asset_id"] / "host-image-request.json"
 
@@ -119,6 +132,7 @@ def ingest_host_receipt(dispatch: dict, task_id: str, receipt_source: Path) -> d
     _record_artifact(state, canonical, validated)
     state["status"] = "READY"
     state["block_code"] = None
+    _clear_pending_markers(state)
     _write(state_path, state)
     return validated
 
@@ -148,7 +162,6 @@ def _run_happyhorse(task: dict, state: dict) -> tuple[Path, dict]:
         task_file = canonical_artifact_path(task).with_name("dispatch-task.json")
         _write(task_file, task)
         runtime_dir = runtime
-        # Exact project-local dependency; caller/materializer must have npm-installed package.json.
         proc = subprocess.run(["node", str(runtime / "happyhorse-i2v-runner.mjs"), str(task_file), str(descriptor_path), str(PROJECT_ROOT)], cwd=runtime_dir, capture_output=True, text=True)
     else:
         raise RuntimeError("UNSUPPORTED_HAPPYHORSE_GENERATION_MODE")
@@ -161,9 +174,17 @@ def _run_happyhorse(task: dict, state: dict) -> tuple[Path, dict]:
     return artifact_path, artifact
 
 
-def advance(dispatch: dict, *, execute_provider: bool = False) -> dict:
+def advance(
+    dispatch: dict,
+    *,
+    execute_provider: bool = False,
+    image_execution_adapter: str | None = None,
+    image_adapter: VolcengineImageAdapter | None = None,
+    image_credential_file: Path | None = None,
+) -> dict:
     state_path, state = load_or_initialize(dispatch)
     tasks = dispatch["tasks"]
+    active_image_adapter = image_adapter
     while state["next_task_index"] < len(tasks):
         index = state["next_task_index"]
         task = tasks[index]
@@ -180,17 +201,56 @@ def advance(dispatch: dict, *, execute_provider: bool = False) -> dict:
             continue
 
         if task.get("generation_route") == "gpt-image-2":
-            request = make_host_image_request(task)
-            request_path = host_request_path(task)
-            _write(request_path, request)
-            state["status"] = "HOST_ACTION_REQUIRED"
-            state["host_action_task_id"] = task_id
-            state["host_action_request_path"] = request_path.relative_to(PROJECT_ROOT).as_posix()
+            if image_execution_adapter is None:
+                request = make_host_image_request(task)
+                request_path = host_request_path(task)
+                _write(request_path, request)
+                state["status"] = "HOST_ACTION_REQUIRED"
+                state["host_action_task_id"] = task_id
+                state["host_action_request_path"] = request_path.relative_to(PROJECT_ROOT).as_posix()
+                _write(state_path, state)
+                return state
+            if image_execution_adapter != VOLCENGINE_IMAGE_EXECUTION_ADAPTER:
+                state["status"] = "BLOCK"
+                state["block_code"] = "UNSUPPORTED_IMAGE_EXECUTION_ADAPTER"
+                _write(state_path, state)
+                return state
+            if not execute_provider:
+                _clear_pending_markers(state)
+                state["status"] = "PROVIDER_EXECUTION_REQUIRED"
+                state["provider_task_id"] = task_id
+                state["image_execution_adapter"] = image_execution_adapter
+                _write(state_path, state)
+                return state
+            try:
+                if active_image_adapter is None:
+                    active_image_adapter = load_runtime_adapter(PROJECT_ROOT, image_credential_file)
+                artifact_path, artifact = execute_volcengine_image_task(task, active_image_adapter, PROJECT_ROOT)
+                _write(artifact_path, artifact)
+            except AdapterError as exc:
+                state["status"] = "BLOCK"
+                state["block_code"] = exc.code
+                state["image_execution_adapter"] = image_execution_adapter
+                state["ambiguous_task_submission"] = bool(exc.ambiguous)
+                _write(state_path, state)
+                return state
+            except Exception as exc:
+                state["status"] = "BLOCK"
+                state["block_code"] = str(exc)
+                state["image_execution_adapter"] = image_execution_adapter
+                _write(state_path, state)
+                return state
+            _record_artifact(state, artifact_path, artifact)
+            state["next_task_index"] = index + 1
+            state["status"] = "READY"
+            state["block_code"] = None
+            _clear_pending_markers(state)
             _write(state_path, state)
-            return state
+            continue
 
         if task.get("generation_route") == "happyhorse":
             if not execute_provider:
+                _clear_pending_markers(state)
                 state["status"] = "PROVIDER_EXECUTION_REQUIRED"
                 state["provider_task_id"] = task_id
                 _write(state_path, state)
@@ -218,6 +278,7 @@ def advance(dispatch: dict, *, execute_provider: bool = False) -> dict:
     state["completeness"] = completeness
     state["status"] = "COMPLETE" if completeness["asset_execution_completeness_pass"] else "BLOCK"
     state["block_code"] = None if state["status"] == "COMPLETE" else "ASSET_EXECUTION_COMPLETENESS_FAILED"
+    _clear_pending_markers(state)
     _write(state_path, state)
     return state
 
@@ -226,6 +287,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("dispatch", type=Path)
     parser.add_argument("--execute-provider", action="store_true")
+    parser.add_argument("--image-execution-adapter")
+    parser.add_argument("--image-credential-file", type=Path)
     parser.add_argument("--ingest-host-receipt", type=Path)
     parser.add_argument("--task-id")
     args = parser.parse_args()
@@ -236,7 +299,12 @@ def main() -> None:
         artifact = ingest_host_receipt(dispatch, args.task_id, args.ingest_host_receipt)
         print(json.dumps({"ingested": artifact}, ensure_ascii=False))
         return
-    state = advance(dispatch, execute_provider=args.execute_provider)
+    state = advance(
+        dispatch,
+        execute_provider=args.execute_provider,
+        image_execution_adapter=args.image_execution_adapter,
+        image_credential_file=args.image_credential_file,
+    )
     print(json.dumps(state, ensure_ascii=False, indent=2))
     if state["status"] == "BLOCK":
         raise SystemExit(3)
