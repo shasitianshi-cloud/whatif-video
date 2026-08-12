@@ -1,0 +1,22 @@
+name: Production Visual Planner Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/production_visual_planner.py'
+      - 'video-production/tests/test_production_visual_planner_recovery.py'
+      - '.github/workflows/production-visual-planner-recovery-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host-planner-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run visual planner production boundary regression
+        run: python3 video-production/tests/test_production_visual_planner_recovery.py
