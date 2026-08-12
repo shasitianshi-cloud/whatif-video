@@ -51,7 +51,7 @@ def load_history(path: Path | None, *, today: date, window_days: int) -> list[di
             continue
         item = json.loads(raw)
         item_day = _parse_day(str(item["date"]))
-        if floor <= item_day < today:
+        if floor <= item_day <= today:
             out.append(item)
     out.sort(key=lambda x: x["date"])
     return out
@@ -148,9 +148,21 @@ def select_daily_anchor(
     candidate_prompt = CANDIDATE_PROMPT_PATH.read_text(encoding="utf-8")
     evaluation_prompt = EVALUATION_PROMPT_PATH.read_text(encoding="utf-8")
     candidate_request = candidate_prompt + "\n\n---\n\nWEEKLY SCOPE:\n" + json.dumps(scope, ensure_ascii=False, indent=2)
-    candidates = _validate_candidates(candidate_model_call(candidate_request), scope=scope, count=int(policy["candidate_count"]))
+    candidates = _validate_candidates(
+        candidate_model_call(candidate_request),
+        scope=scope,
+        count=int(policy["candidate_count"]),
+    )
 
-    evaluation_request = evaluation_prompt + "\n\n---\n\nWEEKLY SCOPE:\n" + json.dumps(scope, ensure_ascii=False, indent=2) + "\n\nCANDIDATES:\n" + json.dumps(candidates, ensure_ascii=False, indent=2) + "\n\nRECENT HISTORY:\n" + json.dumps(history, ensure_ascii=False, indent=2)
+    evaluation_request = (
+        evaluation_prompt
+        + "\n\n---\n\nWEEKLY SCOPE:\n"
+        + json.dumps(scope, ensure_ascii=False, indent=2)
+        + "\n\nCANDIDATES:\n"
+        + json.dumps(candidates, ensure_ascii=False, indent=2)
+        + "\n\nRECENT HISTORY:\n"
+        + json.dumps(history, ensure_ascii=False, indent=2)
+    )
     evaluations = _validate_evaluations(evaluation_model_call(evaluation_request), candidates)
 
     recent_norm = {_normalize_anchor(str(x.get("anchor", ""))) for x in history}
@@ -179,7 +191,13 @@ def select_daily_anchor(
             if interest < threshold:
                 reason = "INTEREST_SCORE_BELOW_MINIMUM"
             else:
-                eligible.append({"anchor": anchor, "subscope": candidate["subscope"], "interest_score": interest, "ordinal": ordinal, "evaluation": ev})
+                eligible.append({
+                    "anchor": anchor,
+                    "subscope": candidate["subscope"],
+                    "interest_score": interest,
+                    "ordinal": ordinal,
+                    "evaluation": ev,
+                })
         if reason:
             rejected.append({"anchor": anchor, "reason": reason})
 
@@ -215,7 +233,14 @@ def append_history(path: Path, gate: dict) -> None:
     if gate.get("status") != "PASS":
         raise RuntimeError("ANCHOR_GATE_NOT_PASS")
     path.parent.mkdir(parents=True, exist_ok=True)
-    record = {"date": gate["date"], "week_id": gate["week_id"], "scope": gate["scope"], "subscope": gate["selected_subscope"], "anchor": gate["selected_anchor"], "interest_score": gate["interest_score"]}
+    record = {
+        "date": gate["date"],
+        "week_id": gate["week_id"],
+        "scope": gate["scope"],
+        "subscope": gate["selected_subscope"],
+        "anchor": gate["selected_anchor"],
+        "interest_score": gate["interest_score"],
+    }
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
@@ -231,7 +256,17 @@ def main() -> None:
     today = _parse_day(args.date)
     _validate_scope(scope, today)
     history = load_history(args.history, today=today, window_days=int(policy["history_window_days"]))
-    print(json.dumps({"status": "HOST_ACTION_REQUIRED", "action": "DAILY_ANCHOR_SELECTION", "date": today.isoformat(), "week_id": scope["week_id"], "scope": scope["theme"], "candidate_count": policy["candidate_count"], "recent_history_count": len(history), "anchor_selector_selects_object_only": True, "premise_discovery_remains_separate": True}, ensure_ascii=False))
+    print(json.dumps({
+        "status": "HOST_ACTION_REQUIRED",
+        "action": "DAILY_ANCHOR_SELECTION",
+        "date": today.isoformat(),
+        "week_id": scope["week_id"],
+        "scope": scope["theme"],
+        "candidate_count": policy["candidate_count"],
+        "recent_history_count": len(history),
+        "anchor_selector_selects_object_only": True,
+        "premise_discovery_remains_separate": True,
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":

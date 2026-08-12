@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-12",
+  "week_id": "2026-W33",
+  "model": "GPT-5.6 Sol",
+  "candidate_response": {
+    "candidates": [
+      {"anchor":"太阳风","subscope":"space_environment"},
+      {"anchor":"国际空间站","subscope":"space_infrastructure"},
+      {"anchor":"木星","subscope":"celestial_body"},
+      {"anchor":"日食","subscope":"astronomical_phenomenon"},
+      {"anchor":"小行星带","subscope":"celestial_body"},
+      {"anchor":"地球磁层","subscope":"space_environment"}
+    ]
+  },
+  "evaluation_response": {
+    "evaluations": [
+      {"anchor":"太阳风","curiosity":4.7,"recognizability":4.5,"consequence_depth":5.0,"visual_potential":5.0,"non_obviousness":4.8,"propagation_viability":true,"scope_match":true,"duplicate_or_rephrase":false},
+      {"anchor":"国际空间站","curiosity":4.5,"recognizability":5.0,"consequence_depth":4.2,"visual_potential":4.8,"non_obviousness":4.3,"propagation_viability":true,"scope_match":true,"duplicate_or_rephrase":false},
+      {"anchor":"木星","curiosity":4.6,"recognizability":5.0,"consequence_depth":4.6,"visual_potential":5.0,"non_obviousness":4.4,"propagation_viability":true,"scope_match":true,"duplicate_or_rephrase":false},
+      {"anchor":"日食","curiosity":4.4,"recognizability":5.0,"consequence_depth":3.8,"visual_potential":5.0,"non_obviousness":3.6,"propagation_viability":true,"scope_match":true,"duplicate_or_rephrase":false},
+      {"anchor":"小行星带","curiosity":4.3,"recognizability":4.3,"consequence_depth":4.4,"visual_potential":4.8,"non_obviousness":4.2,"propagation_viability":true,"scope_match":true,"duplicate_or_rephrase":false},
+      {"anchor":"地球磁层","curiosity":4.6,"recognizability":4.3,"consequence_depth":5.0,"visual_potential":5.0,"non_obviousness":4.8,"propagation_viability":true,"scope_match":true,"duplicate_or_rephrase":false}
+    ]
+  }
+}

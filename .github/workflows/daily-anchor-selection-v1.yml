@@ -1,0 +1,58 @@
+name: Daily Anchor Selection V1
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'recovery/DAILY_ANCHOR_SELECTION_20260812_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  select:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute bounded host-response selection
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/anchor-program/src"
+          python3 anchor-program/src/daily_anchor_host_bridge.py \
+            --scope anchor-program/config/weekly-scope.current.json \
+            --history anchor-program/history/anchor-history.jsonl \
+            --responses recovery/anchor-program-host-responses/2026-08-12.json \
+            --date 2026-08-12 \
+            --output anchor-program/runs/2026-08-12/daily-anchor-selection-gate.json
+      - name: Verify gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('anchor-program/runs/2026-08-12/daily-anchor-selection-gate.json')
+          g=json.loads(p.read_text(encoding='utf-8'))
+          assert g['status']=='PASS'
+          assert g['selected_anchor']=='太阳风'
+          assert g['candidate_count']==6
+          assert g['interest_score']>=3.5
+          assert g['provider_generation_executed'] is False
+          assert g['counterfactual_generated'] is False
+          assert g['perturbation_generated'] is False
+          print('DAILY_ANCHOR_SELECTION_GATE=PASS')
+          print('SELECTED_ANCHOR='+g['selected_anchor'])
+          print('INTEREST_SCORE='+str(g['interest_score']))
+          PY
+      - name: Commit gate and history
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add anchor-program/runs/2026-08-12/daily-anchor-selection-gate.json anchor-program/history/anchor-history.jsonl
+          git diff --cached --quiet && { echo 'NO_ANCHOR_EVIDENCE'; exit 1; }
+          git commit -m 'record 2026-08-12 daily anchor selection'
+          git push origin HEAD:implementation/global-production-v2
