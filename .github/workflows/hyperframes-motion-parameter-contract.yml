@@ -1,0 +1,26 @@
+name: HyperFrames Motion Parameter Contract
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/build-hyperframes-composition.js'
+      - 'video-production/tests/hyperframes-motion-parameter-contract.test.js'
+      - '.github/workflows/hyperframes-motion-parameter-contract.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  strict-motion-parameters:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Syntax
+        run: node --check video-production/src/build-hyperframes-composition.js
+      - name: Strict motion parameter regression
+        run: node video-production/tests/hyperframes-motion-parameter-contract.test.js
