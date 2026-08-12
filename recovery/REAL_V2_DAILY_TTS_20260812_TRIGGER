@@ -3,3 +3,5 @@ run_id=real-v2-daily-20260812-001
 anchor=太阳风
 provider=volcengine_tts
 next_stage=VISUAL_PLANNER_V2
+retry=1
+reason=preserve_run_id_after_duration_resplit
