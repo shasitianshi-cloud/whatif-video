@@ -1,0 +1,105 @@
+name: HappyHorse CN OAuth Hosted Bind
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'runtime-auth/happyhorse-session-import.v1.age'
+
+permissions:
+  contents: write
+
+jobs:
+  bind:
+    runs-on: ubuntu-24.04
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+      - name: Decrypt import and canonical runtime auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          chmod 0600 .age-runtime-auth-identity
+          age --decrypt --identity .age-runtime-auth-identity --output .happyhorse-session-source.json runtime-auth/happyhorse-session-import.v1.age
+          chmod 0600 .happyhorse-session-source.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=json.loads(Path('.happyhorse-session-source.json').read_text())
+          assert isinstance(p,dict)
+          assert set(p)=={'appId','deviceId','accessToken','refreshToken','accessExpiresAt','refreshExpiresAt'}
+          assert p['appId']=='aorizon_cn'
+          assert isinstance(p['deviceId'],str) and p['deviceId']
+          assert isinstance(p['accessToken'],str) and p['accessToken']
+          assert isinstance(p['refreshToken'],str) and p['refreshToken']
+          assert isinstance(p['accessExpiresAt'],(int,float))
+          assert isinstance(p['refreshExpiresAt'],(int,float))
+          PY
+      - name: Replace only HappyHorse session and re-encrypt canonical bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/encrypted_runtime_auth.py decrypt-materialize \
+            --identity-file .age-runtime-auth-identity \
+            --encrypted runtime-auth/runtime-auth.v1.age
+          python3 - <<'PY'
+          from pathlib import Path
+          from runtime_auth import persist_happyhorse_session_from_path
+          if not persist_happyhorse_session_from_path(Path('.happyhorse-session-source.json')):
+              raise SystemExit('HappyHorse session replacement failed')
+          PY
+          RECIPIENT="$(tr -d '\r\n' < runtime-auth/runtime-auth-public-key.txt)"
+          python3 video-production/src/encrypted_runtime_auth.py reencrypt-materialized \
+            --recipient "$RECIPIENT" \
+            --output runtime-auth/runtime-auth.v1.age
+      - name: No-generation runtime preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          rm -rf .runtime-auth
+          python3 video-production/src/provider_runtime_preflight.py \
+            --encrypted-auth runtime-auth/runtime-auth.v1.age \
+            --age-identity-file .age-runtime-auth-identity \
+            --result runtime-auth/HAPPYHORSE_SELFHOSTED_BIND_PREFLIGHT.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('runtime-auth/HAPPYHORSE_SELFHOSTED_BIND_PREFLIGHT.json').read_text())
+          assert r['provider_runtime_preflight_ready'] is True
+          assert r['encrypted_runtime_auth_loaded'] is True
+          assert r['run_id_created'] is False
+          assert r['provider_generation_call_executed'] is False
+          assert r['credits_consumed'] is False
+          assert r['secret_value_exposed'] is False
+          PY
+      - name: Clean plaintext and consume import ciphertext
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .happyhorse-session-source.json .age-runtime-auth-identity age.tar.gz
+          rm -rf .runtime-auth age
+          git rm -f runtime-auth/happyhorse-session-import.v1.age
+          rm -f runtime-auth/HAPPYHORSE_SELFHOSTED_PENDING.json
+          git add -A runtime-auth
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --cached --quiet && exit 1 || true
+          git commit -m 'bind HappyHorse CN session from self-hosted OAuth handoff'
+          git push origin HEAD:implementation/global-production-v2
