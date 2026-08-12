@@ -1,0 +1,342 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "whatif-video/video-production/schemas/production-script.recovery-v2.schema.json",
+  "title": "WhatIf Video Production Script Recovery V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "run_id",
+    "recovery_schema_reconstructed",
+    "historical_schema_byte_identical",
+    "downstream_creative_replanning_required",
+    "segments",
+    "cover"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "contract_version": {
+      "const": 2
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recovery_schema_reconstructed": {
+      "const": true
+    },
+    "historical_schema_byte_identical": {
+      "const": false
+    },
+    "downstream_creative_replanning_required": {
+      "const": false
+    },
+    "execution_references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/executionReference"
+      }
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/segment"
+      }
+    },
+    "cover": {
+      "$ref": "#/$defs/cover"
+    }
+  },
+  "$defs": {
+    "transform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x_percent",
+        "y_percent",
+        "scale"
+      ],
+      "properties": {
+        "x_percent": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "y_percent": {
+          "type": "number",
+          "minimum": -100,
+          "maximum": 100
+        },
+        "scale": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "motionParameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/transform"
+        },
+        "to": {
+          "$ref": "#/$defs/transform"
+        }
+      }
+    },
+    "hookContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visible_event",
+        "dominant_subject",
+        "state_change",
+        "real_motion",
+        "camera_relationship",
+        "first_3s_visible_fact",
+        "why_static_is_insufficient"
+      ],
+      "properties": {
+        "visible_event": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dominant_subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state_change": {
+          "type": "string",
+          "minLength": 1
+        },
+        "real_motion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "camera_relationship": {
+          "type": "string",
+          "minLength": 1
+        },
+        "first_3s_visible_fact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why_static_is_insufficient": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "executionReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id",
+        "kind",
+        "role",
+        "generation_route",
+        "prompt",
+        "in_content_timeline"
+      ],
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "generated_reference"
+        },
+        "role": {
+          "const": "execution_reference"
+        },
+        "generation_route": {
+          "const": "gpt-image-2"
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "in_content_timeline": {
+          "const": false
+        }
+      }
+    },
+    "visualAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id",
+        "visual_intent",
+        "scene",
+        "asset_strategy",
+        "render_treatment",
+        "generation_route",
+        "prompt",
+        "start_offset_ms",
+        "duration_ms",
+        "transition_intent"
+      ],
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scene": {
+          "type": "string",
+          "minLength": 1
+        },
+        "asset_strategy": {
+          "enum": [
+            "image",
+            "image_motion",
+            "generated_video"
+          ]
+        },
+        "render_treatment": {
+          "enum": [
+            "static_image",
+            "image_motion",
+            "direct_video"
+          ]
+        },
+        "generation_route": {
+          "enum": [
+            "gpt-image-2",
+            "happyhorse"
+          ]
+        },
+        "generation_mode": {
+          "enum": [
+            "T2V",
+            "I2V",
+            "R2V"
+          ]
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "start_offset_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "transition_intent": {
+          "enum": [
+            "continue_scene",
+            "cut"
+          ]
+        },
+        "continuity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "none",
+                "previous_asset_frame",
+                "generated_reference"
+              ]
+            },
+            "previous_asset_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reference_asset_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "motion_intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "motion_parameters": {
+          "$ref": "#/$defs/motionParameters"
+        },
+        "hook_contract": {
+          "$ref": "#/$defs/hookContract"
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "segment_id",
+        "audio_asset_id",
+        "visual_assets"
+      ],
+      "properties": {
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audio_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_assets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/visualAsset"
+          }
+        }
+      }
+    },
+    "cover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id",
+        "visual_intent",
+        "prompt",
+        "title_text",
+        "in_content_timeline"
+      ],
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_intent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "in_content_timeline": {
+          "const": false
+        }
+      }
+    }
+  }
+}

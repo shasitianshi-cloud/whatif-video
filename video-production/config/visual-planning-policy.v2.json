@@ -1,0 +1,19 @@
+{
+  "policy_id": "visual-planning-policy.v2",
+  "happyhorse": {
+    "minimum_segment_ratio": 0.40,
+    "quota_rounding": "ceil",
+    "primary_segment_threshold_exclusive": 0.50,
+    "first_segment_required": true,
+    "first_three_seconds_required": true
+  },
+  "cover": {
+    "required": true,
+    "title_required": true,
+    "title_source": "counterfactual_display_title",
+    "generated_background_text_forbidden": true
+  },
+  "cost": {
+    "static_preference_applies_only_after_hard_video_quota": true
+  }
+}
