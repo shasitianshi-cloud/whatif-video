@@ -3,5 +3,5 @@ run_id=real-v2-daily-20260812-001
 daily_anchor_gate=anchor-program/runs/2026-08-12/daily-anchor-selection-gate.json
 anchor=太阳风
 provider_generation=false
-retry=2
-reason=bind_expected_counterfactual_contract_interface
+retry=3
+reason=restore_upstream_freeze_boundary
