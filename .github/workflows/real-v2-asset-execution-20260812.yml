@@ -1,0 +1,181 @@
+name: Real V2 Asset Execution 20260812
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'recovery/REAL_V2_ASSET_EXECUTION_20260812_TRIGGER'
+
+permissions:
+  contents: write
+
+jobs:
+  execute-assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          command -v ffprobe >/dev/null
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+
+      - name: Materialize encrypted HappyHorse and Volcengine image credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/encrypted_runtime_auth.py decrypt-materialize \
+            --encrypted runtime-auth/runtime-auth.v1.age \
+            --identity-file .age-runtime-auth-identity
+          node video-production/runtime/decrypt-volcengine-image-auth.mjs \
+            runtime-auth/volcengine-image-runtime-auth.v1.json \
+            .age-runtime-auth-identity \
+            .runtime-auth/volcengine-image/credential.txt
+          test -s .runtime-auth/happyhorse/session.json
+          test -s .runtime-auth/volcengine-image/credential.txt
+          test "$(stat -c '%a' .runtime-auth/happyhorse/session.json)" = '600'
+          test "$(stat -c '%a' .runtime-auth/volcengine-image/credential.txt)" = '600'
+
+      - name: Execute all 17 assets strictly serially
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/prepare_production_execution.py \
+            --run-id real-v2-daily-20260812-001 \
+            --execute-provider \
+            --image-execution-adapter volcengine_general3_t2i_api \
+            --image-credential-file .runtime-auth/volcengine-image/credential.txt
+
+      - name: Gate real V2 asset execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          RUN_ID='real-v2-daily-20260812-001'
+          ROOT=Path.cwd()
+          ex=ROOT/'runs'/RUN_ID/'video-production/execution'
+          dispatch=json.loads((ex/'asset-dispatch.json').read_text(encoding='utf-8'))
+          state=json.loads((ex/'asset-executor-state.json').read_text(encoding='utf-8'))
+          status=json.loads((ex/'production-execution-status.json').read_text(encoding='utf-8'))
+          tasks=dispatch['tasks']
+          assert len(tasks)==17
+          assert state['status']=='COMPLETE'
+          assert status['status']=='COMPLETE'
+          assert state['next_task_index']==17
+          assert state['serial_execution'] is True
+          assert state['latest_discovery_used'] is False
+          assert state['completeness']['asset_execution_completeness_pass'] is True
+          assert len(state['artifact_paths_by_task_id'])==17
+          assert len(state['artifact_paths_by_asset_id'])==17
+
+          hh=[]
+          images=[]
+          for task in tasks:
+              rel=state['artifact_paths_by_task_id'][task['task_id']]
+              artifact=json.loads((ROOT/rel).read_text(encoding='utf-8'))
+              assert artifact['status']=='SUCCESS'
+              assert artifact['run_id']==RUN_ID
+              assert artifact['task_id']==task['task_id']
+              assert artifact['asset_id']==task['asset_id']
+              if task['generation_route']=='happyhorse':
+                  assert artifact['generation_route']=='happyhorse'
+                  assert artifact['asset_kind']=='video'
+                  assert artifact['width']==1280 and artifact['height']==720
+                  hh.append({'task_id':task['task_id'],'sha256':artifact['sha256'],'duration_ms':artifact['duration_ms']})
+              else:
+                  assert artifact['execution_route']=='volcengine_general3_t2i_api'
+                  assert artifact['asset_kind']=='image'
+                  assert artifact['width']==1280 and artifact['height']==720
+                  assert artifact['requested_width']==1280 and artifact['requested_height']==720
+                  assert artifact['prompt_passthrough'] is True
+                  assert artifact['max_concurrency_observed'] <= 1
+                  assert artifact['ambiguous_task_submission'] is False
+                  images.append({'task_id':task['task_id'],'sha256':artifact['sha256'],'role':artifact['role']})
+          assert len(hh)==5
+          assert len(images)==12
+          assert sum(x['role']=='cover' for x in images)==1
+          evidence={
+              'schema_version':1,
+              'run_id':RUN_ID,
+              'gate':'REAL_V2_ASSET_EXECUTION_GATE',
+              'status':'PASS',
+              'dispatch_task_count':17,
+              'success_count':17,
+              'happyhorse_success_count':5,
+              'volcengine_image_success_count':12,
+              'cover_background_success_count':1,
+              'serial_execution':True,
+              'max_image_in_flight_requests':1,
+              'happyhorse_task_concurrency':1,
+              'provider_generation_executed':True,
+              'all_visual_assets_1280x720':True,
+              'image_prompt_passthrough':True,
+              'ambiguous_image_submission':False,
+              'next_stage':'COVER_RENDER_AND_RENDER_CLOSURE_V2',
+              'happyhorse_artifacts':hh,
+              'image_artifacts':images
+          }
+          (ex/'real-v2-asset-execution-gate.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({k:v for k,v in evidence.items() if k not in {'happyhorse_artifacts','image_artifacts'}},ensure_ascii=False,separators=(',',':')))
+          PY
+
+      - name: Persist refreshed HappyHorse session as ciphertext only
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          RECIPIENT="$(age-keygen -y .age-runtime-auth-identity)"
+          test -n "$RECIPIENT"
+          python3 video-production/src/encrypted_runtime_auth.py reencrypt-materialized \
+            --recipient "$RECIPIENT" \
+            --output runtime-auth/runtime-auth.v1.age
+          test -s runtime-auth/runtime-auth.v1.age
+
+      - name: Remove all plaintext runtime auth
+        if: always()
+        shell: bash
+        run: |
+          rm -rf .runtime-auth .age-runtime-auth-identity age age.tar.gz
+
+      - name: Commit assets, receipts, gates, and refreshed ciphertext
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN_ID='real-v2-daily-20260812-001'
+          test ! -e .runtime-auth
+          test ! -e .age-runtime-auth-identity
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/execution" runtime-auth/runtime-auth.v1.age
+          git diff --cached --quiet && { echo 'NO_ASSET_EXECUTION_OUTPUT'; exit 1; }
+          git commit -m "execute real V2 assets for $RUN_ID"
+          git push origin HEAD:implementation/global-production-v2
