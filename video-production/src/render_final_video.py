@@ -32,7 +32,7 @@ def _ffprobe(path: Path) -> dict:
         text=True,
     )
     if proc.returncode != 0:
-        raise RuntimeError(f"FINAL_VIDEO_FFPROBE_FAILED:{proc.stderr.strip()[:240]}")
+        raise RuntimeError(f"FINAL_VIDEO_FFPROBE_FAILED:{proc.stderr.strip()[-1000:]}")
     try:
         return json.loads(proc.stdout)
     except json.JSONDecodeError as exc:
@@ -74,7 +74,7 @@ def render_final_video(run_id: str) -> dict:
         text=True,
     )
     if build.returncode != 0:
-        raise RuntimeError(f"HYPERFRAMES_COMPOSITION_BUILD_FAILED:{build.stderr.strip()[:240]}")
+        raise RuntimeError(f"HYPERFRAMES_COMPOSITION_BUILD_FAILED:{build.stderr.strip()[-1000:]}")
     index_path = composition_dir / "index.html"
     if not index_path.is_file():
         raise RuntimeError("HYPERFRAMES_COMPOSITION_MISSING")
@@ -84,14 +84,16 @@ def render_final_video(run_id: str) -> dict:
         raise RuntimeError("FINAL_VIDEO_ALREADY_EXISTS")
     launcher = VP_ROOT / "runtime" / "run-hyperframes-local.sh"
     render_result_path = render_root / "hyperframes-render-result.json"
+    render_stderr_path = render_root / "hyperframes-render-stderr.txt"
     proc = subprocess.run(
         ["bash", str(launcher), "render", "-c", str(index_path), "-o", str(final_path)],
         capture_output=True,
         text=True,
     )
     render_result_path.write_text((proc.stdout or "").strip() + "\n", encoding="utf-8")
+    render_stderr_path.write_text(proc.stderr or "", encoding="utf-8")
     if proc.returncode != 0:
-        raise RuntimeError(f"HYPERFRAMES_FINAL_RENDER_FAILED:{proc.stderr.strip()[:240]}")
+        raise RuntimeError(f"HYPERFRAMES_FINAL_RENDER_FAILED:{proc.stderr.strip()[-1000:]}")
     if not final_path.is_file() or final_path.stat().st_size <= 0:
         raise RuntimeError("FINAL_VIDEO_MISSING")
 
@@ -111,7 +113,6 @@ def render_final_video(run_id: str) -> dict:
         duration_ms = round(float((probe.get("format") or {})["duration"]) * 1000)
     except (KeyError, TypeError, ValueError) as exc:
         raise RuntimeError("FINAL_VIDEO_DURATION_UNREADABLE") from exc
-    # Encoder/container rounding is allowed only within a narrow technical tolerance.
     tolerance_ms = 150
     if abs(duration_ms - expected_duration) > tolerance_ms:
         raise RuntimeError("FINAL_VIDEO_DURATION_MISMATCH")
@@ -136,6 +137,7 @@ def render_final_video(run_id: str) -> dict:
         "render_closure_gate_sha256": _sha(closure_path),
         "hyperframes_composition": index_path.relative_to(PROJECT_ROOT).as_posix(),
         "hyperframes_render_result": render_result_path.relative_to(PROJECT_ROOT).as_posix(),
+        "hyperframes_render_stderr": render_stderr_path.relative_to(PROJECT_ROOT).as_posix(),
         "ffprobe": ffprobe_path.relative_to(PROJECT_ROOT).as_posix(),
         "provider_generation_executed_during_render": False,
         "creative_replanning_performed_during_render": False,
