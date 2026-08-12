@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "recovery_schema_reconstructed": true,
+  "creative_replanning": false,
+  "tasks": [
+    {
+      "task_id": "dispatch-visual-seg-001-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-001-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic wide coastal harbor at blue hour just after the Moon has vanished, seawater still naturally present around docks and breakwaters, ordinary boats and distant city skyline, empty moonless sky, no catastrophic exposed seabed, no giant wave, realistic atmospheric light, natural documentary photography, wide composition, no added text or graphic elements",
+      "duration_ms": 8616,
+      "segment_id": "seg-001",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "very slow pull back to reveal that the whole coast remains physically intact",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-002-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-002-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic wide view of a real coastal bay and working harbor after the Moon is gone, moored boats, pier pilings and breakwater, seawater at a plausible ordinary level with subtle current patterns around structures, calm but visibly changed coastal rhythm, natural daylight, realistic documentary photography, wide composition, no added text or graphic elements",
+      "duration_ms": 8736,
+      "segment_id": "seg-002",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "slow push toward the waterline and harbor structures",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 1.5,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-003-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-003-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic wide tidal flat beside a small working fishing harbor, visible shellfish, crabs and seaweed across wet intertidal ground, Asian fishers and harbor workers observing the shoreline and adjusting ordinary work near moored boats, realistic coastal ecology, overcast natural light, documentary photography, wide composition, no added text or graphic elements",
+      "duration_ms": 11016,
+      "segment_id": "seg-003",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "slow lateral pan across wildlife, shoreline and workers in one connected setting",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-004-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-004-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic moonless night over a calm coastline, dark ocean, distant harbor and city lights, clear star field filling the sky, absolutely no Moon visible anywhere, realistic night exposure, natural deep blue and black sky, wide composition, no added text or graphic elements",
+      "duration_ms": 7560,
+      "segment_id": "seg-004",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "slow push into the empty moonless sky",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": -1,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-005-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-005-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Highly realistic Earth alone in space with a sunlit limb, familiar blue oceans, white clouds and atmosphere, no Moon anywhere nearby, physically plausible sunlight and deep black space, calm scientific realism, wide cinematic composition without labels, no added text or graphic elements",
+      "duration_ms": 11184,
+      "segment_id": "seg-005",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "slow diagonal push toward the sunlit Earth",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -1,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 1,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-006-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-006-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic Earth alone in deep space shown with a clearly visible but physically plausible axial tilt, sunlit hemisphere, polar regions and cloud systems visible, no Moon anywhere, calm long-timescale scientific atmosphere, no collision or disaster imagery, wide composition, no added text or graphic elements",
+      "duration_ms": 13320,
+      "segment_id": "seg-006",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "very slow pull back that emphasizes the isolated tilted Earth",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.06
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-007-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-007-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic adapted coastal town and wetland years after the Moon vanished, Asian harbor workers inspecting docks and shoreline, fishing boats, tidal-flat habitat and ordinary coastal infrastructure functioning together, calm resilient everyday life, moonless sky, natural daylight, documentary photography, wide composition, no added text or graphic elements",
+      "duration_ms": 13272,
+      "segment_id": "seg-007",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "slow lateral drift across the adapted harbor and wetland",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.03
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.03
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-008-01",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "visual-seg-008-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic distant Earth alone in deep space illuminated by the Sun, blue atmosphere and cloud bands visible, no Moon anywhere in the surrounding space, calm stable planetary scene rather than catastrophe, deep black background, wide cinematic composition, no added text or graphic elements",
+      "duration_ms": 12768,
+      "segment_id": "seg-008",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "very slow pull back into the final stable planetary view",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-cover-main",
+      "run_id": "real-moon-disappear-20260812T0122Z",
+      "asset_id": "cover-main",
+      "role": "cover",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic dramatic wide view of Earth in space with vivid blue atmosphere and oceans, a large natural area of empty black space beside Earth where viewers would expect a Moon but no Moon is present, realistic sunlight, striking but scientifically grounded composition, no added text or graphic elements",
+      "in_content_timeline": false
+    }
+  ]
+}

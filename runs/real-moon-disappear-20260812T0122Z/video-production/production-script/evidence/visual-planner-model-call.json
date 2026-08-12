@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "planner_prompt": "video-production/prompts/visual-material-planner-v1.md",
+  "planner_prompt_sha256": "68cbdc8c1b827760ec95af233b69c07767e0f53973455c9a35dcf66eef1caf2e",
+  "production_script_schema": "video-production/schemas/production-script.recovery-v1.schema.json",
+  "production_script_schema_sha256": "c24cf0310889cd053b113a447a20f8f988de85ba2acf214d9bb020ef8cad826e",
+  "narration_manifest_sha256": "42d1c4858009e8d8c9360fe4924f47ffa30887f3f528bc569558d844e13a09de",
+  "video_master_sha256": "243bb81c5145748ae3cb3b8af726df3752594539f959ecbc65dfe35b84c8fd98",
+  "model": "GPT-5.6 Sol host-managed",
+  "model_calls": 1,
+  "prompt_refinement_after_model": false,
+  "downstream_creative_replanning_required": false,
+  "production_script_sha256": "66c6edc53005d01d92c360f1cb9cbdbab0359af4eb48533d2e4c5fd8ea8557ee",
+  "recovery_boundary_reconstructed": true,
+  "historical_boundary_byte_identical": false
+}

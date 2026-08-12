@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "production_script_sha256": "66c6edc53005d01d92c360f1cb9cbdbab0359af4eb48533d2e4c5fd8ea8557ee",
+  "narration_manifest_sha256": "42d1c4858009e8d8c9360fe4924f47ffa30887f3f528bc569558d844e13a09de",
+  "asset_dispatch": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/asset-dispatch.json",
+  "asset_dispatch_sha256": "7510f9d350619e318ce70055686292e86a3944f4e6f39089176e08159935857b",
+  "serial_execution": true,
+  "latest_discovery_used": false,
+  "provider_execution_authorized": false,
+  "status": "HOST_ACTION_REQUIRED",
+  "next_task_index": 0,
+  "block_code": null,
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false,
+  "host_action_request_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/host-image-request.json",
+  "host_action_task_id": "dispatch-visual-seg-001-01"
+}

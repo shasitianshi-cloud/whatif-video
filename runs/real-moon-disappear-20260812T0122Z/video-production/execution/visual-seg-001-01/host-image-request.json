@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "task_id": "dispatch-visual-seg-001-01",
+  "asset_id": "visual-seg-001-01",
+  "status": "HOST_ACTION_REQUIRED",
+  "generation_route": "gpt-image-2",
+  "execution_route": "builtin_image_generation",
+  "asset_kind": "image",
+  "role": "content_visual",
+  "in_content_timeline": true,
+  "prompt_sha256": "fb5d5ef96093fedd50dbaf68c6d02f94eed8f51515954445b7fb89fa83a9f0e5",
+  "host_action_request": {
+    "capability": "builtin_image_generation",
+    "prompt": "Photorealistic wide coastal harbor at blue hour just after the Moon has vanished, seawater still naturally present around docks and breakwaters, ordinary boats and distant city skyline, empty moonless sky, no catastrophic exposed seabed, no giant wave, realistic atmospheric light, natural documentary photography, wide composition, no added text or graphic elements",
+    "prompt_passthrough": true,
+    "refine_prompt": false,
+    "expected_asset_kind": "image"
+  },
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

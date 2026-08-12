@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "gate": "PRODUCTION_SCRIPT_VALIDATION",
+  "status": "PASS",
+  "artifact": "runs/real-moon-disappear-20260812T0122Z/video-production/production-script/production-script.json",
+  "sha256": "66c6edc53005d01d92c360f1cb9cbdbab0359af4eb48533d2e4c5fd8ea8557ee",
+  "narration_manifest_sha256": "42d1c4858009e8d8c9360fe4924f47ffa30887f3f528bc569558d844e13a09de",
+  "video_master_sha256": "243bb81c5145748ae3cb3b8af726df3752594539f959ecbc65dfe35b84c8fd98",
+  "creative_replanning_performed": false,
+  "provider_generation_executed": false
+}

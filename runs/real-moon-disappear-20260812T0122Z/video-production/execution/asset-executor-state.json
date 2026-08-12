@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "serial_execution": true,
+  "project_reuse": false,
+  "latest_discovery_used": false,
+  "next_task_index": 0,
+  "artifact_paths_by_task_id": {},
+  "artifact_paths_by_asset_id": {},
+  "status": "HOST_ACTION_REQUIRED",
+  "block_code": null,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false,
+  "host_action_task_id": "dispatch-visual-seg-001-01",
+  "host_action_request_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/host-image-request.json"
+}
