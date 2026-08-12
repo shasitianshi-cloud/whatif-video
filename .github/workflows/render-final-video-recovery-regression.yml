@@ -1,0 +1,35 @@
+name: Render Final Video Recovery Regression
+
+on:
+  push:
+    branches:
+      - migration/whatif-recovery-v2-clean-v1
+    paths:
+      - 'video-production/src/render_final_video.py'
+      - 'video-production/tests/test_render_final_video_recovery.py'
+      - '.github/workflows/render-final-video-recovery-regression.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  technical-final-render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          command -v ffprobe >/dev/null
+      - name: Materialize pinned HyperFrames runtime
+        shell: bash
+        run: bash video-production/runtime/materialize-hyperframes-runtime.sh
+      - name: Run final render and Final Video Gate regression
+        run: python3 video-production/tests/test_render_final_video_recovery.py
