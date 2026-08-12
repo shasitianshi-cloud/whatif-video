@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "status": "PASS",
+  "provider": "volcengine",
+  "execution_adapter": "volcengine_general3_t2i_api",
+  "formal_generation_request_count": 9,
+  "success_count": 9,
+  "max_in_flight_requests": 1,
+  "serial_execution": true,
+  "control_returned_after_each_call": true,
+  "credential_values_logged": false,
+  "asset_execution_complete": true,
+  "artifacts": [
+    {
+      "task_id": "dispatch-visual-seg-001-01",
+      "asset_id": "visual-seg-001-01",
+      "sha256": "3e3054fcff623f680c45036813a08ef0a69a6d756472ddf0b26ebc70ffa5532a",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-002-01",
+      "asset_id": "visual-seg-002-01",
+      "sha256": "12a963aa75f463b95593ce0c8aefa76c66789aa3cf0bec127617dd6a7f3c9591",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-003-01",
+      "asset_id": "visual-seg-003-01",
+      "sha256": "80e45405f7e26592209bd500a766869fd63c3cefdf8579695b11f9f39b5cf284",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-004-01",
+      "asset_id": "visual-seg-004-01",
+      "sha256": "f87ad476423b3b090e4b6f95e4a8f2961c8e868b4bd48b8705d1a8ba302829ba",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-005-01",
+      "asset_id": "visual-seg-005-01",
+      "sha256": "1473d346337ee5d23ebab2e3ae6db0b37fd1efbe61971012e3c955e2e3993062",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-006-01",
+      "asset_id": "visual-seg-006-01",
+      "sha256": "9711fd253778ac4b302eca3b19f4a8f67fc862da5beb6e256c0f2383ccca4cca",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-007-01",
+      "asset_id": "visual-seg-007-01",
+      "sha256": "770fbd650ba51a1c4c5defa9d6097aeac5d67e715ef50e42845ec7ae1ff61866",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-visual-seg-008-01",
+      "asset_id": "visual-seg-008-01",
+      "sha256": "be887949b51617279247b70520e264036e20f3073dcaaf14e25914e9f41e8aee",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "task_id": "dispatch-cover-main",
+      "asset_id": "cover-main",
+      "sha256": "bebd937ab835a177b15e6a7ab748167566b78c256a27018c26a9767d8412a4c1",
+      "width": 1024,
+      "height": 1024
+    }
+  ]
+}

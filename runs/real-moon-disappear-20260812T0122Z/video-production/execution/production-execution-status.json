@@ -7,12 +7,11 @@
   "asset_dispatch_sha256": "7510f9d350619e318ce70055686292e86a3944f4e6f39089176e08159935857b",
   "serial_execution": true,
   "latest_discovery_used": false,
-  "provider_execution_authorized": false,
-  "status": "HOST_ACTION_REQUIRED",
-  "next_task_index": 0,
+  "provider_execution_authorized": true,
+  "image_execution_adapter": "volcengine_general3_t2i_api",
+  "status": "COMPLETE",
+  "next_task_index": 9,
   "block_code": null,
   "recovery_entrypoint_reconstructed": true,
-  "historical_entrypoint_byte_identical": false,
-  "host_action_request_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/host-image-request.json",
-  "host_action_task_id": "dispatch-visual-seg-001-01"
+  "historical_entrypoint_byte_identical": false
 }

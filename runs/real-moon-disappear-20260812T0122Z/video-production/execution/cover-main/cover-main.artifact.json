@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "task_id": "dispatch-cover-main",
+  "asset_id": "cover-main",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "cover",
+  "in_content_timeline": false,
+  "prompt_sha256": "5b26219057672ae40cc74dc692a6af7986836c8796d0b8476117711a9cd960cf",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "14452773112949466885",
+  "provider_request_id": "20260812111529B2E4C9181FE0A5167D45",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260812111529B2E4C9181FE0A5167D45",
+    "data": {
+      "status": "done",
+      "task_id": "14452773112949466885",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/cover-main/cover-main.jpg",
+  "sha256": "bebd937ab835a177b15e6a7ab748167566b78c256a27018c26a9767d8412a4c1",
+  "file_size_bytes": 202572,
+  "width": 1024,
+  "height": 1024,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

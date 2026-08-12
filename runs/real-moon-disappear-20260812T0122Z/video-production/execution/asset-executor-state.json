@@ -4,13 +4,41 @@
   "serial_execution": true,
   "project_reuse": false,
   "latest_discovery_used": false,
-  "next_task_index": 0,
-  "artifact_paths_by_task_id": {},
-  "artifact_paths_by_asset_id": {},
-  "status": "HOST_ACTION_REQUIRED",
+  "next_task_index": 9,
+  "artifact_paths_by_task_id": {
+    "dispatch-visual-seg-001-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/visual-seg-001-01.artifact.json",
+    "dispatch-visual-seg-002-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-002-01/visual-seg-002-01.artifact.json",
+    "dispatch-visual-seg-003-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-003-01/visual-seg-003-01.artifact.json",
+    "dispatch-visual-seg-004-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-004-01/visual-seg-004-01.artifact.json",
+    "dispatch-visual-seg-005-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-005-01/visual-seg-005-01.artifact.json",
+    "dispatch-visual-seg-006-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-006-01/visual-seg-006-01.artifact.json",
+    "dispatch-visual-seg-007-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-007-01/visual-seg-007-01.artifact.json",
+    "dispatch-visual-seg-008-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-008-01/visual-seg-008-01.artifact.json",
+    "dispatch-cover-main": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/cover-main/cover-main.artifact.json"
+  },
+  "artifact_paths_by_asset_id": {
+    "visual-seg-001-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/visual-seg-001-01.artifact.json",
+    "visual-seg-002-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-002-01/visual-seg-002-01.artifact.json",
+    "visual-seg-003-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-003-01/visual-seg-003-01.artifact.json",
+    "visual-seg-004-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-004-01/visual-seg-004-01.artifact.json",
+    "visual-seg-005-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-005-01/visual-seg-005-01.artifact.json",
+    "visual-seg-006-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-006-01/visual-seg-006-01.artifact.json",
+    "visual-seg-007-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-007-01/visual-seg-007-01.artifact.json",
+    "visual-seg-008-01": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-008-01/visual-seg-008-01.artifact.json",
+    "cover-main": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/cover-main/cover-main.artifact.json"
+  },
+  "status": "COMPLETE",
   "block_code": null,
   "recovery_executor_reconstructed": true,
   "historical_executor_byte_identical": false,
-  "host_action_task_id": "dispatch-visual-seg-001-01",
-  "host_action_request_path": "runs/real-moon-disappear-20260812T0122Z/video-production/execution/visual-seg-001-01/host-image-request.json"
+  "completeness": {
+    "dispatch_task_count": 9,
+    "executed_task_count": 9,
+    "success_task_count": 9,
+    "missing_task_ids": [],
+    "unexpected_task_ids": [],
+    "blocked_task_ids": [],
+    "host_action_required_task_ids": [],
+    "asset_execution_completeness_pass": true
+  }
 }
