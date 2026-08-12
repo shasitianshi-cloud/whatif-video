@@ -204,6 +204,7 @@ def enforce_narration_duration(run_id: str) -> dict:
     manifest_path.write_text(json.dumps(final_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     gate = narration_completeness_gate(final_plan, final_manifest, audio_dir)
     gate.update({
+        "run_id": run_id,
         "initial_segment_count": initial_plan["segment_count"],
         "final_segment_count": len(units),
         "oversized_initial_segment_ids": oversized_initial,
