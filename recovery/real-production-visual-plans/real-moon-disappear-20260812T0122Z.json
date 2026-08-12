@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "run_id": "real-moon-disappear-20260812T0122Z",
+  "recovery_schema_reconstructed": true,
+  "historical_schema_byte_identical": false,
+  "downstream_creative_replanning_required": false,
+  "execution_references": [],
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "audio_asset_id": "audio-seg-001",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-001-01",
+          "visual_intent": "让观众先看到月球消失并不会让海洋瞬间发生全球性灾变，海岸仍然存在，只是月球作用已经缺席。",
+          "scene": "清晨蓝调时刻的现实海港，海水仍在码头和防波堤之间，远处天空没有月球，城市和船只保持正常尺度。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic wide coastal harbor at blue hour just after the Moon has vanished, seawater still naturally present around docks and breakwaters, ordinary boats and distant city skyline, empty moonless sky, no catastrophic exposed seabed, no giant wave, realistic atmospheric light, natural documentary photography, wide composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 8616,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "very slow pull back to reveal that the whole coast remains physically intact",
+          "motion_parameters": {
+            "from": {"x_percent": 0, "y_percent": 0, "scale": 1.04},
+            "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-002",
+      "audio_asset_id": "audio-seg-002",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-002-01",
+          "visual_intent": "把潮汐没有归零、但港湾涨落和沿岸水流开始换节奏这件事变成可见的海港状态。",
+          "scene": "现实海湾的栈桥、系泊船和防波堤，水位处在正常海港范围，水面与桩柱周围能看见较缓的流动痕迹。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic wide view of a real coastal bay and working harbor after the Moon is gone, moored boats, pier pilings and breakwater, seawater at a plausible ordinary level with subtle current patterns around structures, calm but visibly changed coastal rhythm, natural daylight, realistic documentary photography, wide composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 8736,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "slow push toward the waterline and harbor structures",
+          "motion_parameters": {
+            "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+            "to": {"x_percent": 1.5, "y_percent": 0, "scale": 1.05}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-003",
+      "audio_asset_id": "audio-seg-003",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-003-01",
+          "visual_intent": "把新的潮汐节律如何同时影响潮间带生物和沿海人类活动放进同一个具体海岸情境。",
+          "scene": "低潮滩涂和小型渔港相连的海岸，贝类、螃蟹、海藻可见，亚洲渔民和港口工作人员正在观察水位并调整作业。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic wide tidal flat beside a small working fishing harbor, visible shellfish, crabs and seaweed across wet intertidal ground, Asian fishers and harbor workers observing the shoreline and adjusting ordinary work near moored boats, realistic coastal ecology, overcast natural light, documentary photography, wide composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 11016,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "slow lateral pan across wildlife, shoreline and workers in one connected setting",
+          "motion_parameters": {
+            "from": {"x_percent": -2, "y_percent": 0, "scale": 1.04},
+            "to": {"x_percent": 2, "y_percent": 0, "scale": 1.04}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-004",
+      "audio_asset_id": "audio-seg-004",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-004-01",
+          "visual_intent": "直接呈现没有月光、没有月球可见天象的夜空。",
+          "scene": "夜间海岸与远处城市灯光，上方是清晰星空，但天空中没有月球。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic moonless night over a quiet coastline, dark ocean, distant harbor and city lights, clear star field filling the sky, absolutely no Moon visible anywhere, realistic night exposure, natural deep blue and black sky, wide composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 7560,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "slow push into the empty moonless sky",
+          "motion_parameters": {
+            "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+            "to": {"x_percent": 0, "y_percent": -1, "scale": 1.04}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-005",
+      "audio_asset_id": "audio-seg-005",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-005-01",
+          "visual_intent": "让观众看到地球本身仍在正常自转和受太阳照明，改变的是以后长期受到的潮汐作用。",
+          "scene": "太空中的地球，太阳光照亮地球边缘，附近没有月球，地球外观保持正常。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Highly realistic Earth alone in space with a sunlit limb, familiar blue oceans, white clouds and atmosphere, no Moon anywhere nearby, physically plausible sunlight and deep black space, calm scientific realism, wide cinematic composition without labels, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 11184,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "slow diagonal push toward the sunlit Earth",
+          "motion_parameters": {
+            "from": {"x_percent": -1, "y_percent": 0, "scale": 1.0},
+            "to": {"x_percent": 1, "y_percent": 0, "scale": 1.05}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-006",
+      "audio_asset_id": "audio-seg-006",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-006-01",
+          "visual_intent": "把极长时间尺度上的地轴变化表达为一个没有月球陪伴、倾斜地球的物理场景，而不制造短期翻转。",
+          "scene": "深空中的孤立地球，以明显但合理的倾斜姿态受太阳照明，极区和云层清晰，没有月球，也没有灾难效果。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic Earth alone in deep space shown with a clearly visible but physically plausible axial tilt, sunlit hemisphere, polar regions and cloud systems visible, no Moon anywhere, calm long-timescale scientific atmosphere, no collision or disaster imagery, wide composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 13320,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "very slow pull back that emphasizes the isolated tilted Earth",
+          "motion_parameters": {
+            "from": {"x_percent": 0, "y_percent": 0, "scale": 1.06},
+            "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-007",
+      "audio_asset_id": "audio-seg-007",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-007-01",
+          "visual_intent": "把长期结果落回人类可经历的世界：海岸不是末日，而是在失去熟悉月球和潮汐后逐步重新适应。",
+          "scene": "已经适应新节律的现实沿海城镇和湿地，亚洲工作人员检查码头与岸线，渔船和潮间带生态共同存在，天空没有月球。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic adapted coastal town and wetland years after the Moon vanished, Asian harbor workers inspecting docks and shoreline, fishing boats, tidal-flat habitat and ordinary coastal infrastructure functioning together, calm resilient everyday life, moonless sky, natural daylight, documentary photography, wide composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 13272,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "slow lateral drift across the adapted harbor and wetland",
+          "motion_parameters": {
+            "from": {"x_percent": -2, "y_percent": 0, "scale": 1.03},
+            "to": {"x_percent": 2, "y_percent": 0, "scale": 1.03}
+          }
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-008",
+      "audio_asset_id": "audio-seg-008",
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-008-01",
+          "visual_intent": "用一个平静的终态画面收束：地球仍存在并围绕太阳运行，但已经进入没有月球的新路线。",
+          "scene": "遥远视角下的地球独自在太空中受太阳照亮，周围没有月球，画面安静稳定。",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic distant Earth alone in deep space illuminated by the Sun, blue atmosphere and cloud bands visible, no Moon anywhere in the surrounding space, quiet stable planetary scene rather than catastrophe, deep black background, wide cinematic composition, no added text or graphic elements",
+          "start_offset_ms": 0,
+          "duration_ms": 12768,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "very slow pull back into the final stable planetary view",
+          "motion_parameters": {
+            "from": {"x_percent": 0, "y_percent": 0, "scale": 1.04},
+            "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+          }
+        }
+      ]
+    }
+  ],
+  "cover": {
+    "asset_id": "cover-main",
+    "visual_intent": "用月球缺席的地球建立整条视频的核心反事实。",
+    "prompt": "Photorealistic dramatic wide view of Earth in space with vivid blue atmosphere and oceans, a large natural area of empty black space beside Earth where viewers would expect a Moon but no Moon is present, realistic sunlight, striking but scientifically grounded composition, no added text or graphic elements",
+    "in_content_timeline": false
+  }
+}
