@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "contract_version": 2,
+  "run_id": "real-v2-daily-20260812-001",
+  "recovery_schema_reconstructed": true,
+  "historical_schema_byte_identical": false,
+  "downstream_creative_replanning_required": false,
+  "execution_references": [],
+  "segments": [
+    {
+      "segment_id": "seg-001a",
+      "audio_asset_id": "audio-seg-001a",
+      "visual_assets": [
+        {
+          "asset_id": "hh-seg-001a-hook",
+          "visual_intent": "show the last solar-wind front passing Earth before the flow vanishes",
+          "scene": "Earth magnetosphere in space as the final solar-wind plasma front sweeps past",
+          "asset_strategy": "generated_video",
+          "render_treatment": "direct_video",
+          "generation_route": "happyhorse",
+          "generation_mode": "T2V",
+          "prompt": "Cinematic photorealistic Earth in deep space, bright Sun far left, one last dense front of charged solar plasma races from the Sun and sweeps across Earth's magnetosphere, then the stream behind it becomes empty dark space, visible plasma motion from frame one, dramatic scale, realistic space lighting, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 6000,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "hook_contract": {
+            "visible_event": "the final solar-wind plasma front sweeps past Earth and empty space opens behind it",
+            "dominant_subject": "Earth and the final moving solar-plasma front",
+            "state_change": "continuous solar-wind flow visibly changes into an empty gap",
+            "real_motion": "fast plasma motion crosses the frame while the trailing stream disappears",
+            "camera_relationship": "wide cinematic view holding Earth and the incoming plasma front in one frame",
+            "first_3s_visible_fact": "a moving solar-plasma front is already crossing Earth while the stream behind it ends",
+            "why_static_is_insufficient": "the hook depends on seeing the moving front pass and the flow stop behind it"
+          }
+        },
+        {
+          "asset_id": "img-seg-001a-tail",
+          "visual_intent": "hold the aftermath after the final front passes",
+          "scene": "Earth in space with no continuous solar-wind stream behind the last front",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic Earth in deep space after the last solar-plasma front has passed, Sun still shining, empty dark interplanetary space between Sun and Earth, no explosion, no damaged planet, realistic space lighting, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 6000,
+          "duration_ms": 1560,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.03}, "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-001b",
+      "audio_asset_id": "audio-seg-001b",
+      "visual_assets": [
+        {
+          "asset_id": "hh-seg-001b-aurora",
+          "visual_intent": "show aurora activity fading as constant solar-wind input ends",
+          "scene": "polar Earth with aurora gradually weakening over several days",
+          "asset_strategy": "generated_video",
+          "render_treatment": "direct_video",
+          "generation_route": "happyhorse",
+          "generation_mode": "T2V",
+          "prompt": "Photorealistic orbital view of Earth's polar night, vivid aurora curtains move and slowly weaken until only faint arcs remain, stars steady, Earth intact, natural atmospheric glow, smooth time-passage feeling, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 8000,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"}
+        },
+        {
+          "asset_id": "img-seg-001b-tail",
+          "visual_intent": "show the calmer polar environment after aurora fades",
+          "scene": "polar Earth with only faint auroral glow",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic orbital view of Earth's polar region with only faint auroral glow, dark space, natural atmospheric rim light, Earth intact, restrained scientific realism, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 8000,
+          "duration_ms": 2680,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.0}, "to": {"x_percent": 1.5, "y_percent": 0, "scale": 1.04}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-002",
+      "audio_asset_id": "audio-seg-002",
+      "visual_assets": [
+        {
+          "asset_id": "img-seg-002",
+          "visual_intent": "show a calmer magnetospheric environment and ordinary satellite operations",
+          "scene": "Earth with satellites in a calmer space-weather environment",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic Earth orbit scene with several ordinary satellites around the planet, stable magnetosphere atmosphere implied by a calm space environment, no storm glow, no damage, realistic sunlight and deep space, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 11160,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": -1, "y_percent": 0, "scale": 1.02}, "to": {"x_percent": 1, "y_percent": 0, "scale": 1.05}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-003",
+      "audio_asset_id": "audio-seg-003",
+      "visual_assets": [
+        {
+          "asset_id": "hh-seg-003-cme",
+          "visual_intent": "show an occasional coronal mass ejection still striking Earth",
+          "scene": "a large solar plasma cloud crosses space and disturbs Earth's magnetosphere",
+          "asset_strategy": "generated_video",
+          "render_treatment": "direct_video",
+          "generation_route": "happyhorse",
+          "generation_mode": "T2V",
+          "prompt": "Cinematic photorealistic space scene, the Sun releases a large isolated plasma cloud that travels across dark space toward Earth, the cloud reaches Earth's magnetosphere and bright aurora rapidly appears near the poles, strong visible motion, Earth remains intact, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 9000,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"}
+        },
+        {
+          "asset_id": "img-seg-003-tail",
+          "visual_intent": "hold the disturbed magnetosphere after the isolated event",
+          "scene": "Earth with bright temporary aurora after an isolated solar plasma event",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic Earth from orbit with bright temporary aurora near the poles after an isolated solar plasma event, Sun still shining, dark interplanetary space, no permanent disaster, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 9000,
+          "duration_ms": 4608,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.04}, "to": {"x_percent": 0, "y_percent": -1, "scale": 1.0}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-004a",
+      "audio_asset_id": "audio-seg-004a",
+      "visual_assets": [
+        {
+          "asset_id": "img-seg-004a",
+          "visual_intent": "establish the vast heliosphere formed by the ordinary solar wind",
+          "scene": "wide Solar System scene showing the Sun inside a vast bubble-like plasma region",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Scientifically grounded wide space scene with the Sun near center and distant planets inside a vast faint plasma bubble extending far beyond them, subtle boundary against interstellar space, deep black background, cinematic scientific realism, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 8424,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.05}, "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-004b",
+      "audio_asset_id": "audio-seg-004b",
+      "visual_assets": [
+        {
+          "asset_id": "hh-seg-004b-heliosphere",
+          "visual_intent": "show the heliosphere gradually shrinking after no new solar wind arrives",
+          "scene": "wide Solar System boundary contracting over time",
+          "asset_strategy": "generated_video",
+          "render_treatment": "direct_video",
+          "generation_route": "happyhorse",
+          "generation_mode": "T2V",
+          "prompt": "Cinematic scientific space visualization rendered as photorealistic deep space, the vast faint plasma bubble around the Solar System slowly contracts inward as old particles drift away, the Sun and planetary orbits remain stable, gradual boundary motion over time, no sudden collapse, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 6000,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"}
+        },
+        {
+          "asset_id": "img-seg-004b-tail",
+          "visual_intent": "hold the smaller reconfigured heliosphere",
+          "scene": "Solar System within a smaller faint plasma boundary",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Scientifically grounded deep-space scene with the Solar System inside a smaller faint plasma boundary, Sun and planets unchanged, dark interstellar space outside, restrained cinematic realism, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 6000,
+          "duration_ms": 2568,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.0}, "to": {"x_percent": 0, "y_percent": 0, "scale": 1.04}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-005",
+      "audio_asset_id": "audio-seg-005",
+      "visual_assets": [
+        {
+          "asset_id": "img-seg-005",
+          "visual_intent": "show more galactic cosmic rays reaching the inner Solar System",
+          "scene": "deep-space scene with energetic cosmic particles entering the inner Solar System",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Scientific cinematic deep-space scene showing many high-energy cosmic particles arriving from the galaxy and crossing into the inner Solar System around the Sun and planets, no impact catastrophe, realistic dark space and subtle particle glow, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 11712,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": -1, "y_percent": 0, "scale": 1.03}, "to": {"x_percent": 1, "y_percent": 0, "scale": 1.03}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-006",
+      "audio_asset_id": "audio-seg-006",
+      "visual_assets": [
+        {
+          "asset_id": "img-seg-006",
+          "visual_intent": "show deep-space crews and spacecraft facing greater radiation risk while Earth remains protected",
+          "scene": "crewed spacecraft beyond Earth's main protection with Earth visible in the distance",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic deep-space mission scene with a crewed spacecraft far beyond Earth, Earth visible in the distance with blue atmosphere and magnetic protection implied, sparse energetic particle traces around the spacecraft, no injury, no disaster, realistic space lighting, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 13992,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.05}, "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-007",
+      "audio_asset_id": "audio-seg-007",
+      "visual_assets": [
+        {
+          "asset_id": "hh-seg-007-comet",
+          "visual_intent": "show a comet ion tail changing while its dust tail remains",
+          "scene": "sunlit comet moving through space as the blue ion tail weakens and changes shape",
+          "asset_strategy": "generated_video",
+          "render_treatment": "direct_video",
+          "generation_route": "happyhorse",
+          "generation_mode": "T2V",
+          "prompt": "Cinematic photorealistic comet near the Sun, bright nucleus and dusty curved tail remain visible while the narrow blue ion tail twists, weakens, and changes shape over time, clear real motion in gas and dust, sunlight remains strong, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 8000,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"}
+        },
+        {
+          "asset_id": "img-seg-007-tail",
+          "visual_intent": "hold the altered comet with dust tail still present",
+          "scene": "comet with a strong dust tail and a much weaker altered ion tail",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic sunlit comet in deep space with a broad dust tail still present and only a weak altered blue ion tail, realistic stars and sunlight, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 8000,
+          "duration_ms": 4936,
+          "transition_intent": "continue_scene",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": -1, "y_percent": 0, "scale": 1.03}, "to": {"x_percent": 1, "y_percent": 0, "scale": 1.03}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-008a",
+      "audio_asset_id": "audio-seg-008a",
+      "visual_assets": [
+        {
+          "asset_id": "img-seg-008a",
+          "visual_intent": "show the long-term Solar System still lit and orderly without continuous solar wind",
+          "scene": "wide Solar System scene with normal sunlight and stable planetary paths",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Wide scientifically grounded Solar System scene with bright Sun, Earth and other planets in stable space, normal sunlight, dark interplanetary space with no continuous plasma stream, calm long-term state, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 9648,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.04}, "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}}
+        }
+      ]
+    },
+    {
+      "segment_id": "seg-008b",
+      "audio_asset_id": "audio-seg-008b",
+      "visual_assets": [
+        {
+          "asset_id": "img-seg-008b",
+          "visual_intent": "show the final contrast between calmer Earth space and harsher deep space",
+          "scene": "Earth near foreground with faint aurora and deeper space filled with more energetic cosmic particles",
+          "asset_strategy": "image_motion",
+          "render_treatment": "image_motion",
+          "generation_route": "gpt-image-2",
+          "prompt": "Photorealistic wide deep-space scene with Earth near foreground, only faint polar aurora, and farther interplanetary space crossed by more energetic cosmic particles, one distant isolated solar plasma cloud visible near the Sun, stable Earth, no catastrophe, no letters, no symbols, no graphic overlays",
+          "start_offset_ms": 0,
+          "duration_ms": 9984,
+          "transition_intent": "cut",
+          "continuity": {"kind": "none"},
+          "motion_intent": "subtle cinematic motion without changing scene facts",
+          "motion_parameters": {"from": {"x_percent": 0, "y_percent": 0, "scale": 1.02}, "to": {"x_percent": 1, "y_percent": 0, "scale": 1.05}}
+        }
+      ]
+    }
+  ],
+  "cover": {
+    "asset_id": "cover-solar-wind-stop-001",
+    "visual_intent": "create a strong theme background showing Earth and the Sun linked by absent or fading solar-wind flow",
+    "prompt": "Photorealistic wide space scene with the Sun at left and Earth at right, a fading stream of charged solar plasma ending before Earth, dark space, strong contrast, scientifically grounded scale impression, no letters, no symbols, no graphic overlays",
+    "title_text": "如果太阳风永久停止",
+    "in_content_timeline": false
+  }
+}
