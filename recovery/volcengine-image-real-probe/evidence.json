@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "execution_adapter": "volcengine_general3_t2i_api",
+  "real_image_programmatic_call": true,
+  "control_returned_to_caller": true,
+  "artifact_readback_pass": true,
+  "image_sha256": "a141e57e33056cbfb2b1fb790cfee4fb44522d174e781008b07bf3f802bae6cc",
+  "file_size_bytes": 188113,
+  "width": 1024,
+  "height": 1024,
+  "provider_task_id": "6103240112964626847",
+  "provider_request_id": "20260812111200CEC65CA0E8A26C875302",
+  "max_in_flight_requests": 1,
+  "generation_request_count": 1,
+  "credential_values_logged": false,
+  "formal_run_touched": false
+}
