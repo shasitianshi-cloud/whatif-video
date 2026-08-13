@@ -1,0 +1,1561 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "content_frame": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9"
+  },
+  "timeline": [
+    {
+      "segment_id": "seg-001",
+      "start_ms": 0,
+      "duration_ms": 4896,
+      "end_ms": 4896,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-001-01",
+          "render_treatment": "image_motion",
+          "start_ms": 0,
+          "duration_ms": 4896,
+          "end_ms": 4896,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-001"
+    },
+    {
+      "segment_id": "seg-002",
+      "start_ms": 4896,
+      "duration_ms": 5256,
+      "end_ms": 10152,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-002-01",
+          "render_treatment": "image_motion",
+          "start_ms": 4896,
+          "duration_ms": 5256,
+          "end_ms": 10152,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "tilt_up",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 2,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": -2,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-002"
+    },
+    {
+      "segment_id": "seg-003",
+      "start_ms": 10152,
+      "duration_ms": 4776,
+      "end_ms": 14928,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-003-01",
+          "render_treatment": "image_motion",
+          "start_ms": 10152,
+          "duration_ms": 4776,
+          "end_ms": 14928,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-003"
+    },
+    {
+      "segment_id": "seg-004",
+      "start_ms": 14928,
+      "duration_ms": 3696,
+      "end_ms": 18624,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-004-01",
+          "render_treatment": "image_motion",
+          "start_ms": 14928,
+          "duration_ms": 3696,
+          "end_ms": 18624,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_right",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-004"
+    },
+    {
+      "segment_id": "seg-005",
+      "start_ms": 18624,
+      "duration_ms": 3888,
+      "end_ms": 22512,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-005-01",
+          "render_treatment": "image_motion",
+          "start_ms": 18624,
+          "duration_ms": 3888,
+          "end_ms": 22512,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-005"
+    },
+    {
+      "segment_id": "seg-006",
+      "start_ms": 22512,
+      "duration_ms": 4080,
+      "end_ms": 26592,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-006-01",
+          "render_treatment": "image_motion",
+          "start_ms": 22512,
+          "duration_ms": 4080,
+          "end_ms": 26592,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_left",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-006"
+    },
+    {
+      "segment_id": "seg-007",
+      "start_ms": 26592,
+      "duration_ms": 6168,
+      "end_ms": 32760,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-007-01",
+          "render_treatment": "image_motion",
+          "start_ms": 26592,
+          "duration_ms": 6168,
+          "end_ms": 32760,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-007"
+    },
+    {
+      "segment_id": "seg-008",
+      "start_ms": 32760,
+      "duration_ms": 5112,
+      "end_ms": 37872,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-008-01",
+          "render_treatment": "image_motion",
+          "start_ms": 32760,
+          "duration_ms": 5112,
+          "end_ms": 37872,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "tilt_down",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": -2,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 2,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-008"
+    },
+    {
+      "segment_id": "seg-009",
+      "start_ms": 37872,
+      "duration_ms": 4752,
+      "end_ms": 42624,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-009-01",
+          "render_treatment": "image_motion",
+          "start_ms": 37872,
+          "duration_ms": 4752,
+          "end_ms": 42624,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-009"
+    },
+    {
+      "segment_id": "seg-010",
+      "start_ms": 42624,
+      "duration_ms": 7536,
+      "end_ms": 50160,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-010-01",
+          "render_treatment": "image_motion",
+          "start_ms": 42624,
+          "duration_ms": 7536,
+          "end_ms": 50160,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_right",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-010"
+    },
+    {
+      "segment_id": "seg-011",
+      "start_ms": 50160,
+      "duration_ms": 5112,
+      "end_ms": 55272,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-011-01",
+          "render_treatment": "image_motion",
+          "start_ms": 50160,
+          "duration_ms": 5112,
+          "end_ms": 55272,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-011"
+    },
+    {
+      "segment_id": "seg-012",
+      "start_ms": 55272,
+      "duration_ms": 6168,
+      "end_ms": 61440,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-012-01",
+          "render_treatment": "image_motion",
+          "start_ms": 55272,
+          "duration_ms": 6168,
+          "end_ms": 61440,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-012"
+    },
+    {
+      "segment_id": "seg-013",
+      "start_ms": 61440,
+      "duration_ms": 3528,
+      "end_ms": 64968,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-013-01",
+          "render_treatment": "image_motion",
+          "start_ms": 61440,
+          "duration_ms": 3528,
+          "end_ms": 64968,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-013"
+    },
+    {
+      "segment_id": "seg-014",
+      "start_ms": 64968,
+      "duration_ms": 4200,
+      "end_ms": 69168,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-014-01",
+          "render_treatment": "image_motion",
+          "start_ms": 64968,
+          "duration_ms": 4200,
+          "end_ms": 69168,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_left",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-014"
+    },
+    {
+      "segment_id": "seg-015",
+      "start_ms": 69168,
+      "duration_ms": 4920,
+      "end_ms": 74088,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-015-01",
+          "render_treatment": "image_motion",
+          "start_ms": 69168,
+          "duration_ms": 4920,
+          "end_ms": 74088,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-015"
+    },
+    {
+      "segment_id": "seg-016",
+      "start_ms": 74088,
+      "duration_ms": 5472,
+      "end_ms": 79560,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-016-01",
+          "render_treatment": "image_motion",
+          "start_ms": 74088,
+          "duration_ms": 5472,
+          "end_ms": 79560,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_right",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-016"
+    },
+    {
+      "segment_id": "seg-017",
+      "start_ms": 79560,
+      "duration_ms": 3528,
+      "end_ms": 83088,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-017-01",
+          "render_treatment": "image_motion",
+          "start_ms": 79560,
+          "duration_ms": 3528,
+          "end_ms": 83088,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_out",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.06
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-017"
+    },
+    {
+      "segment_id": "seg-018",
+      "start_ms": 83088,
+      "duration_ms": 5280,
+      "end_ms": 88368,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-018-01",
+          "render_treatment": "image_motion",
+          "start_ms": 83088,
+          "duration_ms": 5280,
+          "end_ms": 88368,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_left",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-018"
+    },
+    {
+      "segment_id": "seg-019",
+      "start_ms": 88368,
+      "duration_ms": 4560,
+      "end_ms": 92928,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-019-01",
+          "render_treatment": "image_motion",
+          "start_ms": 88368,
+          "duration_ms": 4560,
+          "end_ms": 92928,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-019"
+    },
+    {
+      "segment_id": "seg-020",
+      "start_ms": 92928,
+      "duration_ms": 5280,
+      "end_ms": 98208,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-020-01",
+          "render_treatment": "image_motion",
+          "start_ms": 92928,
+          "duration_ms": 5280,
+          "end_ms": 98208,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-020"
+    },
+    {
+      "segment_id": "seg-021",
+      "start_ms": 98208,
+      "duration_ms": 5808,
+      "end_ms": 104016,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-021-01",
+          "render_treatment": "image_motion",
+          "start_ms": 98208,
+          "duration_ms": 5808,
+          "end_ms": 104016,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_right",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-021"
+    },
+    {
+      "segment_id": "seg-022",
+      "start_ms": 104016,
+      "duration_ms": 5808,
+      "end_ms": 109824,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-022-01",
+          "render_treatment": "image_motion",
+          "start_ms": 104016,
+          "duration_ms": 5808,
+          "end_ms": 109824,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-022"
+    },
+    {
+      "segment_id": "seg-023",
+      "start_ms": 109824,
+      "duration_ms": 4224,
+      "end_ms": 114048,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-023-01",
+          "render_treatment": "image_motion",
+          "start_ms": 109824,
+          "duration_ms": 4224,
+          "end_ms": 114048,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "tilt_up",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 2,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": -2,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-023"
+    },
+    {
+      "segment_id": "seg-024",
+      "start_ms": 114048,
+      "duration_ms": 5472,
+      "end_ms": 119520,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-024-01",
+          "render_treatment": "image_motion",
+          "start_ms": 114048,
+          "duration_ms": 5472,
+          "end_ms": 119520,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_left",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-024"
+    },
+    {
+      "segment_id": "seg-025",
+      "start_ms": 119520,
+      "duration_ms": 4752,
+      "end_ms": 124272,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-025-01",
+          "render_treatment": "image_motion",
+          "start_ms": 119520,
+          "duration_ms": 4752,
+          "end_ms": 124272,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-025"
+    },
+    {
+      "segment_id": "seg-026",
+      "start_ms": 124272,
+      "duration_ms": 8040,
+      "end_ms": 132312,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-026-01",
+          "render_treatment": "image_motion",
+          "start_ms": 124272,
+          "duration_ms": 8040,
+          "end_ms": 132312,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-026"
+    },
+    {
+      "segment_id": "seg-027",
+      "start_ms": 132312,
+      "duration_ms": 3720,
+      "end_ms": 136032,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-027-01",
+          "render_treatment": "image_motion",
+          "start_ms": 132312,
+          "duration_ms": 3720,
+          "end_ms": 136032,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_right",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-027"
+    },
+    {
+      "segment_id": "seg-028",
+      "start_ms": 136032,
+      "duration_ms": 6288,
+      "end_ms": 142320,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-028-01",
+          "render_treatment": "image_motion",
+          "start_ms": 136032,
+          "duration_ms": 6288,
+          "end_ms": 142320,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "gentle_drift",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -1.5,
+              "y_percent": 0,
+              "scale": 1.03
+            },
+            "to": {
+              "x_percent": 1.5,
+              "y_percent": 0,
+              "scale": 1.03
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-028"
+    },
+    {
+      "segment_id": "seg-029",
+      "start_ms": 142320,
+      "duration_ms": 5952,
+      "end_ms": 148272,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-029-01",
+          "render_treatment": "image_motion",
+          "start_ms": 142320,
+          "duration_ms": 5952,
+          "end_ms": 148272,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "aerial_push",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 1,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": -1,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-029"
+    },
+    {
+      "segment_id": "seg-030",
+      "start_ms": 148272,
+      "duration_ms": 5448,
+      "end_ms": 153720,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-030-01",
+          "render_treatment": "image_motion",
+          "start_ms": 148272,
+          "duration_ms": 5448,
+          "end_ms": 153720,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_left",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-030"
+    },
+    {
+      "segment_id": "seg-031",
+      "start_ms": 153720,
+      "duration_ms": 5640,
+      "end_ms": 159360,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-031-01",
+          "render_treatment": "image_motion",
+          "start_ms": 153720,
+          "duration_ms": 5640,
+          "end_ms": 159360,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-031"
+    },
+    {
+      "segment_id": "seg-032",
+      "start_ms": 159360,
+      "duration_ms": 6648,
+      "end_ms": 166008,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-032-01",
+          "render_treatment": "image_motion",
+          "start_ms": 159360,
+          "duration_ms": 6648,
+          "end_ms": 166008,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_right",
+          "motion_parameters": {
+            "from": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-032"
+    },
+    {
+      "segment_id": "seg-033",
+      "start_ms": 166008,
+      "duration_ms": 6840,
+      "end_ms": 172848,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-033-01",
+          "render_treatment": "image_motion",
+          "start_ms": 166008,
+          "duration_ms": 6840,
+          "end_ms": 172848,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "push_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-033"
+    },
+    {
+      "segment_id": "seg-034",
+      "start_ms": 172848,
+      "duration_ms": 7200,
+      "end_ms": 180048,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-034-01",
+          "render_treatment": "image_motion",
+          "start_ms": 172848,
+          "duration_ms": 7200,
+          "end_ms": 180048,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "zoom_in",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.05
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-034"
+    },
+    {
+      "segment_id": "seg-035",
+      "start_ms": 180048,
+      "duration_ms": 4560,
+      "end_ms": 184608,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-035-01",
+          "render_treatment": "image_motion",
+          "start_ms": 180048,
+          "duration_ms": 4560,
+          "end_ms": 184608,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pan_left",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 2,
+              "y_percent": 0,
+              "scale": 1.04
+            },
+            "to": {
+              "x_percent": -2,
+              "y_percent": 0,
+              "scale": 1.04
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-035"
+    },
+    {
+      "segment_id": "seg-036",
+      "start_ms": 184608,
+      "duration_ms": 5448,
+      "end_ms": 190056,
+      "visual_assets": [
+        {
+          "asset_id": "visual-seg-036-01",
+          "render_treatment": "image_motion",
+          "start_ms": 184608,
+          "duration_ms": 5448,
+          "end_ms": 190056,
+          "fit": {
+            "mode": "cover_crop",
+            "target_width": 1280,
+            "target_height": 720,
+            "preserve_aspect_ratio": true,
+            "stretch_allowed": false
+          },
+          "motion_intent": "pull_back",
+          "motion_parameters": {
+            "from": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.06
+            },
+            "to": {
+              "x_percent": 0,
+              "y_percent": 0,
+              "scale": 1.0
+            }
+          }
+        }
+      ],
+      "audio_asset_id": "audio-seg-036"
+    }
+  ],
+  "subtitles": [
+    {
+      "segment_id": "seg-001",
+      "text": "你有没有想过，为什么你一打开地图，手机几乎立刻就能知道你在哪？\n",
+      "start_ms": 0,
+      "end_ms": 4896,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-002",
+      "text": "这件事看起来很普通，但背后其实有一套在太空中不断运转的系统。\n",
+      "start_ms": 4896,
+      "end_ms": 10152,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-003",
+      "text": "今天我们就用最简单的方式，讲清楚 GPS 为什么能定位到你。\n",
+      "start_ms": 10152,
+      "end_ms": 14928,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-004",
+      "text": "很多人以为是手机自己知道了位置，其实不是。\n",
+      "start_ms": 14928,
+      "end_ms": 18624,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-005",
+      "text": "真正提供位置信息的，是天上的一整套卫星系统。\n",
+      "start_ms": 18624,
+      "end_ms": 22512,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-006",
+      "text": "GPS 可以理解成一群一直绕着地球飞行的“太空信使”。\n",
+      "start_ms": 22512,
+      "end_ms": 26592,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-007",
+      "text": "它们不断向地面发送两样最重要的信息，我现在在哪，我现在几点发出了信号。\n",
+      "start_ms": 26592,
+      "end_ms": 32760,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-008",
+      "text": "你的手机并不会主动去找卫星聊天，它主要是在安静地接收这些信号。\n",
+      "start_ms": 32760,
+      "end_ms": 37872,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-009",
+      "text": "那么问题来了，手机收到信号之后，为什么就能知道自己的位置呢？\n",
+      "start_ms": 37872,
+      "end_ms": 42624,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-010",
+      "text": "核心原理其实很朴素，如果你知道一颗卫星在哪里，又知道信号飞了多久，你就能算出你离它有多远。\n",
+      "start_ms": 42624,
+      "end_ms": 50160,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-011",
+      "text": "你可以把它想象成听见远处传来一声雷，然后大概判断雷离你有多远。\n",
+      "start_ms": 50160,
+      "end_ms": 55272,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-012",
+      "text": "GPS 做的事情也差不多，只不过它不是靠耳朵，而是靠极其精确的时间。\n",
+      "start_ms": 55272,
+      "end_ms": 61440,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-013",
+      "text": "每一颗 GPS 卫星上，都有非常精确的时钟。\n",
+      "start_ms": 61440,
+      "end_ms": 64968,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-014",
+      "text": "卫星会不断广播，这是我的位置，这是我发出信号的准确时间。\n",
+      "start_ms": 64968,
+      "end_ms": 69168,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-015",
+      "text": "当手机收到信号时，它会比较“发出时间”和“收到时间”之间差了多少。\n",
+      "start_ms": 69168,
+      "end_ms": 74088,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-016",
+      "text": "这个时间差，再乘上信号传播的速度，就能算出手机离这颗卫星有多远。\n",
+      "start_ms": 74088,
+      "end_ms": 79560,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-017",
+      "text": "但只知道离一颗卫星有多远，其实还不够。\n",
+      "start_ms": 79560,
+      "end_ms": 83088,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-018",
+      "text": "因为这只能说明，你位于某一个很大的范围里，还没法确定具体是哪一点。\n",
+      "start_ms": 83088,
+      "end_ms": 88368,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-019",
+      "text": "如果再知道你离第二颗卫星有多远，这个范围就会明显缩小。\n",
+      "start_ms": 88368,
+      "end_ms": 92928,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-020",
+      "text": "再加上第三颗、第四颗卫星，手机就能把位置一步步锁定下来。\n",
+      "start_ms": 92928,
+      "end_ms": 98208,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-021",
+      "text": "所以 GPS 不是一颗卫星在工作，而是多颗卫星一起给你的手机提供线索。\n",
+      "start_ms": 98208,
+      "end_ms": 104016,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-022",
+      "text": "一般来说，能收到的卫星越多，环境越理想，定位往往就越稳定、越准确。\n",
+      "start_ms": 104016,
+      "end_ms": 109824,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-023",
+      "text": "这也解释了，为什么在高楼密集的地方，定位有时会变差。\n",
+      "start_ms": 109824,
+      "end_ms": 114048,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-024",
+      "text": "因为高楼、隧道、室内，甚至山谷，都可能挡住一部分卫星信号。\n",
+      "start_ms": 114048,
+      "end_ms": 119520,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-025",
+      "text": "有时候，信号还会被建筑物反射，让手机产生判断偏差。\n",
+      "start_ms": 119520,
+      "end_ms": 124272,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-026",
+      "text": "所以当你在地铁里、地下停车场，或者高楼之间发现定位飘了，这往往不是地图坏了，而是信号条件变差了。\n",
+      "start_ms": 124272,
+      "end_ms": 132312,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-027",
+      "text": "不过 GPS 的作用，远远不只是给你开车导航。\n",
+      "start_ms": 132312,
+      "end_ms": 136032,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-028",
+      "text": "飞机在空中飞行、轮船在海上航行、物流车辆在路上调度，都离不开定位系统。\n",
+      "start_ms": 136032,
+      "end_ms": 142320,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-029",
+      "text": "在农业里，一些机械会利用定位信息，让播种、施肥和收割做得更精确。\n",
+      "start_ms": 142320,
+      "end_ms": 148272,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-030",
+      "text": "在救援、测绘、无人机等场景里，GPS 也经常是非常基础的一环。\n",
+      "start_ms": 148272,
+      "end_ms": 153720,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-031",
+      "text": "更容易被忽略的是，GPS 还不仅提供位置，它也在提供非常精准的时间。\n",
+      "start_ms": 153720,
+      "end_ms": 159360,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-032",
+      "text": "通信基站、电力系统，甚至一些金融和数据系统，都可能利用这种精确时间来保持同步。\n",
+      "start_ms": 159360,
+      "end_ms": 166008,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-033",
+      "text": "所以下次你打开地图时，可以把 GPS 想成一套分布在太空中的报时和报位置系统。\n",
+      "start_ms": 166008,
+      "end_ms": 172848,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-034",
+      "text": "你的手机不是在“猜”你在哪，而是在接收多颗卫星的信号，再用时间算距离，再把位置一步步算出来。\n",
+      "start_ms": 172848,
+      "end_ms": 180048,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-035",
+      "text": "这项技术离我们很远，却几乎每天都在默默帮助我们找到方向。\n",
+      "start_ms": 180048,
+      "end_ms": 184608,
+      "primary_color": "white"
+    },
+    {
+      "segment_id": "seg-036",
+      "text": "一次看似普通的定位，背后其实是太空、时间和计算一起完成的协作。\n",
+      "start_ms": 184608,
+      "end_ms": 190056,
+      "primary_color": "white"
+    }
+  ]
+}

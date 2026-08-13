@@ -1,0 +1,2435 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "format_policy_id": "global-video-production-format.v2",
+  "composition": {
+    "width": 1280,
+    "height": 2276,
+    "aspect_ratio": "9:16",
+    "duration_ms": 190056,
+    "background": "black"
+  },
+  "layout": {
+    "content_stage": {
+      "aspect_ratio": "16:9",
+      "fit": "cover",
+      "height": 720,
+      "width": 1280,
+      "x": 0,
+      "y": 778
+    },
+    "black_bars": {
+      "bottom": {
+        "height": 778,
+        "width": 1280,
+        "x": 0,
+        "y": 1498
+      },
+      "top": {
+        "height": 778,
+        "width": 1280,
+        "x": 0,
+        "y": 0
+      }
+    },
+    "subtitles": {
+      "block_width_px": 1080,
+      "burned_in_generation": false,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "font_weight": 400,
+      "line_height": 1.35,
+      "owner": "render_compiler",
+      "primary_color": "white",
+      "region": "bottom_black_bar"
+    }
+  },
+  "layers": [
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-001-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-001-01/visual-seg-001-01.jpg",
+      "sha256": "2d6cf33e16522551de757af499b64c137156f20d2cd2c51bcfaf7a4d4ecf85b8",
+      "start_ms": 0,
+      "duration_ms": 4896,
+      "end_ms": 4896,
+      "segment_id": "seg-001"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "tilt_up",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": 2
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": -2
+          }
+        }
+      },
+      "asset_id": "visual-seg-002-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-002-01/visual-seg-002-01.jpg",
+      "sha256": "e89ed19b7e785bafbaa3d561f436a0b27e4ace788d68d77b5c4a041838244b10",
+      "start_ms": 4896,
+      "duration_ms": 5256,
+      "end_ms": 10152,
+      "segment_id": "seg-002"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-003-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-003-01/visual-seg-003-01.jpg",
+      "sha256": "3277d441a51dd0e0458127509e5b83bf9835b42d44cbd6093967c201d69b20b1",
+      "start_ms": 10152,
+      "duration_ms": 4776,
+      "end_ms": 14928,
+      "segment_id": "seg-003"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_right",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-004-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-004-01/visual-seg-004-01.jpg",
+      "sha256": "5c90aaa08b0f8098514e5bcdb646578e9ea9311daecdbeb307f3667b8523f84d",
+      "start_ms": 14928,
+      "duration_ms": 3696,
+      "end_ms": 18624,
+      "segment_id": "seg-004"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-005-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-005-01/visual-seg-005-01.jpg",
+      "sha256": "29b69c9991e53989e7179b5cf887178a13c3e549da0fe3758b4307f54a893a7c",
+      "start_ms": 18624,
+      "duration_ms": 3888,
+      "end_ms": 22512,
+      "segment_id": "seg-005"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_left",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-006-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-006-01/visual-seg-006-01.jpg",
+      "sha256": "481d4b2337855ae31fe124bcc1b6480e1e0f0ada5651985b5eee3ab4e231a764",
+      "start_ms": 22512,
+      "duration_ms": 4080,
+      "end_ms": 26592,
+      "segment_id": "seg-006"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-007-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-007-01/visual-seg-007-01.jpg",
+      "sha256": "c81ea0695f33f16ef92c155db26e5df8103764ad5cbb20ede47108cfdc0dfd41",
+      "start_ms": 26592,
+      "duration_ms": 6168,
+      "end_ms": 32760,
+      "segment_id": "seg-007"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "tilt_down",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": -2
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": 2
+          }
+        }
+      },
+      "asset_id": "visual-seg-008-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-008-01/visual-seg-008-01.jpg",
+      "sha256": "f5202da40bf7a53dfd4d4503a50b2112a82c2930f6c1f729249eeeabcdc238ba",
+      "start_ms": 32760,
+      "duration_ms": 5112,
+      "end_ms": 37872,
+      "segment_id": "seg-008"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-009-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-009-01/visual-seg-009-01.jpg",
+      "sha256": "35fc55c54b7ac1530bbaa6aee1cb55909e8dc5f89f9ab2236ef681bcc79471c2",
+      "start_ms": 37872,
+      "duration_ms": 4752,
+      "end_ms": 42624,
+      "segment_id": "seg-009"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_right",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-010-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-010-01/visual-seg-010-01.jpg",
+      "sha256": "a51b88a505883e479ef2f933ce4d90358744e4d12895ce1e9d7ffe0d914f53c6",
+      "start_ms": 42624,
+      "duration_ms": 7536,
+      "end_ms": 50160,
+      "segment_id": "seg-010"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-011-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-011-01/visual-seg-011-01.jpg",
+      "sha256": "90c2727e9594921fe3b7fb38fd7220db72c82a253233d8b1eb9d53a73b146f89",
+      "start_ms": 50160,
+      "duration_ms": 5112,
+      "end_ms": 55272,
+      "segment_id": "seg-011"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-012-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-012-01/visual-seg-012-01.jpg",
+      "sha256": "ef58e82f154a6bf079419159fc2358eb89d23eb97710630768ed1e0fbefc685e",
+      "start_ms": 55272,
+      "duration_ms": 6168,
+      "end_ms": 61440,
+      "segment_id": "seg-012"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-013-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-013-01/visual-seg-013-01.jpg",
+      "sha256": "1db5199b8794637a435dd3d25d8c4a2d0f8ccdada8aa5115dfe7b8a51aa69522",
+      "start_ms": 61440,
+      "duration_ms": 3528,
+      "end_ms": 64968,
+      "segment_id": "seg-013"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_left",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-014-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-014-01/visual-seg-014-01.jpg",
+      "sha256": "e533472fc6737ea07c85e7d4bf7e9ca13ffced4d60b89bf9f007c8a129f7640b",
+      "start_ms": 64968,
+      "duration_ms": 4200,
+      "end_ms": 69168,
+      "segment_id": "seg-014"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-015-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-015-01/visual-seg-015-01.jpg",
+      "sha256": "d890916b5e82e9ba2f7367d426923a1ef9234a126a6d82a7da2b02c7c26cdeb9",
+      "start_ms": 69168,
+      "duration_ms": 4920,
+      "end_ms": 74088,
+      "segment_id": "seg-015"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_right",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-016-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-016-01/visual-seg-016-01.jpg",
+      "sha256": "850ea79c47752b7f6a553d4e4981c9497daaa36dda757b5927e569547cf1c97a",
+      "start_ms": 74088,
+      "duration_ms": 5472,
+      "end_ms": 79560,
+      "segment_id": "seg-016"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_out",
+        "parameters": {
+          "from": {
+            "scale": 1.06,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-017-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-017-01/visual-seg-017-01.jpg",
+      "sha256": "f8ece66c91830c435cb907ccc6b36b4536c52f64db0de454e3f15c0bf92cfb1a",
+      "start_ms": 79560,
+      "duration_ms": 3528,
+      "end_ms": 83088,
+      "segment_id": "seg-017"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_left",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-018-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-018-01/visual-seg-018-01.jpg",
+      "sha256": "90259a4e02909f189f737e576a34754312adfee7368061634837646a1ca0a480",
+      "start_ms": 83088,
+      "duration_ms": 5280,
+      "end_ms": 88368,
+      "segment_id": "seg-018"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-019-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-019-01/visual-seg-019-01.jpg",
+      "sha256": "0ad51c0e932849902c0e8a4d50d671ca1ad9856c56a9d40f2b089f851a4cc3a2",
+      "start_ms": 88368,
+      "duration_ms": 4560,
+      "end_ms": 92928,
+      "segment_id": "seg-019"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-020-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-020-01/visual-seg-020-01.jpg",
+      "sha256": "0b2c95a349065216c0af608bf59cfa6b78faeacd95d7a70a291b9fe509518c47",
+      "start_ms": 92928,
+      "duration_ms": 5280,
+      "end_ms": 98208,
+      "segment_id": "seg-020"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_right",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-021-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-021-01/visual-seg-021-01.jpg",
+      "sha256": "ae16e9cd50aab9555eb821d1083296d46ec1afedb56f1907ad2f757cdaea2790",
+      "start_ms": 98208,
+      "duration_ms": 5808,
+      "end_ms": 104016,
+      "segment_id": "seg-021"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-022-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-022-01/visual-seg-022-01.jpg",
+      "sha256": "e8f0ff146f017a2208a7b541c76887fd93f8d34317932d9a1d72f22dc1ead2cc",
+      "start_ms": 104016,
+      "duration_ms": 5808,
+      "end_ms": 109824,
+      "segment_id": "seg-022"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "tilt_up",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": 2
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 0,
+            "y_percent": -2
+          }
+        }
+      },
+      "asset_id": "visual-seg-023-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-023-01/visual-seg-023-01.jpg",
+      "sha256": "681e1510754031a21a78fd69f6b15dc79f85e6c7a2148b761329586529a73cce",
+      "start_ms": 109824,
+      "duration_ms": 4224,
+      "end_ms": 114048,
+      "segment_id": "seg-023"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_left",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-024-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-024-01/visual-seg-024-01.jpg",
+      "sha256": "34a5669fa30962ac44d01d94ff76074431cd1e51b551cc4d31740ec3de57fe89",
+      "start_ms": 114048,
+      "duration_ms": 5472,
+      "end_ms": 119520,
+      "segment_id": "seg-024"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-025-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-025-01/visual-seg-025-01.jpg",
+      "sha256": "ec001e09f77d99872caf50e0b450a390bb6027b72a174994097cbe9a67ac991d",
+      "start_ms": 119520,
+      "duration_ms": 4752,
+      "end_ms": 124272,
+      "segment_id": "seg-025"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-026-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-026-01/visual-seg-026-01.jpg",
+      "sha256": "dccb7a580e74b34a6d8216f6d4bd7348f814290b6394d5dcc8c7da52d7c54726",
+      "start_ms": 124272,
+      "duration_ms": 8040,
+      "end_ms": 132312,
+      "segment_id": "seg-026"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_right",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-027-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-027-01/visual-seg-027-01.jpg",
+      "sha256": "e7e109a4ed3deae2b42fea4a92bcccd99a05d3dcfdef270c8392368f75de1f3f",
+      "start_ms": 132312,
+      "duration_ms": 3720,
+      "end_ms": 136032,
+      "segment_id": "seg-027"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "gentle_drift",
+        "parameters": {
+          "from": {
+            "scale": 1.03,
+            "x_percent": -1.5,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.03,
+            "x_percent": 1.5,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-028-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-028-01/visual-seg-028-01.jpg",
+      "sha256": "b22b0d7c23e742c3c9a9871ab115c708ba3571e620f93f4906bc215ce310cbc2",
+      "start_ms": 136032,
+      "duration_ms": 6288,
+      "end_ms": 142320,
+      "segment_id": "seg-028"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "aerial_push",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 1
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": -1
+          }
+        }
+      },
+      "asset_id": "visual-seg-029-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-029-01/visual-seg-029-01.jpg",
+      "sha256": "a458cab69d6f16b0e1cf9d694e25111aeb43c28bc94af28720b57da20ccfeba7",
+      "start_ms": 142320,
+      "duration_ms": 5952,
+      "end_ms": 148272,
+      "segment_id": "seg-029"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_left",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-030-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-030-01/visual-seg-030-01.jpg",
+      "sha256": "44a31274f40786dac9c2ec1b941104089e314e0cd5cd07a224bb517f7af67e24",
+      "start_ms": 148272,
+      "duration_ms": 5448,
+      "end_ms": 153720,
+      "segment_id": "seg-030"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-031-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-031-01/visual-seg-031-01.jpg",
+      "sha256": "954838981b1c73fec4110055e1c7f9a0a6fddcfa442aef70443c5340195be779",
+      "start_ms": 153720,
+      "duration_ms": 5640,
+      "end_ms": 159360,
+      "segment_id": "seg-031"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_right",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-032-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-032-01/visual-seg-032-01.jpg",
+      "sha256": "75b2372e90d2194ac7c56fe0a67a6c2169873e823498d72f7a6e528336569838",
+      "start_ms": 159360,
+      "duration_ms": 6648,
+      "end_ms": 166008,
+      "segment_id": "seg-032"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "push_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-033-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-033-01/visual-seg-033-01.jpg",
+      "sha256": "2dfe66ed9f30f9aecfe1bd586263deb473a73e853b585bf5b4e30c8a43b8c803",
+      "start_ms": 166008,
+      "duration_ms": 6840,
+      "end_ms": 172848,
+      "segment_id": "seg-033"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "zoom_in",
+        "parameters": {
+          "from": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.05,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-034-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-034-01/visual-seg-034-01.jpg",
+      "sha256": "041272427ae26e849d6d540a33277bd6d3564ff3245c8c1cf78c7bcd06697877",
+      "start_ms": 172848,
+      "duration_ms": 7200,
+      "end_ms": 180048,
+      "segment_id": "seg-034"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pan_left",
+        "parameters": {
+          "from": {
+            "scale": 1.04,
+            "x_percent": 2,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1.04,
+            "x_percent": -2,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-035-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-035-01/visual-seg-035-01.jpg",
+      "sha256": "142b56af626958f5dc764a4a8207fb3d2a7c40ae14838add67b31ce8bcc1d9fc",
+      "start_ms": 180048,
+      "duration_ms": 4560,
+      "end_ms": 184608,
+      "segment_id": "seg-035"
+    },
+    {
+      "type": "image",
+      "treatment": "image_motion",
+      "fit": {
+        "mode": "cover_crop",
+        "target_width": 1280,
+        "target_height": 720,
+        "preserve_aspect_ratio": true,
+        "stretch_allowed": false
+      },
+      "stage": {
+        "aspect_ratio": "16:9",
+        "fit": "cover",
+        "height": 720,
+        "width": 1280,
+        "x": 0,
+        "y": 778
+      },
+      "motion": {
+        "intent": "pull_back",
+        "parameters": {
+          "from": {
+            "scale": 1.06,
+            "x_percent": 0,
+            "y_percent": 0
+          },
+          "to": {
+            "scale": 1,
+            "x_percent": 0,
+            "y_percent": 0
+          }
+        }
+      },
+      "asset_id": "visual-seg-036-01",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-036-01/visual-seg-036-01.jpg",
+      "sha256": "493c6626418a9543abc946c7cbf90b0818980467c76342765a5ec1413f70909c",
+      "start_ms": 184608,
+      "duration_ms": 5448,
+      "end_ms": 190056,
+      "segment_id": "seg-036"
+    }
+  ],
+  "audio": [
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-001",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-001.mp3",
+      "sha256": "99d5d0c670449116b33124f2f0a62a8008f19903723a2a285f58dab918b12f12",
+      "start_ms": 0,
+      "duration_ms": 4896,
+      "end_ms": 4896,
+      "segment_id": "seg-001"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-002",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-002.mp3",
+      "sha256": "0ad7f491fe7b1126f0fac41ef4f606fa2e42dd16541abb3935dd917a3389d02e",
+      "start_ms": 4896,
+      "duration_ms": 5256,
+      "end_ms": 10152,
+      "segment_id": "seg-002"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-003",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-003.mp3",
+      "sha256": "b06e26a54e706d279bb9f1f670a72fcb2e820a5ab138a6292dd6eb06ca19f683",
+      "start_ms": 10152,
+      "duration_ms": 4776,
+      "end_ms": 14928,
+      "segment_id": "seg-003"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-004",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-004.mp3",
+      "sha256": "d40e70d60853906e405a74429d71f5c792f54ac656c41f11df4cba4592c8e22e",
+      "start_ms": 14928,
+      "duration_ms": 3696,
+      "end_ms": 18624,
+      "segment_id": "seg-004"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-005",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-005.mp3",
+      "sha256": "c2c5029ff5806c43ce5bb8f7e4be4a05902ea95b06415faa179fccad5f6083fe",
+      "start_ms": 18624,
+      "duration_ms": 3888,
+      "end_ms": 22512,
+      "segment_id": "seg-005"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-006",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-006.mp3",
+      "sha256": "b1b1924b012a50c7e6a7d53d9ac3869c1919370fa5bafaf5bbc574102bb8e7b5",
+      "start_ms": 22512,
+      "duration_ms": 4080,
+      "end_ms": 26592,
+      "segment_id": "seg-006"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-007",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-007.mp3",
+      "sha256": "383f0791bdcd6361453a70fb1af8565d8d6aac3f71343054455a21ba6faf8fe6",
+      "start_ms": 26592,
+      "duration_ms": 6168,
+      "end_ms": 32760,
+      "segment_id": "seg-007"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-008",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-008.mp3",
+      "sha256": "c8dc2c22dace42a9a7870b8fee69e5289943a6c72821492cda0f6467418c5018",
+      "start_ms": 32760,
+      "duration_ms": 5112,
+      "end_ms": 37872,
+      "segment_id": "seg-008"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-009",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-009.mp3",
+      "sha256": "3f72e88298fc3df360e7b3b2e58405072d463f7a0779d9a1629ea471f955dbbe",
+      "start_ms": 37872,
+      "duration_ms": 4752,
+      "end_ms": 42624,
+      "segment_id": "seg-009"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-010",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-010.mp3",
+      "sha256": "45b8125cc38e2cc9174838afc403e88bdafcde4c7b42f288a4179f5a8360986d",
+      "start_ms": 42624,
+      "duration_ms": 7536,
+      "end_ms": 50160,
+      "segment_id": "seg-010"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-011",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-011.mp3",
+      "sha256": "6f2dc3a3c192500c8d2239988fe55ac955393ea4229953124b5adc671abc7824",
+      "start_ms": 50160,
+      "duration_ms": 5112,
+      "end_ms": 55272,
+      "segment_id": "seg-011"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-012",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-012.mp3",
+      "sha256": "aaa9bab43797a07c2f37cdc6e5c8cae638d9dd8894a8bad93da23a8a4f1254fb",
+      "start_ms": 55272,
+      "duration_ms": 6168,
+      "end_ms": 61440,
+      "segment_id": "seg-012"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-013",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-013.mp3",
+      "sha256": "767faf7d53f65547ef91f2a974c7e365d0ada6232e5f8a83c1ff166e97818569",
+      "start_ms": 61440,
+      "duration_ms": 3528,
+      "end_ms": 64968,
+      "segment_id": "seg-013"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-014",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-014.mp3",
+      "sha256": "cd26abca8ce78e24c770bf35dff4ce9ebcbccde4dabe453c8992f524b330d05d",
+      "start_ms": 64968,
+      "duration_ms": 4200,
+      "end_ms": 69168,
+      "segment_id": "seg-014"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-015",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-015.mp3",
+      "sha256": "568ef9a145014997194dab81a5fd918237ee1e91ec0f126ec8839e99e1f2de86",
+      "start_ms": 69168,
+      "duration_ms": 4920,
+      "end_ms": 74088,
+      "segment_id": "seg-015"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-016",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-016.mp3",
+      "sha256": "1a5b28159c65f40948ec2d51b9ba103d943cadf4f60cb37a969f66d7439f760c",
+      "start_ms": 74088,
+      "duration_ms": 5472,
+      "end_ms": 79560,
+      "segment_id": "seg-016"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-017",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-017.mp3",
+      "sha256": "4b98ca2bbe83cd73d8e1b88bb4df02214fe7027aa6f8f34b01d5fc187992f8a1",
+      "start_ms": 79560,
+      "duration_ms": 3528,
+      "end_ms": 83088,
+      "segment_id": "seg-017"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-018",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-018.mp3",
+      "sha256": "d8dde9f7a0770b32f9f509265d86a292531b5721f54968331f6408177b2814e1",
+      "start_ms": 83088,
+      "duration_ms": 5280,
+      "end_ms": 88368,
+      "segment_id": "seg-018"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-019",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-019.mp3",
+      "sha256": "633d8005f67c85b7765158cd80d1b8d0ff20af8200eeef43d4da434905f38ef3",
+      "start_ms": 88368,
+      "duration_ms": 4560,
+      "end_ms": 92928,
+      "segment_id": "seg-019"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-020",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-020.mp3",
+      "sha256": "e0d002297e147252c702476d0288a4f82bb7dd29e0e0ce2edd108c78a2c9df5f",
+      "start_ms": 92928,
+      "duration_ms": 5280,
+      "end_ms": 98208,
+      "segment_id": "seg-020"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-021",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-021.mp3",
+      "sha256": "b540df9a05bcd74aad547331c3fd16d577a8cfe856b34ef895cbb01e75fd17da",
+      "start_ms": 98208,
+      "duration_ms": 5808,
+      "end_ms": 104016,
+      "segment_id": "seg-021"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-022",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-022.mp3",
+      "sha256": "fcfaaacc14262acd6e22490fc8f67bdea8c0fd90e4ddc198dc95e658644ed000",
+      "start_ms": 104016,
+      "duration_ms": 5808,
+      "end_ms": 109824,
+      "segment_id": "seg-022"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-023",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-023.mp3",
+      "sha256": "028bb515fade4ac99c097b2b5ea30105ff380002e05ff103fddd2dfc91b4a0b9",
+      "start_ms": 109824,
+      "duration_ms": 4224,
+      "end_ms": 114048,
+      "segment_id": "seg-023"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-024",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-024.mp3",
+      "sha256": "5462c34bc917ded6c9140722f788ce08a65b57c4d740530e67ded3dda20e270b",
+      "start_ms": 114048,
+      "duration_ms": 5472,
+      "end_ms": 119520,
+      "segment_id": "seg-024"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-025",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-025.mp3",
+      "sha256": "df4ca821364035105dce8962ccd459692b67a675830ddf25ba1713949f332b35",
+      "start_ms": 119520,
+      "duration_ms": 4752,
+      "end_ms": 124272,
+      "segment_id": "seg-025"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-026",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-026.mp3",
+      "sha256": "98b9e6b9267fdd3c1823c4136c448a3e917499c96746837a4a3ed015acbde3c7",
+      "start_ms": 124272,
+      "duration_ms": 8040,
+      "end_ms": 132312,
+      "segment_id": "seg-026"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-027",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-027.mp3",
+      "sha256": "89989ee9383634d9f59397a2d01337d63ab8206970aff98b384b121aa87caeba",
+      "start_ms": 132312,
+      "duration_ms": 3720,
+      "end_ms": 136032,
+      "segment_id": "seg-027"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-028",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-028.mp3",
+      "sha256": "61e0550c8e0b9393814e4dcf78085de1cbcbb60630010257a4de04e0a3a00fa2",
+      "start_ms": 136032,
+      "duration_ms": 6288,
+      "end_ms": 142320,
+      "segment_id": "seg-028"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-029",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-029.mp3",
+      "sha256": "43cd62e5577a07117107ffc3ab77f011153af48af64d4149c24cb0451d78b592",
+      "start_ms": 142320,
+      "duration_ms": 5952,
+      "end_ms": 148272,
+      "segment_id": "seg-029"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-030",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-030.mp3",
+      "sha256": "44cc44ffd79e817d4398c549c4298f65ec6a7f093573c21bade03eb83708f924",
+      "start_ms": 148272,
+      "duration_ms": 5448,
+      "end_ms": 153720,
+      "segment_id": "seg-030"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-031",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-031.mp3",
+      "sha256": "d18115a4cdd365922d9a27cb61001b227ed46a26f312d51f1db845221f17e9e3",
+      "start_ms": 153720,
+      "duration_ms": 5640,
+      "end_ms": 159360,
+      "segment_id": "seg-031"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-032",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-032.mp3",
+      "sha256": "80991f60c2b35eff47624f8f78980dcbd1c1ec47991388cda775395480e059dc",
+      "start_ms": 159360,
+      "duration_ms": 6648,
+      "end_ms": 166008,
+      "segment_id": "seg-032"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-033",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-033.mp3",
+      "sha256": "088a457559e6f1c17f9b4599ac1fdcbf601e315047390e67c504e95e23fd5126",
+      "start_ms": 166008,
+      "duration_ms": 6840,
+      "end_ms": 172848,
+      "segment_id": "seg-033"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-034",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-034.mp3",
+      "sha256": "300185eea8b10cde91d522352c4d387c53fee7a643e833ab0cd6c9ad9712809b",
+      "start_ms": 172848,
+      "duration_ms": 7200,
+      "end_ms": 180048,
+      "segment_id": "seg-034"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-035",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-035.mp3",
+      "sha256": "c4722b3812709427a84788ecaf23724038b9449555ef2f19ecb08195dadfd74a",
+      "start_ms": 180048,
+      "duration_ms": 4560,
+      "end_ms": 184608,
+      "segment_id": "seg-035"
+    },
+    {
+      "type": "audio",
+      "asset_id": "audio-seg-036",
+      "local_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-036.mp3",
+      "sha256": "de6e0c44c4b1e3d5f27a1c6f3ef86e60eda3ee0cda00ffae071e56a5023bc575",
+      "start_ms": 184608,
+      "duration_ms": 5448,
+      "end_ms": 190056,
+      "segment_id": "seg-036"
+    }
+  ],
+  "subtitles": [
+    {
+      "type": "subtitle",
+      "segment_id": "seg-001",
+      "text": "你有没有想过，为什么你一打开地图，手机几乎立刻就能知道你在哪？\n",
+      "start_ms": 0,
+      "end_ms": 4896,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-002",
+      "text": "这件事看起来很普通，但背后其实有一套在太空中不断运转的系统。\n",
+      "start_ms": 4896,
+      "end_ms": 10152,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-003",
+      "text": "今天我们就用最简单的方式，讲清楚 GPS 为什么能定位到你。\n",
+      "start_ms": 10152,
+      "end_ms": 14928,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-004",
+      "text": "很多人以为是手机自己知道了位置，其实不是。\n",
+      "start_ms": 14928,
+      "end_ms": 18624,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-005",
+      "text": "真正提供位置信息的，是天上的一整套卫星系统。\n",
+      "start_ms": 18624,
+      "end_ms": 22512,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-006",
+      "text": "GPS 可以理解成一群一直绕着地球飞行的“太空信使”。\n",
+      "start_ms": 22512,
+      "end_ms": 26592,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-007",
+      "text": "它们不断向地面发送两样最重要的信息，我现在在哪，我现在几点发出了信号。\n",
+      "start_ms": 26592,
+      "end_ms": 32760,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-008",
+      "text": "你的手机并不会主动去找卫星聊天，它主要是在安静地接收这些信号。\n",
+      "start_ms": 32760,
+      "end_ms": 37872,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-009",
+      "text": "那么问题来了，手机收到信号之后，为什么就能知道自己的位置呢？\n",
+      "start_ms": 37872,
+      "end_ms": 42624,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-010",
+      "text": "核心原理其实很朴素，如果你知道一颗卫星在哪里，又知道信号飞了多久，你就能算出你离它有多远。\n",
+      "start_ms": 42624,
+      "end_ms": 50160,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-011",
+      "text": "你可以把它想象成听见远处传来一声雷，然后大概判断雷离你有多远。\n",
+      "start_ms": 50160,
+      "end_ms": 55272,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-012",
+      "text": "GPS 做的事情也差不多，只不过它不是靠耳朵，而是靠极其精确的时间。\n",
+      "start_ms": 55272,
+      "end_ms": 61440,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-013",
+      "text": "每一颗 GPS 卫星上，都有非常精确的时钟。\n",
+      "start_ms": 61440,
+      "end_ms": 64968,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-014",
+      "text": "卫星会不断广播，这是我的位置，这是我发出信号的准确时间。\n",
+      "start_ms": 64968,
+      "end_ms": 69168,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-015",
+      "text": "当手机收到信号时，它会比较“发出时间”和“收到时间”之间差了多少。\n",
+      "start_ms": 69168,
+      "end_ms": 74088,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-016",
+      "text": "这个时间差，再乘上信号传播的速度，就能算出手机离这颗卫星有多远。\n",
+      "start_ms": 74088,
+      "end_ms": 79560,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-017",
+      "text": "但只知道离一颗卫星有多远，其实还不够。\n",
+      "start_ms": 79560,
+      "end_ms": 83088,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-018",
+      "text": "因为这只能说明，你位于某一个很大的范围里，还没法确定具体是哪一点。\n",
+      "start_ms": 83088,
+      "end_ms": 88368,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-019",
+      "text": "如果再知道你离第二颗卫星有多远，这个范围就会明显缩小。\n",
+      "start_ms": 88368,
+      "end_ms": 92928,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-020",
+      "text": "再加上第三颗、第四颗卫星，手机就能把位置一步步锁定下来。\n",
+      "start_ms": 92928,
+      "end_ms": 98208,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-021",
+      "text": "所以 GPS 不是一颗卫星在工作，而是多颗卫星一起给你的手机提供线索。\n",
+      "start_ms": 98208,
+      "end_ms": 104016,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-022",
+      "text": "一般来说，能收到的卫星越多，环境越理想，定位往往就越稳定、越准确。\n",
+      "start_ms": 104016,
+      "end_ms": 109824,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-023",
+      "text": "这也解释了，为什么在高楼密集的地方，定位有时会变差。\n",
+      "start_ms": 109824,
+      "end_ms": 114048,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-024",
+      "text": "因为高楼、隧道、室内，甚至山谷，都可能挡住一部分卫星信号。\n",
+      "start_ms": 114048,
+      "end_ms": 119520,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-025",
+      "text": "有时候，信号还会被建筑物反射，让手机产生判断偏差。\n",
+      "start_ms": 119520,
+      "end_ms": 124272,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-026",
+      "text": "所以当你在地铁里、地下停车场，或者高楼之间发现定位飘了，这往往不是地图坏了，而是信号条件变差了。\n",
+      "start_ms": 124272,
+      "end_ms": 132312,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-027",
+      "text": "不过 GPS 的作用，远远不只是给你开车导航。\n",
+      "start_ms": 132312,
+      "end_ms": 136032,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-028",
+      "text": "飞机在空中飞行、轮船在海上航行、物流车辆在路上调度，都离不开定位系统。\n",
+      "start_ms": 136032,
+      "end_ms": 142320,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-029",
+      "text": "在农业里，一些机械会利用定位信息，让播种、施肥和收割做得更精确。\n",
+      "start_ms": 142320,
+      "end_ms": 148272,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-030",
+      "text": "在救援、测绘、无人机等场景里，GPS 也经常是非常基础的一环。\n",
+      "start_ms": 148272,
+      "end_ms": 153720,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-031",
+      "text": "更容易被忽略的是，GPS 还不仅提供位置，它也在提供非常精准的时间。\n",
+      "start_ms": 153720,
+      "end_ms": 159360,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-032",
+      "text": "通信基站、电力系统，甚至一些金融和数据系统，都可能利用这种精确时间来保持同步。\n",
+      "start_ms": 159360,
+      "end_ms": 166008,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-033",
+      "text": "所以下次你打开地图时，可以把 GPS 想成一套分布在太空中的报时和报位置系统。\n",
+      "start_ms": 166008,
+      "end_ms": 172848,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-034",
+      "text": "你的手机不是在“猜”你在哪，而是在接收多颗卫星的信号，再用时间算距离，再把位置一步步算出来。\n",
+      "start_ms": 172848,
+      "end_ms": 180048,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-035",
+      "text": "这项技术离我们很远，却几乎每天都在默默帮助我们找到方向。\n",
+      "start_ms": 180048,
+      "end_ms": 184608,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    },
+    {
+      "type": "subtitle",
+      "segment_id": "seg-036",
+      "text": "一次看似普通的定位，背后其实是太空、时间和计算一起完成的协作。\n",
+      "start_ms": 184608,
+      "end_ms": 190056,
+      "primary_color": "white",
+      "font_family": "Noto Sans CJK SC",
+      "font_size_px": 52,
+      "line_height": 1.35,
+      "block_width_px": 1080,
+      "center_x_px": 640,
+      "center_y_px": 1887,
+      "region": "bottom_black_bar"
+    }
+  ],
+  "identity": {
+    "render_input_sha256": "524eb50a263a97ae514402303f1a1b01e9f0187496149e91d8b5b9b2467df14d",
+    "asset_manifest_sha256": "964a42a482ffbfbf66753a197302df56dd69059a8f17486f1a52a181e2a0cb87"
+  }
+}

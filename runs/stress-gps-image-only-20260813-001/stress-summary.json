@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "test_name": "IMAGE_LONG_DURATION_STRESS_V1",
+  "title": "GPS 为什么能定位到你",
+  "status": "PASS",
+  "text_generation_executed": false,
+  "visual_planner_executed": false,
+  "real_tts_executed": true,
+  "real_image_api_executed": true,
+  "serial_image_execution": true,
+  "real_hyperframes_render_executed": true,
+  "segment_count": 36,
+  "image_task_count": 36,
+  "narration_duration_ms": 190056,
+  "final_video_duration_ms": 190067,
+  "final_video_sha256": "e67d2c8f060c85f3a5d1cf2555c4a0c2e0440b3497afa098d25a831adfed8f66",
+  "final_video_gate": "PASS",
+  "production_config_changed": false,
+  "resume_from_committed_tts": true
+}

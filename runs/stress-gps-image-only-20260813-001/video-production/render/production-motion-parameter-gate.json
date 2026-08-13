@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "status": "PASS",
+  "image_motion_layer_count": 36,
+  "explicit_motion_parameters": true
+}

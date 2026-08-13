@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "status": "READY_FOR_HYPERFRAMES_RENDER",
+  "asset_manifest": "runs/stress-gps-image-only-20260813-001/video-production/render/asset-manifest.json",
+  "asset_manifest_sha256": "ddddf395867e5956d9815cc2b6168d52b09d71e3b6f4e2e574304d187054abca",
+  "render_input": "runs/stress-gps-image-only-20260813-001/video-production/render/render-input.json",
+  "render_input_sha256": "7573e6731ece00025f3a1e8d722cd0dcaea7b89dbe07d88226ffada87c086352",
+  "render_plan": "runs/stress-gps-image-only-20260813-001/video-production/render/render-plan.json",
+  "render_plan_sha256": "585053c406010c53097f710647cc4622c4f12399abae73145e1539afaf19ac3a",
+  "execution_completeness": {
+    "dispatch_task_count": 36,
+    "executed_task_count": 36,
+    "success_task_count": 36,
+    "missing_task_ids": [],
+    "unexpected_task_ids": [],
+    "blocked_task_ids": [],
+    "host_action_required_task_ids": [],
+    "asset_execution_completeness_pass": true
+  },
+  "latest_discovery_used": false,
+  "provider_generation_executed": false,
+  "creative_replanning_performed": false,
+  "recovery_closure_reconstructed": true,
+  "historical_closure_byte_identical": false
+}
