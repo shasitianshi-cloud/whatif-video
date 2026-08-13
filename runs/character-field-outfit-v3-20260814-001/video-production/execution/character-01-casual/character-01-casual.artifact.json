@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "task_id": "dispatch-character-01-casual",
+  "asset_id": "character-01-casual",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_field_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "1d7bc370e251be4d0749b8b6eb6f20d4a89227e4b0a3ec9e20f4b400ba807804",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "138751827906387534",
+  "provider_request_id": "20260814022749F93D7B824811FC900F00",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814022749F93D7B824811FC900F00",
+    "data": {
+      "status": "done",
+      "task_id": "138751827906387534",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-01-casual/character-01-casual.jpg",
+  "sha256": "5f76b1cd9f8fa52ca8e06252fa067ad7104c57e8242df920897ff7031a30e769",
+  "file_size_bytes": 121491,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

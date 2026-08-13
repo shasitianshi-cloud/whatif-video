@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "task_id": "dispatch-character-03-sports",
+  "asset_id": "character-03-sports",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_field_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "54be4beaf4807c8f71510673e5b5a8a4c81606ea8747be678728fde3a770e60e",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "5900308950069714705",
+  "provider_request_id": "202608140228002A7A0D1CBEB0D817D3DE",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "202608140228002A7A0D1CBEB0D817D3DE",
+    "data": {
+      "status": "done",
+      "task_id": "5900308950069714705",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-03-sports/character-03-sports.jpg",
+  "sha256": "402e40804bf22940744b58cc0cf2122d3c9acaca00babfa540dd3f8870c06eda",
+  "file_size_bytes": 136379,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "task_id": "dispatch-character-04-yukata",
+  "asset_id": "character-04-yukata",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_field_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "d7de2307fbf8015613e5636f41ea7a2946bad4430348fea7f4549bca2cd1063d",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "3945769295294530320",
+  "provider_request_id": "20260814022805C1B2DB218CE1DBAF4DD5",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814022805C1B2DB218CE1DBAF4DD5",
+    "data": {
+      "status": "done",
+      "task_id": "3945769295294530320",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-04-yukata/character-04-yukata.jpg",
+  "sha256": "9e7c3fe9ac18ded696d9fadc8cebfb0467586e4fe1ed797d125852ac7a7e90e7",
+  "file_size_bytes": 134050,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

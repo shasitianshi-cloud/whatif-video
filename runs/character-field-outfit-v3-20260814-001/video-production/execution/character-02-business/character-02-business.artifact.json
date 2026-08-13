@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "task_id": "dispatch-character-02-business",
+  "asset_id": "character-02-business",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_field_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "779ac44de729f5ed6c53d99cf8d112062ad31617a5dd66ed57ba49e087096f49",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "5147679412563277895",
+  "provider_request_id": "20260814022754AB78B25B20A94141F10D",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814022754AB78B25B20A94141F10D",
+    "data": {
+      "status": "done",
+      "task_id": "5147679412563277895",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-02-business/character-02-business.jpg",
+  "sha256": "a6d7ad7198c01ae4c51a383d3788f25690566088daac8b4bab1d3f61f7809e79",
+  "file_size_bytes": 124145,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

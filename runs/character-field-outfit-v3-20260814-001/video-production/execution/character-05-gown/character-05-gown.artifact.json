@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "task_id": "dispatch-character-05-gown",
+  "asset_id": "character-05-gown",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_field_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "8f818778fdf41cb3dfdcf94740329fa03d4ae89624fdff1bf791c16946b90955",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "9045210746938499191",
+  "provider_request_id": "20260814022811273EA62BBF21B0F33824",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814022811273EA62BBF21B0F33824",
+    "data": {
+      "status": "done",
+      "task_id": "9045210746938499191",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-05-gown/character-05-gown.jpg",
+  "sha256": "5036d739c5af39e7348298852175d9b1ecf450dc12218fcd55340d26eb8841e8",
+  "file_size_bytes": 127931,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

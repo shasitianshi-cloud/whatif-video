@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "serial_execution": true,
+  "project_reuse": false,
+  "latest_discovery_used": false,
+  "next_task_index": 5,
+  "artifact_paths_by_task_id": {
+    "dispatch-character-01-casual": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-01-casual/character-01-casual.artifact.json",
+    "dispatch-character-02-business": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-02-business/character-02-business.artifact.json",
+    "dispatch-character-03-sports": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-03-sports/character-03-sports.artifact.json",
+    "dispatch-character-04-yukata": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-04-yukata/character-04-yukata.artifact.json",
+    "dispatch-character-05-gown": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-05-gown/character-05-gown.artifact.json"
+  },
+  "artifact_paths_by_asset_id": {
+    "character-01-casual": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-01-casual/character-01-casual.artifact.json",
+    "character-02-business": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-02-business/character-02-business.artifact.json",
+    "character-03-sports": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-03-sports/character-03-sports.artifact.json",
+    "character-04-yukata": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-04-yukata/character-04-yukata.artifact.json",
+    "character-05-gown": "runs/character-field-outfit-v3-20260814-001/video-production/execution/character-05-gown/character-05-gown.artifact.json"
+  },
+  "status": "COMPLETE",
+  "block_code": null,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false,
+  "completeness": {
+    "dispatch_task_count": 5,
+    "executed_task_count": 5,
+    "success_task_count": 5,
+    "missing_task_ids": [],
+    "unexpected_task_ids": [],
+    "blocked_task_ids": [],
+    "host_action_required_task_ids": [],
+    "asset_execution_completeness_pass": true
+  }
+}
