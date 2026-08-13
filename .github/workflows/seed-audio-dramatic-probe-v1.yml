@@ -1,0 +1,48 @@
+name: Seed Audio Dramatic Probe V1
+
+on:
+  push:
+    branches:
+      - probe/seed-audio-dramatic-v1
+    paths:
+      - 'probes/seed-audio-dramatic-v1/TRIGGER_RUN_001'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      VOLCENGINE_TTS_API_KEY: ${{ secrets.SEED_AUDIO_PROBE_API_KEY_V1 }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: probe/seed-audio-dramatic-v1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify dedicated probe secret exists
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${VOLCENGINE_TTS_API_KEY:-}" || { echo 'SEED_AUDIO_PROBE_API_KEY_V1_MISSING'; exit 1; }
+
+      - name: Run real Seed Audio dramatic probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 probes/seed-audio-dramatic-v1/probe.py \
+            --output-root probes/seed-audio-dramatic-v1/output
+
+      - name: Upload probe outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seed-audio-dramatic-probe-v1-output
+          path: probes/seed-audio-dramatic-v1/output
+          if-no-files-found: warn
+          retention-days: 7
