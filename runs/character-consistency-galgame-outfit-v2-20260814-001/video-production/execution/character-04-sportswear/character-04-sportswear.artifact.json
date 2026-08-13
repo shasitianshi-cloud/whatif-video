@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v2-20260814-001",
+  "task_id": "dispatch-character-04-sportswear",
+  "asset_id": "character-04-sportswear",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_consistency_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "b23361e6c7d3afae21c853d1beac3412f0f19bb8db496b171b7cf1a62a213016",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "2117626644023554578",
+  "provider_request_id": "20260814020920395873E8CFF4FC908A1E",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814020920395873E8CFF4FC908A1E",
+    "data": {
+      "status": "done",
+      "task_id": "2117626644023554578",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-04-sportswear/character-04-sportswear.jpg",
+  "sha256": "ed480ca196c8d58324ba71dabd5a7f39ab2a696eebbf82709f8eb54f34ff1329",
+  "file_size_bytes": 113457,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

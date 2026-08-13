@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v2-20260814-001",
+  "task_id": "dispatch-character-02-baseline-b",
+  "asset_id": "character-02-baseline-b",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_consistency_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "11fe67852217f63a0318f2d242cc40aa02a1c3027d81bcb37eddb97e8c3298af",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "6024948548215407380",
+  "provider_request_id": "202608140209088FB68F79D9358F407837",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "202608140209088FB68F79D9358F407837",
+    "data": {
+      "status": "done",
+      "task_id": "6024948548215407380",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-02-baseline-b/character-02-baseline-b.jpg",
+  "sha256": "3180c1100f8b4b00b69712e3460c06a125ee7d29e5f89a4ea27211b2d046e17c",
+  "file_size_bytes": 117140,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

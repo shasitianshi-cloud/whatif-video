@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v2-20260814-001",
+  "serial_execution": true,
+  "project_reuse": false,
+  "latest_discovery_used": false,
+  "next_task_index": 6,
+  "artifact_paths_by_task_id": {
+    "dispatch-character-01-baseline-a": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-01-baseline-a/character-01-baseline-a.artifact.json",
+    "dispatch-character-02-baseline-b": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-02-baseline-b/character-02-baseline-b.artifact.json",
+    "dispatch-character-03-business-suit": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-03-business-suit/character-03-business-suit.artifact.json",
+    "dispatch-character-04-sportswear": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-04-sportswear/character-04-sportswear.artifact.json",
+    "dispatch-character-05-yukata": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-05-yukata/character-05-yukata.artifact.json",
+    "dispatch-character-06-evening-gown": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-06-evening-gown/character-06-evening-gown.artifact.json"
+  },
+  "artifact_paths_by_asset_id": {
+    "character-01-baseline-a": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-01-baseline-a/character-01-baseline-a.artifact.json",
+    "character-02-baseline-b": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-02-baseline-b/character-02-baseline-b.artifact.json",
+    "character-03-business-suit": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-03-business-suit/character-03-business-suit.artifact.json",
+    "character-04-sportswear": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-04-sportswear/character-04-sportswear.artifact.json",
+    "character-05-yukata": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-05-yukata/character-05-yukata.artifact.json",
+    "character-06-evening-gown": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-06-evening-gown/character-06-evening-gown.artifact.json"
+  },
+  "status": "COMPLETE",
+  "block_code": null,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false,
+  "completeness": {
+    "dispatch_task_count": 6,
+    "executed_task_count": 6,
+    "success_task_count": 6,
+    "missing_task_ids": [],
+    "unexpected_task_ids": [],
+    "blocked_task_ids": [],
+    "host_action_required_task_ids": [],
+    "asset_execution_completeness_pass": true
+  }
+}

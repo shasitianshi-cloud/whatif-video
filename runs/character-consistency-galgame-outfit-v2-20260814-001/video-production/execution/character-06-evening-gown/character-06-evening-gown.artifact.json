@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v2-20260814-001",
+  "task_id": "dispatch-character-06-evening-gown",
+  "asset_id": "character-06-evening-gown",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_consistency_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "14e4a5d6ff6be5f8552db531e80a3bec7e029050a9bb15d503d052d173bf1218",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "9336612268257399948",
+  "provider_request_id": "20260814020934E18CD85CDFBF3509382B",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814020934E18CD85CDFBF3509382B",
+    "data": {
+      "status": "done",
+      "task_id": "9336612268257399948",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-consistency-galgame-outfit-v2-20260814-001/video-production/execution/character-06-evening-gown/character-06-evening-gown.jpg",
+  "sha256": "d4f276e1d94301dfe3ecea41fde15dbd8ce84fd6ec54afed9473f113befba77b",
+  "file_size_bytes": 119139,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}
