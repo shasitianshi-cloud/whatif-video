@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "source_video_master_path": "runs/stress-gps-image-only-20260813-001/video-master/video-master.md",
+  "source_video_master_sha256": "4b7894ae2a3f173b88c5d91a129a30b8245cc6545c9a7dfc1101009e43b0060e",
+  "segment_count": 36,
+  "segment_count_dynamic": true,
+  "historical_probe_segment_count_binding": false,
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false,
+  "segmentation": {
+    "lossless": true,
+    "safe_initial_character_limit": 256,
+    "provider_max_text_utf8_bytes": 1024
+  },
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "source_start": 0,
+      "source_end": 32,
+      "text": "你有没有想过，为什么你一打开地图，手机几乎立刻就能知道你在哪？\n",
+      "utf8_byte_length": 94
+    },
+    {
+      "segment_id": "seg-002",
+      "order": 2,
+      "source_start": 32,
+      "source_end": 63,
+      "text": "这件事看起来很普通，但背后其实有一套在太空中不断运转的系统。\n",
+      "utf8_byte_length": 91
+    },
+    {
+      "segment_id": "seg-003",
+      "order": 3,
+      "source_start": 63,
+      "source_end": 94,
+      "text": "今天我们就用最简单的方式，讲清楚 GPS 为什么能定位到你。\n",
+      "utf8_byte_length": 81
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "source_start": 94,
+      "source_end": 116,
+      "text": "很多人以为是手机自己知道了位置，其实不是。\n",
+      "utf8_byte_length": 64
+    },
+    {
+      "segment_id": "seg-005",
+      "order": 5,
+      "source_start": 116,
+      "source_end": 139,
+      "text": "真正提供位置信息的，是天上的一整套卫星系统。\n",
+      "utf8_byte_length": 67
+    },
+    {
+      "segment_id": "seg-006",
+      "order": 6,
+      "source_start": 139,
+      "source_end": 167,
+      "text": "GPS 可以理解成一群一直绕着地球飞行的“太空信使”。\n",
+      "utf8_byte_length": 74
+    },
+    {
+      "segment_id": "seg-007",
+      "order": 7,
+      "source_start": 167,
+      "source_end": 203,
+      "text": "它们不断向地面发送两样最重要的信息，我现在在哪，我现在几点发出了信号。\n",
+      "utf8_byte_length": 106
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "source_start": 203,
+      "source_end": 235,
+      "text": "你的手机并不会主动去找卫星聊天，它主要是在安静地接收这些信号。\n",
+      "utf8_byte_length": 94
+    },
+    {
+      "segment_id": "seg-009",
+      "order": 9,
+      "source_start": 235,
+      "source_end": 266,
+      "text": "那么问题来了，手机收到信号之后，为什么就能知道自己的位置呢？\n",
+      "utf8_byte_length": 91
+    },
+    {
+      "segment_id": "seg-010",
+      "order": 10,
+      "source_start": 266,
+      "source_end": 312,
+      "text": "核心原理其实很朴素，如果你知道一颗卫星在哪里，又知道信号飞了多久，你就能算出你离它有多远。\n",
+      "utf8_byte_length": 136
+    },
+    {
+      "segment_id": "seg-011",
+      "order": 11,
+      "source_start": 312,
+      "source_end": 344,
+      "text": "你可以把它想象成听见远处传来一声雷，然后大概判断雷离你有多远。\n",
+      "utf8_byte_length": 94
+    },
+    {
+      "segment_id": "seg-012",
+      "order": 12,
+      "source_start": 344,
+      "source_end": 379,
+      "text": "GPS 做的事情也差不多，只不过它不是靠耳朵，而是靠极其精确的时间。\n",
+      "utf8_byte_length": 95
+    },
+    {
+      "segment_id": "seg-013",
+      "order": 13,
+      "source_start": 379,
+      "source_end": 402,
+      "text": "每一颗 GPS 卫星上，都有非常精确的时钟。\n",
+      "utf8_byte_length": 57
+    },
+    {
+      "segment_id": "seg-014",
+      "order": 14,
+      "source_start": 402,
+      "source_end": 431,
+      "text": "卫星会不断广播，这是我的位置，这是我发出信号的准确时间。\n",
+      "utf8_byte_length": 85
+    },
+    {
+      "segment_id": "seg-015",
+      "order": 15,
+      "source_start": 431,
+      "source_end": 465,
+      "text": "当手机收到信号时，它会比较“发出时间”和“收到时间”之间差了多少。\n",
+      "utf8_byte_length": 100
+    },
+    {
+      "segment_id": "seg-016",
+      "order": 16,
+      "source_start": 465,
+      "source_end": 498,
+      "text": "这个时间差，再乘上信号传播的速度，就能算出手机离这颗卫星有多远。\n",
+      "utf8_byte_length": 97
+    },
+    {
+      "segment_id": "seg-017",
+      "order": 17,
+      "source_start": 498,
+      "source_end": 518,
+      "text": "但只知道离一颗卫星有多远，其实还不够。\n",
+      "utf8_byte_length": 58
+    },
+    {
+      "segment_id": "seg-018",
+      "order": 18,
+      "source_start": 518,
+      "source_end": 552,
+      "text": "因为这只能说明，你位于某一个很大的范围里，还没法确定具体是哪一点。\n",
+      "utf8_byte_length": 100
+    },
+    {
+      "segment_id": "seg-019",
+      "order": 19,
+      "source_start": 552,
+      "source_end": 580,
+      "text": "如果再知道你离第二颗卫星有多远，这个范围就会明显缩小。\n",
+      "utf8_byte_length": 82
+    },
+    {
+      "segment_id": "seg-020",
+      "order": 20,
+      "source_start": 580,
+      "source_end": 609,
+      "text": "再加上第三颗、第四颗卫星，手机就能把位置一步步锁定下来。\n",
+      "utf8_byte_length": 85
+    },
+    {
+      "segment_id": "seg-021",
+      "order": 21,
+      "source_start": 609,
+      "source_end": 645,
+      "text": "所以 GPS 不是一颗卫星在工作，而是多颗卫星一起给你的手机提供线索。\n",
+      "utf8_byte_length": 96
+    },
+    {
+      "segment_id": "seg-022",
+      "order": 22,
+      "source_start": 645,
+      "source_end": 679,
+      "text": "一般来说，能收到的卫星越多，环境越理想，定位往往就越稳定、越准确。\n",
+      "utf8_byte_length": 100
+    },
+    {
+      "segment_id": "seg-023",
+      "order": 23,
+      "source_start": 679,
+      "source_end": 706,
+      "text": "这也解释了，为什么在高楼密集的地方，定位有时会变差。\n",
+      "utf8_byte_length": 79
+    },
+    {
+      "segment_id": "seg-024",
+      "order": 24,
+      "source_start": 706,
+      "source_end": 736,
+      "text": "因为高楼、隧道、室内，甚至山谷，都可能挡住一部分卫星信号。\n",
+      "utf8_byte_length": 88
+    },
+    {
+      "segment_id": "seg-025",
+      "order": 25,
+      "source_start": 736,
+      "source_end": 762,
+      "text": "有时候，信号还会被建筑物反射，让手机产生判断偏差。\n",
+      "utf8_byte_length": 76
+    },
+    {
+      "segment_id": "seg-026",
+      "order": 26,
+      "source_start": 762,
+      "source_end": 811,
+      "text": "所以当你在地铁里、地下停车场，或者高楼之间发现定位飘了，这往往不是地图坏了，而是信号条件变差了。\n",
+      "utf8_byte_length": 145
+    },
+    {
+      "segment_id": "seg-027",
+      "order": 27,
+      "source_start": 811,
+      "source_end": 835,
+      "text": "不过 GPS 的作用，远远不只是给你开车导航。\n",
+      "utf8_byte_length": 60
+    },
+    {
+      "segment_id": "seg-028",
+      "order": 28,
+      "source_start": 835,
+      "source_end": 871,
+      "text": "飞机在空中飞行、轮船在海上航行、物流车辆在路上调度，都离不开定位系统。\n",
+      "utf8_byte_length": 106
+    },
+    {
+      "segment_id": "seg-029",
+      "order": 29,
+      "source_start": 871,
+      "source_end": 904,
+      "text": "在农业里，一些机械会利用定位信息，让播种、施肥和收割做得更精确。\n",
+      "utf8_byte_length": 97
+    },
+    {
+      "segment_id": "seg-030",
+      "order": 30,
+      "source_start": 904,
+      "source_end": 936,
+      "text": "在救援、测绘、无人机等场景里，GPS 也经常是非常基础的一环。\n",
+      "utf8_byte_length": 86
+    },
+    {
+      "segment_id": "seg-031",
+      "order": 31,
+      "source_start": 936,
+      "source_end": 971,
+      "text": "更容易被忽略的是，GPS 还不仅提供位置，它也在提供非常精准的时间。\n",
+      "utf8_byte_length": 95
+    },
+    {
+      "segment_id": "seg-032",
+      "order": 32,
+      "source_start": 971,
+      "source_end": 1011,
+      "text": "通信基站、电力系统，甚至一些金融和数据系统，都可能利用这种精确时间来保持同步。\n",
+      "utf8_byte_length": 118
+    },
+    {
+      "segment_id": "seg-033",
+      "order": 33,
+      "source_start": 1011,
+      "source_end": 1051,
+      "text": "所以下次你打开地图时，可以把 GPS 想成一套分布在太空中的报时和报位置系统。\n",
+      "utf8_byte_length": 108
+    },
+    {
+      "segment_id": "seg-034",
+      "order": 34,
+      "source_start": 1051,
+      "source_end": 1098,
+      "text": "你的手机不是在“猜”你在哪，而是在接收多颗卫星的信号，再用时间算距离，再把位置一步步算出来。\n",
+      "utf8_byte_length": 139
+    },
+    {
+      "segment_id": "seg-035",
+      "order": 35,
+      "source_start": 1098,
+      "source_end": 1127,
+      "text": "这项技术离我们很远，却几乎每天都在默默帮助我们找到方向。\n",
+      "utf8_byte_length": 85
+    },
+    {
+      "segment_id": "seg-036",
+      "order": 36,
+      "source_start": 1127,
+      "source_end": 1159,
+      "text": "一次看似普通的定位，背后其实是太空、时间和计算一起完成的协作。\n",
+      "utf8_byte_length": 94
+    }
+  ]
+}

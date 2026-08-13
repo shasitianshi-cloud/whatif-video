@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "source_video_master_sha256": "4b7894ae2a3f173b88c5d91a129a30b8245cc6545c9a7dfc1101009e43b0060e",
+  "tts_provider": "volcengine",
+  "tts_protocol": "v3_http_chunked_unidirectional",
+  "resource_id": "seed-tts-2.0",
+  "speaker": "zh_female_vv_uranus_bigtts",
+  "audio_format": "mp3",
+  "sample_rate": 24000,
+  "speech_rate": 15,
+  "loudness_rate": 0,
+  "concurrency_max": 5,
+  "segment_count": 36,
+  "total_duration_ms": 190056,
+  "segments": [
+    {
+      "segment_id": "seg-001",
+      "order": 1,
+      "text": "你有没有想过，为什么你一打开地图，手机几乎立刻就能知道你在哪？\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-001.mp3",
+      "audio_sha256": "99d5d0c670449116b33124f2f0a62a8008f19903723a2a285f58dab918b12f12",
+      "duration_ms": 4896,
+      "request_id": "3481b79e-f81b-4bfa-8611-4cb99a6f895d"
+    },
+    {
+      "segment_id": "seg-002",
+      "order": 2,
+      "text": "这件事看起来很普通，但背后其实有一套在太空中不断运转的系统。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-002.mp3",
+      "audio_sha256": "0ad7f491fe7b1126f0fac41ef4f606fa2e42dd16541abb3935dd917a3389d02e",
+      "duration_ms": 5256,
+      "request_id": "0614216e-f7ad-460a-aa80-74f88f6f3a4e"
+    },
+    {
+      "segment_id": "seg-003",
+      "order": 3,
+      "text": "今天我们就用最简单的方式，讲清楚 GPS 为什么能定位到你。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-003.mp3",
+      "audio_sha256": "b06e26a54e706d279bb9f1f670a72fcb2e820a5ab138a6292dd6eb06ca19f683",
+      "duration_ms": 4776,
+      "request_id": "d5a28261-153f-499a-a08f-f7f85af46e8b"
+    },
+    {
+      "segment_id": "seg-004",
+      "order": 4,
+      "text": "很多人以为是手机自己知道了位置，其实不是。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-004.mp3",
+      "audio_sha256": "d40e70d60853906e405a74429d71f5c792f54ac656c41f11df4cba4592c8e22e",
+      "duration_ms": 3696,
+      "request_id": "19d9ccd5-8376-46fe-895d-cc64c5c4e700"
+    },
+    {
+      "segment_id": "seg-005",
+      "order": 5,
+      "text": "真正提供位置信息的，是天上的一整套卫星系统。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-005.mp3",
+      "audio_sha256": "c2c5029ff5806c43ce5bb8f7e4be4a05902ea95b06415faa179fccad5f6083fe",
+      "duration_ms": 3888,
+      "request_id": "415395dd-19b1-4dc4-8e7f-5c315e833892"
+    },
+    {
+      "segment_id": "seg-006",
+      "order": 6,
+      "text": "GPS 可以理解成一群一直绕着地球飞行的“太空信使”。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-006.mp3",
+      "audio_sha256": "b1b1924b012a50c7e6a7d53d9ac3869c1919370fa5bafaf5bbc574102bb8e7b5",
+      "duration_ms": 4080,
+      "request_id": "45dc0926-32fc-401a-bbe2-7a7cd217d1a8"
+    },
+    {
+      "segment_id": "seg-007",
+      "order": 7,
+      "text": "它们不断向地面发送两样最重要的信息，我现在在哪，我现在几点发出了信号。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-007.mp3",
+      "audio_sha256": "383f0791bdcd6361453a70fb1af8565d8d6aac3f71343054455a21ba6faf8fe6",
+      "duration_ms": 6168,
+      "request_id": "7f49c865-4ac3-425c-bf71-7854ad2342b8"
+    },
+    {
+      "segment_id": "seg-008",
+      "order": 8,
+      "text": "你的手机并不会主动去找卫星聊天，它主要是在安静地接收这些信号。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-008.mp3",
+      "audio_sha256": "c8dc2c22dace42a9a7870b8fee69e5289943a6c72821492cda0f6467418c5018",
+      "duration_ms": 5112,
+      "request_id": "50c80373-5173-454f-9a54-d5ddb09f1ff7"
+    },
+    {
+      "segment_id": "seg-009",
+      "order": 9,
+      "text": "那么问题来了，手机收到信号之后，为什么就能知道自己的位置呢？\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-009.mp3",
+      "audio_sha256": "3f72e88298fc3df360e7b3b2e58405072d463f7a0779d9a1629ea471f955dbbe",
+      "duration_ms": 4752,
+      "request_id": "d8ed976e-a9e9-4283-921d-71d9291ad415"
+    },
+    {
+      "segment_id": "seg-010",
+      "order": 10,
+      "text": "核心原理其实很朴素，如果你知道一颗卫星在哪里，又知道信号飞了多久，你就能算出你离它有多远。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-010.mp3",
+      "audio_sha256": "45b8125cc38e2cc9174838afc403e88bdafcde4c7b42f288a4179f5a8360986d",
+      "duration_ms": 7536,
+      "request_id": "cb55ad2a-d691-4c75-8b69-5dc828c2d8df"
+    },
+    {
+      "segment_id": "seg-011",
+      "order": 11,
+      "text": "你可以把它想象成听见远处传来一声雷，然后大概判断雷离你有多远。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-011.mp3",
+      "audio_sha256": "6f2dc3a3c192500c8d2239988fe55ac955393ea4229953124b5adc671abc7824",
+      "duration_ms": 5112,
+      "request_id": "98004229-683d-43eb-8a12-360b19017a30"
+    },
+    {
+      "segment_id": "seg-012",
+      "order": 12,
+      "text": "GPS 做的事情也差不多，只不过它不是靠耳朵，而是靠极其精确的时间。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-012.mp3",
+      "audio_sha256": "aaa9bab43797a07c2f37cdc6e5c8cae638d9dd8894a8bad93da23a8a4f1254fb",
+      "duration_ms": 6168,
+      "request_id": "42537534-1ccc-4f24-a67a-9ec231900e85"
+    },
+    {
+      "segment_id": "seg-013",
+      "order": 13,
+      "text": "每一颗 GPS 卫星上，都有非常精确的时钟。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-013.mp3",
+      "audio_sha256": "767faf7d53f65547ef91f2a974c7e365d0ada6232e5f8a83c1ff166e97818569",
+      "duration_ms": 3528,
+      "request_id": "ce4728b9-4a72-47f9-a4c1-76732489f347"
+    },
+    {
+      "segment_id": "seg-014",
+      "order": 14,
+      "text": "卫星会不断广播，这是我的位置，这是我发出信号的准确时间。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-014.mp3",
+      "audio_sha256": "cd26abca8ce78e24c770bf35dff4ce9ebcbccde4dabe453c8992f524b330d05d",
+      "duration_ms": 4200,
+      "request_id": "e56596c1-732e-468f-99df-306b76bd786c"
+    },
+    {
+      "segment_id": "seg-015",
+      "order": 15,
+      "text": "当手机收到信号时，它会比较“发出时间”和“收到时间”之间差了多少。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-015.mp3",
+      "audio_sha256": "568ef9a145014997194dab81a5fd918237ee1e91ec0f126ec8839e99e1f2de86",
+      "duration_ms": 4920,
+      "request_id": "2648ca3b-9264-40ab-a15a-7d41ab874357"
+    },
+    {
+      "segment_id": "seg-016",
+      "order": 16,
+      "text": "这个时间差，再乘上信号传播的速度，就能算出手机离这颗卫星有多远。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-016.mp3",
+      "audio_sha256": "1a5b28159c65f40948ec2d51b9ba103d943cadf4f60cb37a969f66d7439f760c",
+      "duration_ms": 5472,
+      "request_id": "c92e8317-ebda-422c-a441-a19a48791875"
+    },
+    {
+      "segment_id": "seg-017",
+      "order": 17,
+      "text": "但只知道离一颗卫星有多远，其实还不够。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-017.mp3",
+      "audio_sha256": "4b98ca2bbe83cd73d8e1b88bb4df02214fe7027aa6f8f34b01d5fc187992f8a1",
+      "duration_ms": 3528,
+      "request_id": "d6be09cd-04b6-45f3-b269-a776feba6ae8"
+    },
+    {
+      "segment_id": "seg-018",
+      "order": 18,
+      "text": "因为这只能说明，你位于某一个很大的范围里，还没法确定具体是哪一点。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-018.mp3",
+      "audio_sha256": "d8dde9f7a0770b32f9f509265d86a292531b5721f54968331f6408177b2814e1",
+      "duration_ms": 5280,
+      "request_id": "2ec0356d-3f5f-4311-8246-f263343302e3"
+    },
+    {
+      "segment_id": "seg-019",
+      "order": 19,
+      "text": "如果再知道你离第二颗卫星有多远，这个范围就会明显缩小。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-019.mp3",
+      "audio_sha256": "633d8005f67c85b7765158cd80d1b8d0ff20af8200eeef43d4da434905f38ef3",
+      "duration_ms": 4560,
+      "request_id": "481924c4-3776-497a-9262-16c87d02e9bc"
+    },
+    {
+      "segment_id": "seg-020",
+      "order": 20,
+      "text": "再加上第三颗、第四颗卫星，手机就能把位置一步步锁定下来。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-020.mp3",
+      "audio_sha256": "e0d002297e147252c702476d0288a4f82bb7dd29e0e0ce2edd108c78a2c9df5f",
+      "duration_ms": 5280,
+      "request_id": "b248d989-0890-4645-933d-56eed53f4c17"
+    },
+    {
+      "segment_id": "seg-021",
+      "order": 21,
+      "text": "所以 GPS 不是一颗卫星在工作，而是多颗卫星一起给你的手机提供线索。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-021.mp3",
+      "audio_sha256": "b540df9a05bcd74aad547331c3fd16d577a8cfe856b34ef895cbb01e75fd17da",
+      "duration_ms": 5808,
+      "request_id": "4ab77903-6bba-451b-9e2a-6abc1e7932c4"
+    },
+    {
+      "segment_id": "seg-022",
+      "order": 22,
+      "text": "一般来说，能收到的卫星越多，环境越理想，定位往往就越稳定、越准确。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-022.mp3",
+      "audio_sha256": "fcfaaacc14262acd6e22490fc8f67bdea8c0fd90e4ddc198dc95e658644ed000",
+      "duration_ms": 5808,
+      "request_id": "a4319da5-e606-4241-948a-4b5a7f36967c"
+    },
+    {
+      "segment_id": "seg-023",
+      "order": 23,
+      "text": "这也解释了，为什么在高楼密集的地方，定位有时会变差。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-023.mp3",
+      "audio_sha256": "028bb515fade4ac99c097b2b5ea30105ff380002e05ff103fddd2dfc91b4a0b9",
+      "duration_ms": 4224,
+      "request_id": "85282fd4-a4b3-40d7-b7e7-d27fc4203972"
+    },
+    {
+      "segment_id": "seg-024",
+      "order": 24,
+      "text": "因为高楼、隧道、室内，甚至山谷，都可能挡住一部分卫星信号。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-024.mp3",
+      "audio_sha256": "5462c34bc917ded6c9140722f788ce08a65b57c4d740530e67ded3dda20e270b",
+      "duration_ms": 5472,
+      "request_id": "1b1560e9-f35c-43ed-9b9a-74a779f4309a"
+    },
+    {
+      "segment_id": "seg-025",
+      "order": 25,
+      "text": "有时候，信号还会被建筑物反射，让手机产生判断偏差。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-025.mp3",
+      "audio_sha256": "df4ca821364035105dce8962ccd459692b67a675830ddf25ba1713949f332b35",
+      "duration_ms": 4752,
+      "request_id": "c4850b80-5db8-420b-a9b7-93255d9e080d"
+    },
+    {
+      "segment_id": "seg-026",
+      "order": 26,
+      "text": "所以当你在地铁里、地下停车场，或者高楼之间发现定位飘了，这往往不是地图坏了，而是信号条件变差了。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-026.mp3",
+      "audio_sha256": "98b9e6b9267fdd3c1823c4136c448a3e917499c96746837a4a3ed015acbde3c7",
+      "duration_ms": 8040,
+      "request_id": "d6127c22-9f02-44d5-92f1-e86c2414f34c"
+    },
+    {
+      "segment_id": "seg-027",
+      "order": 27,
+      "text": "不过 GPS 的作用，远远不只是给你开车导航。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-027.mp3",
+      "audio_sha256": "89989ee9383634d9f59397a2d01337d63ab8206970aff98b384b121aa87caeba",
+      "duration_ms": 3720,
+      "request_id": "6bba0a99-fb0f-44af-a909-8dbc589da69b"
+    },
+    {
+      "segment_id": "seg-028",
+      "order": 28,
+      "text": "飞机在空中飞行、轮船在海上航行、物流车辆在路上调度，都离不开定位系统。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-028.mp3",
+      "audio_sha256": "61e0550c8e0b9393814e4dcf78085de1cbcbb60630010257a4de04e0a3a00fa2",
+      "duration_ms": 6288,
+      "request_id": "5aee151e-4e44-48da-b4f2-f10d0a1d5df1"
+    },
+    {
+      "segment_id": "seg-029",
+      "order": 29,
+      "text": "在农业里，一些机械会利用定位信息，让播种、施肥和收割做得更精确。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-029.mp3",
+      "audio_sha256": "43cd62e5577a07117107ffc3ab77f011153af48af64d4149c24cb0451d78b592",
+      "duration_ms": 5952,
+      "request_id": "7f328fb2-bf29-4bec-ae21-85441c49677d"
+    },
+    {
+      "segment_id": "seg-030",
+      "order": 30,
+      "text": "在救援、测绘、无人机等场景里，GPS 也经常是非常基础的一环。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-030.mp3",
+      "audio_sha256": "44cc44ffd79e817d4398c549c4298f65ec6a7f093573c21bade03eb83708f924",
+      "duration_ms": 5448,
+      "request_id": "bee3001d-0b1d-46be-b3c2-e07faab6c69c"
+    },
+    {
+      "segment_id": "seg-031",
+      "order": 31,
+      "text": "更容易被忽略的是，GPS 还不仅提供位置，它也在提供非常精准的时间。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-031.mp3",
+      "audio_sha256": "d18115a4cdd365922d9a27cb61001b227ed46a26f312d51f1db845221f17e9e3",
+      "duration_ms": 5640,
+      "request_id": "b656c74a-06ab-4f92-87ab-1e813121093d"
+    },
+    {
+      "segment_id": "seg-032",
+      "order": 32,
+      "text": "通信基站、电力系统，甚至一些金融和数据系统，都可能利用这种精确时间来保持同步。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-032.mp3",
+      "audio_sha256": "80991f60c2b35eff47624f8f78980dcbd1c1ec47991388cda775395480e059dc",
+      "duration_ms": 6648,
+      "request_id": "3c59daa9-08c4-4e68-ab4a-faca8b314ca1"
+    },
+    {
+      "segment_id": "seg-033",
+      "order": 33,
+      "text": "所以下次你打开地图时，可以把 GPS 想成一套分布在太空中的报时和报位置系统。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-033.mp3",
+      "audio_sha256": "088a457559e6f1c17f9b4599ac1fdcbf601e315047390e67c504e95e23fd5126",
+      "duration_ms": 6840,
+      "request_id": "f201b5fc-217a-4a44-974e-458610e20e8a"
+    },
+    {
+      "segment_id": "seg-034",
+      "order": 34,
+      "text": "你的手机不是在“猜”你在哪，而是在接收多颗卫星的信号，再用时间算距离，再把位置一步步算出来。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-034.mp3",
+      "audio_sha256": "300185eea8b10cde91d522352c4d387c53fee7a643e833ab0cd6c9ad9712809b",
+      "duration_ms": 7200,
+      "request_id": "1584c9e0-5bb8-4d98-8b23-8e67cdbc57a0"
+    },
+    {
+      "segment_id": "seg-035",
+      "order": 35,
+      "text": "这项技术离我们很远，却几乎每天都在默默帮助我们找到方向。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-035.mp3",
+      "audio_sha256": "c4722b3812709427a84788ecaf23724038b9449555ef2f19ecb08195dadfd74a",
+      "duration_ms": 4560,
+      "request_id": "486d4616-69f3-4607-bd68-325d7efff250"
+    },
+    {
+      "segment_id": "seg-036",
+      "order": 36,
+      "text": "一次看似普通的定位，背后其实是太空、时间和计算一起完成的协作。\n",
+      "audio_path": "runs/stress-gps-image-only-20260813-001/video-production/narration/audio/seg-036.mp3",
+      "audio_sha256": "de6e0c44c4b1e3d5f27a1c6f3ef86e60eda3ee0cda00ffae071e56a5023bc575",
+      "duration_ms": 5448,
+      "request_id": "5332afad-591e-44ae-ad08-88cf0960bb5a"
+    }
+  ],
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "status": "PASS",
+  "gate": "LONG_NARRATION_STRESS_GATE",
+  "segment_count": 36,
+  "total_duration_ms": 190056,
+  "minimum_required_duration_ms": 180000,
+  "all_segments_under_15000ms": true,
+  "text_generation_executed": false
+}

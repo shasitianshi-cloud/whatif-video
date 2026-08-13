@@ -1,0 +1,195 @@
+{
+  "run_id": "stress-gps-image-only-20260813-001",
+  "tts_config_sha256": "288f9b197758552d437ec043de27c095292dc0944102b3f884a7218e9f5d8e2f",
+  "narration_plan_sha256": "13e0a3f193009a025e87beab328ed45432f93dc71177c9f757d6deaa81983b7d",
+  "narration_audio_manifest_sha256": "888781a3e06b92a4e0609e24149c31416d679ec8d4b2510666ebe82b4f5d972a",
+  "upstream_freeze_observed": {
+    "counterfactual_implementation_sha256": "04515a45bedefd1f41cf4629102b7d5219acd56ec80174a2ab67866ce0715eae",
+    "video_master_implementation_sha256": "5348dcb5403a8e48c725a9151265122cb52ba199aff192ce0c6da0d1f7fb8ad6",
+    "operator_package_sha256": "41a85973c25d3aa6c6c835cd5916c062b4660e2a69cca5f0018cb3b2def88a80"
+  },
+  "provider_metadata": [
+    {
+      "segment_id": "seg-001",
+      "provider_duration_ms": null,
+      "provider_log_id": "202608131241502AA7A04ACB5AE13F2346"
+    },
+    {
+      "segment_id": "seg-002",
+      "provider_duration_ms": null,
+      "provider_log_id": "2026081312415082F0AF09B0E947999D07"
+    },
+    {
+      "segment_id": "seg-003",
+      "provider_duration_ms": null,
+      "provider_log_id": "202608131241508544969A45181642E84A"
+    },
+    {
+      "segment_id": "seg-004",
+      "provider_duration_ms": null,
+      "provider_log_id": "202608131241505FA2FA3FC0428A3CA694"
+    },
+    {
+      "segment_id": "seg-005",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124150B0304A0D7D00F36F8CD8"
+    },
+    {
+      "segment_id": "seg-006",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124152725F5678DA8A4242C0BB"
+    },
+    {
+      "segment_id": "seg-007",
+      "provider_duration_ms": null,
+      "provider_log_id": "2026081312415299C16E8FD61CED89A081"
+    },
+    {
+      "segment_id": "seg-008",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124152C3E11E0CB1E01958632A"
+    },
+    {
+      "segment_id": "seg-009",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124152B0304A0D7D00F36F8D6C"
+    },
+    {
+      "segment_id": "seg-010",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124152F52B8AA0C9BA6BF1509F"
+    },
+    {
+      "segment_id": "seg-011",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124153F416F06244D283F0F8BE"
+    },
+    {
+      "segment_id": "seg-012",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124153A73DEA0559435A47D909"
+    },
+    {
+      "segment_id": "seg-013",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124154FB62095B7A53584420D2"
+    },
+    {
+      "segment_id": "seg-014",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124154353ABC7530FCE60C579C"
+    },
+    {
+      "segment_id": "seg-015",
+      "provider_duration_ms": null,
+      "provider_log_id": "202608131241546138DE3329B9B7A63888"
+    },
+    {
+      "segment_id": "seg-016",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124154A91F692AA87ABC911B66"
+    },
+    {
+      "segment_id": "seg-017",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124154A7F872246094E194DDD4"
+    },
+    {
+      "segment_id": "seg-018",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124155E579ABD9FEA0CD942F19"
+    },
+    {
+      "segment_id": "seg-019",
+      "provider_duration_ms": null,
+      "provider_log_id": "2026081312415627E83524D19E86957C56"
+    },
+    {
+      "segment_id": "seg-020",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124156303F0DB7F6D86945F41D"
+    },
+    {
+      "segment_id": "seg-021",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124156773B765F13C1936215BA"
+    },
+    {
+      "segment_id": "seg-022",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124156A9411642C4F2136A5972"
+    },
+    {
+      "segment_id": "seg-023",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124157C8241798319FF5A4F525"
+    },
+    {
+      "segment_id": "seg-024",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124157765B02B4516C8B4F6390"
+    },
+    {
+      "segment_id": "seg-025",
+      "provider_duration_ms": null,
+      "provider_log_id": "202608131241576CC542678302AB616B0F"
+    },
+    {
+      "segment_id": "seg-026",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124157B9DB51EE5DE677569883"
+    },
+    {
+      "segment_id": "seg-027",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124158C69DB219EBCC854042E4"
+    },
+    {
+      "segment_id": "seg-028",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124158F95B24FCAD61BF399A18"
+    },
+    {
+      "segment_id": "seg-029",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124158273139B7AAB2C5462952"
+    },
+    {
+      "segment_id": "seg-030",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124158AC2698C204A8B0B82D90"
+    },
+    {
+      "segment_id": "seg-031",
+      "provider_duration_ms": null,
+      "provider_log_id": "2026081312415973DC27A9B1A3174A47DF"
+    },
+    {
+      "segment_id": "seg-032",
+      "provider_duration_ms": null,
+      "provider_log_id": "2026081312415938EB3302CA97705E9B69"
+    },
+    {
+      "segment_id": "seg-033",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124159EEFDC56600B623BB4CB9"
+    },
+    {
+      "segment_id": "seg-034",
+      "provider_duration_ms": null,
+      "provider_log_id": "202608131242007C3AAA825ABE1785E7FB"
+    },
+    {
+      "segment_id": "seg-035",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124200B2AB181E62247648ACDE"
+    },
+    {
+      "segment_id": "seg-036",
+      "provider_duration_ms": null,
+      "provider_log_id": "20260813124200C1927B57997560818E49"
+    }
+  ],
+  "historical_entrypoint_byte_identical": false,
+  "duration_resplit_applied": false
+}
