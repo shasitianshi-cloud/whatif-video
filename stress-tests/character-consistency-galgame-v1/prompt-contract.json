@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "test_name": "CHARACTER_CONSISTENCY_GALGAME_OUTFIT_V2",
-  "run_id": "character-consistency-galgame-outfit-v2-20260814-001",
+  "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
   "provider_component": "volcengine_general3_t2i_api",
   "test_hypothesis": "The same fixed text-only anime/galgame character identity remains recognizable under visually extreme outfit changes.",
   "control_strategy": "Two exact duplicate baseline prompts measure same-prompt drift; four highly distinct outfit variants test outfit-induced identity drift.",
