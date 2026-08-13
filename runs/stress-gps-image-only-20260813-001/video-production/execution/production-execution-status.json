@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "production_script_sha256": "dc224c36c0f7761304c3833f8059a47f35929f49031343bbf98e2a617a1b7330",
+  "narration_manifest_sha256": "888781a3e06b92a4e0609e24149c31416d679ec8d4b2510666ebe82b4f5d972a",
+  "asset_dispatch": "runs/stress-gps-image-only-20260813-001/video-production/execution/asset-dispatch.json",
+  "asset_dispatch_sha256": "9d9e3c6754765757278f4a9ce4c1816c1eedd564728acffb73ed21f984eb3548",
+  "serial_execution": true,
+  "latest_discovery_used": false,
+  "provider_execution_authorized": true,
+  "image_execution_adapter": "volcengine_general3_t2i_api",
+  "status": "COMPLETE",
+  "next_task_index": 36,
+  "block_code": null,
+  "recovery_entrypoint_reconstructed": true,
+  "historical_entrypoint_byte_identical": false
+}

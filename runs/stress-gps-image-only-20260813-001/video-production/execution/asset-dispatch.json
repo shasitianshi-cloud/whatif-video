@@ -1,0 +1,1052 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "recovery_schema_reconstructed": true,
+  "creative_replanning": false,
+  "tasks": [
+    {
+      "task_id": "dispatch-visual-seg-001-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-001-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic everyday city street, ordinary person checking smartphone navigation outdoors, natural daylight, documentary photography, wide 16:9 composition, no added text or graphic elements",
+      "duration_ms": 4896,
+      "segment_id": "seg-001",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-002-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-002-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic city skyline under a vast sky with Earth-orbit navigation satellites conceptually connected to everyday life, realistic science documentary look, wide 16:9 composition, no added text or graphic elements",
+      "duration_ms": 5256,
+      "segment_id": "seg-002",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "tilt_up",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 2,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": -2,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-003-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-003-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic Earth seen from space with several navigation satellites distributed around it, clear accessible science documentary composition, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4776,
+      "segment_id": "seg-003",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-004-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-004-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic close view of a hand holding a smartphone outdoors in a city, natural human-scale scene, minimal visible screen detail, documentary photography, wide 16:9 composition, no added text or graphic elements",
+      "duration_ms": 3696,
+      "segment_id": "seg-004",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_right",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-005-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-005-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic Earth with multiple navigation satellites in orbit, physically plausible sunlight and deep space, accessible educational science photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 3888,
+      "segment_id": "seg-005",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-006-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-006-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic group of navigation satellites orbiting Earth, clear sense of a distributed working system, realistic space environment, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4080,
+      "segment_id": "seg-006",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_left",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-007-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-007-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic navigation satellite in orbit transmitting radio signals toward Earth, clear Earth horizon below, realistic science documentary style, wide 16:9, no added text or graphic elements",
+      "duration_ms": 6168,
+      "segment_id": "seg-007",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-008-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-008-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic person standing outdoors with smartphone while navigation satellites are visible conceptually high above, calm receiving relationship, documentary style, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5112,
+      "segment_id": "seg-008",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "tilt_down",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": -2,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 2,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-009-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-009-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic smartphone in foreground with multiple navigation satellites high above Earth, strong spatial relationship and curious science mood, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4752,
+      "segment_id": "seg-009",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-010-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-010-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic educational scene showing one navigation satellite above Earth and a smartphone user far below, clear spatial separation and radio transmission relationship, wide 16:9, no added text or graphic elements",
+      "duration_ms": 7536,
+      "segment_id": "seg-010",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_right",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-011-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-011-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic person outdoors under a stormy sky with distant lightning over the horizon, realistic scale and atmosphere, documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5112,
+      "segment_id": "seg-011",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-012-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-012-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic navigation satellite and precise timing hardware in a clean realistic science environment, emphasis on precision and signal timing, wide 16:9, no added text or graphic elements",
+      "duration_ms": 6168,
+      "segment_id": "seg-012",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-013-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-013-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic close technical view of navigation satellite hardware with precision clock instrumentation concept, realistic engineering detail, wide 16:9, no added text or graphic elements",
+      "duration_ms": 3528,
+      "segment_id": "seg-013",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-014-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-014-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic navigation satellite continuously transmitting toward the curved Earth below, calm stable orbital scene, realistic science documentary style, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4200,
+      "segment_id": "seg-014",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_left",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-015-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-015-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic close scene of a smartphone receiving a navigation signal outdoors, subtle precision-timing atmosphere without diagrams, documentary style, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4920,
+      "segment_id": "seg-015",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-016-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-016-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic navigation satellite and ground smartphone separated by a clear long spatial path, realistic science explanation scene, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5472,
+      "segment_id": "seg-016",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_right",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-017-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-017-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic single navigation satellite above a vast Earth surface region with one small person below, strong sense of large uncertainty area, wide 16:9, no added text or graphic elements",
+      "duration_ms": 3528,
+      "segment_id": "seg-017",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_out",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.06
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-018-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-018-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic aerial view of a broad varied landscape with one tiny smartphone user somewhere within it, visually emphasizing a large unresolved area, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5280,
+      "segment_id": "seg-018",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_left",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-019-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-019-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic Earth surface and two navigation satellites from different directions focusing on the same smaller region, clear simple spatial relationship, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4560,
+      "segment_id": "seg-019",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-020-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-020-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic Earth surface with three to four navigation satellites positioned around one ground location, clear convergence toward the same place, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5280,
+      "segment_id": "seg-020",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-021-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-021-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic person using a smartphone in an open landscape while several navigation satellites occupy different positions overhead conceptually, coordinated system feeling, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5808,
+      "segment_id": "seg-021",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_right",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-022-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-022-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic person using smartphone navigation in a wide open field or open road under clear sky, unobstructed horizon, calm reliable setting, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5808,
+      "segment_id": "seg-022",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-023-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-023-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic dense urban canyon with tall towers surrounding a pedestrian checking smartphone navigation, realistic city documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4224,
+      "segment_id": "seg-023",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "tilt_up",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 2,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": -2,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-024-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-024-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic road emerging from a long tunnel into a mountain valley, strong physical obstruction by rock and concrete, documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5472,
+      "segment_id": "seg-024",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_left",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-025-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-025-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic modern city street surrounded by tall glass and concrete towers, reflective facades creating a complex urban canyon, documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4752,
+      "segment_id": "seg-025",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-026-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-026-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic underground parking garage with a person checking smartphone navigation beside parked cars, realistic low-light environment, wide 16:9, no added text or graphic elements",
+      "duration_ms": 8040,
+      "segment_id": "seg-026",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-027-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-027-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic driver using dashboard navigation on an open road, realistic interior and road scene, documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 3720,
+      "segment_id": "seg-027",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_right",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-028-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-028-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic logistics scene combining a commercial aircraft in flight, cargo ship at sea and freight truck on a highway in a coherent realistic composition, wide 16:9, no added text or graphic elements",
+      "duration_ms": 6288,
+      "segment_id": "seg-028",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "gentle_drift",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -1.5,
+          "y_percent": 0,
+          "scale": 1.03
+        },
+        "to": {
+          "x_percent": 1.5,
+          "y_percent": 0,
+          "scale": 1.03
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-029-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-029-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic modern agricultural tractor working precise straight passes across a large field, broad rural landscape, documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5952,
+      "segment_id": "seg-029",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "aerial_push",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 1,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": -1,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-030-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-030-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic field rescue and surveying team operating a drone in rugged terrain, realistic professional gear and teamwork, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5448,
+      "segment_id": "seg-030",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_left",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-031-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-031-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic navigation satellite associated with precision timing hardware and modern infrastructure in a coherent science documentary composition, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5640,
+      "segment_id": "seg-031",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-032-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-032-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic modern infrastructure composition with telecommunications tower, electrical grid control facility and data center, orderly synchronized technology environment, wide 16:9, no added text or graphic elements",
+      "duration_ms": 6648,
+      "segment_id": "seg-032",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_right",
+      "motion_parameters": {
+        "from": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-033-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-033-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic coherent scene combining smartphone user on Earth with the planet and multiple navigation satellites above, clear accessible science summary composition, wide 16:9, no added text or graphic elements",
+      "duration_ms": 6840,
+      "segment_id": "seg-033",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "push_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-034-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-034-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic smartphone user connected conceptually to several navigation satellites at different positions overhead, clear final system relationship, wide 16:9, no added text or graphic elements",
+      "duration_ms": 7200,
+      "segment_id": "seg-034",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "zoom_in",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-035-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-035-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic warm everyday travel scene with an ordinary person using smartphone navigation on a city street, human-centered documentary photography, wide 16:9, no added text or graphic elements",
+      "duration_ms": 4560,
+      "segment_id": "seg-035",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pan_left",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 2,
+          "y_percent": 0,
+          "scale": 1.04
+        },
+        "to": {
+          "x_percent": -2,
+          "y_percent": 0,
+          "scale": 1.04
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-visual-seg-036-01",
+      "run_id": "stress-gps-image-only-20260813-001",
+      "asset_id": "visual-seg-036-01",
+      "role": "content_visual",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "Photorealistic wide cinematic view connecting Earth, navigation satellites and a living city at dusk, calm sense of invisible technological cooperation, wide 16:9, no added text or graphic elements",
+      "duration_ms": 5448,
+      "segment_id": "seg-036",
+      "render_treatment": "image_motion",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": true,
+      "motion_intent": "pull_back",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.06
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    }
+  ]
+}

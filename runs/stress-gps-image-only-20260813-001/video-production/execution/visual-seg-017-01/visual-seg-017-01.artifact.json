@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "task_id": "dispatch-visual-seg-017-01",
+  "asset_id": "visual-seg-017-01",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "content_visual",
+  "in_content_timeline": true,
+  "prompt_sha256": "e1e88ca5f2ef7ae7a15d35a7d547e189df5c8a847de8b389f56a3bf38bb600ad",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "5748831090713085503",
+  "provider_request_id": "20260813124706EA8F7952F29C6158417D",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260813124706EA8F7952F29C6158417D",
+    "data": {
+      "status": "done",
+      "task_id": "5748831090713085503",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/stress-gps-image-only-20260813-001/video-production/execution/visual-seg-017-01/visual-seg-017-01.jpg",
+  "sha256": "f8ece66c91830c435cb907ccc6b36b4536c52f64db0de454e3f15c0bf92cfb1a",
+  "file_size_bytes": 236868,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

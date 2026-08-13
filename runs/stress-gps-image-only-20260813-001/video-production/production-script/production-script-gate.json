@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "status": "PASS",
+  "sha256": "dc224c36c0f7761304c3833f8059a47f35929f49031343bbf98e2a617a1b7330",
+  "source": "frozen_visual_fixture_plus_measured_tts",
+  "visual_planner_executed": false,
+  "image_only_stress_test": true,
+  "segment_count": 36,
+  "stress_prompt_normalization_applied": true
+}

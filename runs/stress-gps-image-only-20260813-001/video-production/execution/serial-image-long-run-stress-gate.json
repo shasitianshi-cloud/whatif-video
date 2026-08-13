@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "status": "PASS",
+  "gate": "SERIAL_IMAGE_LONG_RUN_STRESS_GATE",
+  "image_task_count": 36,
+  "serial_execution": true,
+  "asset_execution_complete": true,
+  "next_task_index": 36
+}
