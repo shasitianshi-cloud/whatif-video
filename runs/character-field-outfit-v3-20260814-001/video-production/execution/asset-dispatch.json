@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "run_id": "character-field-outfit-v3-20260814-001",
+  "recovery_schema_reconstructed": true,
+  "creative_replanning": false,
+  "test_only": true,
+  "tasks": [
+    {
+      "task_id": "dispatch-character-01-casual",
+      "run_id": "character-field-outfit-v3-20260814-001",
+      "asset_id": "character-01-casual",
+      "role": "character_field_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "角色: 24岁东亚成年女性，中等身高，身材纤细匀称，窄肩长腿，柔和椭圆脸，暖白肤色，琥珀色眼睛，左眼下方一颗小泪痣，深栗棕色齐肩发，发尾内扣微卷，轻微中分直刘海，右侧一个深红色小丝带发夹。\n衣物: 白色短袖T恤，蓝色高腰直筒牛仔裤，白色运动鞋。\n风格: 日式Galgame视觉小说角色CG，2D动漫插画，干净精细线稿，柔和赛璐璐上色，自然人体比例。\n场景: 现代公寓客厅，暖色柔光，浅色墙面，左侧模糊绿植，右侧窗户柔和日光。\n构图: 单人，三分之四全身，正面站立，双臂自然下垂，平静闭嘴微笑，直视镜头，16:9。\n限制: 无文字，无字幕，无UI，无水印，无其他人物。",
+      "duration_ms": 1000,
+      "segment_id": "test-01",
+      "render_treatment": "image",
+      "continuity": {"kind": "none"},
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+        "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+      }
+    },
+    {
+      "task_id": "dispatch-character-02-business",
+      "run_id": "character-field-outfit-v3-20260814-001",
+      "asset_id": "character-02-business",
+      "role": "character_field_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "角色: 24岁东亚成年女性，中等身高，身材纤细匀称，窄肩长腿，柔和椭圆脸，暖白肤色，琥珀色眼睛，左眼下方一颗小泪痣，深栗棕色齐肩发，发尾内扣微卷，轻微中分直刘海，右侧一个深红色小丝带发夹。\n衣物: 黑色女士商务裤装，修身西装外套，白色衬衫，黑色直筒长裤，黑色高跟鞋。\n风格: 日式Galgame视觉小说角色CG，2D动漫插画，干净精细线稿，柔和赛璐璐上色，自然人体比例。\n场景: 现代公寓客厅，暖色柔光，浅色墙面，左侧模糊绿植，右侧窗户柔和日光。\n构图: 单人，三分之四全身，正面站立，双臂自然下垂，平静闭嘴微笑，直视镜头，16:9。\n限制: 无文字，无字幕，无UI，无水印，无其他人物。",
+      "duration_ms": 1000,
+      "segment_id": "test-02",
+      "render_treatment": "image",
+      "continuity": {"kind": "none"},
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+        "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+      }
+    },
+    {
+      "task_id": "dispatch-character-03-sports",
+      "run_id": "character-field-outfit-v3-20260814-001",
+      "asset_id": "character-03-sports",
+      "role": "character_field_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "角色: 24岁东亚成年女性，中等身高，身材纤细匀称，窄肩长腿，柔和椭圆脸，暖白肤色，琥珀色眼睛，左眼下方一颗小泪痣，深栗棕色齐肩发，发尾内扣微卷，轻微中分直刘海，右侧一个深红色小丝带发夹。\n衣物: 红黑配色短款拉链运动外套，黑色贴身运动紧身裤，白色跑鞋。\n风格: 日式Galgame视觉小说角色CG，2D动漫插画，干净精细线稿，柔和赛璐璐上色，自然人体比例。\n场景: 现代公寓客厅，暖色柔光，浅色墙面，左侧模糊绿植，右侧窗户柔和日光。\n构图: 单人，三分之四全身，正面站立，双臂自然下垂，平静闭嘴微笑，直视镜头，16:9。\n限制: 无文字，无字幕，无UI，无水印，无其他人物。",
+      "duration_ms": 1000,
+      "segment_id": "test-03",
+      "render_treatment": "image",
+      "continuity": {"kind": "none"},
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+        "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+      }
+    },
+    {
+      "task_id": "dispatch-character-04-yukata",
+      "run_id": "character-field-outfit-v3-20260814-001",
+      "asset_id": "character-04-yukata",
+      "role": "character_field_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "角色: 24岁东亚成年女性，中等身高，身材纤细匀称，窄肩长腿，柔和椭圆脸，暖白肤色，琥珀色眼睛，左眼下方一颗小泪痣，深栗棕色齐肩发，发尾内扣微卷，轻微中分直刘海，右侧一个深红色小丝带发夹。\n衣物: 浅蓝色日式夏季浴衣，清晰花卉纹样，深色腰带，木屐。\n风格: 日式Galgame视觉小说角色CG，2D动漫插画，干净精细线稿，柔和赛璐璐上色，自然人体比例。\n场景: 现代公寓客厅，暖色柔光，浅色墙面，左侧模糊绿植，右侧窗户柔和日光。\n构图: 单人，三分之四全身，正面站立，双臂自然下垂，平静闭嘴微笑，直视镜头，16:9。\n限制: 无文字，无字幕，无UI，无水印，无其他人物。",
+      "duration_ms": 1000,
+      "segment_id": "test-04",
+      "render_treatment": "image",
+      "continuity": {"kind": "none"},
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+        "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+      }
+    },
+    {
+      "task_id": "dispatch-character-05-gown",
+      "run_id": "character-field-outfit-v3-20260814-001",
+      "asset_id": "character-05-gown",
+      "role": "character_field_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "角色: 24岁东亚成年女性，中等身高，身材纤细匀称，窄肩长腿，柔和椭圆脸，暖白肤色，琥珀色眼睛，左眼下方一颗小泪痣，深栗棕色齐肩发，发尾内扣微卷，轻微中分直刘海，右侧一个深红色小丝带发夹。\n衣物: 墨绿色拖地晚礼服，无袖修身上身，长款飘逸裙摆，正式高跟鞋。\n风格: 日式Galgame视觉小说角色CG，2D动漫插画，干净精细线稿，柔和赛璐璐上色，自然人体比例。\n场景: 现代公寓客厅，暖色柔光，浅色墙面，左侧模糊绿植，右侧窗户柔和日光。\n构图: 单人，三分之四全身，正面站立，双臂自然下垂，平静闭嘴微笑，直视镜头，16:9。\n限制: 无文字，无字幕，无UI，无水印，无其他人物。",
+      "duration_ms": 1000,
+      "segment_id": "test-05",
+      "render_treatment": "image",
+      "continuity": {"kind": "none"},
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {"x_percent": 0, "y_percent": 0, "scale": 1.0},
+        "to": {"x_percent": 0, "y_percent": 0, "scale": 1.0}
+      }
+    }
+  ]
+}
