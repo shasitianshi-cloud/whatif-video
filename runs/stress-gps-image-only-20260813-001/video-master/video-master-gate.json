@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "run_id": "stress-gps-image-only-20260813-001",
+  "stage": "video-master",
+  "status": "PASS",
+  "sha256": "4b7894ae2a3f173b88c5d91a129a30b8245cc6545c9a7dfc1101009e43b0060e",
+  "source": "manual_frozen_master",
+  "text_generation_executed": false,
+  "stress_test": true
+}
