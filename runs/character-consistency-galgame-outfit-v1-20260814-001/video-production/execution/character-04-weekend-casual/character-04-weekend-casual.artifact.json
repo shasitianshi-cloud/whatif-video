@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+  "task_id": "dispatch-character-04-weekend-casual",
+  "asset_id": "character-04-weekend-casual",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_consistency_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "bb9e693ab738a71421280c95d7582468cc03393654b67e4218b0f300c83652e6",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "5004876394608174132",
+  "provider_request_id": "202608140032350FD4E72444B6858880E6",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "202608140032350FD4E72444B6858880E6",
+    "data": {
+      "status": "done",
+      "task_id": "5004876394608174132",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-04-weekend-casual/character-04-weekend-casual.jpg",
+  "sha256": "ed320f3dc2f46542d688dfa35111495bac2701775f81cbaaeac1858ca76652b0",
+  "file_size_bytes": 117693,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}

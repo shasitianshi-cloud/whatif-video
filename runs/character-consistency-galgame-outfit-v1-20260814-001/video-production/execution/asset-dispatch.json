@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+  "recovery_schema_reconstructed": true,
+  "creative_replanning": false,
+  "test_only": true,
+  "tasks": [
+    {
+      "task_id": "dispatch-character-01-control-baseline-a",
+      "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+      "asset_id": "character-01-control-baseline-a",
+      "role": "character_consistency_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity. Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic. Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image. The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus. Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition. Outfit for this image: Cream fitted long-sleeve blouse tucked into a dark navy high-waisted pleated skirt, sheer neutral stockings, simple dark low-heeled pumps.",
+      "duration_ms": 1000,
+      "segment_id": "test-01",
+      "render_treatment": "image",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-character-02-control-baseline-b",
+      "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+      "asset_id": "character-02-control-baseline-b",
+      "role": "character_consistency_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity. Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic. Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image. The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus. Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition. Outfit for this image: Cream fitted long-sleeve blouse tucked into a dark navy high-waisted pleated skirt, sheer neutral stockings, simple dark low-heeled pumps.",
+      "duration_ms": 1000,
+      "segment_id": "test-02",
+      "render_treatment": "image",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-character-03-business",
+      "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+      "asset_id": "character-03-business",
+      "role": "character_consistency_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity. Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic. Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image. The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus. Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition. Outfit for this image: Charcoal tailored blazer over a light ivory blouse, matching fitted knee-length skirt, black tights, understated black pumps; elegant young professional styling.",
+      "duration_ms": 1000,
+      "segment_id": "test-03",
+      "render_treatment": "image",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-character-04-weekend-casual",
+      "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+      "asset_id": "character-04-weekend-casual",
+      "role": "character_consistency_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity. Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic. Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image. The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus. Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition. Outfit for this image: Soft oversized oatmeal knit sweater, short muted-blue pleated skirt, opaque dark tights, brown ankle boots; relaxed weekend styling.",
+      "duration_ms": 1000,
+      "segment_id": "test-04",
+      "render_treatment": "image",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-character-05-date-dress",
+      "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+      "asset_id": "character-05-date-dress",
+      "role": "character_consistency_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity. Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic. Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image. The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus. Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition. Outfit for this image: Refined pale-blue knee-length one-piece dress with a fitted waist and modest neckline, light cream cardigan, delicate low heels; elegant romantic date styling.",
+      "duration_ms": 1000,
+      "segment_id": "test-05",
+      "render_treatment": "image",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    },
+    {
+      "task_id": "dispatch-character-06-winter",
+      "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+      "asset_id": "character-06-winter",
+      "role": "character_consistency_test",
+      "generation_route": "gpt-image-2",
+      "expected_asset_kind": "image",
+      "prompt": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity. Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic. Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image. The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus. Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition. Outfit for this image: Long warm cream wool coat over a dark knit top and modest skirt, burgundy scarf, black tights, dark knee-high boots; practical winter styling.",
+      "duration_ms": 1000,
+      "segment_id": "test-06",
+      "render_treatment": "image",
+      "continuity": {
+        "kind": "none"
+      },
+      "in_content_timeline": false,
+      "motion_intent": "none",
+      "motion_parameters": {
+        "from": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        },
+        "to": {
+          "x_percent": 0,
+          "y_percent": 0,
+          "scale": 1.0
+        }
+      }
+    }
+  ]
+}

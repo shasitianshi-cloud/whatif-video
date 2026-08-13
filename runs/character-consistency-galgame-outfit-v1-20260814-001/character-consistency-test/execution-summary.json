@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+  "test_name": "CHARACTER_CONSISTENCY_GALGAME_OUTFIT_V1",
+  "status": "EXECUTION_PASS",
+  "quality_judgment": "PENDING_VISUAL_REVIEW",
+  "provider_component": "volcengine_general3_t2i_api",
+  "task_count": 6,
+  "serial_execution": true,
+  "same_prompt_control_count": 2,
+  "outfit_variant_count": 4,
+  "control_prompts_identical": true,
+  "production_config_changed": false,
+  "reference_image_used": false,
+  "seed_control_used": false,
+  "artifacts": [
+    {
+      "task_id": "dispatch-character-01-control-baseline-a",
+      "asset_id": "character-01-control-baseline-a",
+      "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-01-control-baseline-a/character-01-control-baseline-a.jpg",
+      "sha256": "9a56444fa935585e0a7e4d8d4294989810c3c6c13f8d2b99593326e6a71c7d69",
+      "prompt_sha256": "9d0a081ab6929433cc8fe81b33a95fc5b6484d533ccb7b27a1109a2f2dca6742",
+      "provider_task_id": "1411858722812545779"
+    },
+    {
+      "task_id": "dispatch-character-02-control-baseline-b",
+      "asset_id": "character-02-control-baseline-b",
+      "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-02-control-baseline-b/character-02-control-baseline-b.jpg",
+      "sha256": "0a4046c9fed4ef3f9eda386a269e133ec91dc870f0500efcf9fc11868fe935b6",
+      "prompt_sha256": "9d0a081ab6929433cc8fe81b33a95fc5b6484d533ccb7b27a1109a2f2dca6742",
+      "provider_task_id": "14652738391847969699"
+    },
+    {
+      "task_id": "dispatch-character-03-business",
+      "asset_id": "character-03-business",
+      "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-03-business/character-03-business.jpg",
+      "sha256": "6201bbedba01af9d2b37a82fd43fc0790fb8e478d6ba93197ddef738b0b29eb0",
+      "prompt_sha256": "1944b8f239c02802045463911b523e805b29b496ef964d781dcafdc7b06f254c",
+      "provider_task_id": "16171058669837264582"
+    },
+    {
+      "task_id": "dispatch-character-04-weekend-casual",
+      "asset_id": "character-04-weekend-casual",
+      "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-04-weekend-casual/character-04-weekend-casual.jpg",
+      "sha256": "ed320f3dc2f46542d688dfa35111495bac2701775f81cbaaeac1858ca76652b0",
+      "prompt_sha256": "bb9e693ab738a71421280c95d7582468cc03393654b67e4218b0f300c83652e6",
+      "provider_task_id": "5004876394608174132"
+    },
+    {
+      "task_id": "dispatch-character-05-date-dress",
+      "asset_id": "character-05-date-dress",
+      "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-05-date-dress/character-05-date-dress.jpg",
+      "sha256": "f09f13abd9a1c2000c5a609c0dedfe3f2c32ee5b944ff19c3ad5c90d9a31cdc5",
+      "prompt_sha256": "e7ab50f15d8eb2e8211ce8e412171c381321cee984ae14f6b0c8aec2d27d7955",
+      "provider_task_id": "16919691903752146326"
+    },
+    {
+      "task_id": "dispatch-character-06-winter",
+      "asset_id": "character-06-winter",
+      "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-06-winter/character-06-winter.jpg",
+      "sha256": "3ecc77ed57d2b39af76b566859d8246c5216559dc236c6fa767aea7c2b4ce9d3",
+      "prompt_sha256": "3243b01a17a89be33154a9b596baa3186c9d4668da389e8fc0bbf2601221276b",
+      "provider_task_id": "12798054493427504922"
+    }
+  ]
+}

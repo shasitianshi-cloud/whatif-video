@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
+  "task_id": "dispatch-character-06-winter",
+  "asset_id": "character-06-winter",
+  "status": "SUCCESS",
+  "generation_route": "gpt-image-2",
+  "execution_route": "volcengine_general3_t2i_api",
+  "asset_kind": "image",
+  "role": "character_consistency_test",
+  "in_content_timeline": false,
+  "prompt_sha256": "3243b01a17a89be33154a9b596baa3186c9d4668da389e8fc0bbf2601221276b",
+  "prompt_passthrough": true,
+  "provider": "volcengine",
+  "provider_model": "通用3.0-文生图",
+  "provider_task_id": "12798054493427504922",
+  "provider_request_id": "20260814003253A24787768353CEF0EE88",
+  "provider_response_redacted": {
+    "code": 10000,
+    "message": "Success",
+    "request_id": "20260814003253A24787768353CEF0EE88",
+    "data": {
+      "status": "done",
+      "task_id": "12798054493427504922",
+      "image_count": 1
+    }
+  },
+  "local_path": "runs/character-consistency-galgame-outfit-v1-20260814-001/video-production/execution/character-06-winter/character-06-winter.jpg",
+  "sha256": "3ecc77ed57d2b39af76b566859d8246c5216559dc236c6fa767aea7c2b4ce9d3",
+  "file_size_bytes": 120879,
+  "width": 1280,
+  "height": 720,
+  "requested_width": 1280,
+  "requested_height": 720,
+  "max_concurrency_observed": 1,
+  "control_returned_to_caller": true,
+  "ambiguous_task_submission": false,
+  "recovery_executor_reconstructed": true,
+  "historical_executor_byte_identical": false
+}
