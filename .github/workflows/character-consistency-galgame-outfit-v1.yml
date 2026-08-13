@@ -1,0 +1,136 @@
+name: Character Consistency Galgame Outfit V1
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'stress-tests/character-consistency-galgame-v1/TRIGGER_001'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: character-consistency-galgame-outfit-v1
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      CONTRACT: stress-tests/character-consistency-galgame-v1/prompt-contract.json
+      RUN_ID: character-consistency-galgame-outfit-v1-20260814-001
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+
+      - name: Build test dispatch from JSON prompt contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 stress-tests/character-consistency-galgame-v1/build_dispatch.py --contract "$CONTRACT"
+
+      - name: Materialize Volcengine image credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          node video-production/runtime/decrypt-volcengine-image-auth.mjs \
+            runtime-auth/volcengine-image-runtime-auth.v1.json \
+            .age-runtime-auth-identity \
+            .runtime-auth/volcengine-image/credential.txt
+
+      - name: Execute six real image tasks with repository component
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/run_asset_executor.py \
+            "runs/$RUN_ID/video-production/execution/asset-dispatch.json" \
+            --execute-provider \
+            --image-execution-adapter volcengine_general3_t2i_api \
+            --image-credential-file .runtime-auth/volcengine-image/credential.txt
+
+      - name: Gate execution and write test summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          base=Path('runs')/run_id
+          exec_root=base/'video-production/execution'
+          test_root=base/'character-consistency-test'
+          dispatch=json.loads((exec_root/'asset-dispatch.json').read_text())
+          state=json.loads((exec_root/'asset-executor-state.json').read_text())
+          prompts=json.loads((test_root/'compiled-prompt-bundle.json').read_text())
+          assert len(dispatch['tasks'])==6
+          assert state['status']=='COMPLETE'
+          assert state['next_task_index']==6
+          assert state['serial_execution'] is True
+          assert state['completeness']['asset_execution_completeness_pass'] is True
+          assert prompts['compiled_prompts'][0]['prompt_sha256']==prompts['compiled_prompts'][1]['prompt_sha256']
+          artifacts=[]
+          for task in dispatch['tasks']:
+            rel=state['artifact_paths_by_task_id'][task['task_id']]
+            artifact=json.loads(Path(rel).read_text())
+            assert artifact['status']=='SUCCESS'
+            assert artifact['provider']=='volcengine'
+            assert artifact['execution_route']=='volcengine_general3_t2i_api'
+            assert artifact['width']==1280 and artifact['height']==720
+            artifacts.append({
+              'task_id':artifact['task_id'],
+              'asset_id':artifact['asset_id'],
+              'local_path':artifact['local_path'],
+              'sha256':artifact['sha256'],
+              'prompt_sha256':artifact['prompt_sha256'],
+              'provider_task_id':artifact['provider_task_id']
+            })
+          summary={
+            'schema_version':1,
+            'run_id':run_id,
+            'test_name':'CHARACTER_CONSISTENCY_GALGAME_OUTFIT_V1',
+            'status':'EXECUTION_PASS',
+            'quality_judgment':'PENDING_VISUAL_REVIEW',
+            'provider_component':'volcengine_general3_t2i_api',
+            'task_count':6,
+            'serial_execution':True,
+            'same_prompt_control_count':2,
+            'outfit_variant_count':4,
+            'control_prompts_identical':True,
+            'production_config_changed':False,
+            'reference_image_used':False,
+            'seed_control_used':False,
+            'artifacts':artifacts
+          }
+          test_root.mkdir(parents=True,exist_ok=True)
+          (test_root/'execution-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(summary,ensure_ascii=False))
+          PY
+
+      - name: Commit character consistency test artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/character-consistency-test" "runs/$RUN_ID/video-production/execution"
+          git diff --cached --quiet && { echo 'NO_TEST_ARTIFACTS'; exit 1; }
+          git commit -m "run galgame outfit character consistency test"
+          git push origin HEAD:implementation/global-production-v2
+
+      - name: Remove plaintext auth
+        if: always()
+        shell: bash
+        run: rm -rf .runtime-auth .age-runtime-auth-identity
