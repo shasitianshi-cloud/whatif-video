@@ -1,0 +1,302 @@
+name: Stress GPS Image Long Run V1
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'stress-tests/image-long-run-v1/TRIGGER_GPS_001'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: whatif-stress-gps-image-long-run-v1
+  cancel-in-progress: false
+
+jobs:
+  stress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      RUN_ID: stress-gps-image-only-20260813-001
+      FIXTURE: stress-tests/image-long-run-v1/gps-visual-fixture.json
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+
+      - name: Ensure FFmpeg
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y ffmpeg; }
+          command -v ffprobe >/dev/null
+
+      - name: Install pinned age v1.3.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          curl -fsSLo age.tar.gz https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-linux-amd64.tar.gz
+          echo 'bdc69c09cbdd6cf8b1f333d372a1f58247b3a33146406333e30c0f26e8f51377  age.tar.gz' | sha256sum -c -
+          tar -xzf age.tar.gz
+          echo "$PWD/age" >> "$GITHUB_PATH"
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+
+      - name: Prepare frozen master narration
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          MASTER="runs/$RUN_ID/video-master/video-master.md"
+          EXPECTED_SHA="$(python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          gate=json.loads((Path('runs')/run_id/'video-master/video-master-gate.json').read_text())
+          print(gate['sha256'], end='')
+          PY
+          )"
+          python3 video-production/src/production_narration.py prepare \
+            --run-id "$RUN_ID" \
+            --video-master "$MASTER" \
+            --expected-sha256 "$EXPECTED_SHA"
+
+      - name: Execute real TTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$PWD/age:$PATH"
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/encrypted_runtime_auth.py decrypt-materialize \
+            --encrypted runtime-auth/runtime-auth.v1.age \
+            --identity-file .age-runtime-auth-identity
+          VOLCENGINE_TTS_API_KEY="$(python3 - <<'PY'
+          import json
+          from pathlib import Path
+          print(json.loads(Path('.runtime-auth/volcengine/credential.json').read_text())['api_key'], end='')
+          PY
+          )"
+          test -n "$VOLCENGINE_TTS_API_KEY"
+          export VOLCENGINE_TTS_API_KEY
+          python3 video-production/src/production_narration.py synthesize --run-id "$RUN_ID"
+
+      - name: Gate 3-minute narration stress boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          root=Path('runs')/run_id/'video-production/narration'
+          plan=json.loads((root/'narration-plan.json').read_text())
+          manifest=json.loads((root/'narration-audio-manifest.json').read_text())
+          gate=json.loads((root/'narration-completeness-gate.json').read_text())
+          assert gate['narration_completeness_gate']=='PASS'
+          assert plan['segment_count']==manifest['segment_count']==36, (plan['segment_count'], manifest['segment_count'])
+          assert len(manifest['segments'])==36
+          assert all(0 < int(x['duration_ms']) < 15000 for x in manifest['segments'])
+          assert int(manifest['total_duration_ms']) > 180000, manifest['total_duration_ms']
+          stress={
+            'schema_version':1,
+            'run_id':run_id,
+            'status':'PASS',
+            'gate':'LONG_NARRATION_STRESS_GATE',
+            'segment_count':36,
+            'total_duration_ms':manifest['total_duration_ms'],
+            'minimum_required_duration_ms':180000,
+            'all_segments_under_15000ms':True,
+            'text_generation_executed':False,
+          }
+          (root/'long-narration-stress-gate.json').write_text(json.dumps(stress,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(stress,ensure_ascii=False))
+          PY
+
+      - name: Commit TTS stress artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID/video-production/narration"
+          git diff --cached --quiet && { echo 'NO_TTS_STRESS_ARTIFACTS'; exit 1; }
+          git commit -m "stress synthesize long GPS narration"
+          git push origin HEAD:implementation/global-production-v2
+
+      - name: Build frozen image-only production script from measured TTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 stress-tests/image-long-run-v1/build_production_script.py \
+            --run-id "$RUN_ID" \
+            --fixture "$FIXTURE"
+
+      - name: Materialize Volcengine image credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          node video-production/runtime/decrypt-volcengine-image-auth.mjs \
+            runtime-auth/volcengine-image-runtime-auth.v1.json \
+            .age-runtime-auth-identity \
+            .runtime-auth/volcengine-image/credential.txt
+
+      - name: Execute 36 real image tasks strictly serially
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/prepare_production_execution.py \
+            --run-id "$RUN_ID" \
+            --execute-provider \
+            --image-execution-adapter volcengine_general3_t2i_api \
+            --image-credential-file .runtime-auth/volcengine-image/credential.txt
+
+      - name: Gate serial image stress execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          root=Path('runs')/run_id/'video-production/execution'
+          dispatch=json.loads((root/'asset-dispatch.json').read_text())
+          state=json.loads((root/'asset-executor-state.json').read_text())
+          status=json.loads((root/'production-execution-status.json').read_text())
+          assert len(dispatch['tasks'])==36, len(dispatch['tasks'])
+          assert all(t['generation_route']=='gpt-image-2' and t['expected_asset_kind']=='image' for t in dispatch['tasks'])
+          assert state['status']=='COMPLETE' and status['status']=='COMPLETE'
+          assert state['serial_execution'] is True and state['latest_discovery_used'] is False
+          assert state['next_task_index']==36
+          comp=state['completeness']
+          assert comp['asset_execution_completeness_pass'] is True
+          assert comp['success_task_count']==36
+          gate={
+            'schema_version':1,
+            'run_id':run_id,
+            'status':'PASS',
+            'gate':'SERIAL_IMAGE_LONG_RUN_STRESS_GATE',
+            'image_task_count':36,
+            'serial_execution':True,
+            'asset_execution_complete':True,
+            'next_task_index':state['next_task_index'],
+          }
+          (root/'serial-image-long-run-stress-gate.json').write_text(json.dumps(gate,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(gate,ensure_ascii=False))
+          PY
+
+      - name: Commit production script and image artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add "runs/$RUN_ID/video-production/production-script" "runs/$RUN_ID/video-production/execution"
+          git diff --cached --quiet && { echo 'NO_IMAGE_STRESS_ARTIFACTS'; exit 1; }
+          git commit -m "stress execute 36 serial GPS images"
+          git push origin HEAD:implementation/global-production-v2
+
+      - name: Finalize long render closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/finalize_render_closure.py --run-id "$RUN_ID"
+
+      - name: Gate 36 explicit image-motion layers
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, math, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          root=Path('runs')/run_id/'video-production/render'
+          closure=json.loads((root/'render-closure-gate.json').read_text())
+          plan=json.loads((root/'render-plan.json').read_text())
+          assert closure['status']=='READY_FOR_HYPERFRAMES_RENDER'
+          motions=[x for x in plan['layers'] if x.get('treatment')=='image_motion']
+          assert len(motions)==36, len(motions)
+          for layer in motions:
+            params=(layer.get('motion') or {}).get('parameters')
+            assert isinstance(params,dict)
+            for side in ('from','to'):
+              point=params.get(side)
+              assert isinstance(point,dict)
+              for key in ('x_percent','y_percent','scale'):
+                value=point.get(key)
+                assert isinstance(value,(int,float)) and not isinstance(value,bool) and math.isfinite(float(value))
+          gate={'schema_version':1,'run_id':run_id,'status':'PASS','image_motion_layer_count':36,'explicit_motion_parameters':True}
+          (root/'production-motion-parameter-gate.json').write_text(json.dumps(gate,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(gate,ensure_ascii=False))
+          PY
+
+      - name: Materialize pinned HyperFrames runtime
+        shell: bash
+        run: bash video-production/runtime/materialize-hyperframes-runtime.sh
+
+      - name: Render final 3-minute-plus video
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 video-production/src/render_final_video.py --run-id "$RUN_ID"
+
+      - name: Write final stress summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          base=Path('runs')/run_id
+          narr=json.loads((base/'video-production/narration/narration-audio-manifest.json').read_text())
+          dispatch=json.loads((base/'video-production/execution/asset-dispatch.json').read_text())
+          gate=json.loads((base/'video-production/render/final-video-gate.json').read_text())
+          assert gate['status']=='PASS'
+          assert gate['duration_ms'] > 180000
+          summary={
+            'schema_version':1,
+            'run_id':run_id,
+            'test_name':'IMAGE_LONG_DURATION_STRESS_V1',
+            'title':'GPS 为什么能定位到你',
+            'status':'PASS',
+            'text_generation_executed':False,
+            'visual_planner_executed':False,
+            'real_tts_executed':True,
+            'real_image_api_executed':True,
+            'serial_image_execution':True,
+            'real_hyperframes_render_executed':True,
+            'segment_count':narr['segment_count'],
+            'image_task_count':len(dispatch['tasks']),
+            'narration_duration_ms':narr['total_duration_ms'],
+            'final_video_duration_ms':gate['duration_ms'],
+            'final_video_sha256':gate['sha256'],
+            'final_video_gate':'PASS',
+            'production_config_changed':False,
+          }
+          (base/'stress-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps(summary,ensure_ascii=False))
+          PY
+
+      - name: Commit final stress render
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add "runs/$RUN_ID/video-production/render" "runs/$RUN_ID/stress-summary.json"
+          git diff --cached --quiet && { echo 'NO_FINAL_STRESS_OUTPUT'; exit 1; }
+          git commit -m "complete GPS image long-run stress test"
+          git push origin HEAD:implementation/global-production-v2
+
+      - name: Remove plaintext auth
+        if: always()
+        shell: bash
+        run: rm -rf .runtime-auth .age-runtime-auth-identity age age.tar.gz
