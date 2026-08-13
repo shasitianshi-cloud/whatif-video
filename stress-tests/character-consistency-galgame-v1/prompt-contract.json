@@ -1,41 +1,41 @@
 {
   "schema_version": 1,
-  "test_name": "CHARACTER_CONSISTENCY_GALGAME_OUTFIT_V2",
+  "test_name": "CHARACTER_CONSISTENCY_GALGAME_OUTFIT_V1",
   "run_id": "character-consistency-galgame-outfit-v1-20260814-001",
   "provider_component": "volcengine_general3_t2i_api",
-  "test_hypothesis": "The same fixed text-only anime/galgame character identity remains recognizable under visually extreme outfit changes.",
-  "control_strategy": "Two exact duplicate baseline prompts measure same-prompt drift; four highly distinct outfit variants test outfit-induced identity drift.",
+  "test_hypothesis": "A fixed text-only character identity contract can preserve recognizable anime/galgame character identity while outfit changes.",
+  "control_strategy": "Two exact duplicate baseline prompts measure stochastic same-prompt drift before outfit-induced drift is judged.",
   "fixed": {
     "character_identity": "One adult East Asian woman, 24 years old, medium height, slim balanced build, narrow shoulders, long legs, gentle oval face, fair warm skin, warm amber eyes, a tiny beauty mark directly under her left eye, shoulder-length dark chestnut-brown hair with soft inward curls at the ends, straight bangs slightly parted at the center, one small deep-red ribbon hair clip on the right side of her hair. Her face, eye shape, nose, mouth, jawline, body proportions, hairstyle, hair color, eye color, age and beauty mark must remain the same character identity.",
     "style": "Polished Japanese visual novel / galgame heroine artwork, high-quality 2D anime illustration, clean precise line art, soft cel shading, refined facial rendering, subtle warm highlights, attractive but natural proportions, production-quality character CG, not chibi, not photorealistic.",
     "composition": "Single character only, centered three-quarter full-body view from head to below knees, facing the viewer, relaxed neutral standing pose, arms naturally at her sides, calm gentle closed-mouth smile, direct eye contact, same camera height and same framing in every image.",
     "scene": "The same quiet modern visual-novel interior background in every image: warm softly lit apartment living room, pale neutral wall, one blurred houseplant at far left, soft daylight from a window at far right, shallow background detail, character remains the clear focus.",
-    "constraints": "This is the same fixed character identity in every image. The outfit change is mandatory and must be visually obvious. Preserve the exact same face, hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle and background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition."
+    "constraints": "Do not change the hairstyle, hair length, hair color, ribbon position, eye color, beauty mark, facial structure, apparent age, body type, height impression, pose, expression, camera angle or background. No extra people, no text, no subtitles, no interface elements, no watermark. Only the specified outfit is allowed to change between variants. Wide 16:9 composition."
   },
   "variants": [
     {
-      "variant_id": "baseline-a",
-      "outfit": "MANDATORY OUTFIT: cream fitted long-sleeve blouse, dark straight-leg tailored trousers and simple dark low-heeled shoes. No skirt, no coat."
+      "variant_id": "control-baseline-a",
+      "outfit": "Cream fitted long-sleeve blouse tucked into a dark navy high-waisted pleated skirt, sheer neutral stockings, simple dark low-heeled pumps."
     },
     {
-      "variant_id": "baseline-b",
-      "outfit": "MANDATORY OUTFIT: cream fitted long-sleeve blouse, dark straight-leg tailored trousers and simple dark low-heeled shoes. No skirt, no coat."
+      "variant_id": "control-baseline-b",
+      "outfit": "Cream fitted long-sleeve blouse tucked into a dark navy high-waisted pleated skirt, sheer neutral stockings, simple dark low-heeled pumps."
     },
     {
-      "variant_id": "business-suit",
-      "outfit": "MANDATORY OUTFIT: sharp black women's business pantsuit with fitted blazer, crisp white dress shirt, straight-leg black trousers and black leather heels."
+      "variant_id": "business",
+      "outfit": "Charcoal tailored blazer over a light ivory blouse, matching fitted knee-length skirt, black tights, understated black pumps; elegant young professional styling."
     },
     {
-      "variant_id": "sportswear",
-      "outfit": "MANDATORY OUTFIT: modern athletic clothing with cropped zip sports jacket, fitted dark running leggings and lightweight white running shoes."
+      "variant_id": "weekend-casual",
+      "outfit": "Soft oversized oatmeal knit sweater, short muted-blue pleated skirt, opaque dark tights, brown ankle boots; relaxed weekend styling."
     },
     {
-      "variant_id": "yukata",
-      "outfit": "MANDATORY OUTFIT: traditional pale-blue Japanese summer yukata with clear floral pattern, dark obi belt and wooden geta sandals, full traditional robe silhouette."
+      "variant_id": "date-dress",
+      "outfit": "Refined pale-blue knee-length one-piece dress with a fitted waist and modest neckline, light cream cardigan, delicate low heels; elegant romantic date styling."
     },
     {
-      "variant_id": "evening-gown",
-      "outfit": "MANDATORY OUTFIT: elegant floor-length black evening gown with sleeveless fitted bodice, long flowing skirt and delicate formal heels, full formal gown silhouette."
+      "variant_id": "winter",
+      "outfit": "Long warm cream wool coat over a dark knit top and modest skirt, burgundy scarf, black tights, dark knee-high boots; practical winter styling."
     }
   ]
 }
