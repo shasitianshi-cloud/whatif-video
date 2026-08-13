@@ -1,0 +1,90 @@
+name: Character Field Outfit V3
+
+on:
+  push:
+    branches:
+      - implementation/global-production-v2
+    paths:
+      - 'stress-tests/character-field-outfit-v3/TRIGGER_001'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: character-field-outfit-v3
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      RUN_ID: character-field-outfit-v3-20260814-001
+      AGE_RUNTIME_AUTH_PRIVATE_KEY: ${{ secrets.AGE_RUNTIME_AUTH_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: implementation/global-production-v2
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+
+      - name: Materialize Volcengine image credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${AGE_RUNTIME_AUTH_PRIVATE_KEY:-}"
+          umask 077
+          printf '%s\n' "$AGE_RUNTIME_AUTH_PRIVATE_KEY" > .age-runtime-auth-identity
+          node video-production/runtime/decrypt-volcengine-image-auth.mjs \
+            runtime-auth/volcengine-image-runtime-auth.v1.json \
+            .age-runtime-auth-identity \
+            .runtime-auth/volcengine-image/credential.txt
+
+      - name: Execute five V3 image tasks with repository component
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PYTHONPATH="$PWD/video-production/src"
+          python3 video-production/src/run_asset_executor.py \
+            "runs/$RUN_ID/video-production/execution/asset-dispatch.json" \
+            --execute-provider \
+            --image-execution-adapter volcengine_general3_t2i_api \
+            --image-credential-file .runtime-auth/volcengine-image/credential.txt
+
+      - name: Gate V3 execution
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          run_id=os.environ['RUN_ID']
+          root=Path('runs')/run_id/'video-production/execution'
+          dispatch=json.loads((root/'asset-dispatch.json').read_text())
+          state=json.loads((root/'asset-executor-state.json').read_text())
+          assert len(dispatch['tasks'])==5
+          assert state['status']=='COMPLETE'
+          assert state['next_task_index']==5
+          assert state['serial_execution'] is True
+          assert state['completeness']['asset_execution_completeness_pass'] is True
+          print(json.dumps({'status':'PASS','run_id':run_id,'task_count':5,'serial_execution':True},ensure_ascii=False))
+          PY
+
+      - name: Commit V3 image artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "runs/$RUN_ID"
+          git diff --cached --quiet && { echo 'NO_V3_TEST_ARTIFACTS'; exit 1; }
+          git commit -m "run field-structured character outfit v3"
+          git push origin HEAD:implementation/global-production-v2
+
+      - name: Remove plaintext auth
+        if: always()
+        shell: bash
+        run: rm -rf .runtime-auth .age-runtime-auth-identity
